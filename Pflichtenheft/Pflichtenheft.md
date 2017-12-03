@@ -6,20 +6,20 @@
 |------------------- |:-------------------: |
 | Projektleiter		 | Urbanides Konstantin |
 | Erstellt am 		 | 19.11.2017		    |
-| Zuletzt geändert	 | ------------			|
+| Zuletzt geändert	 | 03.12.2017			|
 | Zustand			 | in Bearbeitung		|
 | Dokumentenablage	 | ---------------		|
 
 
 ## Weitere Produktinformationen
-| Mitwirkende |  	 		|
-|------------ |:----------: |
-| Erzeugung	  |             |
+|                 | Mitwirkende 	     |                      |
+|------------     |:----------:          |         :----------: |
+| David Hiebl	  | Max Wahl             | Konstantin Urbanides |
 
 ## Änderungsverzeichnis
-|          Änderung | Geänderte Kapitel | Beschreibung der Änderung|     Autor     |
+|          Datum | Geänderte Kapitel | Beschreibung der Änderung|     Autor     |
 |------------------------------- |:----------------: | :------------------------:|:-------------:|
-| Nr.	  |             |
+| 	  03.12.2017| Funktionale Anforderungen, Charakterisierende Informationen            |Alle Bilder wurden zugeschnitten (Gui,Diagramme)             |       David Hiebl|
 
 ## Inhalt
 
@@ -76,14 +76,25 @@ In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wu
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
 ## 3 Funktionale Anforderungen
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
+Mit der Software soll es möglich sein vorgegebene Lernabschnitte, so genannte Units, lernen zu können, um dann die dazugehörigen Prüfungen positiv abschließen zu können. Dabei soll der Benutzer auf seine Ergebnisse in Form von Statistiken haben.
 
 ### 3.1 Use Case Diagramm
 
 <img src="Images\Use_Case.jpeg" alt="Drawing" style="width: 800px;"/>
 
 ## Charakterisierende Informationen
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt)
+Units durchführen:
+
+Der Benutzer soll eine bestimmte Unit auswählen und diese dann durchführen können. Dabei soll während der Unit ein Timer angezeigt werden, genauso wie die derzeitige Fehleranzahl. Wird ein Wort falsch eingegeben, soll die richtige Lösung sofort angezeigt werden, nachdem der Anwender auf "weiter" gedrückt hat. Am Schluss sollen dem Benutzer noch die Ergebnisse angezeigt werden (Zeit, Fehleranzahl,...)
+
+Prüfung durchführen: 
+
+Ähnlicher Ablauf wie bei "Units durchführen".
+Auch hier sollen dem Benutzer während der Prüfung die Zeit angezeigt werden, jedoch hier nicht die derzeitige Fehleranzahl und die richtige Lösung bei einer falschen Eingabe. Erst zum Schluss sieht der Anwender seine Fehleranzahl und ob er die Prüfung bestanden hat oder nicht. Außerdem soll es dem Benutzer nun möglich sein seine Falscheingaben und die richtigen Lösungen anzusehen.
+
+Statistiken anzeigen:
+
+Hier soll sich Benutzer anschauen können welche Units er schon geübt hat, welche Prüfungen er absolviert hat (welche positiv, welche negativ), wie seine durchschnittliche Fehlerquote insgesamt und pro Unit/Prüfung aussieht und wie lange er pro Tag übt. 
 
 ## GUI für den Aufruf des Use Cases
 
