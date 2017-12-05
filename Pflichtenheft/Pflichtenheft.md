@@ -35,17 +35,16 @@
 * 3 Funktionale Anforderungen
     * 3.1 Use Case Diagramm
 * 4 Nicht-funktionale Anforderungen
-* 5 Ziele
-* 6 Mengengerüst
-* 7 Risikoakzeptanz
-* 8 Lebenszyklusanalyse und Gesamtsystemarchitektur
-* 9 Schnittstellenübersicht
-* 10 Lieferumfang
-* 11 Abnahmekriterien
-* 12 Anderungsverfolgung zu den Anfordernungen (Lastenheft)
-* 13 Abkürzungsverzeichnis
-* 14 Literaturverzeichnis
-* 15 Abbildungsverzeichnis
+* 5 Mengengerüst
+* 6 Risikoakzeptanz
+* 7 Lebenszyklusanalyse und Gesamtsystemarchitektur
+* 8 Schnittstellenübersicht
+* 9 Lieferumfang
+* 10 Abnahmekriterien
+* 11 Anderungsverfolgung zu den Anfordernungen (Lastenheft)
+* 12 Abkürzungsverzeichnis
+* 13 Literaturverzeichnis
+* 14 Abbildungsverzeichnis
 
 
 
@@ -133,31 +132,31 @@ Es soll durch Komprimieren von Bildern und Optimieren der Software die Ladezeit 
 
 Es soll möglich sein Accounts anzulegen, um seine Ergebnisse zu speichern. Diese sollen durch Passwörter geschützt werden. Es sollen außerdem Maßnahmen getroffen werden, um Datenverlust bei einem Absturz oder bei anderen Komplikationen vermieden werden (Durch beispielsweise Backups, die automatisch geladen werden und immer wieder aktualisiert werden.).
 
-## 6 Mengengerüst
+## 5 Mengengerüst
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 7 Risikoakzeptanz
+## 6 Risikoakzeptanz
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 8 Lebenszyklusanalyse und Gesamtsystemarchitektur
+## 7 Lebenszyklusanalyse und Gesamtsystemarchitektur
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 9 Schnittstellenübersicht
+## 8 Schnittstellenübersicht
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 10 Lieferumfang
+## 9 Lieferumfang
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 11 Abnahmekriterien
+## 10 Abnahmekriterien
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 12 Anforderungsverfolgung zu den Anforderungen (Lastenheft)
+## 11 Anforderungsverfolgung zu den Anforderungen (Lastenheft)
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 13 Abkürzungsverzeichnis
+## 12 Abkürzungsverzeichnis
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 14 Literaturverzeichnis
+## 13 Literaturverzeichnis
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
-## 15 Abbildungsverzeichnis
+## 14 Abbildungsverzeichnis
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
