@@ -20,6 +20,7 @@
 |          Datum | Geänderte Kapitel | Beschreibung der Änderung|     Autor     |
 |------------------------------- |:----------------: | :------------------------:|:-------------:|
 | 	  03.12.2017| Funktionale Anforderungen, Charakterisierende Informationen            |Alle Bilder wurden zugeschnitten (Gui,Diagramme)             |       David Hiebl|
+| 	  05.12.2017| Ziele, Zielbestimmungen, Funktionale Anforderungen          | Änderungen laut Feedback eingebaut             |       Maximilian Wahl|
 
 ## Inhalt
 
