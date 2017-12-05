@@ -75,6 +75,14 @@ In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wu
 ### 2.1.5 Beschreibung der Geschäftsprozesse
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
+### 2.2
+#### Zeitlich
+
+Bis zum Beginn des Studienjahres 2018/2019 soll das Vokabelüberprüfungsprogramm in den Echtbetrieb übernommen werden, obwohl das Projekt ausgenommen von den spezifischen Einrichtungen für das Studienjahr 2018/2019 schon Ende Juni 2018 fertigzustellen ist.
+#### Ergebnis
+Es soll eine vokabelüberprüfende Web-Anwendung über die sich neue Vokabeln in einem modernen und übersichtlichen Format erlernen lassen entstehen.
+Der Notendurchschnitt der Kunden des Sprachlerninstitutes soll sich von 4 auf mindestens 3 oder mehr erhöhen.
+
 ## 3 Funktionale Anforderungen
 Mit der Software soll es möglich sein vorgegebene Lernabschnitte, so genannte Units, lernen zu können, um dann die dazugehörigen Prüfungen positiv abschließen zu können. Dabei soll der Benutzer auf seine Ergebnisse in Form von Statistiken haben.
 
@@ -96,11 +104,7 @@ Statistiken anzeigen:
 
 Hier soll sich Benutzer anschauen können welche Units er schon geübt hat, welche Prüfungen er absolviert hat (welche positiv, welche negativ), wie seine durchschnittliche Fehlerquote insgesamt und pro Unit/Prüfung aussieht und wie lange er pro Tag übt. 
 
-## GUI für den Aufruf des Use Cases
-
-### Log In
-
-<img src="Images\GUI_Login.jpeg" alt="Drawing" style="width: 400px;"/>
+## GUI für den Aufruf der Use Cases
 
 ### Main Page
 
@@ -113,47 +117,6 @@ Hier soll sich Benutzer anschauen können welche Units er schon geübt hat, welc
 ### Statistik
 
 <img src="Images\GUI_STatistik.jpeg" alt="Drawing" style="width: 800px;"/>
-
-
-## Szenario für den Standardablauf (Erfolg)
-* Der Benutzer loggt sich ohne Fehler ein.
-* Der Benutzer startet eine Prüfung.
-* Der Benutzer schließt die Prüfung/Lehreinheit positiv ab.
-* Der Benutzer sieht sich seine Statistiken an.
-
-## GUI für den Standardablauf des Use Cases
-### Log In
-
-<img src="Images\GUI_Login.jpeg" alt="Drawing" style="width: 400px;"/>
-
-### Main Page
-
-<img src="Images\GUI_MainPage.jpeg" alt="Drawing" style="width: 800px;"/>
-
-### Vokabel-Prüfung/Lerneinheit
-
-<img src="Images\GUI_Pruefung.jpeg" alt="Drawing" style="width: 800px;"/>
-
-### Efolg bei Prüfung/Lerneinheit
-
-<img src="Images\GUI_Negativ.jpeg" alt="Drawing" style="width: 800px;"/>
-
-### Statistik
-
-<img src="Images\GUI_STatistik.jpeg" alt="Drawing" style="width: 800px;"/>
-
-
-## Szenarien für alternative Abläufe (Misserfolg oder Umwege zum Erfolg)
-Der Benutzer hat sich vertippt beim Einloggen oder er hat sein Passwort vergessen.
-Der Benutzer schließt eine Prüfung/Lehreinheit negativ ab.
-
-## GUIs für  den alternative Abläufe des Use Cases
-### Log In Fehler
-<img src="Images\GUI_ERROR_Login.jpeg" alt="Drawing" style="width: 400px;"/>
-
-### Prüfung/Lerneinheit negativ abgeschlossen
-
-<img src="Images\GUI_Erfolg.jpeg" alt="Drawing" style="width: 800px;"/>
 
 ## Beschreibung des allgemeinen Ablaufes
 ### Aktivitätsdiagramm
@@ -169,13 +132,6 @@ Es soll durch Komprimieren von Bildern und Optimieren der Software die Ladezeit 
 #### Sicher: Sicherheitsanforderung
 
 Es soll möglich sein Accounts anzulegen, um seine Ergebnisse zu speichern. Diese sollen durch Passwörter geschützt werden. Es sollen außerdem Maßnahmen getroffen werden, um Datenverlust bei einem Absturz oder bei anderen Komplikationen vermieden werden (Durch beispielsweise Backups, die automatisch geladen werden und immer wieder aktualisiert werden.).
-## 5 Ziele
-#### Zeitlich
-
-Bis zum Beginn des Studienjahres 2018/2019 soll das Vokabelüberprüfungsprogramm in den Echtbetrieb übernommen werden, obwohl das Projekt ausgenommen von den spezifischen Einrichtungen für das Studienjahr 2018/2019 schon Ende Juni 2018 fertigzustellen ist.
-#### Ergebnis
-Es soll eine vokabelüberprüfende Web-Anwendung über die sich neue Vokabeln in einem modernen und übersichtlichen Format erlernen lassen entstehen.
-Der Notendurchschnitt der Kunden des Sprachlerninstitutes soll sich von 4 auf mindestens 3 oder mehr erhöhen.
 
 ## 6 Mengengerüst
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
