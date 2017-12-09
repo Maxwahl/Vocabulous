@@ -42,7 +42,7 @@
 * 8 Schnittstellenübersicht
 * 9 Lieferumfang
 * 10 Abnahmekriterien
-* 11 Anderungsverfolgung zu den Anfordernungen (Lastenheft)
+* 11 Änderungsverfolgung zu den Anfordernungen (Lastenheft)
 * 12 Abkürzungsverzeichnis
 * 13 Literaturverzeichnis
 * 14 Abbildungsverzeichnis
@@ -51,17 +51,17 @@
 
 
 ## 1 Motivation
-Wir sehen dieses Projekt als Vorbereitung für zukunftige Projekte, um die Aufgaben und den Ablauf eines Projektes kennen zu lernen, sowie auch die verschiedenen Problembereiche eines Projektes zu identifizieren und diese auch vorbeugend zu behandeln. Projekte/Aufgaben in Gruppen zu erledigen ist in der IT-Branche sehr wichtig, da heutzutage viele Projekte vorallem in der IT-Branche in Gruppen erledigt werden, deshalb sehen wir dieses Projekt als Chance die gelernte Theorie in die Praxis umzusetzen und unsere Fähigkeiten in der Projektentwicklung zu verbessern.
+Wir sehen dieses Projekt als Vorbereitung für zukünftige Projekte, um die Aufgaben und den Ablauf eines Projektes kennenzulernen, sowie auch die verschiedenen Problembereiche eines Projektes zu identifizieren und diese auch vorbeugend zu behandeln. Projekte/Aufgaben in Gruppen zu erledigen ist in der IT-Branche sehr wichtig, da heutzutage viele Projekte, vorallem in der IT-Branche, in Gruppen erledigt werden. Deshalb sehen wir dieses Projekt als Chance die gelernte Theorie in die Praxis umzusetzen und unsere Fähigkeiten in der Projektentwicklung zu verbessern.
 
 ## 2 Ausgangssituation und Zielsetzung
 ## 2.1 Ausgangssituation und Projektbegründung
 ---
-In den vergangenen Jahren gingen beim Sprachlerninsitut Language4everyone Linz immer wieder Fragen auf Grund eines mobilen Assistenzprogrammes ein, um auch Vokabeln nicht nur mit Hilfe von PC zu überprüfen.
+In den vergangenen Jahren gingen beim Sprachlerninstitut Language4everyone Linz immer wieder Fragen aufgrund eines mobilen Assistenzprogrammes ein, um auch Vokabeln nicht nur mithilfe eines PC zu überprüfen.
 
-Das Sprachlerninstitut hat somit um eine Entwicklung/Erstellung eines Vokabelüberprüfungsprogrammes angeordnet. Es soll ein Programm entwickelt werden, dass nicht nur auf PC sondern sowohl auch auf Smartphones einsatzbar ist, um auch zu Zeiten wo kein Computer zur Verfügung steht, Vokabeln lernen zu können. Das Vokabelprüfprogramm dient als Ergänzung zum Präsenzunterricht in den Kursräumlichkeiten des Language4everyone Instituts.
+Das Sprachlerninstitut hat somit eine Entwicklung/Erstellung eines Vokabelüberprüfungsprogrammes angeordnet. Es ist ein Programm zu entwickeln, dass nicht nur auf PC sondern auch auf Smartphones einsetzbar ist, um auch in Zeiten, wo kein Computer zur Verfügung steht, Vokabeln lernen zu können. Das Vokabelprüfprogramm dient als Ergänzung zum Präsenzunterricht in den Kursräumlichkeiten des Language4everyone Instituts.
 
 ### 2.1.1 Beschreibung des Problembereiches
-Das benötigte Vokabelüberprüfungsprogramm soll die Studenten, Schüler und Kunden des Sprachlerninsitutes Language4everyone Linz unterstützen und den Lernprozess digitalisieren, um nicht von einen PC abhängig zu sein, die Vokablen zu lernen.
+Das benötigte Vokabelüberprüfungsprogramm wird die Studenten, Schüler und Kunden des Sprachlerninsitutes Language4everyone Linz unterstützen und den Lernprozess digitalisieren, um nicht von einem PC abhängig zu sein, die Vokabeln zu lernen.
 
 ### 2.1.2 Glossar
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
@@ -75,34 +75,34 @@ In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wu
 ### 2.1.5 Beschreibung der Geschäftsprozesse
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-### 2.2
+### 2.2 Zielbestimmung
 #### Zeitlich
 
-Bis zum Beginn des Studienjahres 2018/2019 soll das Vokabelüberprüfungsprogramm in den Echtbetrieb übernommen werden, obwohl das Projekt ausgenommen von den spezifischen Einrichtungen für das Studienjahr 2018/2019 schon Ende Juni 2018 fertigzustellen ist.
+Ab Beginn des Studienjahres 2018/2019 wird das Vokabelüberprüfungsprogramm im Echtbetrieb eingesetzt werden, obwohl das Projekt ausgenommen von den spezifischen Einrichtungen für das Studienjahr 2018/2019 schon Ende Juni 2018 fertigzustellen ist.
 #### Ergebnis
-Es soll eine vokabelüberprüfende Web-Anwendung über die sich neue Vokabeln in einem modernen und übersichtlichen Format erlernen lassen entstehen.
-Der Notendurchschnitt der Kunden des Sprachlerninstitutes soll sich von 4 auf mindestens 3 oder mehr erhöhen.
+Es wird eine Web-Anwendung entstehen, über die sich neue Vokabeln in einem modernen und übersichtlichen Format erlernen lassen, entstehen.
+Der Notendurchschnitt der Kunden des Sprachlerninstitutes soll sich von 4 auf mindestens 3 oder mehr verbessern.
 
 ## 3 Funktionale Anforderungen
-Mit der Software soll es möglich sein vorgegebene Lernabschnitte, so genannte Units, lernen zu können, um dann die dazugehörigen Prüfungen positiv abschließen zu können. Dabei soll der Benutzer auf seine Ergebnisse in Form von Statistiken haben.
+Die Software lässt den Benutzer vorgegebene Lernabschnitte, so genannte Units, lernen, um dann die dazugehörigen Selbstkontrollen positiv abschließen zu können. Dabei kann der Benutzer auf seine Ergebnisse in Form von Statistiken zugreifen.
 
 ### 3.1 Use Case Diagramm
 
 <img src="Images\Use_Case.jpeg" alt="Drawing" style="width: 800px;"/>
 
 ## Charakterisierende Informationen
-Units durchführen:
+Units üben:
 
-Der Benutzer soll eine bestimmte Unit auswählen und diese dann durchführen können. Dabei soll während der Unit ein Timer angezeigt werden, genauso wie die derzeitige Fehleranzahl. Wird ein Wort falsch eingegeben, soll die richtige Lösung sofort angezeigt werden, nachdem der Anwender auf "weiter" gedrückt hat. Am Schluss sollen dem Benutzer noch die Ergebnisse angezeigt werden (Zeit, Fehleranzahl,...)
+Der Benutzer wählt eine bestimmte Unit aus und übt diese. Während des Übens wird ein Timer angezeigt, genauso wie die derzeitige Fehleranzahl. Wird ein Wort falsch eingegeben, wird die richtige Lösung sofort angezeigt, nachdem der Anwender auf "weiter" gedrückt hat. Als Abschluss kann der Benutzer noch seine Ergebnisse einsehen (Zeit, Fehleranzahl,...).
 
-Prüfung durchführen: 
+Selbstkontrolle durchführen: 
 
 Ähnlicher Ablauf wie bei "Units durchführen".
-Auch hier sollen dem Benutzer während der Prüfung die Zeit angezeigt werden, jedoch hier nicht die derzeitige Fehleranzahl und die richtige Lösung bei einer falschen Eingabe. Erst zum Schluss sieht der Anwender seine Fehleranzahl und ob er die Prüfung bestanden hat oder nicht. Außerdem soll es dem Benutzer nun möglich sein seine Falscheingaben und die richtigen Lösungen anzusehen.
+Auch hier wird dem Benutzer während der Selbstkontrolle die Zeit angezeigt werden, jedoch nicht die derzeitige Fehleranzahl und die richtige Lösung bei einer falschen Eingabe. Erst zum Schluss sieht der Anwender seine Fehleranzahl und ob er die Selbstrkontrolle bestanden hat oder nicht. Außerdem darf der Benutzer nun seine Falscheingaben und die richtigen Lösungen einsehen.
 
 Statistiken anzeigen:
 
-Hier soll sich Benutzer anschauen können welche Units er schon geübt hat, welche Prüfungen er absolviert hat (welche positiv, welche negativ), wie seine durchschnittliche Fehlerquote insgesamt und pro Unit/Prüfung aussieht und wie lange er pro Tag übt. 
+Hier wird dem Benutzer angezeigt, welche Units er schon geübt hat, welche Selbstkontrollen er absolviert hat (welche positiv, welche negativ), wie seine durchschnittliche Fehlerquote insgesamt und pro Unit/Selbstkontrolle aussieht und wie lange er pro Tag übt. 
 
 ## GUI für den Aufruf der Use Cases
 
@@ -125,13 +125,13 @@ Hier soll sich Benutzer anschauen können welche Units er schon geübt hat, welc
 
 ## 4 Nicht-funktionale Anforderungen
 #### Use: Benutzbarkeitsanforderung
-Die Software soll ein modernes Design erhalten, dass die Benutzer (Schüler, Studenten) anspricht. Es soll einfach und übersichtlich aufgebaut sein, um den Anwender durch unnötige Komplexität nicht zum Verzweifeln zu bringen.
+Die Software erhält ein modernes Design, dass die Benutzer (Schüler, Studenten) anspricht. Es ist einfach und übersichtlich aufgebaut, um den Anwender durch unnötige Komplexität nicht zum Verzweifeln zu bringen.
 #### Effizienz: Effizienzanforderung
-Es soll durch Komprimieren von Bildern und Optimieren der Software die Ladezeit auf ein Minimum veringert werden (max. 0,5 Sekunden).
+Es wird durch Komprimieren von Bildern und Optimieren der Software die Ladezeit auf ein Minimum veringert(max. 0,5 Sekunden).
 
 #### Sicher: Sicherheitsanforderung
 
-Es soll möglich sein Accounts anzulegen, um seine Ergebnisse zu speichern. Diese sollen durch Passwörter geschützt werden. Es sollen außerdem Maßnahmen getroffen werden, um Datenverlust bei einem Absturz oder bei anderen Komplikationen vermieden werden (Durch beispielsweise Backups, die automatisch geladen werden und immer wieder aktualisiert werden.).
+Es muss ein Account angelegt werden, um seine Ergebnisse zu speichern. Es sollen außerdem Maßnahmen getroffen werden, um Datenverlust bei einem Absturz oder bei anderen Komplikationen vermieden werden (Durch beispielsweise Backups, die automatisch geladen werden und immer wieder aktualisiert werden.).
 
 ## 5 Mengengerüst
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
