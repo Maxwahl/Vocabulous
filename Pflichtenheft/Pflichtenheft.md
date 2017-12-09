@@ -21,6 +21,7 @@
 |------------------------------- |:----------------: | :------------------------:|:-------------:|
 | 	  03.12.2017| Funktionale Anforderungen, Charakterisierende Informationen            |Alle Bilder wurden zugeschnitten (Gui,Diagramme)             |       David Hiebl|
 | 	  05.12.2017| Ziele, Zielbestimmungen, Funktionale Anforderungen          | Änderungen laut Feedback eingebaut             |       Maximilian Wahl|
+| 	  09.12.2017| Lieferumfang, Abnahmekriterien, Mengengerüst          | Änderungen laut Feedback eingebaut             |       Konstantin Urbanides|
 
 ## Inhalt
 
@@ -134,7 +135,9 @@ Es wird durch Komprimieren von Bildern und Optimieren der Software die Ladezeit 
 Es muss ein Account angelegt werden, um seine Ergebnisse zu speichern. Es sollen außerdem Maßnahmen getroffen werden, um Datenverlust bei einem Absturz oder bei anderen Komplikationen vermieden werden (Durch beispielsweise Backups, die automatisch geladen werden und immer wieder aktualisiert werden.).
 
 ## 5 Mengengerüst
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
+| Gesamtanzahl der Nutzer | 1000 Personen |
+| ----------------------- |:-------------:|
+| Anzahl der gleichzeitigen Nutzer | 250 Personen |
 
 ## 6 Risikoakzeptanz
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
@@ -146,10 +149,10 @@ In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wu
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
 ## 9 Lieferumfang
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
+Benutzerhandbuch inkl. Anmeldedaten für die Kunden und Studenten.
 
 ## 10 Abnahmekriterien
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
+Vollfunktionstüchtiges Programm, welches sofort in den Echtzeitbetrieb übernommen werden kann.
 
 ## 11 Anforderungsverfolgung zu den Anforderungen (Lastenheft)
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
