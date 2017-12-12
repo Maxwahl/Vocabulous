@@ -22,6 +22,7 @@
 | 	  03.12.2017| Funktionale Anforderungen, Charakterisierende Informationen            |Alle Bilder wurden zugeschnitten (Gui,Diagramme)             |       David Hiebl|
 | 	  05.12.2017| Ziele, Zielbestimmungen, Funktionale Anforderungen          | Änderungen laut Feedback eingebaut             |       Maximilian Wahl|
 | 	  09.12.2017| Lieferumfang, Abnahmekriterien, Mengengerüst          | Änderungen laut Feedback eingebaut             |       Konstantin Urbanides|
+| 	  12.12.2017| Use Case Diagramm             |Änderungen laut Feedback eingebaut             |       David Hiebl|
 
 ## Inhalt
 
@@ -89,7 +90,7 @@ Die Software lässt den Benutzer vorgegebene Lernabschnitte, so genannte Units, 
 
 ### 3.1 Use Case Diagramm
 
-<img src="Images\Use_Case.jpeg" alt="Drawing" style="width: 800px;"/>
+<img src="Images\UseCaseDiagram.png" alt="Drawing" style="width: 500px;"/>
 
 ## Charakterisierende Informationen
 Units üben:
