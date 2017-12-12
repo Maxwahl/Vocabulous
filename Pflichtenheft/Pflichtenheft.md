@@ -22,7 +22,7 @@
 | 	  03.12.2017| Funktionale Anforderungen, Charakterisierende Informationen            |Alle Bilder wurden zugeschnitten (Gui,Diagramme)             |       David Hiebl|
 | 	  05.12.2017| Ziele, Zielbestimmungen, Funktionale Anforderungen          | Änderungen laut Feedback eingebaut             |       Maximilian Wahl|
 | 	  09.12.2017| Lieferumfang, Abnahmekriterien, Mengengerüst          | Änderungen laut Feedback eingebaut             |       Konstantin Urbanides|
-| 	  12.12.2017| Use Case Diagramm             |Änderungen laut Feedback eingebaut             |       David Hiebl|
+| 	  12.12.2017| Use Case Diagramm, Aktivitätsdiagramm            |Änderungen laut Feedback eingebaut             |       David Hiebl|
 
 ## Inhalt
 
@@ -122,7 +122,7 @@ Hier wird dem Benutzer angezeigt, welche Units er schon geübt hat, welche Selbs
 
 ## Beschreibung des allgemeinen Ablaufes
 ### Aktivitätsdiagramm
-<img src="Images\Aktivitaetsdiagramm_allgemeiner_Ablauf.jpeg" alt="Drawing" style="width: 800px;"/>
+<img src="Images\Aktivitaetsdiagramm.png" alt="Drawing" style="width: 500px;"/>
 
 
 ## 4 Nicht-funktionale Anforderungen
