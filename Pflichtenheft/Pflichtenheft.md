@@ -118,7 +118,7 @@ Hier wird dem Benutzer angezeigt, welche Units er schon geübt hat, welche Selbs
 
 ### Statistik
 
-<img src="Images\GUI_STatistik.jpeg" alt="Drawing" style="width: 800px;"/>
+<img src="Images\GUI_Statistik.jpeg" alt="Drawing" style="width: 800px;"/>
 
 ## Beschreibung des allgemeinen Ablaufes
 ### Aktivitätsdiagramm
