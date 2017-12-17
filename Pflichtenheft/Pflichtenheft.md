@@ -110,7 +110,7 @@ Hier wird dem Benutzer angezeigt, welche Units er schon geübt hat, welche Selbs
 
 ### Main Page
 
-<img src="Images\GUI_MainPage.jpeg" alt="Drawing" style="width: 800px;"/>
+<img src="Images\GUI-MainWindow.png" alt="Drawing" style="width: 500px;"/>
 
 ### Vokabel-Prüfung
 
