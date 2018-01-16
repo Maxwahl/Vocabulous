@@ -9,8 +9,6 @@ The PRPL pattern, in a nutshell:
 
 ### Setup
 
-##### Prerequisites
-
 First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
 [npm](https://www.npmjs.com) (we assume you have pre-installed [node.js](https://nodejs.org)).
 
@@ -19,12 +17,6 @@ First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
 Second, install [Bower](https://bower.io/) using [npm](https://www.npmjs.com)
 
     npm install -g bower
-
-##### Initialize project from template
-
-    mkdir my-app
-    cd my-app
-    polymer init polymer-2-starter-kit
 
 ### Start the development server
 
