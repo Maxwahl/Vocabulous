@@ -1,7 +1,8 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/register-login.html",
+  "shell": "src/my-app.html",
   "fragments": [
+    "src/overview-page.html",
     "src/home-view.html",
     "src/start-lesson.html",
     "src/statistics-view.html",
