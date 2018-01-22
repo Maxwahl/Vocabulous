@@ -93,3 +93,6 @@ and will be included in the build.
 
 ### Link to programm example
 https://github.com/vaadin/expense-manager-demo
+
+Functions for storing data in [expense-manager-demo/src/data/store.html]
+
