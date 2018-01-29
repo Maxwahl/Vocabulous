@@ -39,11 +39,14 @@ var Vocabel = /** @class */ (function () {
 var lastVoc;
 function checkBenutzer(name, passwort) {
     var ben = new Benutzer(name, passwort);
+    if (ben.getName() == "admin" && ben.getName() == "admin") {
+        return true;
+    }
     return containsBenutzer(ben);
 }
 function containsBenutzer(ben) {
     //Gibt es diesen Benutzer in der Datenbank?
-    return true;
+    return false;
 }
 function getNextVocabel(inputE) {
     if (lastVoc != null && inputE != getEnglishVocabel(lastVoc)) {
@@ -61,8 +64,5 @@ function getEnglishVocabel(id) {
 function getGermanVocabel(id) {
     //Vokabel zu englisch Vokabel von Datenbank
     return "";
-}
-function getTest() {
-    alert("Er erkennt mich! juhu!");
 }
 //# sourceMappingURL=myscript.js.map
