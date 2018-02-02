@@ -23,6 +23,7 @@
 | 	  05.12.2017| Ziele, Zielbestimmungen, Funktionale Anforderungen          | Änderungen laut Feedback eingebaut             |       Maximilian Wahl|
 | 	  09.12.2017| Lieferumfang, Abnahmekriterien, Mengengerüst          | Änderungen laut Feedback eingebaut             |       Konstantin Urbanides|
 | 	  12.12.2017| Use Case Diagramm, Aktivitätsdiagramm            |Änderungen laut Feedback eingebaut             |       David Hiebl|
+| 	  02.02.2018| Nicht-funktionale Anforderungen, Abbildungsverzeichnis            |Änderungen laut Feedback eingebaut             |       David Hiebl|
 
 ## Inhalt
 
@@ -126,15 +127,20 @@ Hier wird dem Benutzer angezeigt, welche Units er schon geübt hat, welche Selbs
 
 
 ## 4 Nicht-funktionale Anforderungen
-#### Use: Benutzbarkeitsanforderung
+#### Benutzbarkeit
 Die Software erhält ein modernes Design, dass die Benutzer (Schüler, Studenten) anspricht. Es ist einfach und übersichtlich aufgebaut, um den Anwender durch unnötige Komplexität nicht zum Verzweifeln zu bringen.
-#### Effizienz: Effizienzanforderung
+#### Effizienz
 Es wird durch Komprimieren von Bildern und Optimieren der Software die Ladezeit auf ein Minimum veringert(max. 0,5 Sekunden).
 
-#### Sicher: Sicherheitsanforderung
+#### Sicherheit
 
 Es muss ein Account angelegt werden, um seine Ergebnisse zu speichern. Es sollen außerdem Maßnahmen getroffen werden, um Datenverlust bei einem Absturz oder bei anderen Komplikationen vermieden werden (Durch beispielsweise Backups, die automatisch geladen werden und immer wieder aktualisiert werden.).
+#### Transportfähigkeit
 
+Die Software kann von Notebooks, Tablets und Smartphones verwendet werden. Dies macht das System transportabel.
+#### Flexibilität
+
+Das System hat stellt eine Datenbank mit vordefinierten Units zur verfügung. Bei bedarf können jedoch auch eigene Units erstellt werden bzw. hochgeladen werden.
 ## 5 Mengengerüst
 | Gesamtanzahl der Nutzer | 1000 Personen |
 | ----------------------- |:-------------:|
@@ -164,4 +170,9 @@ In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wu
 ## 13 Literaturverzeichnis
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 ## 14 Abbildungsverzeichnis
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
+* [Use Case Diagramm](#31-use-case-diagramm)
+* GUI
+    * [Main Page](#main-page)
+    * [Vokabel-Prüfung](#vokabel-prüfung)
+    * [Statistik](#statistik)
+* [Aktivitätsdiagramm](#aktivitätsdiagramm)
