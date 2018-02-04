@@ -82,13 +82,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h1>Vocabulous</h1>
     </div>
     <div class="login">
-      <vaadin-text-field value={{username}} label="Username" name="username" id="username">Username</vaadin-text-field>
+      <vaadin-text-field value={{username}} label="Username" name="username">Username</vaadin-text-field>
       <vaadin-password-field value="{{password}}" label="Password" name="password">Password</vaadin-password-field>
       <span class="error-message">[[errorMessage]]</span>
-      <vaadin-button theme="primary" id="login-button" on-tap="_logIn" onclick="checkBenutzer(this.username, this.password)">Login</vaadin-button>
+      <vaadin-button theme="primary" id="login-button" on-tap="_logIn">Login</vaadin-button>
     </div>
   </template>
-  <script src="myscript.js"></script>
+
   <script>
     class RegisterLogin extends Polymer.Element {
       static get is() { return 'register-login'; }
@@ -96,19 +96,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get properties() {
         return {
           username: {
-              type: String,
-              value:''
+            type: String,
+            value: ''
           },
           password: {
-              type: String,
-              value: ''
+            type: String,
+            value: ''
           },
           errorMessage: String
         };
       }
       _logIn() {
-          this.dispatch('login');
-          testThisThing();
+        this.dispatch('login');
       }
     }
     

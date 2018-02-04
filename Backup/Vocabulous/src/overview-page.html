@@ -1,13 +1,3 @@
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
@@ -39,10 +29,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="settings-view.html">
 <link rel="lazy-import" href="not-found.html">
 <link rel="lazy-import" href="register-login.html">
-<link rel="lazy-import" href="overview-page.html">
+<link rel="lazy-import" href="my-app.html">
 
-<dom-module id="my-app">
+<dom-module id="overview-page">
   <template>
+    
     <style>
       :host {
         --app-primary-color: #5a5f66;
@@ -81,33 +72,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: bold;
       }
     </style>
-        
-        <app-location
+
+    <iron-form>
+      <form method="get" action="/form/handler">
+        <input type="text" name="name" value="Batman">
+        <input type="checkbox" name="donuts" checked> I like donuts<br>
+        <paper-checkbox name="cheese" value="yes" checked></paper-checkbox>
+      </form>
+    </iron-form>
+    
+    <app-location
         route="{{route}}"
         url-space-regex="^[[rootPath]]">
-        </app-location>
+    </app-location>
 
-        <app-route
+    <app-route
         route="{{route}}"
-        pattern="[[rootPath]]:activePage"
+        pattern="[[rootPath]]:page"
         data="{{routeData}}"
         tail="{{subroute}}">
-        </app-route>
+    </app-route>
 
-        <iron-pages selected="[[activePage]]" attr-for-selected="name" fallback-selection="not-found" role="main">
-          <register-login name="register-login"></register-login>
-          <overview-page name="overview-page"></overview-page>
+    <app-drawer-layout fullbleed narrow="{{narrow}}">
+      <!-- Drawer content -->
+      <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
+        <app-toolbar>Menu</app-toolbar>
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <a name="home-view" href="[[rootPath]]home-view">Home</a>
+          <a name="start-lesson" href="[[rootPath]]start-lesson">Start Lesson</a>
+          <a name="statistics-view" href="[[rootPath]]statistics-view">Statistics</a>
+          <a name="messages-view" href="[[rootPath]]messages-view">Messages</a>
+          <a name="account-view" href="[[rootPath]]account-view">Account</a>
+          <a name="settings-view" href="[[rootPath]]settings-view">Settings</a>
+        </iron-selector>
+        </iron-selector>
+        </iron-selector>
+      </app-drawer>
+
+      <!-- Main content -->
+      <app-header-layout has-scrolling-region>
+
+        <app-header slot="header" condenses reveals effects="waterfall">
+          <app-toolbar>
+            <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
+            <div main-title>Vocabulous</div>
+          </app-toolbar>
+        </app-header>
+
+        
+        <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="not-found" role="main">
+          <home-view name="home-view"></home-view>
+          <start-lesson name="start-lesson"></start-lesson>
+          <statistics-view name="statistics-view"></statistics-view>
+          <messages-view name="messages-view"></messages-view>
+          <account-view name="account-view"></account-view>
+          <settings-view name="settings-view"></settings-view>
+          <not-found name="not-found"></not-found>
         </iron-pages>
+      </app-header-layout>
+    </app-drawer-layout>
   </template>
 
   <script>
-    class MyApp extends Polymer.Element {
-      static get is() { return 'my-app'; }
+    class OverviewPage extends Polymer.Element {
+      static get is() { return 'overview-page'; }
+
       static get properties() {
         return {
-          activePage: {
+          page: {
             type: String,
-            /*statePath: 'uiState.authenticated',*/
             reflectToAttribute: true,
             observer: '_pageChanged',
           },
@@ -121,21 +154,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       static get observers() {
         return [
-          '_updatePage(routeData.activePage)',
+          '_routePageChanged(routeData.page)',
         ];
       }
 
-      _updatePage(activePage) {
-        // Load page import on demand. Show 404 page if fails
-        /*this.authenticated = true;
-        this.activePage = this.authenticated;*/
-        this.activePage = activePage || 'register-login';
+      _routePageChanged(page) {
+        // If no page was found in the route data, page will be an empty string.
+        // Default to 'view1' in that case.
+        this.page = page || 'home-view';
 
+        // Close a non-persistent drawer when the page & route are changed.
+        if (!this.$.drawer.persistent) {
+          this.$.drawer.close();
+        }
       }
 
-      _pageChanged(activePage) {
+      _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl(activePage + '.html');
+        var resolvedPageUrl = this.resolveUrl(page + '.html');
         Polymer.importHref(
             resolvedPageUrl,
             null,
@@ -144,20 +180,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       _showPage404() {
-        this.activePage = 'not-found';
+        this.page = 'not-found';
       }
-
-      /*ready() {
-        super.ready();
-        // Start loading the overview page after we're done showing the login page.
-        requestAnimationFrame(() => {
-          setTimeout(() =>
-            Polymer.importHref(this.importPath + 'overview-page.html', null, null, true), 0);
-        });
-      }*/
-
     }
 
-    window.customElements.define(MyApp.is, MyApp);
+    window.customElements.define(OverviewPage.is, OverviewPage);
   </script>
 </dom-module>
