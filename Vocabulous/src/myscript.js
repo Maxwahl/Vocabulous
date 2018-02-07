@@ -38,11 +38,17 @@ var Vocabel = /** @class */ (function () {
 }());
 var lastVoc;
 function checkBenutzer(name, passwort) {
-    var ben = new Benutzer(name, passwort);
+    if(passwort == "admin" && name == "admin"){
+        console.log("Richtig");
+        return true;
+    }
+    console.log("Falsch");
+    return false;
+    /*var ben = new Benutzer(name, passwort);
     if (ben.getName() == "admin" && ben.getName() == "admin") {
         return true;
     }
-    return containsBenutzer(ben);
+    return containsBenutzer(ben);*/
 }
 function containsBenutzer(ben) {
     //Gibt es diesen Benutzer in der Datenbank?

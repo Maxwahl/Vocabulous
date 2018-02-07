@@ -1,3 +1,4 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
@@ -13,11 +14,6 @@
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
 
-<!-- Local Storage Element
-
-  <app-localstorage-document key="x" data="{{x}}">
-  </app-localstorage-document>
--->
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
 
 
@@ -33,7 +29,6 @@
 
 <dom-module id="overview-page">
   <template>
-    
     <style>
       :host {
         --app-primary-color: #5a5f66;
@@ -47,7 +42,7 @@
       }
 
       app-header {
-        color: whitesmoke;
+        color: #fff;
         background-color: var(--app-primary-color);
       }
 
@@ -73,14 +68,6 @@
       }
     </style>
 
-    <iron-form>
-      <form method="get" action="/form/handler">
-        <input type="text" name="name" value="Batman">
-        <input type="checkbox" name="donuts" checked> I like donuts<br>
-        <paper-checkbox name="cheese" value="yes" checked></paper-checkbox>
-      </form>
-    </iron-form>
-    
     <app-location
         route="{{route}}"
         url-space-regex="^[[rootPath]]">
@@ -105,8 +92,6 @@
           <a name="account-view" href="[[rootPath]]account-view">Account</a>
           <a name="settings-view" href="[[rootPath]]settings-view">Settings</a>
         </iron-selector>
-        </iron-selector>
-        </iron-selector>
       </app-drawer>
 
       <!-- Main content -->
@@ -119,8 +104,10 @@
           </app-toolbar>
         </app-header>
 
-        
-        <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="not-found" role="main">
+        <iron-pages
+            selected="[[page]]"
+            attr-for-selected="name"
+            fallback-selection="not-found">
           <home-view name="home-view"></home-view>
           <start-lesson name="start-lesson"></start-lesson>
           <statistics-view name="statistics-view"></statistics-view>
