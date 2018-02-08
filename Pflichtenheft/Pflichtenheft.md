@@ -24,7 +24,7 @@
 | 	  09.12.2017| Lieferumfang, Abnahmekriterien, Mengengerüst          | Änderungen laut Feedback eingebaut             |       Konstantin Urbanides|
 | 	  12.12.2017| Use Case Diagramm, Aktivitätsdiagramm            |Änderungen laut Feedback eingebaut             |       David Hiebl|
 | 	  02.02.2018| Nicht-funktionale Anforderungen, Abbildungsverzeichnis            |Änderungen laut Feedback eingebaut             |       David Hiebl|
-| 	  07.02.2018| Aufgabenstellung hinzugefügt            |generelle Überarbeitung             |       David Hiebl|
+| 	  07.02.2018| Aufgabenstellung hinzugefügt            |generelle Überarbeitung             |       Konstantin Urbanides|
 
 ## Inhalt
 
