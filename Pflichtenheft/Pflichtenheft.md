@@ -59,7 +59,6 @@
 Wir sehen dieses Projekt als Vorbereitung für zukünftige Projekte, um die Aufgaben und den Ablauf eines Projektes kennenzulernen, sowie auch die verschiedenen Problembereiche eines Projektes zu identifizieren und diese auch vorbeugend zu behandeln. Projekte/Aufgaben in Gruppen zu erledigen ist in der IT-Branche sehr wichtig, da heutzutage viele Projekte, vorallem in der IT-Branche, in Gruppen erledigt werden. Deshalb sehen wir dieses Projekt als Chance, um die gelernte Theorie in die Praxis umzusetzen und unsere Fähigkeiten in der Projektentwicklung zu verbessern.
 
 ## 2 Ausgangssituation und Zielsetzung
----
 ## 2.1 Ausgangssituation und Projektbegründung
 In den vergangenen Jahren gingen beim Sprachlerninstitut Language4everyone Linz immer wieder Fragen aufgrund eines mobilen Assistenzprogrammes ein, um Vokabeln nicht nur mit Hilfe eines PC überprüfen zu können. Derzeit haben die Studenten, Schüler und Kunden des Sprachlerninstitutes Language4everyone Linz nur die Möglichkeit die Vokabeln mit den in den Kursräumlichkeiten befindlichen PCs zu lernen.
 
@@ -86,11 +85,9 @@ Ab Beginn des Studienjahres 2018/2019 wird das Vokabelüberprüfungsprogramm im 
 Es wird eine datenbankbasierte Web-Anwendung, über die sich neue Vokabeln in einem modernen und übersichtlichen Format erlernen lassen, entstehen. Mit Hilfe dieser Anwendung soll der Lernprozess der Studenten, Schüler und Kunden vereinfacht werden und eine Verbesserung der Noten ermöglicht werden.
 
 ## 3 Aufgabenstellung
----
 Das Sprachlerninstitut hat somit eine Entwicklung/Erstellung eines Vokabelüberprüfungsprogrammes angeordnet. Es ist ein Programm zu entwickeln, dass nicht nur auf PCs sondern auch auf Smartphones einsetzbar ist, um auch in Zeiten, wo kein Computer zur Verfügung steht, Vokabeln lernen zu können. Das Vokabelprüfprogramm dient als Ergänzung zum Präsenzunterricht in den Kursräumlichkeiten des Language4everyone Institutes.
 
 ## 4 Funktionale Anforderungen
----
 Der Benutzer kann mit dieser Software vorgegebene Lernabschnitte, sogenannte Units lernen. Um den Lernfortschritt zu überprüfen, können Selbstkontrollen in Form von kleinen Wiederholungen durchgeführt werden. Zur besseren Übersicht werden die Fortschritte mit Hilfe von Diagrammen und Statistiken angezeigt.
 
 ## 4.1 Use Case Diagramm
@@ -131,7 +128,6 @@ Mit Hilfe der Statistiken werden die Ergebnisse übersichtlich dargestellt. Es w
 
 
 ## 5 Nicht-funktionale Anforderungen
----
 #### Benutzbarkeit
 Die Software erhält ein modernes Design, dass die Benutzer (Schüler, Studenten) anspricht. Es ist einfach und übersichtlich aufgebaut, um den Anwender durch unnötige Komplexität nicht zum Verzweifeln zu bringen.
 #### Effizienz
@@ -147,44 +143,34 @@ Die Software kann von Notebooks, Tablets und Smartphones verwendet werden. Dies 
 
 Das System hat stellt eine Datenbank mit vordefinierten Units zur verfügung. Bei bedarf können jedoch auch eigene Units erstellt werden bzw. hochgeladen werden.
 ## 6 Mengengerüst
----
 | Gesamtanzahl der Nutzer | 1000 Personen |
 | ----------------------- |:-------------:|
 | Anzahl der gleichzeitigen Nutzer | 250 Personen |
 
 ## 7 Risikoakzeptanz
----
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
 ## 8 Lebenszyklusanalyse und Gesamtsystemarchitektur
----
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
 ## 9 Schnittstellenübersicht
----
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
 ## 10 Lieferumfang
----
 Benutzerhandbuch inkl. Anmeldedaten für die Kunden und Studenten.
 
 ## 11 Abnahmekriterien
----
 Vollfunktionstüchtiges Programm, welches sofort in den Echtzeitbetrieb übernommen werden kann.
 
 ## 12 Anforderungsverfolgung zu den Anforderungen (Lastenheft)
----
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
 ## 13 Abkürzungsverzeichnis
----
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
 ## 14 Literaturverzeichnis
----
 In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 ## 15 Abbildungsverzeichnis
----
 * [Use Case Diagramm](#31-use-case-diagramm)
 * GUI
     * [Main Page](#main-page)
