@@ -1,0 +1,155 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+<link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-text-field.html">
+<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
+<link rel="import" href="../bower_components/vaadin-text-field/vaadin-password-field.html">
+
+<link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-button.html">
+<link rel="import" href="../bower_components/vaadin-button/vaadin-button.html">
+<link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-text-field.html">
+<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
+<link rel="import" href="../bower_components/vaadin-valo-theme/color.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="register-login">
+  <template>
+    <style include="shared-styles">
+       :host {
+        background: unset;
+        min-height: 400px;
+      }
+      #login-button {
+        margin: 20px 0 0 0;
+        padding-left: 25px;
+        padding-right: 25px;
+      }
+      .error-message {
+        color: red;
+      }
+      .header {
+        height: 36%;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: flex-end;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      /*.header::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        top: 36%;
+        border-bottom: 4px solidvar(--valo-primary-color-50pct);
+      }*/
+      .header h1 {
+        color: gray;
+        font-size: 24px;
+        font-weight: 300;
+        margin: 0 auto 5px;
+        text-align: left;
+        width: 250px;
+        margin-top: 12%;
+      }
+      .login {
+        width: 250px;
+        margin: 16px auto;
+        
+      }
+      
+      .login vaadin-text-field,
+      .login vaadin-password-field {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align:  left;
+      }
+    </style>
+    
+    <iron-a11y-keys keys="enter" on-keys-pressed="_logIn"></iron-a11y-keys>
+    <div id="header" class="header">
+      <h1>Vocabulous</h1>
+    </div>
+    <div class="login">
+      <vaadin-text-field label="Username" name="username" id="username">Username</vaadin-text-field>
+      <vaadin-password-field label="Password" name="password" id="password">Password</vaadin-password-field>
+      <span class="error-message">[[errorMessage]]</span>
+      <vaadin-button theme="primary" id="loginButton">Login</vaadin-button>
+    </div>
+  </template>
+  <script>
+    /*{{changeName(username, password)}}*/
+    /*<iron-a11y-keys keys="enter" on-keys-pressed="_logIn"></iron-a11y-keys>*/
+    class RegisterLogin extends Polymer.Element {
+      static get is() { return 'register-login'; }
+
+      static get properties() {
+        return {
+          username: {
+              type: String
+          },
+          password: {
+              type: String
+          },
+          errorMessage: String
+        };
+      }
+      getLoginButton(){
+        return Polymer.dom(this.root).querySelector("vaadin-button");
+      }
+      getUsername(){
+        return Polymer.dom(this.root).querySelector("vaadin-text-field");
+      }
+      getPassword(){
+        return Polymer.dom(this.root).querySelector("vaadin-password-field");
+      }
+      
+     /* changeName(username, password){
+        if(username != undefined && password != undefined){
+          checkBenutzer(username,password);
+        }
+      }*/
+
+      /*static get observers() {
+          return [
+          'valueChanged(username, password)'
+        ]
+      }*/
+    
+      /*valueChanged(username, password) {
+        
+        if(checkBenutzer(username, password)){
+              Polymer.importHref(this.importPath + 'overview-page.html', null, null, true);
+        }
+      }*/
+        
+
+     /* constructor() {
+        super();
+      }*/
+
+      /*_logIn() {
+          //this.dispatch('login');
+      }*/
+    }
+    /*function hallo(username, password) {
+      console.log("Hallo");
+      if(username != undefined && password != undefined){
+          checkBenutzer(username,password);
+        }
+    }*/
+    
+   window.customElements.define(RegisterLogin.is, RegisterLogin);
+  </script>
+</dom-module>
