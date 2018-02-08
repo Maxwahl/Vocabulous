@@ -119,11 +119,11 @@ Mit Hilfe der Statistiken werden die Ergebnisse übersichtlich dargestellt. Es w
 
 ### Vokabel-Prüfung
 
-<img src="Images\GUI-Vokabelprüfung.jpg" alt="Drawing" style="width: 500px;"/>
+<img src="Images\GUI-Vokabelprüfung.png" alt="Drawing" style="width: 500px;"/>
 
 ### Statistik
 
-<img src="Images\GUI-Statistiken.jpg" alt="Drawing" style="width: 500px;"/>
+<img src="Images\GUI-Statistiken.png" alt="Drawing" style="width: 500px;"/>
 
 ## Beschreibung des allgemeinen Ablaufes
 ### Aktivitätsdiagramm
