@@ -1,10 +1,10 @@
 export default class User{
-    constructor(name, password){
-        this.name = name;
+    constructor(username, password){
+        this.username = username;
         this.password = password;
     }
-    getName(){
-        return this.name;
+    getUsername(){
+        return this.username;
     }
     getPassword(){
         return this.password;

@@ -100,6 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <overview-page name="overview-page"></overview-page>
         </iron-pages>
   </template>
+
   <script>
     class MyApp extends Polymer.Element {
       static get is() { return 'my-app'; }
@@ -118,6 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           rootPath: String,
         };
       }
+
       static get observers() {
         return [
           '_updatePage(routeData.activePage)',
@@ -154,11 +156,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             Polymer.importHref(this.importPath + 'overview-page.html', null, null, true), 0);
         });
       }*/
-      
+
     }
-    function getRegisterLogin(){
-        return Polymer.dom(this.root).querySelector("register-login");
-    }
+
     window.customElements.define(MyApp.is, MyApp);
   </script>
 </dom-module>

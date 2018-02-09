@@ -82,12 +82,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h1>Vocabulous</h1>
     </div>
     <div class="login">
-      <vaadin-text-field label="Username" name="username" id="username">Username</vaadin-text-field>
-      <vaadin-password-field label="Password" name="password" id="password">Password</vaadin-password-field>
+      <vaadin-text-field value="{{username::input}}" label="Username" name="username" id="username">Username</vaadin-text-field>
+      <vaadin-password-field value="{{password::input}}" label="Password" name="password">Password</vaadin-password-field>
       <span class="error-message">[[errorMessage]]</span>
-      <vaadin-button theme="primary" id="loginButton">Login</vaadin-button>
+      <vaadin-button theme="primary" id="loginButton" on-tap="_logIn" onclick="hallo([[username]], [[password]])">Login</vaadin-button>
     </div>
+    <div>Eingabe Username: [[username]]</div>
+    <div>Eingabe Passwort: [[password]]</div>
   </template>
+  <script src="myscript.js"></script>
   <script>
     /*{{changeName(username, password)}}*/
     /*<iron-a11y-keys keys="enter" on-keys-pressed="_logIn"></iron-a11y-keys>*/
@@ -105,21 +108,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           errorMessage: String
         };
       }
-      getLoginButton(){
-        return Polymer.dom(this.root).querySelector("vaadin-button");
-      }
-      getUsername(){
-        return Polymer.dom(this.root).querySelector("vaadin-text-field");
-      }
-      getPassword(){
-        return Polymer.dom(this.root).querySelector("vaadin-password-field");
-      }
       
-     /* changeName(username, password){
+      changeName(username, password){
         if(username != undefined && password != undefined){
           checkBenutzer(username,password);
         }
-      }*/
+      }
 
       /*static get observers() {
           return [
@@ -127,28 +121,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         ]
       }*/
     
-      /*valueChanged(username, password) {
+      valueChanged(username, password) {
         
         if(checkBenutzer(username, password)){
               Polymer.importHref(this.importPath + 'overview-page.html', null, null, true);
         }
-      }*/
+      }
         
 
-     /* constructor() {
+      constructor() {
         super();
-      }*/
+      }
 
-      /*_logIn() {
+      _logIn() {
           //this.dispatch('login');
-      }*/
+      }
     }
-    /*function hallo(username, password) {
+    function hallo(username, password) {
       console.log("Hallo");
       if(username != undefined && password != undefined){
           checkBenutzer(username,password);
         }
-    }*/
+    }
     
    window.customElements.define(RegisterLogin.is, RegisterLogin);
   </script>
