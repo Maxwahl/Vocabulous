@@ -14,10 +14,4 @@ var accountview = overview._getAccountview();
 console.dir(accountview);
 var settingsview = overview._getSettingsview();
 console.dir(settingsview);
-homeview.onclick = function(){overview._routePageChanged("home-view")}
-startlesson.onclick = function(){overview._routePageChanged("start-lesson")}
-statisticview.onclick = function(){overview._routePageChanged("statistics-view")}
-messageview.onclick = function(){overview._routePageChanged("messages-view")}
-accountview.onclick = function(){overview._routePageChanged("account-view")}
-settingsview.onclick = function(){overview._routePageChanged("settings-view")}
-console.log(overview);
+startlesson.onclick = function(){overview._routePageChanged("start-lesson");}
