@@ -57,7 +57,7 @@
       }
 
       paper-icon-button.settings{
-        margin-top: 380%;
+        margin-top: 550%;
       }
 
       paper-icon-button.user{
@@ -111,11 +111,9 @@
             <a name="start-lesson">Start Lesson</a>
             <a name="statistics-view">Statistics</a>
             <a name="messages-view">Messages</a>
-            <a name="account-view">Account</a>
-            <a name="settings-view">Settings</a>
           </iron-selector>
           <app-toolbar>
-              <paper-icon-button icon="vaadin:cog-o" class="settings"></paper-icon-button> <!--Settings Button -->
+              <paper-icon-button name="settings" icon="vaadin:cog-o" class="settings"></paper-icon-button> <!--Settings Button -->
           </app-toolbar>
         </app-drawer>
 
@@ -124,11 +122,11 @@
         <app-header slot="header" fixed condenses effects="waterfall">
             
           <app-toolbar>
-              <paper-icon-button icon="my-icons:menu"></paper-icon-button>
+              <paper-icon-button name="menuicon" icon="my-icons:menu"></paper-icon-button>
             <div main-title>Vocabulous</div>
-            <paper-button>Max Mustermann </paper-button> <!--User Account Button -->
-            <paper-icon-button icon="vaadin:user" class="user"></paper-icon-button> <!--User Account Button -->
-            <paper-button>Log out</paper-button> <!--Log out Button -->
+            <paper-button name="user">Max Mustermann </paper-button> <!--User Account Button -->
+            <paper-icon-button name="accounticon" icon="vaadin:user" class="user"></paper-icon-button> <!--User Account Button -->
+            <paper-button name="logout">Log out</paper-button> <!--Log out Button -->
           </app-toolbar>
         </app-header>
 
@@ -199,6 +197,18 @@
       }
       _getSettingsview(){
         return Polymer.dom(this.root).querySelector("a[name=settings-view]");
+      }
+      _getLogoutbutton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=logout]");
+      }
+      _getUserbutton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=user]");
+      }
+      _getSettingsicon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=settings]");
+      }
+      _getAccounticon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=accounticon]");
       }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
