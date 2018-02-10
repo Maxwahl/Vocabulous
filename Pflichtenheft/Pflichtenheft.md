@@ -6,7 +6,7 @@
 |------------------- |:-------------------: |
 | Projektleiter		 | Urbanides Konstantin |
 | Erstellt am 		 | 19.11.2017		    |
-| Zuletzt geändert	 | 07.02.2018			|
+| Zuletzt geändert	 | 10.02.2018			|
 | Zustand			 | in Bearbeitung		|
 | Dokumentenablage	 | ---------------		|
 
@@ -32,25 +32,16 @@
 * 2	Ausgangssituation und Zielsetzung
     * 2.1 Ausgangssituation
     * 2.1.1 Beschreibung des Problembereiches
-    * 2.1.2 Glossar
-    * 2.1.3 Modell des Problembereiches
-    * 2.1.4 Bechreibung des Geschäftsfeldes
-    * 2.1.5 Beschreibung der Geschäftsprozesse
+    * 2.1.2 Modell des Problembereiches
     * 2.2 Zielbestimmung
 * 3 Aufgabenstellung
 * 4 Funktionale Anforderungen
     * 4.1 Use Case Diagramm
 * 5 Nicht-funktionale Anforderungen
 * 6 Mengengerüst
-* 7 Risikoakzeptanz
-* 8 Lebenszyklusanalyse und Gesamtsystemarchitektur
-* 9 Schnittstellenübersicht
-* 10 Lieferumfang
-* 11 Abnahmekriterien
-* 12 Änderungsverfolgung zu den Anfordernungen (Lastenheft)
-* 13 Abkürzungsverzeichnis
-* 14 Literaturverzeichnis
-* 15 Abbildungsverzeichnis
+* 7 Lieferumfang
+* 8 Abnahmekriterien
+* 9 Abbildungsverzeichnis
 
 
 
@@ -65,17 +56,8 @@ In den vergangenen Jahren gingen beim Sprachlerninstitut Language4everyone Linz 
 ### 2.1.1 Beschreibung des Problembereiches
 Das benötigte Vokabelüberprüfungsprogramm wird die Studenten, Schüler und Kunden des Sprachlerninstitutes Language4everyone Linz unterstützen und den Lernprozess digitalisieren, um beim Vokabel lernen nicht von einem PC abhängig sein zu müssen.
 
-### 2.1.2 Glossar
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
-
-### 2.1.3 Modell des Problembereiches
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
-
-### 2.1.4 Beschreibung des Geschäftsfeldes
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
-
-### 2.1.5 Beschreibung der Geschäftsprozesse
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
+### 2.1.2 Modell des Problembereiches
+<img src="Images\ERD.png" alt="Drawing" style="width: 500px;"/>
 
 ### 2.2 Zielbestimmung
 #### Zeitlich
@@ -91,7 +73,6 @@ Das Sprachlerninstitut hat somit eine Entwicklung/Erstellung eines Vokabelüberp
 Der Benutzer kann mit dieser Software vorgegebene Lernabschnitte, sogenannte Units lernen. Um den Lernfortschritt zu überprüfen, können Selbstkontrollen in Form von kleinen Wiederholungen durchgeführt werden. Zur besseren Übersicht werden die Fortschritte mit Hilfe von Diagrammen und Statistiken angezeigt.
 
 ## 4.1 Use Case Diagramm
-
 <img src="Images\UseCaseDiagram.png" alt="Drawing" style="width: 500px;"/>
 
 ## Charakterisierende Informationen
@@ -147,30 +128,15 @@ Das System hat stellt eine Datenbank mit vordefinierten Units zur verfügung. Be
 | ----------------------- |:-------------:|
 | Anzahl der gleichzeitigen Nutzer | 250 Personen |
 
-## 7 Risikoakzeptanz
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 8 Lebenszyklusanalyse und Gesamtsystemarchitektur
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
-
-## 9 Schnittstellenübersicht
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
-
-## 10 Lieferumfang
+## 7 Lieferumfang
 Benutzerhandbuch inkl. Anmeldedaten für die Kunden und Studenten.
 
-## 11 Abnahmekriterien
+## 8 Abnahmekriterien
 Vollfunktionstüchtiges Programm, welches sofort in den Echtzeitbetrieb übernommen werden kann.
 
-## 12 Anforderungsverfolgung zu den Anforderungen (Lastenheft)
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
 
-## 13 Abkürzungsverzeichnis
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
-
-## 14 Literaturverzeichnis
-In Arbeit (Die im Unterricht durchbesprochenen und zur Zeit relevanten Punkte wurden umgesetzt.)
-## 15 Abbildungsverzeichnis
+## 9 Abbildungsverzeichnis
 * [Use Case Diagramm](#31-use-case-diagramm)
 * GUI
     * [Main Page](#main-page)
