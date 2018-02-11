@@ -57,7 +57,9 @@
       }
 
       paper-icon-button.settings{
-        margin-top: 550%;
+       position: fixed;
+       bottom: 12%;
+       left: 3%;
       }
 
       paper-icon-button.user{
@@ -72,9 +74,11 @@
 
       .drawer-list {
         margin: 0 20px;
+        background-color: #757c89;
       }
 
       .drawer-list a {
+        
         display: block;
         padding: 0 16px;
         text-decoration: none;
@@ -85,6 +89,7 @@
       .drawer-list a.iron-selected {
         color: black;
         font-weight: bold;
+        background-color: #f2f2f2;
       }
 
      
@@ -105,16 +110,16 @@
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-          <app-toolbar>Menu</app-toolbar>
-          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-            <a name="home-view">Home</a>
-            <a name="start-lesson">Start Lesson</a>
-            <a name="statistics-view">Statistics</a>
-            <a name="messages-view">Messages</a>
-          </iron-selector>
-          <app-toolbar>
-              <paper-icon-button name="settings" icon="vaadin:cog-o" class="settings"></paper-icon-button> <!--Settings Button -->
-          </app-toolbar>
+            <app-toolbar>Menu</app-toolbar>
+            <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+              <a name="home-view">Home</a>
+              <a name="start-lesson">Start Lesson</a>
+              <a name="statistics-view">Statistics</a>
+              <a name="messages-view">Messages</a>
+            </iron-selector>
+            <app-toolbar>
+                <paper-icon-button name="settings" icon="vaadin:cog-o" class="settings"></paper-icon-button> <!--Settings Button -->
+            </app-toolbar>
         </app-drawer>
 
       <!-- Main content -->

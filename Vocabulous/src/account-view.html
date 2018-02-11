@@ -27,34 +27,105 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
 <link rel="import" href="shared-styles.html">
-<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 
 <dom-module id="account-view">
   <template>
     <style include="shared-styles">
       :host {
+        --app-primary-color: #2f3238;
+        --app-secondary-color: grey;
         display: block;
-
+        
         padding: 10px;
       }
       h1{
-        color: grey;
+        color: var(--app-primary-color);
         margin-left: 4%;
       }
+      h2.name{
+        margin-left: 20%;
+        color: var(--app-secondary-color);
+        margin-top: -7%;
+      }
+      h3.institution{
+        margin-left: 20%;
+        margin-top: -2%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+
+      paper-input.firstname{
+        margin-top: 8%;
+        margin-left: 3%;
+        width: 300px;
+      }
+      paper-input.lastname{
+       margin-top: -5%;
+       margin-left: 40%;
+       width: 300px;
+      }
+      paper-input.email{
+        margin-left: 3%;
+        width: 300px;
+      }
+      iron-icon.emailIcon{
+        width: 25px;
+        height: 25px;
+        margin-right: 20px;
+      }
+
+      paper-input.birthDate{
+        width: 300px;
+        margin-left: 3%;
+      }
+
+      paper-input.username{
+        width: 300px;
+        margin-left: 3%;
+        margin-top: 2%;
+      }
+
+      paper-input.password{
+        width: 300px;
+        margin-left: 40%;
+        margin-top: -5%;
+      }
       paper-icon-button.user{
-        width: 100px;
-        height: 100px;
-        margin-left: 30px;
+        width: 130px;
+        height: 130px;
+        margin-left: 3%;
+      }
+      .buttons{
+        margin-top: 3%;
+        font-size: 10px;
+        margin-left: 3%;
       }
     </style>
      
-    <div>
+    <div class="card">
         <h1>Account View</h1>
         <paper-icon-button src="account-icon.png" class="user"></paper-icon-button>
+        <h2 class="name">Max Mustermann</h2>
+        <h3 class="institution">HTL Leonding</h3>
+        <paper-input class="firstname" label="Firstname" value="Max"></paper-input>
+        <paper-input class="lastname" label="Lastname" value="Mustermann"></paper-input>
+        <paper-input class="email" label="Email">
+            <iron-icon class="emailIcon" icon="vaadin:envelope-o" slot="prefix"></iron-icon>
+        </paper-input>
+        <paper-input class="birthDate" label="BirthDate" value="12.03.1999"></paper-input>
+        <paper-input class="username" label="Username" value="max_mustermann"></paper-input>
+        <paper-input class="password" label="Password" value="max123"></paper-input>
+        <div class="buttons">
+            <paper-button name="edit" raised>Edit</paper-button>
+            <paper-button name="save" raised>Save</paper-button>
+        </div>
     </div>
   </template>
 
