@@ -1,5 +1,5 @@
 import User from './classes/user.js';
-console.log("Javascript: main loaded");
+console.log("Javascript: login loaded");
 var myapp = document.querySelector("my-app");
 var register = myapp._getRegisterLogin();
 var loginButton = register._getLoginButton();
@@ -11,7 +11,7 @@ function checkLogin(){
         return false;
     }
     user = new User(username.value, password.value);
-    if(user.getPassword() == '' || user.getPassword() == ''){
+    if(user.getPassword() == 'admin' || user.getPassword() == 'admin'){
         myapp._updatePage("overview-page");
         return true;
     }

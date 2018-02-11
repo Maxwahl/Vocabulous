@@ -107,7 +107,7 @@
         tail="{{subroute}}">
     </app-route>
 
-    <app-drawer-layout fullbleed narrow="{{narrow}}">
+    <app-drawer-layout fullbleed force-narrow>
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
             <app-toolbar>Menu</app-toolbar>
@@ -198,7 +198,7 @@
         return Polymer.dom(this.root).querySelector("a[name=messages-view]");
       }
       _getAccountview(){
-        return Polymer.dom(this.root).querySelector("a[name=account-view]");
+        return Polymer.dom(this.root).querySelector("account-view[name=account-view]");
       }
       _getSettingsview(){
         return Polymer.dom(this.root).querySelector("a[name=settings-view]");
@@ -214,6 +214,12 @@
       }
       _getAccounticon(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=accounticon]");
+      }
+      _getMenuicon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=menuicon]");
+      }
+      _getAppdrawer(){
+        return Polymer.dom(this.root).querySelector("app-drawer-layout");
       }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails

@@ -65,15 +65,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: 8%;
         margin-left: 3%;
         width: 300px;
+        --paper-input-container-underline-disabled: {
+            opacity: 1;
+            border-style:solid;
+            border-width:0.1px;
+          };
+        --paper-input-container-disabled: {
+            opacity: 1;
+        };
       }
       paper-input.lastname{
        margin-top: -5%;
        margin-left: 40%;
        width: 300px;
+        --paper-input-container-underline-disabled: {
+            opacity: 1;
+            border-style:solid;
+            border-width:0.1px;
+          };
+        --paper-input-container-disabled: {
+            opacity: 1;
+        };
       }
       paper-input.email{
         margin-left: 3%;
         width: 300px;
+        --paper-input-container-underline-disabled: {
+            opacity: 1;
+            border-style:solid;
+            border-width:0.1px;
+          };
+        --paper-input-container-disabled: {
+            opacity: 1;
+        };
       }
       iron-icon.emailIcon{
         width: 25px;
@@ -84,18 +108,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-input.birthDate{
         width: 300px;
         margin-left: 3%;
+        --paper-input-container-underline-disabled: {
+            opacity: 1;
+            border-style:solid;
+            border-width:0.1px;
+          };
+        --paper-input-container-disabled: {
+            opacity: 1;
+        };
       }
 
       paper-input.username{
         width: 300px;
         margin-left: 3%;
         margin-top: 2%;
+        --paper-input-container-underline-disabled: {
+            opacity: 1;
+            border-style:solid;
+            border-width:0.1px;
+          };
+        --paper-input-container-disabled: {
+            opacity: 1;
+        };
       }
-
       paper-input.password{
         width: 300px;
         margin-left: 40%;
         margin-top: -5%;
+        --paper-input-container-underline-disabled: {
+            opacity: 1;
+            border-style:solid;
+            border-width:0.1px;
+          };
+        --paper-input-container-disabled: {
+            opacity: 1;
+        };
       }
       paper-icon-button.user{
         width: 130px;
@@ -132,8 +179,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class AccountView extends Polymer.Element {
       static get is() { return 'account-view'; }
+      _getFullname(){
+        return Polymer.dom(this.root).querySelector("h2[class=name]");
+      }
+      _getInstitution(){
+        return Polymer.dom(this.root).querySelector("h3[class=institution]");
+      }
+      _getFirstname(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=firstname]");
+      }
+      _getLastname(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=lastname]");
+      }
+      _getEmail(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=email]");
+      }
+      _getBirthdate(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=birthDate]");
+      }
+      _getUsername(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=username]");
+      }
+      _getPassword(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=password]");
+      }
+      _getEditbutton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=edit]");
+      }
+      _getSavebutton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=save]");
+      }
     }
 
     window.customElements.define(AccountView.is, AccountView);
   </script>
+  <script src="../develop-javascript/src/accountview.js" type="module"></script>
 </dom-module>
