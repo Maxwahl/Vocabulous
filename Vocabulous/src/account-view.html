@@ -30,6 +30,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/simple-overlay/simple-overlay.html">
+<link rel="import" href="../bower_components/simple-overlay/simple-overlay.html">
+<link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
@@ -48,13 +51,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       h1{
         color: var(--app-primary-color);
         margin-left: 4%;
+        font-weight: 500;
       }
       h2.name{
         margin-left: 20%;
         color: var(--app-secondary-color);
         margin-top: -7%;
+        font-weight: 400;
       }
       h3.institution{
+        font-weight: 300;
         margin-left: 20%;
         margin-top: -2%;
         font-size: 15px;
@@ -157,18 +163,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
      
     <div class="card">
-        <h1>Account View</h1>
+        <h1>Account</h1>
         <paper-icon-button src="account-icon.png" class="user"></paper-icon-button>
-        <h2 class="name">Max Mustermann</h2>
+        <h2 class="name"></h2>
         <h3 class="institution">HTL Leonding</h3>
-        <paper-input class="firstname" label="Firstname" value="Max"></paper-input>
-        <paper-input class="lastname" label="Lastname" value="Mustermann"></paper-input>
+        <paper-input class="firstname" label="Firstname"></paper-input>
+        <paper-input class="lastname" label="Lastname"></paper-input>
         <paper-input class="email" label="Email">
             <iron-icon class="emailIcon" icon="vaadin:envelope-o" slot="prefix"></iron-icon>
         </paper-input>
-        <paper-input class="birthDate" label="BirthDate" value="12.03.1999"></paper-input>
-        <paper-input class="username" label="Username" value="max_mustermann"></paper-input>
-        <paper-input class="password" label="Password" value="max123"></paper-input>
+        <paper-input class="birthDate" label="BirthDate"></paper-input>
+        <paper-input class="username" label="Username"></paper-input>
+        <paper-input class="password" label="Password" min="5" char-counter maxlength="16"></paper-input>
         <div class="buttons">
             <paper-button name="edit" raised>Edit</paper-button>
             <paper-button name="save" raised>Save</paper-button>
