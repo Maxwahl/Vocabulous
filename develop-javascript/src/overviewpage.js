@@ -35,5 +35,6 @@ startlesson.onclick = function(){overview._routePageChanged("start-lesson")}
 statisticview.onclick = function(){overview._routePageChanged("statistics-view")}
 messageview.onclick = function(){overview._routePageChanged("messages-view")}
 settingsicon.onclick = function(){overview._routePageChanged("settings-view")}
-logoutbutton.onclick = function(){myapp._updatePage("register-login")}
+logoutbutton.onclick = function(){myapp._updatePage("register-login");
+                                  overview._routePageChanged("home-view");}
 accounticon.onclick = function(){overview._routePageChanged("account-view")}
