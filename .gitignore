@@ -2,3 +2,5 @@
 testRest/\.idea/
 
 *.jar
+
+testRest/target/app-1\.0-SNAPSHOT/WEB-INF/web\.xml
