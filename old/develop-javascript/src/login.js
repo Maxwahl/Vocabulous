@@ -1,5 +1,5 @@
 import User from './classes/user.js';
-console.log("Javascript: main loaded");
+console.log("Javascript: login loaded");
 var myapp = document.querySelector("my-app");
 var register = myapp._getRegisterLogin();
 var loginButton = register._getLoginButton();

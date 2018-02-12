@@ -227,6 +227,9 @@
       _getAppdrawer(){
         return Polymer.dom(this.root).querySelector("app-drawer-layout");
       }
+      _getSettingsviewTag(){
+        return Polymer.dom(this.root).querySelector("settings-view[name=settings-view]");
+      }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl(page + '.html');

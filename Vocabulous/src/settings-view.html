@@ -229,35 +229,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3 class="dark">Dark Theme</h3>
       <paper-toggle-button noink class="dark"></paper-toggle-button>
       
-      <h2 class="ownTheme">Create own theme</h2>
-      <paper-input class="themeName" label="Theme name" no-label-float></paper-input>
-      <div>
-          <h3 class="header">Header</h3>
-          <h3>Backgroundcolor</h3>
-          <paper-swatch-picker class="headerBackground"></paper-swatch-picker>
-          <h3 class="headerColor">Color</h3>
-          <paper-swatch-picker class="headerColor"></paper-swatch-picker>
-      </div>
-      <div>
-          <h3 class="menu">Menu</h3>
-          <h3 class="menuBackground">Backgroundcolor</h3>
-          <paper-swatch-picker class="menuBackground"></paper-swatch-picker>
-          <h3 class="menuColor">Color</h3>
-          <paper-swatch-picker class="menuColor"></paper-swatch-picker>
-          <h3 class="menuNavigationColor">Navigationcolor</h3>
-          <paper-swatch-picker class="menuNavigationColor"></paper-swatch-picker>
-      </div>
-      <div>
+      <div class="createTheme">
+        <h2 class="ownTheme">Create own theme</h2>
+        <paper-input class="themeName" label="Theme name" no-label-float></paper-input>
+        <div>
+            <h3 class="header">Header</h3>
+            <h3>Backgroundcolor</h3>
+            <paper-swatch-picker class="headerBackground"></paper-swatch-picker>
+            <h3 class="headerColor">Color</h3>
+            <paper-swatch-picker class="headerColor"></paper-swatch-picker>
+        </div>
+        <div>
+            <h3 class="menu">Menu</h3>
+            <h3 class="menuBackground">Backgroundcolor</h3>
+            <paper-swatch-picker class="menuBackground"></paper-swatch-picker>
+            <h3 class="menuColor">Color</h3>
+            <paper-swatch-picker class="menuColor"></paper-swatch-picker>
+            <h3 class="menuNavigationColor">Navigationcolor</h3>
+            <paper-swatch-picker class="menuNavigationColor"></paper-swatch-picker>
+        </div>
+        <div>
 
-      <div>
-      <h3 class="displayArea">Card Area</h3>
-      <h3 class="displayAreaBackground">Backgroundcolor</h3>
-      <paper-swatch-picker class="displayAreaBackground"></paper-swatch-picker>
-      </div>
-      <div class="buttons">
-          <paper-button name="edit" raised>Edit</paper-button>
-          <paper-button name="save" raised>Save</paper-button>
-      </div>
+        <div>
+        <h3 class="displayArea">Card Area</h3>
+        <h3 class="displayAreaBackground">Backgroundcolor</h3>
+        <paper-swatch-picker class="displayAreaBackground"></paper-swatch-picker>
+        </div>
+    </div>
+  </div>
+    <div class="buttons">
+        <paper-button name="edit" raised>Create new Theme</paper-button>
+        <paper-button name="cancel" raised>Cancel</paper-button>
+        <paper-button name="save" raised>Save</paper-button>
     </div>
    
   </template>
@@ -269,8 +272,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       */
     class SettingsView extends Polymer.Element {
       static get is() { return 'settings-view'; }
+      _getDefaultswitch(){
+        return Polymer.dom(this.root).querySelector("paper-toggle-button[class=default]");
+      }
+      _getDarkswitch(){
+        return Polymer.dom(this.root).querySelector("paper-toggle-button[class=dark]");
+      }
+      _getMenuBackgroundColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuBackground]");
+      }
+      _getMenuColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuColor]");
+      }
+      _getMenuNavigationColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuNavigationColor]");
+      }
+      _getDisplayAreaBackgroundColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=displayAreaBackground]");
+      }
+      _getCreateThemeDiv(){
+        return Polymer.dom(this.root).querySelector("div[class=createTheme]");
+      }
+      _getCreateNewThemeButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=edit]");
+      }
+      _getCancelButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=cancel]");
+      }
+      _getSaveButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=save]");
+      }
     }
 
     window.customElements.define(SettingsView.is, SettingsView);
   </script>
+  <script src="../develop-javascript/src/settingsview.js" type="module"></script>
 </dom-module>
