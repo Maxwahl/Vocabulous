@@ -38,6 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-range-behavior/iron-range-behavior.html">
 <link rel="import" href="../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="shared-styles.html">
@@ -94,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       h2.ownTheme{
         margin-left: 3%;
-        margin-top: 4%;
+        margin-top: 3%;
         font-weight: 400;
         font-size: 20px;
         color: var(--app-secondary-color);
@@ -102,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       h3.header{
         font-weight: 400;
         margin-left: 3%;
-        margin-top: 0%;
+        margin-top: 1%;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
@@ -196,6 +197,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 10px;
         margin-left: 3%;
       }
+      paper-dropdown-menu{
+        margin-left: 60%;
+        margin-top: -8%;
+      }
+      paper-input.themeName{
+        margin-left: 3%;
+        width: 300px;
+        --paper-input-container-underline:{
+          border: var(--app-secondary-color);
+        }
+        --paper-input-container-underline-focus:{
+          border: var(--app-secondary-color);
+        }
+      }
+      /*
+      <paper-dropdown-menu label="own theme">
+        <paper-listbox>
+          <paper-item>Blue Theme</paper-item>
+          <paper-item>Green Theme</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+      */
     </style>
 
     <div class="card">
@@ -205,7 +228,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-toggle-button noink checked class="default"></paper-toggle-button>
       <h3 class="dark">Dark Theme</h3>
       <paper-toggle-button noink class="dark"></paper-toggle-button>
+      
       <h2 class="ownTheme">Create own theme</h2>
+      <paper-input class="themeName" label="Theme name" no-label-float></paper-input>
       <div>
           <h3 class="header">Header</h3>
           <h3>Backgroundcolor</h3>

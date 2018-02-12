@@ -11,7 +11,7 @@ function checkLogin(){
         return false;
     }
     user = new User(username.value, password.value);
-    if(user.getPassword() == 'admin' || user.getPassword() == 'admin'){
+    if(user.getPassword() == '' || user.getPassword() == ''){
         myapp._updatePage("overview-page");
         return true;
     }
