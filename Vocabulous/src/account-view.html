@@ -184,8 +184,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>
           <table>
             <tr>
-                <td><paper-input class="firstname" label="Firstname"></paper-input></td>
-                <td><paper-input class="lastname" label="Lastname"></paper-input></td>
+                <td><paper-input class="firstname" label="Firstname" auto-validate pattern="[a-zA-Z]*" error-message="only letters allowed"></paper-input></td>
+                <td><paper-input class="lastname" label="Lastname" auto-validate pattern="[a-zA-Z]*" error-message="only letters allowed"></paper-input></td>
             </tr>
             <tr>
               <td>
@@ -200,7 +200,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </tr>
             <tr>
               <td><paper-input class="username" label="Username"></paper-input></td>
-              <td><paper-input class="password" label="Password" min="5" char-counter maxlength="16"></paper-input></td>  
+              <td><paper-input class="password" label="Password" char-counter minlength="5" char-counter maxlength="16" required auto-validate error-message="this field must be filled [min. 5 characters]"></paper-input></td>  
             </tr>
           </table>
                   <div class="buttons">
