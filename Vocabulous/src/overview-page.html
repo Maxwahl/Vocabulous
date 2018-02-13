@@ -39,6 +39,10 @@
       :host {
         --app-primary-color: #1E88E5;
         --app-secondary-color: black;
+        --containercolor: #ffffff;
+        --navigationcolorbackground:#f2f2f2;
+        --navigationcolorfont:#000000;
+        color:black;
         display: block;
       }
 
@@ -48,7 +52,7 @@
 
       app-drawer{
         --app-drawer-content-container: {
-          background-color: #ffffff;
+          background-color: var(--containercolor);
         }
       }
       app-header {
@@ -91,9 +95,9 @@
       }
 
       .drawer-list a.iron-selected {
-        color: black;
+        color: var(--navigationcolorfont);
         font-weight: bold;
-        background-color: #f2f2f2;
+        background-color: var(--navigationcolorbackground);
       }
 
      
@@ -227,6 +231,15 @@
       }
       _getSettingsviewTag(){
         return Polymer.dom(this.root).querySelector("settings-view[name=settings-view]");
+      }
+      _getAppHeader(){
+        return Polymer.dom(this.root).querySelector("app-header");
+      }
+      _getIronSelector(){
+        return Polymer.dom(this.root).querySelector("iron-selector");
+      }
+      _getAppdrawerForTheme(){
+        return Polymer.dom(this.root).querySelector("app-drawer");
       }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails

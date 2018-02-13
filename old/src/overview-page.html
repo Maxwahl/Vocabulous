@@ -39,8 +39,6 @@
       :host {
         --app-primary-color: #1E88E5;
         --app-secondary-color: black;
-        --app-drawer-width: 13%;
-
         display: block;
       }
 
@@ -64,8 +62,8 @@
 
       paper-icon-button.settings{
        position: fixed;
-       bottom: 12%;
-       left: 3%;
+       bottom: 13%;
+       left: 2px;
       }
 
       paper-icon-button.user{
@@ -226,6 +224,9 @@
       }
       _getAppdrawer(){
         return Polymer.dom(this.root).querySelector("app-drawer-layout");
+      }
+      _getSettingsviewTag(){
+        return Polymer.dom(this.root).querySelector("settings-view[name=settings-view]");
       }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
