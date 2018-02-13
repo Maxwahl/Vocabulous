@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.htlleonding.maximiliianwahl.answer.boundary;
+package at.htlleonding.maximiliianwahl.user.boundary;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -18,7 +18,7 @@ import javax.ws.rs.Path;
 public class UsersResource {
     
     @GET
-    public JsonObject answer(){
+    public JsonObject users(){
         return Json.createObjectBuilder()
                 .add("Firstname", "Max")
                 .add("Lastname","Mustermann")
@@ -29,3 +29,4 @@ public class UsersResource {
                 .build();
     }
 }
+    
