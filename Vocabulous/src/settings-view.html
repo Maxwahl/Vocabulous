@@ -37,8 +37,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-swatch-picker/paper-swatch-picker.html">
 <link rel="import" href="../bower_components/iron-range-behavior/iron-range-behavior.html">
 <link rel="import" href="../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
-<link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="shared-styles.html">
@@ -49,161 +50,172 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         --app-primary-color: #2f3238;
         --app-secondary-color: grey;
+        --app-grid-columns: 2;
+        --app-grid-item-height: 60px;
         display: block;
 
         padding: 10px;
       }
       h1{
         color: var(--app-primary-color);
-        margin-left: 3%;
+        margin-left: 40px;
         font-weight: 500;
+        font-size: 23px;
       }
       h2.themes{
-        margin-left: 3%;
-        margin-top: 3%;
+        margin-left: 40px;
+        margin-top: 30px;
         font-weight: 400;
         font-size: 20px;
         color: var(--app-secondary-color);
       }
-      h3{
+      h3.defaultTheme{
         font-weight: 300;
-        margin-left: 3%;
-        margin-top: 0%;
+        margin-left: 40px;
+        margin-top: 0px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       paper-toggle-button.default{
-        margin-left: 15%;
-        margin-top: -3%;
+        margin-left: 40px;
+        margin-top: -15px;
         --paper-toggle-button-checked-bar-color:  #1E88E5;
       --paper-toggle-button-checked-button-color: #1E88E5;
       --paper-toggle-button-checked-ink-color: #1E88E5;
       }
       paper-toggle-button.dark{
-        margin-left: 35%;
-        margin-top: -3%;
+        margin-left: 40px;
+        margin-top: -15px;
         --paper-toggle-button-checked-bar-color:  #606772;
       --paper-toggle-button-checked-button-color: #606772;
       --paper-toggle-button-checked-ink-color: #606772;
       }
       h3.dark{
         font-weight: 300;
-        margin-left: 25%;
-        margin-top: -2%;
+        margin-left: 80px;
+        margin-top: 0px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       h2.ownTheme{
-        margin-left: 3%;
-        margin-top: 3%;
+        margin-left: 40px;
+        margin-top: 30px;
         font-weight: 400;
         font-size: 20px;
         color: var(--app-secondary-color);
       }
       h3.header{
         font-weight: 400;
-        margin-left: 3%;
-        margin-top: 1%;
+        margin-left: 40px;
+        margin-top: 20px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      h3.headerBackground{
+        font-weight: 300;
+        margin-left: 40px;
+        margin-top: 0px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       h3.headerColor{
         font-weight: 300;
-        margin-left: 30%;
-        margin-top: -3%;
+        margin-left: 40px;
+        margin-top: 0px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       paper-swatch-picker.headerBackground{
-        margin-left: 14%;
-        margin-top: -4.5%;
+        margin-left: -150px;
+        margin-top: -40px;
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
       paper-swatch-picker.headerColor{
-        margin-left: 32%;
-        margin-top: -4.5%;
+        margin-left: 20px;
+        margin-top: -40px;
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
       h3.menu{
         font-weight: 400;
-        margin-left: 3%;
-        margin-top: 3%;
+        margin-left: 40px;
+        margin-top: 20px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       h3.menuBackground{
         font-weight: 300;
-        margin-left: 3%;
-        margin-top: 0%;
+        margin-left: 40px;
+        margin-top: 0px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       paper-swatch-picker.menuBackground{
-        margin-left: 14%;
-        margin-top: -4.5%;
+        margin-left: -150px;
+        margin-top: -40px;
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
       h3.menuColor{
         font-weight: 300;
-        margin-left: 30%;
-        margin-top: -3%;
+        margin-left: 40px;
+        margin-top: 0px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       paper-swatch-picker.menuColor{
-        margin-left: 32%;
-        margin-top: -4.5%;
+        margin-left: 20px;
+        margin-top: -40px;
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
       h3.menuNavigationColor{
         font-weight: 300;
-        margin-left: 49%;
-        margin-top: -3%;
+        margin-left: 200px;
+        margin-top: 0px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       paper-swatch-picker.menuNavigationColor{
-        margin-left: 55%;
-        margin-top: -4.5%;
+        margin-left: 20px;
+        margin-top: -40px;
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
       h3.displayArea{
         font-weight: 400;
-        margin-left: 3%;
-        margin-top: 3%;
+        margin-left: 40px;
+        margin-top: 20px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       h3.displayAreaBackground{
         font-weight: 300;
-        margin-left: 3%;
-        margin-top: 0%;
+        margin-left: 40px;
+        margin-top: 0px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       paper-swatch-picker.displayAreaBackground{
-        margin-left: 14%;
-        margin-top: -4.5%;
+        margin-left: -150px;
+        margin-top: -40px;
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
       .buttons{
-        margin-top: 3%;
         font-size: 10px;
-        margin-left: 3%;
+        margin-left: 40px;
       }
       paper-dropdown-menu{
-        margin-left: 60%;
-        margin-top: -8%;
+        margin-left: 120px;
+        margin-top: -30px;
       }
+      
       paper-input.themeName{
-        margin-left: 3%;
+        margin-left: 40px;
         width: 300px;
+        margin-top: 0px;
         --paper-input-container-underline:{
           border: var(--app-secondary-color);
         }
@@ -211,58 +223,68 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: var(--app-secondary-color);
         }
       }
-      /*
-      <paper-dropdown-menu label="own theme">
-        <paper-listbox>
-          <paper-item>Blue Theme</paper-item>
-          <paper-item>Green Theme</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
-      */
     </style>
 
     <div class="card">
       <h1>Settings</h1>
       <h2 class="themes">Themes</h2>
-      <h3>Default Theme</h3>
-      <paper-toggle-button noink checked class="default"></paper-toggle-button>
-      <h3 class="dark">Dark Theme</h3>
-      <paper-toggle-button noink class="dark"></paper-toggle-button>
-      
+      <table>
+        <tr>
+          <td><h3 class="defaultTheme">Default Theme</h3></td>
+          <td><paper-toggle-button noink checked class="default"></paper-toggle-button></td>
+          <td> <h3 class="dark">Dark Theme</h3></td>
+          <td><paper-toggle-button noink class="dark"></paper-toggle-button></td>
+          <td>
+              <paper-dropdown-menu label="own theme" no-label-float>
+                  <paper-listbox slot="dropdown-content">
+                    <paper-item>Blue Theme</paper-item>
+                    <paper-item>Green Theme</paper-item>
+                  </paper-listbox>
+                </paper-dropdown-menu>
+          </td>
+        </tr>
+      </table>
       <div class="createTheme">
         <h2 class="ownTheme">Create own theme</h2>
-        <paper-input class="themeName" label="Theme name" no-label-float></paper-input>
-        <div>
-            <h3 class="header">Header</h3>
-            <h3>Backgroundcolor</h3>
-            <paper-swatch-picker class="headerBackground"></paper-swatch-picker>
-            <h3 class="headerColor">Color</h3>
-            <paper-swatch-picker class="headerColor"></paper-swatch-picker>
-        </div>
-        <div>
-            <h3 class="menu">Menu</h3>
-            <h3 class="menuBackground">Backgroundcolor</h3>
-            <paper-swatch-picker class="menuBackground"></paper-swatch-picker>
-            <h3 class="menuColor">Color</h3>
-            <paper-swatch-picker class="menuColor"></paper-swatch-picker>
-            <h3 class="menuNavigationColor">Navigationcolor</h3>
-            <paper-swatch-picker class="menuNavigationColor"></paper-swatch-picker>
-        </div>
-        <div>
-
-        <div>
-        <h3 class="displayArea">Card Area</h3>
-        <h3 class="displayAreaBackground">Backgroundcolor</h3>
-        <paper-swatch-picker class="displayAreaBackground"></paper-swatch-picker>
-        </div>
+        <table>
+          <tr>
+            <td><paper-input class="themeName" label="Theme name" no-label-float></paper-input></td>
+          </tr>
+          <tr>
+              <td><h3 class="header">Header</h3></td>
+          </tr>
+          <tr>
+              <td><h3 class="headerBackground">Background colour</h3></td>
+              <td><paper-swatch-picker class="headerBackground"></paper-swatch-picker></td>
+              <td><h3 class="headerColor">Font colour</h3></td>
+              <td><paper-swatch-picker class="headerColor"></paper-swatch-picker></td>
+          </tr>
+          <tr>
+              <td><h3 class="menu">Menu</h3></td>
+          </tr>
+          <tr>
+              <td><h3 class="menuBackground">Background color</h3></td>
+              <td><paper-swatch-picker class="menuBackground"></paper-swatch-picker></td>
+              <td><h3 class="menuColor">Font colour</h3></td>
+              <td><paper-swatch-picker class="menuColor"></paper-swatch-picker></td>
+              <td><h3 class="menuNavigationColor">Navigation colour</h3></td>
+              <td><paper-swatch-picker class="menuNavigationColor"></paper-swatch-picker></td>
+          </tr>
+          <tr>
+              <td><h3 class="displayArea">Card Area</h3></td>
+          </tr>
+          <tr>
+              <td><h3 class="displayAreaBackground">Background colour</h3></td>
+              <td><paper-swatch-picker class="displayAreaBackground"></paper-swatch-picker></td>
+          </tr>
+        </table>
     </div>
-  </div>
     <div class="buttons">
         <paper-button name="edit" raised>Create new Theme</paper-button>
         <paper-button name="cancel" raised>Cancel</paper-button>
         <paper-button name="save" raised>Save</paper-button>
     </div>
-   
+  </div>
   </template>
   
   <script>
