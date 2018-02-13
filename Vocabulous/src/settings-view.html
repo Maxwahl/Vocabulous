@@ -295,8 +295,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
     <div class="buttons">
         <paper-button name="edit" raised>Create new Theme</paper-button>
+        <paper-button name="work" raised>Edit</paper-button>
         <paper-button name="cancel" raised>Cancel</paper-button>
         <paper-button name="save" raised>Save</paper-button>
+        <paper-button name="delete" raised>Delete</paper-button>
     </div>
   </div>
   </template>
@@ -349,6 +351,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getSaveButton(){
         return Polymer.dom(this.root).querySelector("paper-button[name=save]");
+      }
+      _getEditButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=work]");
+      }
+      _getDeleteButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=delete]");
       }
       _getPaperListBox(){
         return Polymer.dom(this.root).querySelector("paper-listbox");

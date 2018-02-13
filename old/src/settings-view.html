@@ -183,6 +183,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
+      h3.menuNavigationFontColor{
+        font-weight: 300;
+        margin-left: 200px;
+        margin-top: 0px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.menuNavigationFontColor{
+        margin-left: 20px;
+        margin-top: -40px;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
       h3.displayArea{
         font-weight: 400;
         margin-left: 40px;
@@ -236,9 +249,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <td><paper-toggle-button noink class="dark"></paper-toggle-button></td>
           <td>
               <paper-dropdown-menu label="own theme" no-label-float>
-                  <paper-listbox slot="dropdown-content">
-                    <paper-item>Blue Theme</paper-item>
-                    <paper-item>Green Theme</paper-item>
+                  <paper-listbox slot="dropdown-content" selected="0">
+                    <paper-item>no custom theme selected</paper-item>
                   </paper-listbox>
                 </paper-dropdown-menu>
           </td>
@@ -269,6 +281,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <td><paper-swatch-picker class="menuColor"></paper-swatch-picker></td>
               <td><h3 class="menuNavigationColor">Navigation colour</h3></td>
               <td><paper-swatch-picker class="menuNavigationColor"></paper-swatch-picker></td>
+              <td><h3 class="menuNavigationFontColor">Navigation Font colour</h3></td>
+              <td><paper-swatch-picker class="menuNavigationFontColor"></paper-swatch-picker></td>
           </tr>
           <tr>
               <td><h3 class="displayArea">Card Area</h3></td>
@@ -300,16 +314,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getDarkswitch(){
         return Polymer.dom(this.root).querySelector("paper-toggle-button[class=dark]");
       }
+      _getThemeName(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=themeName]");
+      }
+      _getHeaderBackgroundColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=headerBackground]");
+      }
+      _getHeaderFontColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=headerColor]");
+      }
       _getMenuBackgroundColour(){
         return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuBackground]");
       }
-      _getMenuColour(){
+      _getMenuFontColour(){
         return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuColor]");
       }
       _getMenuNavigationColour(){
         return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuNavigationColor]");
       }
-      _getDisplayAreaBackgroundColour(){
+      _getMenuNavigationFontColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuNavigationFontColor]");
+      }
+      _getCardAreaBackgroundColour(){
         return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=displayAreaBackground]");
       }
       _getCreateThemeDiv(){
@@ -323,6 +349,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getSaveButton(){
         return Polymer.dom(this.root).querySelector("paper-button[name=save]");
+      }
+      _getPaperListBox(){
+        return Polymer.dom(this.root).querySelector("paper-listbox");
+      }
+      _getFirstPaperItem(){
+        return Polymer.dom(this.root).querySelector("paper-item");
       }
     }
 
