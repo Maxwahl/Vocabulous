@@ -1,0 +1,310 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/simple-overlay/simple-overlay.html">
+<link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
+<link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../bower_components/paper-swatch-picker/paper-swatch-picker.html">
+<link rel="import" href="../bower_components/iron-range-behavior/iron-range-behavior.html">
+<link rel="import" href="../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="my-icons.html">
+
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="settings-view">
+  <template>
+    <style include="shared-styles" include="iron-flex iron-flex-alignment">
+      :host {
+        --app-primary-color: #2f3238;
+        --app-secondary-color: grey;
+        display: block;
+
+        padding: 10px;
+      }
+      h1{
+        color: var(--app-primary-color);
+        margin-left: 3%;
+        font-weight: 500;
+      }
+      h2.themes{
+        margin-left: 3%;
+        margin-top: 3%;
+        font-weight: 400;
+        font-size: 20px;
+        color: var(--app-secondary-color);
+      }
+      h3{
+        font-weight: 300;
+        margin-left: 3%;
+        margin-top: 0%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-toggle-button.default{
+        margin-left: 15%;
+        margin-top: -3%;
+        --paper-toggle-button-checked-bar-color:  #1E88E5;
+      --paper-toggle-button-checked-button-color: #1E88E5;
+      --paper-toggle-button-checked-ink-color: #1E88E5;
+      }
+      paper-toggle-button.dark{
+        margin-left: 35%;
+        margin-top: -3%;
+        --paper-toggle-button-checked-bar-color:  #606772;
+      --paper-toggle-button-checked-button-color: #606772;
+      --paper-toggle-button-checked-ink-color: #606772;
+      }
+      h3.dark{
+        font-weight: 300;
+        margin-left: 25%;
+        margin-top: -2%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      h2.ownTheme{
+        margin-left: 3%;
+        margin-top: 3%;
+        font-weight: 400;
+        font-size: 20px;
+        color: var(--app-secondary-color);
+      }
+      h3.header{
+        font-weight: 400;
+        margin-left: 3%;
+        margin-top: 1%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      h3.headerColor{
+        font-weight: 300;
+        margin-left: 30%;
+        margin-top: -3%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.headerBackground{
+        margin-left: 14%;
+        margin-top: -4.5%;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      paper-swatch-picker.headerColor{
+        margin-left: 32%;
+        margin-top: -4.5%;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      h3.menu{
+        font-weight: 400;
+        margin-left: 3%;
+        margin-top: 3%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      h3.menuBackground{
+        font-weight: 300;
+        margin-left: 3%;
+        margin-top: 0%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.menuBackground{
+        margin-left: 14%;
+        margin-top: -4.5%;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      h3.menuColor{
+        font-weight: 300;
+        margin-left: 30%;
+        margin-top: -3%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.menuColor{
+        margin-left: 32%;
+        margin-top: -4.5%;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      h3.menuNavigationColor{
+        font-weight: 300;
+        margin-left: 49%;
+        margin-top: -3%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.menuNavigationColor{
+        margin-left: 55%;
+        margin-top: -4.5%;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      h3.displayArea{
+        font-weight: 400;
+        margin-left: 3%;
+        margin-top: 3%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      h3.displayAreaBackground{
+        font-weight: 300;
+        margin-left: 3%;
+        margin-top: 0%;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.displayAreaBackground{
+        margin-left: 14%;
+        margin-top: -4.5%;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      .buttons{
+        margin-top: 3%;
+        font-size: 10px;
+        margin-left: 3%;
+      }
+      paper-dropdown-menu{
+        margin-left: 60%;
+        margin-top: -8%;
+      }
+      paper-input.themeName{
+        margin-left: 3%;
+        width: 300px;
+        --paper-input-container-underline:{
+          border: var(--app-secondary-color);
+        }
+        --paper-input-container-underline-focus:{
+          border: var(--app-secondary-color);
+        }
+      }
+      /*
+      <paper-dropdown-menu label="own theme">
+        <paper-listbox>
+          <paper-item>Blue Theme</paper-item>
+          <paper-item>Green Theme</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+      */
+    </style>
+
+    <div class="card">
+      <h1>Settings</h1>
+      <h2 class="themes">Themes</h2>
+      <h3>Default Theme</h3>
+      <paper-toggle-button noink checked class="default"></paper-toggle-button>
+      <h3 class="dark">Dark Theme</h3>
+      <paper-toggle-button noink class="dark"></paper-toggle-button>
+      
+      <div class="createTheme">
+        <h2 class="ownTheme">Create own theme</h2>
+        <paper-input class="themeName" label="Theme name" no-label-float></paper-input>
+        <div>
+            <h3 class="header">Header</h3>
+            <h3>Backgroundcolor</h3>
+            <paper-swatch-picker class="headerBackground"></paper-swatch-picker>
+            <h3 class="headerColor">Color</h3>
+            <paper-swatch-picker class="headerColor"></paper-swatch-picker>
+        </div>
+        <div>
+            <h3 class="menu">Menu</h3>
+            <h3 class="menuBackground">Backgroundcolor</h3>
+            <paper-swatch-picker class="menuBackground"></paper-swatch-picker>
+            <h3 class="menuColor">Color</h3>
+            <paper-swatch-picker class="menuColor"></paper-swatch-picker>
+            <h3 class="menuNavigationColor">Navigationcolor</h3>
+            <paper-swatch-picker class="menuNavigationColor"></paper-swatch-picker>
+        </div>
+        <div>
+
+        <div>
+        <h3 class="displayArea">Card Area</h3>
+        <h3 class="displayAreaBackground">Backgroundcolor</h3>
+        <paper-swatch-picker class="displayAreaBackground"></paper-swatch-picker>
+        </div>
+    </div>
+  </div>
+    <div class="buttons">
+        <paper-button name="edit" raised>Create new Theme</paper-button>
+        <paper-button name="cancel" raised>Cancel</paper-button>
+        <paper-button name="save" raised>Save</paper-button>
+    </div>
+   
+  </template>
+  
+  <script>
+    /*
+      <h3 class="displayArea">Display Area</h3>
+      <h3 class="displayAreaBackground">Backgroundcolor</h3>
+      */
+    class SettingsView extends Polymer.Element {
+      static get is() { return 'settings-view'; }
+      _getDefaultswitch(){
+        return Polymer.dom(this.root).querySelector("paper-toggle-button[class=default]");
+      }
+      _getDarkswitch(){
+        return Polymer.dom(this.root).querySelector("paper-toggle-button[class=dark]");
+      }
+      _getMenuBackgroundColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuBackground]");
+      }
+      _getMenuColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuColor]");
+      }
+      _getMenuNavigationColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=menuNavigationColor]");
+      }
+      _getDisplayAreaBackgroundColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=displayAreaBackground]");
+      }
+      _getCreateThemeDiv(){
+        return Polymer.dom(this.root).querySelector("div[class=createTheme]");
+      }
+      _getCreateNewThemeButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=edit]");
+      }
+      _getCancelButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=cancel]");
+      }
+      _getSaveButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=save]");
+      }
+    }
+
+    window.customElements.define(SettingsView.is, SettingsView);
+  </script>
+  <script src="../develop-javascript/src/settingsview.js" type="module"></script>
+</dom-module>

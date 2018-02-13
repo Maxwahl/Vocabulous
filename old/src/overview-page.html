@@ -1,0 +1,248 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="my-icons.html">
+
+<link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+
+
+<link rel="lazy-import" href="home-view.html">
+<link rel="lazy-import" href="start-lesson.html">
+<link rel="lazy-import" href="statistics-view.html">
+<link rel="lazy-import" href="messages-view.html">
+<link rel="lazy-import" href="account-view.html">
+<link rel="lazy-import" href="settings-view.html">
+<link rel="lazy-import" href="not-found.html">
+<link rel="lazy-import" href="register-login.html">
+<link rel="lazy-import" href="my-app.html">
+
+<dom-module id="overview-page">
+  <template>
+    <style>
+      :host {
+        --app-primary-color: #1E88E5;
+        --app-secondary-color: black;
+        --app-drawer-width: 13%;
+
+        display: block;
+      }
+
+      app-drawer-layout:not([narrow]) [drawer-toggle] {
+        display: none;
+      }
+
+      app-drawer{
+        --app-drawer-content-container: {
+          background-color: #ffffff;
+        }
+      }
+      app-header {
+        color: #fff;
+        background-color: var(--app-primary-color);
+      }
+
+      app-header paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+
+      paper-icon-button.settings{
+       position: fixed;
+       bottom: 12%;
+       left: 3%;
+      }
+
+      paper-icon-button.user{
+        width: 35px;
+        height: 35px;
+        margin-right: 30px;
+      }
+
+      paper-button {
+        font-size: 15px;
+      }
+
+      .drawer-list {
+        margin: 0 20px;
+        background-color: #757c89;
+      }
+
+      .drawer-list a {
+        
+        display: block;
+        padding: 0 16px;
+        text-decoration: none;
+        color: var(--app-secondary-color);
+        line-height: 40px;
+      }
+
+      .drawer-list a.iron-selected {
+        color: black;
+        font-weight: bold;
+        background-color: #f2f2f2;
+      }
+
+     
+    </style>
+
+    <app-location
+        route="{{route}}"
+        url-space-regex="^[[rootPath]]">
+    </app-location>
+
+    <app-route
+        route="{{route}}"
+        pattern="[[rootPath]]:page"
+        data="{{routeData}}"
+        tail="{{subroute}}">
+    </app-route>
+
+    <app-drawer-layout fullbleed force-narrow>
+      <!-- Drawer content -->
+      <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
+            <app-toolbar>Menu</app-toolbar>
+            <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+              <a name="home-view">Home</a>
+              <a name="start-lesson">Start Lesson</a>
+              <a name="statistics-view">Statistics</a>
+              <a name="messages-view">Messages</a>
+            </iron-selector>
+            <app-toolbar>
+                <paper-icon-button name="settings" icon="vaadin:cog-o" class="settings"></paper-icon-button> <!--Settings Button -->
+            </app-toolbar>
+        </app-drawer>
+
+      <!-- Main content -->
+      <app-header-layout has-scrolling-region>
+        <app-header slot="header" fixed condenses effects="waterfall">
+            
+          <app-toolbar>
+              <paper-icon-button name="menuicon" icon="my-icons:menu"></paper-icon-button>
+            <div main-title>Vocabulous</div>
+            <paper-button name="user">Max Mustermann </paper-button> <!--User Account Button -->
+            <paper-icon-button name="accounticon" icon="vaadin:user" class="user"></paper-icon-button> <!--User Account Button -->
+            <paper-button name="logout">Log out</paper-button> <!--Log out Button -->
+          </app-toolbar>
+        </app-header>
+
+        <iron-pages
+            selected="[[page]]"
+            attr-for-selected="name"
+            fallback-selection="not-found">
+          <home-view name="home-view"></home-view>
+          <start-lesson name="start-lesson"></start-lesson>
+          <statistics-view name="statistics-view"></statistics-view>
+          <messages-view name="messages-view"></messages-view>
+          <account-view name="account-view"></account-view>
+          <settings-view name="settings-view"></settings-view>
+          <not-found name="not-found"></not-found>
+        </iron-pages>
+      </app-header-layout>
+      
+    </app-drawer-layout>
+  </template>
+
+  <script>
+    class OverviewPage extends Polymer.Element {
+      static get is() { return 'overview-page'; }
+
+      static get properties() {
+        return {
+          page: {
+            type: String,
+            reflectToAttribute: true,
+            observer: '_pageChanged',
+          },
+          routeData: Object,
+          subroute: String,
+          // This shouldn't be neccessary, but the Analyzer isn't picking up
+          // Polymer.Element#rootPath
+          rootPath: String,
+        };
+      }
+
+      static get observers() {
+        return [
+          '_routePageChanged(routeData.page)',
+        ];
+      }
+      _routePageChanged(page) {
+        // If no page was found in the route data, page will be an empty string.
+        // Default to 'view1' in that case.
+        this.page = page || 'home-view';
+        // Close a non-persistent drawer when the page & route are changed.
+        if (!this.$.drawer.persistent) {
+          this.$.drawer.close();
+        }
+      }
+      _getHomeview(){
+        return Polymer.dom(this.root).querySelector("a[name=home-view]");
+      }
+      _getStartlesson(){
+        return Polymer.dom(this.root).querySelector("a[name=start-lesson]");
+      }
+      _getStatisticview(){
+        return Polymer.dom(this.root).querySelector("a[name=statistics-view]");
+      }
+      _getMessageview(){
+        return Polymer.dom(this.root).querySelector("a[name=messages-view]");
+      }
+      _getAccountview(){
+        return Polymer.dom(this.root).querySelector("account-view[name=account-view]");
+      }
+      _getSettingsview(){
+        return Polymer.dom(this.root).querySelector("a[name=settings-view]");
+      }
+      _getLogoutbutton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=logout]");
+      }
+      _getUserbutton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=user]");
+      }
+      _getSettingsicon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=settings]");
+      }
+      _getAccounticon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=accounticon]");
+      }
+      _getMenuicon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=menuicon]");
+      }
+      _getAppdrawer(){
+        return Polymer.dom(this.root).querySelector("app-drawer-layout");
+      }
+      _pageChanged(page) {
+        // Load page import on demand. Show 404 page if fails
+        var resolvedPageUrl = this.resolveUrl(page + '.html');
+        Polymer.importHref(
+            resolvedPageUrl,
+            null,
+            this._showPage404.bind(this),
+            true);
+      }
+
+      _showPage404() {
+        this.page = 'not-found';
+      }
+    }
+
+    window.customElements.define(OverviewPage.is, OverviewPage);
+  </script>
+  <script src="../develop-javascript/src/overviewpage.js" type="module"></script>
+</dom-module>
