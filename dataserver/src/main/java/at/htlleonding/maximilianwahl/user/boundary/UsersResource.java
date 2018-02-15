@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package at.htlleonding.maximiliianwahl.user.boundary;
+package at.htlleonding.maximilianwahl.user.boundary;
 
 import javax.json.Json;
 import javax.json.JsonObject;
