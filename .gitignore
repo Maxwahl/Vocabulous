@@ -44,3 +44,4 @@ dist/
 nbdist/
 .nb-gradle/
 nbactions.xml
+dataserver/nb-configuration\.xml

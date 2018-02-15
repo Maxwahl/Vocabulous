@@ -15,21 +15,21 @@ import javax.ws.rs.PathParam;
  *
  * @author mexxw
  */
-@Path("users/{id}")
-public class UsersResource {
+@Path("themes/{tID}")
+public class ThemesResource {
     
     @GET
-    public JsonObject users(@PathParam("id") int id){
+    public JsonObject themes(@PathParam("tID") int id){
         System.out.println(id);
         //TODO connect with database
         return Json.createObjectBuilder()
-                .add("Firstname", "Max")
-                .add("Lastname","Mustermann")
-                .add("Email", "max.mustermann@gmx.com")
-                .add("Birthdate", "1.1.1111")
-                .add("Username","admin")
-                .add("Password", "admin")
+                .add("name", "Dark")
+                .add("headerBackgroundColor","#ffffff")
+                .add("headerFontColor", "#ffffff")
+                .add("menuBackgroundColor","#ffffff")
+                .add("menuFontColor", "#ffffff")
+                .add("menuNavigationColor","#ffffff")
+                .add("cardAreaBackgroundColor", "#ffffff")
                 .build();
     }
 }
-    
