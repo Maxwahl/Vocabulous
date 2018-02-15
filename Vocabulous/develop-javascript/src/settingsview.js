@@ -49,6 +49,15 @@ defaultswitch.onclick = function(){toggle()}
 darkswitch.onclick = function(){toggle()}
 function toggle(){
     paperListBox.selectIndex(0);
+    deleteButton.style.display="none";
+    paperListBox.style.display = "inline";
+    createButton.style.display="inline";
+    createTheme.style.display="none";
+    saveButton.style.display="none";
+    editButon.style.display="none";
+    cancelButton.style.display="none";
+    console.log(headerBackgroundColour.color);
+    clear();
     if(isDefault){
         changeTheme(darkTheme);
         defaultswitch.removeAttribute("checked");      
@@ -123,6 +132,8 @@ function save(){
     paperListBox.appendChild(newElement);
     paperListBox.selectIndex(data.length);
     changeTheme(newTheme);
+    darkswitch.removeAttribute("checked");        
+    defaultswitch.removeAttribute("checked");
 }
 function clear(){
     themeName.value = null;
@@ -143,7 +154,6 @@ function clear(){
 }
 function check(name){
     if(name=="no custom theme selected"){
-        changeTheme(defaultTheme);
         createButton.style.display="inline";
         createTheme.style.display="none";
         saveButton.style.display="none";
@@ -152,11 +162,18 @@ function check(name){
         console.log(headerBackgroundColour.color);
         clear();
         if(isDefault){
+            changeTheme(defaultTheme);
+            darkswitch.removeAttribute("checked");      
+            defaultswitch.setAttribute("checked",true);
             return;
         }
         changeTheme(darkTheme);
+        darkswitch.setAttribute("checked",true);      
+        defaultswitch.removeAttribute("checked");
         return;
     }
+    darkswitch.removeAttribute("checked");        
+    defaultswitch.removeAttribute("checked");
     var currentTheme;
     for(var i = 0; i<data.length;i++){
         if(data[i].getName() == name){
