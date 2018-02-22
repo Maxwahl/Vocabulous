@@ -7,7 +7,7 @@ var defaultswitch = settings._getDefaultswitch();
 var darkswitch = settings._getDarkswitch();
 var themeName = settings._getThemeName();
 var data = [];                                   //Wird später durch DB erstetzt
-var darkTheme = new Theme("Dark Theme","#2E2E2E","#A9E2F3","#FFFFFF","#585858","#6E6E6E","#424242","#FFFFFF");
+var darkTheme = new Theme("Dark Theme","#2E2E2E","#FFFFFF","#FFFFFF","#585858","#6E6E6E","#424242","#FFFFFF");
 var defaultTheme = new Theme("Default Theme","#1E88E5","#000000","#FFFFFF","#eeeeee","#f2f2f2","#ffffff","#000000");
 console.log(themeName);
 var headerBackgroundColour = settings._getHeaderBackgroundColour();

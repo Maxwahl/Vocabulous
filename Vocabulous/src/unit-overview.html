@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="start-lesson">
+<dom-module id="unit-overview">
   <template>
     <style include="shared-styles">
       :host {
@@ -25,15 +25,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <h1>Start Lesson</h1>
+      <h1>Unit Overview</h1>
     </div>
   </template>
 
   <script>
-    class StartLesson extends Polymer.Element {
-      static get is() { return 'start-lesson'; }
+    class UnitOverview extends Polymer.Element {
+      static get is() { return 'unit-overview'; }
     }
 
-    window.customElements.define(StartLesson.is, StartLesson);
+    window.customElements.define(UnitOverview.is, UnitOverview);
   </script>
 </dom-module>
