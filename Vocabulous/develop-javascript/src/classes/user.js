@@ -3,6 +3,9 @@ export default class User{
         this.username = username;
         this.password = password;
     }
+    setId(id){
+        this.id = id;
+    }
     setUsername(username){
         this.username = username;
     }
@@ -29,6 +32,9 @@ export default class User{
     }
     setInstitution(institution){
         this.institution = institution;
+    }
+    getId(){
+        return this.id;
     }
     getFirstname(){
         return this.firstname;
