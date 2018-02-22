@@ -5,16 +5,16 @@ import Theme from "./theme.js";
 export default class BackEndHandler{
 
     fetchFromServer(get){
-        return new Promise((resolve, reject) => { 
-            resolve(this.answer(get));
-        });
-    }
-
-    async answer(get){
         return await fetch(get).then(response => response.json);
     }
 
-    static login(username,password){
+    async answer(get){
+        return new Promise((resolve, reject) => { 
+            resolve(this.fetchFromServer(get));
+        });
+    }
+
+    async static login(username,password){
         const {id,Firstname,Lastname,Email,Birthdate,Username,Password} = await answer("http://localhost:8080/dataserver/webresources/users/login?user="+username+"&pw="+password);
         if(id ==-1){
             return null;
@@ -28,7 +28,7 @@ export default class BackEndHandler{
         return user;
     }
 
-    static user(username){
+    async static user(username){
         const {id,Firstname,Lastname,Email,Birthdate,Username,Password} = await answer("http://localhost:8080/dataserver/webresources/users/user?user="+username);
         if(id ==-1){
             return null;
@@ -41,12 +41,12 @@ export default class BackEndHandler{
         user.setBirthdate(Birthdate);
         return user;
     }
-    static startingTheme(uId){
+    async static startingTheme(uId){
         const {name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor} = await answer("http://localhost:8080/dataserver/webresources/themes/startingTheme/"+uId);
         theme = new Theme(name,headerBackgroundColor,menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationColor);
         return theme;      
     }
-    static userThemes(uId){
+    async static userThemes(uId){
         let jsonText = await answer("http://localhost:8080/dataserver/webresources/themes/userThemes/"+uId);
         let themes = [];
         var newArr = JSON.parse(jsonText);
