@@ -1,4 +1,6 @@
 import User from "./user.js";
+import Theme from "./theme.js";
+
 
 export default class BackEndHandler{
     constructor(){}
@@ -34,4 +36,20 @@ export default class BackEndHandler{
         user.setBirthdate(Birthdate);
         return user;
     }
-}
+    static startingTheme(uId){
+        const {name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor} = fetchFromServer("http://localhost:8080/dataserver/webresources/themes/startingTheme/"+uId);
+        theme = new Theme(name,headerBackgroundColor,menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationColor);
+        return theme;      
+    }
+    static userThemes(uId){
+        let jsonText = fetchFromServer("http://localhost:8080/dataserver/webresources/themes/userThemes/"+uId);
+        let themes = [];
+        var newArr = JSON.parse(jsonText);
+        while(newArr.length>0){
+            const {name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor} = newArr.pop();
+            theme = new Theme(name,headerBackgroundColor,menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationColor);
+            themes.push(theme);
+        }
+
+        return themes;
+    }

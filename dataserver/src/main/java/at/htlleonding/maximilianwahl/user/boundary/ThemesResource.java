@@ -31,7 +31,7 @@ public class ThemesResource {
                 .add("headerFontColor", "#ffffff")
                 .add("menuBackgroundColor","#ffffff")
                 .add("menuFontColor", "#ffffff")
-                .add("menuNavigationColor","#ffffff")
+                .add("menuNavigationFontColor","#ffffff")
                 .add("cardAreaBackgroundColor", "#ffffff")
                 .build();
     }
@@ -49,7 +49,7 @@ public class ThemesResource {
                 .add("headerFontColor", "#ffffff")
                 .add("menuBackgroundColor","#ffffff")
                 .add("menuFontColor", "#ffffff")
-                .add("menuNavigationColor","#ffffff")
+                .add("menuNavigationFontColor","#ffffff")
                 .add("cardAreaBackgroundColor", "#ffffff")
                 .build());
         ret.add(Json.createObjectBuilder()
@@ -58,7 +58,7 @@ public class ThemesResource {
                 .add("headerFontColor", "#ffff8f")
                 .add("menuBackgroundColor","#f0ffff")
                 .add("menuFontColor", "#f21fff")
-                .add("menuNavigationColor","#fa7fff")
+                .add("menuNavigationFontColor","#fa7fff")
                 .add("cardAreaBackgroundColor", "#ab5fff")
                 .build());
         return ret.build();
