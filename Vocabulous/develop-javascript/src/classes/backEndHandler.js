@@ -4,11 +4,11 @@ import Theme from "./theme.js";
 
 export default class BackEndHandler{
 
-    fetchFromServer(get){
-        return await fetch(get).then(response => response.json);
+    async fetchFromServer(get){
+        return await fetch(get).then(response => response.json());
     }
 
-    async answer(get){
+    answer(get){
         return new Promise((resolve, reject) => { 
             resolve(this.fetchFromServer(get));
         });
