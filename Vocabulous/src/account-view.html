@@ -33,6 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/simple-overlay/simple-overlay.html">
 <link rel="import" href="../bower_components/simple-overlay/simple-overlay.html">
 <link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
@@ -40,36 +41,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="account-view">
   <template>
-    <style include="shared-styles">
+    <style include="app-grid-style"> /*include="shared-styles"*/
       :host {
         --app-primary-color: #2f3238;
         --app-secondary-color: grey;
+        --app-grid-columns: 2;
+        --app-grid-item-height: 60px;
         display: block;
         
         padding: 10px;
       }
+      .card {
+        margin: 24px;
+        padding: 16px;
+        color: #757575;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+      
       h1{
         color: var(--app-primary-color);
-        margin-left: 4%;
+        margin-left: 40px;
         font-weight: 500;
+        font-size: 23px;
       }
       h2.name{
-        margin-left: 20%;
+        margin-left: 280px;;
         color: var(--app-secondary-color);
-        margin-top: -7%;
+        margin-top: -100px;
         font-weight: 400;
       }
       h3.institution{
         font-weight: 300;
-        margin-left: 20%;
-        margin-top: -2%;
+        margin-left: 280px;
+        margin-top: -60px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
 
       paper-input.firstname{
-        margin-top: 8%;
-        margin-left: 3%;
+        margin-top: 40px;
+        margin-left: 40px;
         width: 300px;
         --paper-input-container-underline-disabled: {
             opacity: 1;
@@ -81,8 +94,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
       }
       paper-input.lastname{
-       margin-top: -5%;
-       margin-left: 40%;
+       margin-top: 40px;
+       margin-left: 200px;
        width: 300px;
         --paper-input-container-underline-disabled: {
             opacity: 1;
@@ -94,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
       }
       paper-input.email{
-        margin-left: 3%;
+        margin-left: 40px;
         width: 300px;
         --paper-input-container-underline-disabled: {
             opacity: 1;
@@ -113,7 +126,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       paper-input.birthDate{
         width: 300px;
-        margin-left: 3%;
+        margin-left: 40px;
         --paper-input-container-underline-disabled: {
             opacity: 1;
             border-style:solid;
@@ -126,8 +139,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       paper-input.username{
         width: 300px;
-        margin-left: 3%;
-        margin-top: 2%;
+        margin-left: 40px;
+        margin-top: 30px;
         --paper-input-container-underline-disabled: {
             opacity: 1;
             border-style:solid;
@@ -139,8 +152,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       paper-input.password{
         width: 300px;
-        margin-left: 40%;
-        margin-top: -5%;
+        margin-left: 200px;
+        margin-top: 40px;
         --paper-input-container-underline-disabled: {
             opacity: 1;
             border-style:solid;
@@ -150,38 +163,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             opacity: 1;
         };
       }
-      paper-icon-button.user{
-        width: 130px;
-        height: 130px;
-        margin-left: 3%;
+      iron-icon.user{
+        
+        width: 150px;
+        height: 150px;
+        margin-top: 20px;
+        margin-left: 35px;
       }
       .buttons{
-        margin-top: 3%;
         font-size: 10px;
-        margin-left: 3%;
+        margin-left: 40px;
       }
     </style>
-     
-    <div class="card">
-        <h1>Account</h1>
-        <paper-icon-button src="account-icon.png" class="user"></paper-icon-button>
-        <h2 class="name"></h2>
-        <h3 class="institution">HTL Leonding</h3>
-        <paper-input class="firstname" label="Firstname"></paper-input>
-        <paper-input class="lastname" label="Lastname"></paper-input>
-        <paper-input class="email" label="Email">
-            <iron-icon class="emailIcon" icon="vaadin:envelope-o" slot="prefix"></iron-icon>
-        </paper-input>
-        <paper-input class="birthDate" label="BirthDate"></paper-input>
-        <paper-input class="username" label="Username"></paper-input>
-        <paper-input class="password" label="Password" min="5" char-counter maxlength="16"></paper-input>
-        <div class="buttons">
-            <paper-button name="edit" raised>Edit</paper-button>
-            <paper-button name="save" raised>Save</paper-button>
-        </div>
-    </div>
+      <div class="card">
+          <h1>Account</h1>
+          <iron-icon src="account-icon.png" class="user"></iron-icon>
+          <div class="app-grid">
+                  <h2 class="name"></h2>
+                  <h3 class="institution">HTL Leonding</h3>
+          </div>
+          <table>
+            <tr>
+                <td><paper-input class="firstname" label="Firstname" auto-validate pattern="[a-zA-Z]*" error-message="only letters allowed"></paper-input></td>
+                <td><paper-input class="lastname" label="Lastname" auto-validate pattern="[a-zA-Z]*" error-message="only letters allowed"></paper-input></td>
+            </tr>
+            <tr>
+              <td>
+                  <paper-input class="email" label="Email">
+                      <iron-icon class="emailIcon" icon="vaadin:envelope-o" slot="prefix"></iron-icon>
+                  </paper-input>
+              </td>
+                
+            </tr>
+            <tr>
+                <td><paper-input class="birthDate" label="BirthDate"></paper-input></td>
+            </tr>
+            <tr>
+              <td><paper-input class="username" label="Username"></paper-input></td>
+              <td><paper-input class="password" label="Password" char-counter minlength="5" char-counter maxlength="16" required auto-validate error-message="this field must be filled [min. 5 characters]"></paper-input></td>  
+            </tr>
+          </table>
+                  <div class="buttons">
+                      <paper-button name="edit" raised>Edit</paper-button>
+                      <paper-button name="save" raised>Save</paper-button>
+                  </div>
+          
+      </div>
+         
   </template>
-
   <script>
     class AccountView extends Polymer.Element {
       static get is() { return 'account-view'; }
