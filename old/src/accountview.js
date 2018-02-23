@@ -1,12 +1,14 @@
 import User from './classes/user.js';
-import BackEndHandler from './classes/backEndHandler.js';
 console.log("Javascript: accountview loaded");
 var myapp = document.querySelector("my-app");
 var register = myapp._getRegisterLogin();
 var loginButton = register._getLoginButton();
 var user;
+var username = register._getUsername();
+var password = register._getPassword();
 var overview = myapp._getOverviewpage();
-var usernameButton = overview._getUserbutton();
+user = new User(username.value, password.value);
+console.log(user);
 console.dir(overview);
 var accounticon = overview._getAccounticon();
 console.dir(accounticon);
@@ -32,25 +34,31 @@ var edit = accountview._getEditbutton();
 console.dir(edit);
 var save = accountview._getSavebutton();
 console.dir(save);
-
-(async function start(){
-    user = await BackEndHandler.user(usernameButton.textContent);
-    fullname.innerHTML = user.getFirstname() + " " + user.getLastname();
-    institution.value = user.getInstitution();
-    firstname.value = user.getFirstname();
-    firstname.disabled = true;
-    lastname.value = user.getLastname();
-    lastname.disabled = true;
-    email.value = user.getEmail();
-    email.disabled = true;
-    birthDate.value = user.getBirthdate();
-    birthDate.disabled = true;
-    username.value = user.getUsername();
-    username.disabled = true;
-    password.value = user.getPassword();
-    password.disabled = true;
-    save.disabled = true;
-  })();
+function getAllUserdetails(){
+    //Datenbank: Liefere Daten zu User
+    if(user.getUsername() != undefined && user.getUsername() == 'admin'){
+        user.setFirstname("David");
+        user.setLastname("Hiebl");
+        user.setBirthdate("28.2.2001");
+        user.setInstitution("HTL Leonding");
+    }
+}
+getAllUserdetails();
+fullname.innerHTML = user.getFirstname() + " " + user.getLastname();
+institution.value = user.getInstitution();
+firstname.value = user.getFirstname();
+firstname.disabled = true;
+lastname.value = user.getLastname();
+lastname.disabled = true;
+email.value = user.getEmail();
+email.disabled = true;
+birthDate.value = user.getBirthdate();
+birthDate.disabled = true;
+username.value = user.getUsername();
+username.disabled = true;
+password.value = user.getPassword();
+password.disabled = true;
+save.disabled = true;
 edit.onclick = function(){
     firstname.disabled = false;
     lastname.disabled = false;
