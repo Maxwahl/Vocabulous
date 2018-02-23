@@ -24,7 +24,7 @@
 
 
 <link rel="lazy-import" href="home-view.html">
-<link rel="lazy-import" href="start-lesson.html">
+<link rel="lazy-import" href="unit-overview.html">
 <link rel="lazy-import" href="statistics-view.html">
 <link rel="lazy-import" href="messages-view.html">
 <link rel="lazy-import" href="account-view.html">
@@ -62,12 +62,6 @@
 
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
-      }
-
-      paper-icon-button.settings{
-       position: fixed;
-       bottom: 13%;
-       left: 2px;
       }
 
       paper-icon-button.user{
@@ -121,13 +115,12 @@
             <app-toolbar>Menu</app-toolbar>
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
               <a name="home-view">Home</a>
-              <a name="start-lesson">Start Lesson</a>
+              <a name="unit-overview">Unit Overview</a>
               <a name="statistics-view">Statistics</a>
               <a name="messages-view">Messages</a>
+              <a name="settings-view">Settings</a>
             </iron-selector>
-            <app-toolbar>
-                <paper-icon-button name="settings" icon="vaadin:cog-o" class="settings"></paper-icon-button> <!--Settings Button -->
-            </app-toolbar>
+            
         </app-drawer>
 
       <!-- Main content -->
@@ -148,7 +141,7 @@
             attr-for-selected="name"
             fallback-selection="not-found">
           <home-view name="home-view"></home-view>
-          <start-lesson name="start-lesson"></start-lesson>
+          <unit-overview name="unit-overview"></unit-overview>
           <statistics-view name="statistics-view"></statistics-view>
           <messages-view name="messages-view"></messages-view>
           <account-view name="account-view"></account-view>
@@ -196,8 +189,8 @@
       _getHomeview(){
         return Polymer.dom(this.root).querySelector("a[name=home-view]");
       }
-      _getStartlesson(){
-        return Polymer.dom(this.root).querySelector("a[name=start-lesson]");
+      _getUnitoverview(){
+        return Polymer.dom(this.root).querySelector("a[name=unit-overview]");
       }
       _getStatisticview(){
         return Polymer.dom(this.root).querySelector("a[name=statistics-view]");
@@ -216,9 +209,6 @@
       }
       _getUserbutton(){
         return Polymer.dom(this.root).querySelector("paper-button[name=user]");
-      }
-      _getSettingsicon(){
-        return Polymer.dom(this.root).querySelector("paper-icon-button[name=settings]");
       }
       _getAccounticon(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=accounticon]");

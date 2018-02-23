@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="messages-view">
+<dom-module id="unit-overview">
   <template>
     <style include="shared-styles">
       :host {
@@ -25,17 +25,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <h1>Messages View</h1>
-      <p>Mit Hilfe dieser Funktion kann der Schüler/Student persönlich Kontakt mit dem Lerninstitut oder seinem Trainer aufnehmen.</p>
-      <p>Diese Funktion wird erst zum Schluss implementiert, da dies eine Nebenfunktion des Programmes ist.</p>
+      <h1>Unit Overview</h1>
     </div>
   </template>
 
   <script>
-    class MessagesView extends Polymer.Element {
-      static get is() { return 'messages-view'; }
+    class UnitOverview extends Polymer.Element {
+      static get is() { return 'unit-overview'; }
     }
 
-    window.customElements.define(MessagesView.is, MessagesView);
+    window.customElements.define(UnitOverview.is, UnitOverview);
   </script>
 </dom-module>
