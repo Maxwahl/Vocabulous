@@ -1,11 +1,12 @@
 import User from './classes/user.js';
+import BackEndHandler from './classes/backEndHandler.js';
 var user;
 var menuopen = false;
 var myapp = document.querySelector("my-app");
 var register = myapp._getRegisterLogin();
 var username = register._getUsername();
 var password = register._getPassword();
-user = new User(username.value, password.value);
+
 console.log(user);
 console.log("Javascript: overviewpage loaded");
 var overview = myapp._getOverviewpage();
@@ -29,7 +30,10 @@ var menuicon = overview._getMenuicon();
 console.dir(menuicon);
 var appdrawer = overview._getAppdrawer();
 console.dir(appdrawer);
-userbutton.textContent = user.getUsername();
+(async function start(){
+  user = await BackEndHandler.login(username.value, password.value);
+  userbutton.textContent = user.getUsername();
+})();
 userbutton.onclick = function(){overview._routePageChanged("account-view")}
 homeview.onclick = function(){overview._routePageChanged("home-view")}
 unitoverview.onclick = function(){overview._routePageChanged("unit-overview")}
