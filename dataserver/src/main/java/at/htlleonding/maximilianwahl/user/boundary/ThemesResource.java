@@ -27,13 +27,15 @@ public class ThemesResource {
         System.out.println(id);
         //TODO connect with database
         return Json.createObjectBuilder()
+                .add("id",1)
                 .add("name", "Dark")
                 .add("headerBackgroundColor","#ffffff")
                 .add("headerFontColor", "#ffffff")
                 .add("menuBackgroundColor","#ffffff")
                 .add("menuFontColor", "#ffffff")
                 .add("menuNavigationFontColor","#ffffff")
-                .add("cardAreaBackgroundColor", "#ffffff")
+                .add("cardAreaBackgroundColor", "#ffffff")                
+                .add("menuNavigationColor","#ffffff")
                 .build();
     }
     
@@ -45,6 +47,7 @@ public class ThemesResource {
         JsonArrayBuilder ret = Json.createArrayBuilder();
         
         ret.add(Json.createObjectBuilder()
+                .add("id",2)
                 .add("name", "custom1")
                 .add("headerBackgroundColor","#012345")
                 .add("headerFontColor", "#6789AB")
@@ -52,8 +55,10 @@ public class ThemesResource {
                 .add("menuFontColor", "#234567")
                 .add("menuNavigationFontColor","#89ABCD")
                 .add("cardAreaBackgroundColor", "#EF0123")
+                .add("menuNavigationColor","#456789")
                 .build());
         ret.add(Json.createObjectBuilder()
+                .add("id",3)
                 .add("name", "custom2")
                 .add("headerBackgroundColor","#f5ffff")
                 .add("headerFontColor", "#ffff8f")
@@ -61,27 +66,34 @@ public class ThemesResource {
                 .add("menuFontColor", "#f21fff")
                 .add("menuNavigationFontColor","#fa7fff")
                 .add("cardAreaBackgroundColor", "#ab5fff")
+                .add("menuNavigationColor","#24fde9")
                 .build());
         return ret.build();
     }
     @Path("deleteTheme")
     @GET
-    public Integer deleteTheme(@QueryParam("theme") int themeID){
+    public JsonObject deleteTheme(@QueryParam("theme") int themeID){
          System.out.println(themeID);
         //connect to DB ;0 is Ok 1 is not ok
-        return 0;
+        return Json.createObjectBuilder()
+                .add("retVal", "0")               
+                .build();
     }
     @Path("newTheme")
     @GET
-    public Integer newTheme(@QueryParam("owner") int owner,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF){
+    public JsonObject newTheme(@QueryParam("owner") int owner,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF){
         //connect to DB ;0 is Ok 1 is not ok
-        return 0;
+        return Json.createObjectBuilder()
+                .add("retVal", "0")               
+                .build();
     }
     @Path("changeTheme")
     @GET
-    public Integer changeTheme(@QueryParam("theme") int id,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF){
+    public JsonObject changeTheme(@QueryParam("theme") int id,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF){
         //connect to DB ;0 is Ok 1 is not ok
-        return 0; 
+        return Json.createObjectBuilder()
+                .add("retVal", "0")               
+                .build();
     }
     
     
