@@ -30,9 +30,9 @@ public class UnitResources {
                 .build());
         return ret.build();
     }
-    @Path("words/{uID}")
+    @Path("words/{uName}")
     @GET
-    public JsonArray getVocab(@PathParam("uID") int unit){
+    public JsonArray getVocab(@PathParam("uName") String unit){
        JsonArrayBuilder ret = Json.createArrayBuilder();
         ret.add(Json.createObjectBuilder()
                 .add("wordGerman", "Haus")

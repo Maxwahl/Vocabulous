@@ -89,7 +89,7 @@ export default class BackEndHandler{
         }
         return units;
     }
-    static async getWords(unId){
+    static async getWords(unitName){
         let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/words/"+unId);
         let words = [];
         while(jsonText.length>0){
