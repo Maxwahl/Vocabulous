@@ -34,7 +34,7 @@ public class UsersResource {
                 .add("Birthdate", "1.1.1111")
                 .add("Username","admin")
                 .add("Password", "admin")
-                .add("institution", "bla")
+                .add("Institution", "bla")
                 .build();
         }
         //TODO connect with database
