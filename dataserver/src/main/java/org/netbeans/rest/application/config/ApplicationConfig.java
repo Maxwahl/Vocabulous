@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(at.htlleonding.maximilianwahl.user.boundary.ThemesResource.class);
+        resources.add(at.htlleonding.maximilianwahl.user.boundary.UnitResources.class);
         resources.add(at.htlleonding.maximilianwahl.user.boundary.UsersResource.class);
     }
     
