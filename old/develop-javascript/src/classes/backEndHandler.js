@@ -3,18 +3,23 @@ import Theme from "./theme.js";
 
 
 export default class BackEndHandler{
-    constructor(){}
 
-    async fetchFromServer(get){
-        return await fetch(get).then(response => response.json);
+    static async fetchFromServer(get){
+        return await fetch(get).then(response => response.json());
     }
 
-    static login(username,password){
-        const {id,Firstname,Lastname,Email,Birthdate,Username,Password} = fetchFromServer("http://localhost:8080/dataserver/webresources/users/login?user="+username+"&pw="+password);
+    static answer(get){
+        return new Promise((resolve, reject) => { 
+            resolve(BackEndHandler.fetchFromServer(get));
+        });
+    }
+
+    static async login(username,password){
+        const {id,Firstname,Lastname,Email,Birthdate,Username,Password} = await this.answer("http://localhost:8080/dataserver/webresources/users/login?user="+username+"&pw="+password);
         if(id ==-1){
             return null;
         }
-        user = new User(Username,Password);
+        let user = new User(Username,Password);
         user.setId(id);
         user.setFirstname(Firstname);
         user.setLastname(Lastname);
@@ -23,12 +28,12 @@ export default class BackEndHandler{
         return user;
     }
 
-    static user(username){
-        const {id,Firstname,Lastname,Email,Birthdate,Username,Password} = fetchFromServer("http://localhost:8080/dataserver/webresources/users/user?user="+username);
+    static async user(username){
+        const {id,Firstname,Lastname,Email,Birthdate,Username,Password} = await this.answer("http://localhost:8080/dataserver/webresources/users/user?user="+username);
         if(id ==-1){
             return null;
         }
-        user = new User(Username,Password);
+        let user = new User(Username,Password);
         user.setId(id);
         user.setFirstname(Firstname);
         user.setLastname(Lastname);
@@ -36,13 +41,13 @@ export default class BackEndHandler{
         user.setBirthdate(Birthdate);
         return user;
     }
-    static startingTheme(uId){
-        const {name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor} = fetchFromServer("http://localhost:8080/dataserver/webresources/themes/startingTheme/"+uId);
+    static async startingTheme(uId){
+        const {name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor} = await this.answer("http://localhost:8080/dataserver/webresources/themes/startingTheme/"+uId);
         theme = new Theme(name,headerBackgroundColor,menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationColor);
         return theme;      
     }
-    static userThemes(uId){
-        let jsonText = fetchFromServer("http://localhost:8080/dataserver/webresources/themes/userThemes/"+uId);
+    static async userThemes(uId){
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/themes/userThemes/"+uId);
         let themes = [];
         var newArr = JSON.parse(jsonText);
         while(newArr.length>0){
@@ -50,6 +55,6 @@ export default class BackEndHandler{
             theme = new Theme(name,headerBackgroundColor,menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationColor);
             themes.push(theme);
         }
-
         return themes;
     }
+}
