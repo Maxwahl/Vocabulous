@@ -13,6 +13,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="unit-overview">
   <template>
+    <h1>Units</h1>
+    <table id="units">
+
+    </table>
+  </template>
+  <template>
     <style include="shared-styles">
       :host {
         display: block;
@@ -32,8 +38,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class UnitOverview extends Polymer.Element {
       static get is() { return 'unit-overview'; }
+      _getUnitTable(){
+        return Polymer.dom(this.root).querySelector("table[id=units]");
+      }
     }
-
     window.customElements.define(UnitOverview.is, UnitOverview);
   </script>
+  <script src="../develop-javascript/src/unitsoverview.js" type="module"></script>
 </dom-module>
