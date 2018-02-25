@@ -8,6 +8,87 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+<!--<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="unit-page">
+  <template>
+    <style include="shared-styles">
+      :host {
+        --app-primary-color: #2f3238;
+        --app-secondary-color: grey;
+        display: block;
+        padding: 10px;
+      }
+      h1{
+        color: var(--app-primary-color);
+        margin-left: 40px;
+        font-weight: 500;
+        font-size: 23px;
+      }
+      td{
+        border: 0.5px solid #cecece;
+        width: 800px;
+        height: 15px;
+        padding: 10px;
+        text-align: left;
+        margin-left: 40px;
+        border-radius: 5px;
+      }
+      paper-button.practiceUnit{
+        font-size: 10px;
+        margin-top: -50px;
+        width: 100px;
+        height: 30px;
+        margin-left: 80%;
+      }
+      paper-button.selfCheck{
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+      }
+
+    </style>
+
+    <div class="card">
+      <h1 name="head">Unit 1</h1>--> <!--Name der Unit-->
+      <!--<paper-button class="practiceUnit" name="practiceUnit" raised noink>Practice Unit</paper-button>
+      <paper-button class="selfCheck" name="selfCheck" raised noink>Self-check</paper-button>
+      
+      <table id="vocabulary">
+        
+      </table>
+    </div>
+  </template>
+
+  <script>
+    class UnitPage extends Polymer.Element {
+      static get is() { return 'unit-page'; }
+      _getVocabularyTable(){
+        return Polymer.dom(this.root).querySelector("table[id=vocabulary]");
+      }
+      _getName(){
+        return Polymer.dom(this.root).querySelector("h1[name=head]");
+      }
+    }
+    window.customElements.define(UnitPage.is, UnitPage);
+  </script>
+  <script src="../develop-javascript/src/unitpage.js" type="module"></script>
+</dom-module>-->
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
@@ -68,11 +149,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class UnitPage extends Polymer.Element {
       static get is() { return 'unit-page'; }
-      _getUnitTable(){
-        return Polymer.dom(this.root).querySelector("table[id=units]");
+      _getUnitName(){
+        return Polymer.dom(this.root).querySelector("h1");
+      }
+      _getWordTable(){
+        return Polymer.dom(this.root).querySelector("table[id=vocabulary]");
       }
     }
     window.customElements.define(UnitPage.is, UnitPage);
   </script>
-  <script src="../develop-javascript/src/unitsoverview.js" type="module"></script>
+  <script name="unitpage" src="../develop-javascript/src/unitpage.js" type="module"></script>
 </dom-module>
+

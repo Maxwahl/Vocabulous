@@ -9,29 +9,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="unit-overview">
   <template>
-    <h1>Units</h1>
-    <table id="units">
-
-    </table>
-  </template>
-  <template>
     <style include="shared-styles">
       :host {
+        --app-primary-color: #2f3238;
+        --app-secondary-color: grey;
         display: block;
-
         padding: 10px;
       }
       h1{
-        color: grey;
+        color: var(--app-primary-color);
+        margin-left: 40px;
+        font-weight: 500;
+        font-size: 23px;
+      }
+      paper-search-panel{
+        margin-left: 40px;
+        margin-top: 50px;
+      }
+      td{
+        border: 0.5px solid #cecece;
+        width: 800px;
+        height: 15px;
+        padding: 10px;
+        text-align: left;
+        margin-left: 40px;
+        border-radius: 5px;
       }
     </style>
 
     <div class="card">
-      <h1>Unit Overview</h1>
+      <h1>Units</h1>
+      <paper-search-panel search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-panel>
+      <table id="units">
+        
+      </table>
     </div>
   </template>
 

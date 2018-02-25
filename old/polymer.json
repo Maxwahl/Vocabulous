@@ -4,11 +4,12 @@
   "fragments": [
     "src/overview-page.html",
     "src/home-view.html",
-    "src/start-lesson.html",
+    "src/unit-overview.html",
     "src/statistics-view.html",
     "src/messages-view.html",
     "src/account-view.html",
     "src/settings-view.html",
+    "src/unit-page.html",
     "src/not-found.html",
     "src/register-login.html"
 
