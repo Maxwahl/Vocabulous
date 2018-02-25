@@ -236,6 +236,12 @@
       _getAppdrawerForTheme(){
         return Polymer.dom(this.root).querySelector("app-drawer");
       }
+      _getUnitPage(){
+        return Polymer.dom(this.root).querySelector("unit-page[name=unit-page]");
+      }
+      _getIronPages(){
+        return Polymer.dom(this.root).querySelector("iron-pages");
+      }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl(page + '.html');

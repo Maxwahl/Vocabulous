@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="unit-page">
+<dom-module id="selfcheck-page">
   <template>
     <style include="shared-styles">
       :host {
@@ -86,8 +86,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class UnitPage extends Polymer.Element {
-      static get is() { return 'unit-page'; }
+    class SelfCheckPage extends Polymer.Element {
+      static get is() { return 'selfcheck-page'; }
       _getUnitName(){
         return Polymer.dom(this.root).querySelector("h1");
       }
@@ -95,8 +95,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return Polymer.dom(this.root).querySelector("table[id=vocabulary]");
       }
     }
-    window.customElements.define(UnitPage.is, UnitPage);
+    window.customElements.define(SelfCheckPage.is, SelfCheckPage);
   </script>
-  <script name="unitpage" src="../develop-javascript/src/unitpage.js" type="module"></script>
+  <script name="selfcheckpage" src="../develop-javascript/src/selfcheckpage.js" type="module"></script>
 </dom-module>
 

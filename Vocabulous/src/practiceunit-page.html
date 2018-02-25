@@ -13,9 +13,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
 <link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="my-icons.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="unit-page">
+<dom-module id="practiceunit-page">
   <template>
     <style include="shared-styles">
       :host {
@@ -30,73 +34,56 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: 500;
         font-size: 23px;
       }
-      table{
-        margin-left: 40px;
-        width: 96.5%;
-      }
-      td{
-        border: 0.5px solid #cecece;
-        width: 800px;
-        height: 15px;
-        padding: 10px;
-        text-align: left;
-        margin-left: 40px;
-        border-radius: 5px;
+      h2{
+        color: var(--app-primary-color);
+        margin-top: 150px;
+        margin-left: 400px;
+        font-weight: 300;
+        font-size: 18px;
       }
       paper-button.practiceUnit{
         font-size: 10px;
-        margin-top: -50px;
-        width: 100px;
+        margin-top: 40px;
+        width: 200px;
         height: 30px;
-        /*margin-left: 80.5%;*/
+        margin-left: 40px;
       }
       paper-button.selfCheck{
         font-size: 10px;
-        width: 100px;
+        width: 200px;
         height: 30px;
+        margin-left: 40px;
       }
-      table.buttons{
-        margin-bottom: 30px;
-        margin-left: 42.5%;
+      paper-input.vocab{
+          margin-top: -75px;
+          margin-left: 500px;
+          width: 300px;
       }
-      th.practiceUnit{
-        text-align: right;
-        
-      }
-      th.selfCheck{
-        text-align: left;
-        
-      }
-
+      
     </style>
 
     <div class="card">
       <h1>Unit 1</h1> <!--Name der Unit-->
-      <table class="buttons">
-        <tr>
-          <th class="practiceUnit"><paper-button class="practiceUnit" name="practiceUnit" raised noink>Practice Unit</paper-button></th>
-          <th class="selfCheck"><paper-button class="selfCheck" name="selfCheck" raised noink>Self-check</paper-button></th>
-        </tr>
-      </table>
+      <paper-button class="practiceUnit" name="practiceUnit" raised noink>Deutsch => Englisch</paper-button>
+      <br></br>
+      <paper-button class="selfCheck" name="selfCheck" raised noink>Englisch => Deutsch</paper-button>
+      <h2>house</h2>
+      <paper-input class="vocab"></paper-input>
   
-      <table id="vocabulary">
-        
-      </table>
+      
     </div>
   </template>
 
   <script>
-    class UnitPage extends Polymer.Element {
-      static get is() { return 'unit-page'; }
+    class PracticeUnitPage extends Polymer.Element {
+      static get is() { return 'practiceunit-page'; }
       _getUnitName(){
         return Polymer.dom(this.root).querySelector("h1");
       }
-      _getWordTable(){
-        return Polymer.dom(this.root).querySelector("table[id=vocabulary]");
-      }
+     
     }
-    window.customElements.define(UnitPage.is, UnitPage);
+    window.customElements.define(PracticeUnitPage.is, PracticeUnitPage);
   </script>
-  <script name="unitpage" src="../develop-javascript/src/unitpage.js" type="module"></script>
+  <script name="practiceunitpage" src="../develop-javascript/src/practiceunitpage.js" type="module"></script>
 </dom-module>
 

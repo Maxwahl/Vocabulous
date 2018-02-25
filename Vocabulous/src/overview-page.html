@@ -30,6 +30,8 @@
 <link rel="lazy-import" href="messages-view.html">
 <link rel="lazy-import" href="account-view.html">
 <link rel="lazy-import" href="settings-view.html">
+<link rel="lazy-import" href="practiceunit-page.html">
+<link rel="lazy-import" href="selfcheck-page.html">
 <link rel="lazy-import" href="not-found.html">
 <link rel="lazy-import" href="register-login.html">
 <link rel="lazy-import" href="my-app.html">
@@ -120,6 +122,7 @@
               <a name="statistics-view">Statistics</a>
               <a name="messages-view">Messages</a>
               <a name="settings-view">Settings</a>
+              <a name="practiceunit-page">Practice Unit</a> 
             </iron-selector>
             
         </app-drawer>
@@ -149,6 +152,8 @@
           <account-view name="account-view"></account-view>
           <settings-view name="settings-view"></settings-view>
           <not-found name="not-found"></not-found>
+          <practiceunit-page name="practiceunit-page"></practiceunit-page>
+          <selfcheck-page name="selfcheck-page"></selfcheck-page>
         </iron-pages>
       </app-header-layout>
       
@@ -194,6 +199,11 @@
       _getUnitoverview(){
         return Polymer.dom(this.root).querySelector("a[name=unit-overview]");
       }
+      /**/
+      _getPracticeunitpage(){
+        return Polymer.dom(this.root).querySelector("a[name=practiceunit-page]");
+      }
+      /**/
       _getStatisticview(){
         return Polymer.dom(this.root).querySelector("a[name=statistics-view]");
       }

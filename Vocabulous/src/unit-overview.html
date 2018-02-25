@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<!--<link rel="import" href="../bower_components/paper-search/paper-search-bar.html">-->
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
 <link rel="import" href="shared-styles.html">
 
@@ -30,26 +31,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-search-panel{
         margin-left: 40px;
         margin-top: 50px;
+        width: 96.5%;
+        padding-bottom: 30px;
       }
       paper-search-panel::-ms-clear{
         margin-left: 40px;
         margin-top: 50px;
         display:none;
       }
-      td{
+      table{
+        margin-left: 40px;
+        width: 96.5%;
+      }
+      /*td{
         border: 0.5px solid #cecece;
-        width: 800px;
         height: 15px;
         padding: 10px;
         text-align: left;
+        font-weight: 500;
         margin-left: 40px;
         border-radius: 5px;
+        
+      }*/
+      td{
+        border: 0.5px solid #cecece;
+        height: 30px;
+        padding: 10px;
+        text-align: left;
+        font-weight: 500;
+        /*margin-left: 40px;*/
+        border-radius: 5px;
+        margin-bottom: 3px;
+        display: block;
       }
     </style>
-
+    <!--<paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>-->
     <div class="card">
       <h1>Units</h1>
-      <paper-search-panel search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-panel>
+      <paper-search-panel search="{{search}}" loading="[[loading]]" hide-filter-button noResultsText></paper-search-panel>
       <table id="units">
 
       </table>

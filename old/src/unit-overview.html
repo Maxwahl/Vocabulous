@@ -31,6 +31,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 40px;
         margin-top: 50px;
       }
+      paper-search-panel::-ms-clear{
+        margin-left: 40px;
+        margin-top: 50px;
+        display:none;
+      }
       td{
         border: 0.5px solid #cecece;
         width: 800px;
@@ -46,8 +51,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h1>Units</h1>
       <paper-search-panel search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-panel>
       <table id="units">
-        
+
       </table>
+      <input name="forUnit" style="display:none;">
     </div>
   </template>
 
@@ -56,6 +62,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get is() { return 'unit-overview'; }
       _getUnitTable(){
         return Polymer.dom(this.root).querySelector("table[id=units]");
+      }
+      _getSearchBar(){
+        return Polymer.dom(this.root).querySelector("paper-search-panel");
+      }
+      _getChecked(){
+        return Polymer.dom(this.root).querySelector("input[name=forUnit]");
       }
     }
     window.customElements.define(UnitOverview.is, UnitOverview);

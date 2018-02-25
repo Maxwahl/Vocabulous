@@ -11,6 +11,8 @@
     "src/settings-view.html",
     "src/unit-page.html",
     "src/not-found.html",
+    "src/practiceunit-page.html",
+    "src/selfcheck-page.html",
     "src/register-login.html"
 
   ],
