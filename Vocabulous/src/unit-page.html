@@ -8,11 +8,14 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+<link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="unit-overview">
+<dom-module id="unit-page">
   <template>
     <style include="shared-styles">
       :host {
@@ -27,10 +30,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: 500;
         font-size: 23px;
       }
-      paper-search-panel{
-        margin-left: 40px;
-        margin-top: 50px;
-      }
       td{
         border: 0.5px solid #cecece;
         width: 800px;
@@ -40,25 +39,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 40px;
         border-radius: 5px;
       }
+      paper-button.practiceUnit{
+        font-size: 10px;
+        margin-top: -50px;
+        width: 100px;
+        height: 30px;
+        margin-left: 80%;
+      }
+      paper-button.selfCheck{
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+      }
+
     </style>
 
     <div class="card">
-      <h1>Units</h1>
-      <paper-search-panel search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-panel>
-      <table id="units">
+      <h1>Unit 1</h1> <!--Name der Unit-->
+      <paper-button class="practiceUnit" name="practiceUnit" raised noink>Practice Unit</paper-button>
+      <paper-button class="selfCheck" name="selfCheck" raised noink>Self-check</paper-button>
+      
+      <table id="vocabulary">
         
       </table>
     </div>
   </template>
 
   <script>
-    class UnitOverview extends Polymer.Element {
-      static get is() { return 'unit-overview'; }
+    class UnitPage extends Polymer.Element {
+      static get is() { return 'unit-page'; }
       _getUnitTable(){
         return Polymer.dom(this.root).querySelector("table[id=units]");
       }
     }
-    window.customElements.define(UnitOverview.is, UnitOverview);
+    window.customElements.define(UnitPage.is, UnitPage);
   </script>
   <script src="../develop-javascript/src/unitsoverview.js" type="module"></script>
 </dom-module>

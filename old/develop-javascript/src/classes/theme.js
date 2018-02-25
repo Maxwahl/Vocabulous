@@ -1,6 +1,7 @@
 export default class Theme{
-    constructor(name, headerBackgroundcolor, menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menunNavigationFontColor)
+    constructor(id,name, headerBackgroundcolor, menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menunNavigationFontColor)
     {
+        this.id = id;
         this.name=name;
         this.headerBackgroundcolor = headerBackgroundcolor;
         this.menuFontColor = menuFontColor;
@@ -9,6 +10,9 @@ export default class Theme{
         this.menuNavigationColor = menuNavigationColor;
         this.menuBackgroundColor = menuBackgroundColor;
         this.menunNavigationFontColor = menunNavigationFontColor;
+    }
+    getId(){
+        return this.id;
     }
     getName(){
         return this.name;

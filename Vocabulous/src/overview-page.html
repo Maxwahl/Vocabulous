@@ -25,6 +25,7 @@
 
 <link rel="lazy-import" href="home-view.html">
 <link rel="lazy-import" href="unit-overview.html">
+<link rel="lazy-import" href="unit-page.html">
 <link rel="lazy-import" href="statistics-view.html">
 <link rel="lazy-import" href="messages-view.html">
 <link rel="lazy-import" href="account-view.html">
@@ -142,6 +143,7 @@
             fallback-selection="not-found">
           <home-view name="home-view"></home-view>
           <unit-overview name="unit-overview"></unit-overview>
+          <unit-page name="unit-page"></unit-page>
           <statistics-view name="statistics-view"></statistics-view>
           <messages-view name="messages-view"></messages-view>
           <account-view name="account-view"></account-view>
@@ -221,6 +223,9 @@
       }
       _getSettingsviewTag(){
         return Polymer.dom(this.root).querySelector("settings-view[name=settings-view]");
+      }
+      _getUnitView(){
+        return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
       }
       _getAppHeader(){
         return Polymer.dom(this.root).querySelector("app-header");
