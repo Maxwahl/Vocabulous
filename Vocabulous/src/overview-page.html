@@ -121,8 +121,7 @@
               <a name="unit-overview">Unit Overview</a>
               <a name="statistics-view">Statistics</a>
               <a name="messages-view">Messages</a>
-              <a name="settings-view">Settings</a>
-              <a name="practiceunit-page">Practice Unit</a> 
+              <a name="settings-view">Settings</a> 
             </iron-selector>
             
         </app-drawer>
@@ -199,11 +198,6 @@
       _getUnitoverview(){
         return Polymer.dom(this.root).querySelector("a[name=unit-overview]");
       }
-      /**/
-      _getPracticeunitpage(){
-        return Polymer.dom(this.root).querySelector("a[name=practiceunit-page]");
-      }
-      /**/
       _getStatisticview(){
         return Polymer.dom(this.root).querySelector("a[name=statistics-view]");
       }

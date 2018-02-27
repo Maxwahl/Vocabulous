@@ -42,12 +42,12 @@ searchBar.onkeyup = function(){
             unitTable.rows[i].style.display = "none";
         }
         else{
-            unitTable.rows[i].style.display = "inline";
+            unitTable.rows[i].style.display = "block";
         }
     }
 }
 function clearFilter(){
     for(var i = 0; i < unitTable.rows.length; i++){
-        unitTable.rows[i].style.display = "inline";
+        unitTable.rows[i].style.display = "block";
     }
 }

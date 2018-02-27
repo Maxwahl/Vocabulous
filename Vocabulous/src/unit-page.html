@@ -13,6 +13,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
 <link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="unit-page">
@@ -29,55 +31,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 40px;
         font-weight: 500;
         font-size: 23px;
+        margin-top: -15px;
       }
       table{
         margin-left: 40px;
-        width: 96.5%;
+        width: 98%;
       }
       td{
         border: 0.5px solid #cecece;
-        width: 800px;
         height: 15px;
         padding: 10px;
         text-align: left;
         margin-left: 40px;
         border-radius: 5px;
       }
+      tr{
+        margin-bottom: 20px;
+      }
       paper-button.practiceUnit{
-        font-size: 10px;
+        font-size: 0.65em;
         margin-top: -50px;
-        width: 100px;
+        width: 8%;
         height: 30px;
-        /*margin-left: 80.5%;*/
       }
       paper-button.selfCheck{
-        font-size: 10px;
-        width: 100px;
+        font-size: 0.65em;
+        width: 8%;
         height: 30px;
+        margin-bottom: 20px;
       }
-      table.buttons{
-        margin-bottom: 30px;
-        margin-left: 42.5%;
+      paper-icon-button.back{
+        font-size: 0.65em;
+        width: 30px;
+        height: 30px;
+        margin-left: -10px;
       }
-      th.practiceUnit{
+      div.backButton{
         text-align: right;
-        
       }
-      th.selfCheck{
-        text-align: left;
-        
+      div.buttons{
+       text-align: right;
       }
+      
 
     </style>
 
     <div class="card">
+      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <h1>Unit 1</h1> <!--Name der Unit-->
-      <table class="buttons">
-        <tr>
-          <th class="practiceUnit"><paper-button class="practiceUnit" name="practiceUnit" raised noink>Practice Unit</paper-button></th>
-          <th class="selfCheck"><paper-button class="selfCheck" name="selfCheck" raised noink>Self-check</paper-button></th>
-        </tr>
-      </table>
+      <div class="buttons">
+        <paper-button class="practiceUnit" name="practiceUnit" raised noink>Practice Unit</paper-button>
+        <paper-button class="selfCheck" name="selfCheck" raised noink>Self-check</paper-button>
+      </div>
   
       <table id="vocabulary">
         
