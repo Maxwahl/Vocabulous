@@ -65,6 +65,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin-top: -75px;
           margin-left: 40%;
           width: 25%;
+        --paper-input-container-color: initial;
+        --paper-input-container-focus-color: initial;
+        --paper-input-container-invalid-color: initial;
+        --paper-input-container-input-color: initial;
       }
       paper-toggle-button.language{
         margin-left: 15px;
@@ -128,9 +132,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 83%;
         margin-top: 0px;
       }
-      time-counter{
-        margin-top: 80px;
-        margin-left: 100px;
+      h2.timer{
+        margin-top: 100px;
+        margin-left: 80px;
       }
       
     </style>
@@ -145,9 +149,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </tr>
       </table>
       <div class="progessbars">
-          <paper-progress value="250" min="80" max="800" class="red"></paper-progress>
+          <paper-progress name="learn" value="250" min="0" max="800" class="red"></paper-progress>
           <h3 class="learnprogress">Learn Progress</h3>
-          <paper-progress value="500" min="80" max="800" class="green"></paper-progress>
+          <paper-progress name="unit" value="50" min="0" max="100" class="green"></paper-progress>
           <h3 class="unitprogress">Unit Progress</h3>
       </div>
       <div>
@@ -161,7 +165,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <td><paper-button class="cancelbutton" name="cancelbutton" raised noink>Cancel</paper-button></td>
           <td><paper-button class="pausebutton" name="pausebutton" raised noink>Pause</paper-button></td>
           <td><paper-button class="skipbutton" name="skipbutton" raised noink>Skip</paper-button></td>
-          <td><time-counter id="timer"></time-counter></td>
+          <td><h2 class="timer">00:00:00</time-counter></td>
         </tr>
       </table>
     </div>
@@ -197,10 +201,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getUnitName(){
         return Polymer.dom(this.root).querySelector("h1");
       }
-     
+      _getCancelButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=cancelbutton]");
+      }
+      _getPauseButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=pausebutton]");
+      }
+      _getSkipButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=skipbutton]");
+      }
+      _getTimeCounter(){
+        return Polymer.dom(this.root).querySelector("h2[class=timer]");
+      }
+      _getToggleButton(){
+        return Polymer.dom(this.root).querySelector("paper-toggle-button");
+      }
+      _getLearnProgressBar(){
+        return Polymer.dom(this.root).querySelector("paper-progress[name=learn]");
+      }
+      _getUnitProgressBar(){
+        return Polymer.dom(this.root).querySelector("paper-progress[name=unit]");
+      }
+      _getInput(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=vocab]");
+      }
+      _getWordPrint(){
+        return Polymer.dom(this.root).querySelector("h2");
+      }
+      _getNextButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[class=nextVocab]");
+      }
     }
     window.customElements.define(PracticeUnitPage.is, PracticeUnitPage);
   </script>
-  <script name="practiceunitpage" src="../develop-javascript/src/practiceunitpage.js" type="module"></script>
+  <script name="practiceunitpage" src="../develop-javascript/src/practicepage.js" type="module"></script>
 </dom-module>
 
