@@ -25,10 +25,13 @@
 
 <link rel="lazy-import" href="home-view.html">
 <link rel="lazy-import" href="unit-overview.html">
+<link rel="lazy-import" href="unit-page.html">
 <link rel="lazy-import" href="statistics-view.html">
 <link rel="lazy-import" href="messages-view.html">
 <link rel="lazy-import" href="account-view.html">
 <link rel="lazy-import" href="settings-view.html">
+<link rel="lazy-import" href="practiceunit-page.html">
+<link rel="lazy-import" href="selfcheck-page.html">
 <link rel="lazy-import" href="not-found.html">
 <link rel="lazy-import" href="register-login.html">
 <link rel="lazy-import" href="my-app.html">
@@ -118,7 +121,7 @@
               <a name="unit-overview">Unit Overview</a>
               <a name="statistics-view">Statistics</a>
               <a name="messages-view">Messages</a>
-              <a name="settings-view">Settings</a>
+              <a name="settings-view">Settings</a> 
             </iron-selector>
             
         </app-drawer>
@@ -142,11 +145,14 @@
             fallback-selection="not-found">
           <home-view name="home-view"></home-view>
           <unit-overview name="unit-overview"></unit-overview>
+          <unit-page name="unit-page"></unit-page>
           <statistics-view name="statistics-view"></statistics-view>
           <messages-view name="messages-view"></messages-view>
           <account-view name="account-view"></account-view>
           <settings-view name="settings-view"></settings-view>
           <not-found name="not-found"></not-found>
+          <practiceunit-page name="practiceunit-page"></practiceunit-page>
+          <selfcheck-page name="selfcheck-page"></selfcheck-page>
         </iron-pages>
       </app-header-layout>
       
@@ -233,6 +239,12 @@
       }
       _getAppdrawerForTheme(){
         return Polymer.dom(this.root).querySelector("app-drawer");
+      }
+      _getUnitPage(){
+        return Polymer.dom(this.root).querySelector("unit-page[name=unit-page]");
+      }
+      _getIronPages(){
+        return Polymer.dom(this.root).querySelector("iron-pages");
       }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails

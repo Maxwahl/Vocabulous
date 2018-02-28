@@ -30,6 +30,8 @@
 <link rel="lazy-import" href="messages-view.html">
 <link rel="lazy-import" href="account-view.html">
 <link rel="lazy-import" href="settings-view.html">
+<link rel="lazy-import" href="practiceunit-page.html">
+<link rel="lazy-import" href="selfcheck-page.html">
 <link rel="lazy-import" href="not-found.html">
 <link rel="lazy-import" href="register-login.html">
 <link rel="lazy-import" href="my-app.html">
@@ -119,7 +121,7 @@
               <a name="unit-overview">Unit Overview</a>
               <a name="statistics-view">Statistics</a>
               <a name="messages-view">Messages</a>
-              <a name="settings-view">Settings</a>
+              <a name="settings-view">Settings</a> 
             </iron-selector>
             
         </app-drawer>
@@ -149,6 +151,8 @@
           <account-view name="account-view"></account-view>
           <settings-view name="settings-view"></settings-view>
           <not-found name="not-found"></not-found>
+          <practiceunit-page name="practiceunit-page"></practiceunit-page>
+          <selfcheck-page name="selfcheck-page"></selfcheck-page>
         </iron-pages>
       </app-header-layout>
       
@@ -235,6 +239,15 @@
       }
       _getAppdrawerForTheme(){
         return Polymer.dom(this.root).querySelector("app-drawer");
+      }
+      _getUnitPage(){
+        return Polymer.dom(this.root).querySelector("unit-page[name=unit-page]");
+      }
+      _getIronPages(){
+        return Polymer.dom(this.root).querySelector("iron-pages");
+      }
+      _getPracticeUnitPage(){
+        return Polymer.dom(this.root).querySelector("practiceunit-page[name=practiceunit-page]");
       }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails

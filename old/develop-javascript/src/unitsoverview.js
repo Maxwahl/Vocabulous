@@ -9,23 +9,45 @@ var unitView = overview._getUnitView();
 console.dir(unitView);
 var unitTable = unitView._getUnitTable();
 console.dir(unitTable);
+var searchBar = unitView._getSearchBar();
+console.dir(searchBar);
+var checked = unitView._getChecked();
+console.dir(checked);
 var units = [];
 (async function(){
     units = await BackEndHandler.getUnits();
-    var dataCount = 3;
     var rowCount = 0;
     for(var i = 0; i < units.length; i++){
-        if(dataCount == 3){
-            //unitTable.appendChild(newRow);
-            var newRow = unitTable.insertRow(rowCount);
-            dataCount = 0;
-            rowCount++;
-        }
-        var newData = newRow.insertCell(dataCount);
+        var newRow = unitTable.insertRow(rowCount);
+        rowCount++;
+        var newData = newRow.insertCell(0);
         newData.innerHTML = units[i].getName();
+        var text = units[i].getName();
+        newData.value = units[i].getName();
+        newData.onclick=function(){
+            checked.value = this.value;
+            overview._routePageChanged("unit-page")};
         console.dir(newData);
-        //newRow.appendChild(newData);
-        dataCount++;
     }
-    //unitTable.appendChild(newRow);
 })();
+searchBar.addEventListener("paper-search-clear",e=>clearFilter());
+searchBar.onkeyup = function(){
+    console.dir(searchBar.search);
+    if(searchBar.search == ""){
+        clearFilter();
+        return;
+    }
+    for(var i = 0; i < unitTable.rows.length; i++){
+        if(unitTable.rows[i].innerHTML.toLowerCase().search(searchBar.search.toLowerCase())== -1){
+            unitTable.rows[i].style.display = "none";
+        }
+        else{
+            unitTable.rows[i].style.display = "block";
+        }
+    }
+}
+function clearFilter(){
+    for(var i = 0; i < unitTable.rows.length; i++){
+        unitTable.rows[i].style.display = "block";
+    }
+}

@@ -9,29 +9,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<!--<link rel="import" href="../bower_components/paper-search/paper-search-bar.html">-->
+<link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="unit-overview">
   <template>
-    <h1>Units</h1>
-    <table id="units">
-
-    </table>
-  </template>
-  <template>
     <style include="shared-styles">
       :host {
+        --app-primary-color: #2f3238;
+        --app-secondary-color: grey;
         display: block;
-
         padding: 10px;
       }
       h1{
-        color: grey;
+        color: var(--app-primary-color);
+        margin-left: 40px;
+        font-weight: 500;
+        font-size: 23px;
+      }
+      paper-search-bar{
+        margin: 40px;
+        margin-top: 50px;
+        width: 97%;
+        /*padding-bottom: 30px;*/
+      }
+      paper-search-bar::-ms-clear{
+        margin: 40px;
+        margin-top: 50px;
+        display:none;
+      }
+      table{
+        width: 100%;
+      }
+     
+      td{
+        border: 0.5px solid #cecece;
+        height: 30px;
+        padding: 10px;
+        text-align: left;
+        font-weight: 500;
+        margin-left: 40px;
+        border-radius: 5px;
+        margin-bottom: 3px;
+        display: block;
       }
     </style>
 
     <div class="card">
-      <h1>Unit Overview</h1>
+      <h1>Units</h1>
+      <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
+      <table id="units">
+
+      </table>
+      <input name="forUnit" style="display:none;">
     </div>
   </template>
 
@@ -40,6 +71,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get is() { return 'unit-overview'; }
       _getUnitTable(){
         return Polymer.dom(this.root).querySelector("table[id=units]");
+      }
+      _getSearchBar(){
+        return Polymer.dom(this.root).querySelector("paper-search-panel");
+      }
+      _getChecked(){
+        return Polymer.dom(this.root).querySelector("input[name=forUnit]");
       }
     }
     window.customElements.define(UnitOverview.is, UnitOverview);
