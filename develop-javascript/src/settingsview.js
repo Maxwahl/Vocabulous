@@ -7,8 +7,8 @@ var defaultswitch = settings._getDefaultswitch();
 var darkswitch = settings._getDarkswitch();
 var themeName = settings._getThemeName();
 var data = [];                                   //Wird später durch DB erstetzt
-var darkTheme = new Theme("Dark Theme","#2E2E2E","#FFFFFF","#FFFFFF","#585858","#6E6E6E","#424242","#FFFFFF");
-var defaultTheme = new Theme("Default Theme","#1E88E5","#000000","#FFFFFF","#eeeeee","#f2f2f2","#ffffff","#000000");
+var darkTheme = new Theme(0, "Dark Theme","#2E2E2E","#FFFFFF","#FFFFFF","#585858","#6E6E6E","#424242","#FFFFFF");
+var defaultTheme = new Theme(1, "Default Theme","#1E88E5","#000000","#FFFFFF","#eeeeee","#f2f2f2","#ffffff","#000000");
 console.log(themeName);
 var headerBackgroundColour = settings._getHeaderBackgroundColour();
 console.log(headerBackgroundColour);
@@ -122,7 +122,7 @@ console.dir(paperListBox);
 function save(){
     //DB save data
     paperListBox.style.display = "inline";
-    var newTheme = new Theme(themeName.value, headerBackgroundColour.color,menuFontColour.color,headerFontColour.color,cardAreaBackgroundColour.color,menuNavigationColour.color,menuBackgroundColour.color, menuNavigationFontColour.color);
+    var newTheme = new Theme(5, themeName.value, headerBackgroundColour.color,menuFontColour.color,headerFontColour.color,cardAreaBackgroundColour.color,menuNavigationColour.color,menuBackgroundColour.color, menuNavigationFontColour.color);
     data.push(newTheme); //Später durch Datenbank ersetzt
     console.log(newTheme);
     var newElement = document.createElement("paper-item");

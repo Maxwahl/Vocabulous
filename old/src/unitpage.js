@@ -17,18 +17,14 @@ var ironPages = overview._getIronPages();
 console.dir(ironPages);
 var wordTable = unitpage._getWordTable();
 console.dir(wordTable);
-var returnButton = unitpage._getReturnButton();
-console.dir(returnButton);
-var practiceButton = unitpage._getPracticeButton();
-console.dir(practiceButton);
-var examButton = unitpage._getExamButton();
-console.dir(examButton);
 var words;
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="unit-page"){
         changedUnit();
     }
 });
+//unitpage.onfocus = function(){unitSelected("Es funkt")};
+//checked.addEventListener("change",function(){name.innerHTML = checked.value});
 async function changedUnit(){
     unitName.innerHTML = checked.value;
     words = await BackEndHandler.getWords(unitName.innerHTML); 
@@ -44,6 +40,3 @@ async function changedUnit(){
     }
 }
 changedUnit();
-returnButton.onclick = function(){overview._routePageChanged("unit-overview")}
-practiceButton.onclick = function(){overview._routePageChanged("practiceunit-page")};
-examButton.onclick = function(){overview._routePageChanged("selfcheck-page")};

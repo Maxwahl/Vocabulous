@@ -89,8 +89,8 @@ export default class BackEndHandler{
         }
         return units;
     }
-    static async getWords(unId){
-        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/words/"+unId);
+    static async getWords(unitName){
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/words/"+unitName);
         let words = [];
         while(jsonText.length>0){
             const {wordGerman,wordEnglisch} = jsonText.pop();
