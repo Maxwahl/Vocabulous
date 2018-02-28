@@ -262,7 +262,7 @@ public class UnitResources {
                 .add("wordEnglisch", "cut")        
                 .build());
         ret.add(Json.createObjectBuilder()
-                .add("wordGerman", "bügel")
+                .add("wordGerman", "bügeln")
                 .add("wordEnglisch", "iron")
                 .build());
         ret.add(Json.createObjectBuilder()
