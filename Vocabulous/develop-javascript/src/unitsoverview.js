@@ -13,7 +13,16 @@ var searchBar = unitView._getSearchBar();
 console.dir(searchBar);
 var checked = unitView._getChecked();
 console.dir(checked);
+var ironPages = overview._getIronPages();
+console.dir(ironPages);
 var units = [];
+
+ironPages.addEventListener("iron-select",function(){
+    if(ironPages.selected=="unit-overview"){
+        searchBar.query = "";
+        clearFilter();
+    }
+});
 (async function(){
     units = await BackEndHandler.getUnits();
     var rowCount = 0;
