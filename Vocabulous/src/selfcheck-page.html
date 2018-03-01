@@ -13,6 +13,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
 <link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../bower_components/time-counter/time-counter.html">
+<link rel="import" href="my-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="selfcheck-page">
@@ -27,76 +34,190 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       h1{
         color: var(--app-primary-color);
         margin-left: 40px;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 23px;
       }
-      table{
-        margin-left: 40px;
-        width: 96.5%;
+      h2{
+        color: var(--app-primary-color);
+        margin-top: -20px;
+        margin-left: 30%;
+        font-weight: 300;
+        font-size: 18px;
       }
-      td{
-        border: 0.5px solid #cecece;
-        width: 800px;
-        height: 15px;
-        padding: 10px;
-        text-align: left;
-        margin-left: 40px;
-        border-radius: 5px;
-      }
-      paper-button.practiceUnit{
-        font-size: 10px;
-        margin-top: -50px;
-        width: 100px;
+      h3.german{
+        font-weight: 300;
+        font-size: 0.9em;
+        margin-top: 40px;
+        width: 8%;
         height: 30px;
-        /*margin-left: 80.5%;*/
-      }
-      paper-button.selfCheck{
-        font-size: 10px;
-        width: 100px;
-        height: 30px;
-      }
-      table.buttons{
-        margin-bottom: 30px;
-        margin-left: 42.5%;
-      }
-      th.practiceUnit{
-        text-align: right;
+        margin-left: 40px;
         
       }
-      th.selfCheck{
-        text-align: left;
+      h3.english{
+        font-weight: 300;
+        font-size: 0.9em;
+        width: 8%;
+        height: 30px;
+        margin-left: 10px;
+        margin-top: 40px;
+      }
+      paper-input.vocab{
+          margin-top: -72.5px;
+          margin-left: 40%;
+          width: 25%;
+        --paper-input-container-color: initial;
+        --paper-input-container-focus-color: initial;
+        --paper-input-container-invalid-color: initial;
+        --paper-input-container-input-color: initial;
+      }
+      paper-toggle-button.language{
+        margin-left: 15px;
+        margin-top: 20px;
+        --paper-toggle-button-checked-bar-color:  #1E88E5;
+      --paper-toggle-button-checked-button-color: #1E88E5;
+      --paper-toggle-button-checked-ink-color: #1E88E5;
+      }
+      paper-button.nextVocab{
+        font-size: 0.65em;
+        width: 8%;
+        height: 30px;
+        margin-top: 200px;
+        margin-left: 70%;
         
+      }
+      paper-button.cancelbutton{
+        font-size: 0.65em;
+        width: 8%;
+        height: 30px;
+        margin-left: 40px;
+        margin-top: 80px;
+      }
+      paper-button.pausebutton{
+        font-size: 0.65em;
+        width: 40px;
+        height: 30px;
+        margin-left: 0%;
+        margin-top: 80px;
+      }
+      paper-button.skipbutton{
+        font-size: 0.65em;
+        width: 8%;
+        height: 30px;
+        margin-left: 0%;
+        margin-top: 80px;
+      }
+      paper-progress.green {
+        --paper-progress-active-color: var(--paper-light-green-500);
+        --paper-progress-secondary-color: var(--paper-light-green-100);
       }
 
+      paper-progress.blue {
+        --paper-progress-active-color: var(--paper-light-blue-500);
+        --paper-progress-secondary-color: var(--paper-light-blue-100);
+      }
+      h3.learnprogress{
+        font-weight: 300;
+        font-size: 0.9em;
+        width: 200px;
+        height: 30px;
+        /*margin-left: 83%;*/
+        margin-top: 0px;
+      }
+      h3.unitprogress{
+        font-weight: 300;
+        font-size: 0.9em;
+        width: 200px;
+        height: 30px;
+        /*margin-left: 83%;*/
+        margin-top: 0px;
+      }
+      h2.timer{
+        margin-top: 100px;
+        margin-left: 20%;
+      }
+      div.progressbars{
+        float: right;
+      }
+      paper-icon-button.back{
+        font-size: 0.65em;
+        width: 30px;
+        height: 30px;
+        margin-left: -10px;
+        margin-top: -49px;
+        position:absolute;
+      }
     </style>
 
     <div class="card">
       <h1>Unit 1</h1> <!--Name der Unit-->
-      <table class="buttons">
+      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
+      <table>
         <tr>
-          <th class="practiceUnit"><paper-button class="practiceUnit" name="practiceUnit" raised noink>Practice Unit</paper-button></th>
-          <th class="selfCheck"><paper-button class="selfCheck" name="selfCheck" raised noink>Self-check</paper-button></th>
+          <td><h3 class="german">Deutsch</h3></td>
+          <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
+          <td> <h3 class="english">Englisch</h3></td>
         </tr>
       </table>
-  
-      <table id="vocabulary">
-        
+      <div class="progressbars">
+          <paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress>
+          <h3 class="learnprogress">Learn Progress</h3>
+          
+          <paper-progress name="unit" value="50" min="0" max="100" class="blue"></paper-progress>
+          <h3 class="unitprogress">Unit Progress</h3>
+      </div>
+      <div>
+          <paper-button class="nextVocab" name="nextVocab" raised noink>Next</paper-button>
+          <h2>house</h2> <!--Vokabel das angezeigt wird-->
+          <paper-input class="vocab"></paper-input> <!--Vokabel das eingegeben wird-->
+      </div>
+      
+      <table>
+        <tr>
+          <td><paper-button class="cancelbutton" name="cancelbutton" raised noink>Cancel</paper-button></td>
+          <td><h2 class="timer">00:00:00</time-counter></td>
+        </tr>
       </table>
     </div>
   </template>
-
+  
   <script>
     class SelfCheckPage extends Polymer.Element {
       static get is() { return 'selfcheck-page'; }
       _getUnitName(){
         return Polymer.dom(this.root).querySelector("h1");
       }
-      _getWordTable(){
-        return Polymer.dom(this.root).querySelector("table[id=vocabulary]");
+      _getCancelButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=cancelbutton]");
+      }
+      _getPauseButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=pausebutton]");
+      }
+      _getSkipButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=skipbutton]");
+      }
+      _getTimeCounter(){
+        return Polymer.dom(this.root).querySelector("h2[class=timer]");
+      }
+      _getToggleButton(){
+        return Polymer.dom(this.root).querySelector("paper-toggle-button");
+      }
+      _getLearnProgressBar(){
+        return Polymer.dom(this.root).querySelector("paper-progress[name=learn]");
+      }
+      _getUnitProgressBar(){
+        return Polymer.dom(this.root).querySelector("paper-progress[name=unit]");
+      }
+      _getInput(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=vocab]");
+      }
+      _getWordPrint(){
+        return Polymer.dom(this.root).querySelector("h2");
+      }
+      _getNextButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[class=nextVocab]");
       }
     }
     window.customElements.define(SelfCheckPage.is, SelfCheckPage);
   </script>
-  <script name="selfcheckpage" src="../develop-javascript/src/selfcheckpage.js" type="module"></script>
+  <script name="practiceunitpage" src="../develop-javascript/src/selfcheckpage.js" type="module"></script>
 </dom-module>
-

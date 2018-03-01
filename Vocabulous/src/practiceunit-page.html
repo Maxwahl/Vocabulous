@@ -34,7 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       h1{
         color: var(--app-primary-color);
         margin-left: 40px;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 23px;
       }
       h2{
@@ -89,21 +89,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 0.65em;
         width: 8%;
         height: 30px;
-        margin-left: 70%;
+        margin-left: 40px;
         margin-top: 80px;
       }
       paper-button.pausebutton{
         font-size: 0.65em;
-        width: 8%;
+        width: 40px;
         height: 30px;
-        margin-left: 70%;
+        margin-left: 0%;
         margin-top: 80px;
       }
       paper-button.skipbutton{
         font-size: 0.65em;
         width: 8%;
         height: 30px;
-        margin-left: 70%;
+        margin-left: 0%;
         margin-top: 80px;
       }
       paper-progress.green {
@@ -133,16 +133,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       h2.timer{
         margin-top: 100px;
-        margin-left: 80px;
+        margin-left: 20%;
       }
       div.progressbars{
         float: right;
       }
-      
+      paper-icon-button.back{
+        font-size: 0.65em;
+        width: 30px;
+        height: 30px;
+        margin-left: -10px;
+        margin-top: -49px;
+        position:absolute;
+      }
     </style>
 
     <div class="card">
       <h1>Unit 1</h1> <!--Name der Unit-->
+      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <table>
         <tr>
           <td><h3 class="german">Deutsch</h3></td>
@@ -165,9 +173,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       <table>
         <tr>
-          <td><paper-button class="cancelbutton" name="cancelbutton" raised noink>Cancel</paper-button></td>
-          <td><paper-button class="pausebutton" name="pausebutton" raised noink>Pause</paper-button></td>
-          <td><paper-button class="skipbutton" name="skipbutton" raised noink>Skip</paper-button></td>
+          <td><paper-button class="cancelbutton" name="cancelbutton" noink raised>Cancel</paper-button></td>
+          <td><paper-button class="pausebutton" name="pausebutton" noink raised>Pause</paper-button></td>
+          <td><paper-button class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>
           <td><h2 class="timer">00:00:00</time-counter></td>
         </tr>
       </table>

@@ -31,11 +31,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 40px;
         font-weight: 500;
         font-size: 23px;
-        margin-top: -15px;
       }
       table{
         margin-left: 40px;
-        width: 98%;
+        width: 96.5%;
       }
       td{
         border: 0.5px solid #cecece;
@@ -44,15 +43,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: left;
         margin-left: 40px;
         border-radius: 5px;
+        width: 48.25%;
       }
       tr{
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
       paper-button.practiceUnit{
         font-size: 0.65em;
         margin-top: -50px;
         width: 8%;
         height: 30px;
+        margin-left: 80%;
       }
       paper-button.selfCheck{
         font-size: 0.65em;
@@ -65,21 +66,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 30px;
         height: 30px;
         margin-left: -10px;
+        margin-top: -50px;
+        position:absolute;
       }
-      div.backButton{
-        text-align: right;
-      }
-      div.buttons{
-       text-align: right;
-      }
-      
 
     </style>
 
     <div class="card">
-      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <h1>Unit 1</h1> <!--Name der Unit-->
-      <div class="buttons">
+      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
+      <div>
         <paper-button class="practiceUnit" name="practiceUnit" raised noink>Practice Unit</paper-button>
         <paper-button class="selfCheck" name="selfCheck" raised noink>Self-check</paper-button>
       </div>
@@ -98,6 +94,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getWordTable(){
         return Polymer.dom(this.root).querySelector("table[id=vocabulary]");
+      }
+      _getReturnButton(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
+      }
+      _getPracticeButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=practiceUnit]");
+      }
+      _getExamButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=selfCheck]");
       }
     }
     window.customElements.define(UnitPage.is, UnitPage);
