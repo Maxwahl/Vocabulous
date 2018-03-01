@@ -32,22 +32,22 @@ var units = [];
 })();
 searchBar.addEventListener("paper-search-clear",e=>clearFilter());
 searchBar.onkeyup = function(){
-    console.dir(searchBar.search);
-    if(searchBar.search == ""){
+    console.dir(searchBar.query);
+    if(searchBar.query == ""){
         clearFilter();
         return;
     }
     for(var i = 0; i < unitTable.rows.length; i++){
-        if(unitTable.rows[i].innerHTML.toLowerCase().search(searchBar.search.toLowerCase())== -1){
+        if(unitTable.rows[i].innerHTML.toLowerCase().search(searchBar.query.toLowerCase())== -1){
             unitTable.rows[i].style.display = "none";
         }
         else{
-            unitTable.rows[i].style.display = "inline";
+            unitTable.rows[i].style.display = "block";
         }
     }
 }
 function clearFilter(){
     for(var i = 0; i < unitTable.rows.length; i++){
-        unitTable.rows[i].style.display = "inline";
+        unitTable.rows[i].style.display = "block";
     }
 }
