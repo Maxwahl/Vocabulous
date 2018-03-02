@@ -19,6 +19,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="../bower_components/time-counter/time-counter.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 <link rel="import" href="my-icons.html">
 <link rel="import" href="shared-styles.html">
 
@@ -153,6 +155,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: -49px;
         position:absolute;
       }
+      iron-icon.language{
+        color: var(--app-secondary-color);
+        width: 15px;
+        height: 15px;
+        margin-top: 15px;
+        margin-left: 10px;
+      }
+      iron-icon.next{
+        color: var(--app-secondary-color);
+        width: 15px;
+        height: 15px;
+        margin-top: -80px;
+        margin-left: 80%;
+      }
     </style>
 
     <div class="card">
@@ -163,6 +179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <td><h3 class="german">Deutsch</h3></td>
           <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
           <td> <h3 class="english">Englisch</h3></td>
+          <td><iron-icon icon="vaadin:info-circle-o" class="language"></iron-icon></td>
         </tr>
       </table>
       <div class="progressbars">
@@ -173,14 +190,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <h3 class="unitprogress">Unit Progress</h3>
       </div>
       <div>
+          
           <paper-button class="nextVocab" name="nextVocab" raised noink>Next</paper-button>
           <h2>house</h2> <!--Vokabel das angezeigt wird-->
           <paper-input class="vocab"></paper-input> <!--Vokabel das eingegeben wird-->
+          <iron-icon icon="vaadin:info-circle-o" class="next"></iron-icon>
       </div>
       
       <table>
         <tr>
-          <td><paper-button class="cancelbutton" name="cancelbutton" noink raised>Cancel</paper-button></td>
+          <td><paper-button class="cancelbutton" name="cancelbutton" noink raised>Exit</paper-button></td>
           <td><paper-button class="pausebutton" name="pausebutton" noink raised>Pause</paper-button></td>
           <td><paper-button class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>
           <td><paper-button class="startbutton" name="startbutton" noink raised>Start</paper-button></td>
@@ -189,31 +208,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </table>
     </div>
   </template>
-  <!-- Beispielcode für Timer
-    <time-counter id="timer"></time-counter>
-
-    <button id="restart">Restart</button>
-    <button id="stop">Stop</button>
-
-    <script>
-      var timerElement = document.querySelector('#timer')
-      var restartButton = document.querySelector('#restart')
-      var stopButton = document.querySelector('#stop')
-
-      var restartTimer = function () {
-        timerElement.startDate = Date.now()
-      }
-
-      var stopTimer = function () {
-        timerElement.startDate = undefined
-      }
-
-      restartButton.addEventListener('click', restartTimer)
-      stopButton.addEventListener('click', stopTimer)
-
-      restartTimer()
-    </script>
-  -->
   <script>
     class PracticeUnitPage extends Polymer.Element {
       static get is() { return 'practiceunit-page'; }

@@ -1,0 +1,46 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="unitresult-page">
+  <template>
+    <style include="shared-styles">
+      :host {
+        --app-primary-color: #2f3238;
+        --app-secondary-color: grey;
+        display: block;
+        padding: 10px;
+      }
+      h1{
+        color: var(--app-primary-color);
+        margin-left: 40px;
+        font-weight: 400;
+        font-size: 23px;
+      }
+    </style>
+
+    <div class="card">
+      <h1>Unit 1</h1> <!-- Name der Unit -->
+      <div id="piechart" style="width: 900px; height: 500px;"></div>
+    </div>
+  </template>
+
+  <script>
+    class UnitresultPage extends Polymer.Element {
+      static get is() { return 'unitresult-page'; }
+    }
+
+    window.customElements.define(UnitresultPage.is, UnitresultPage);
+  </script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script name="unitresultpage" src="../develop-javascript/src/unitresultpage.js" type="module"></script>
+</dom-module>

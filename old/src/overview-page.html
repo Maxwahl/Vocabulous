@@ -255,6 +255,9 @@
       _getPracticeUnitPage(){
         return Polymer.dom(this.root).querySelector("practiceunit-page[name=practiceunit-page]");
       }
+      _getSelfCheckPage(){
+        return Polymer.dom(this.root).querySelector("selfcheck-page[name=selfcheck-page]");
+      }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl(page + '.html');

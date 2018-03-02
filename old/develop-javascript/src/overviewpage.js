@@ -40,10 +40,7 @@ unitoverview.onclick = function(){overview._routePageChanged("unit-overview")}
 statisticview.onclick = function(){overview._routePageChanged("statistics-view")}
 messageview.onclick = function(){overview._routePageChanged("messages-view")}
 settingsview.onclick = function(){overview._routePageChanged("settings-view")}
-logoutbutton.onclick = function(){myapp._updatePage("register-login");
-                                  overview._routePageChanged("home-view");
-                                  username.value = "";
-                                  password.value = "";}
+logoutbutton.onclick = function(){location.reload();}
 accounticon.onclick = function(){overview._routePageChanged("account-view")}
 console.log(appdrawer);
 menuicon.onclick = function(){

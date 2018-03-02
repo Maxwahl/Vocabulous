@@ -106,6 +106,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 0%;
         margin-top: 80px;
       }
+      paper-button.startbutton{
+        font-size: 0.65em;
+        width: 8%;
+        height: 30px;
+        margin-left: 0%;
+        margin-top: 80px;
+      }
       paper-progress.green {
         --paper-progress-active-color: var(--paper-light-green-500);
         --paper-progress-secondary-color: var(--paper-light-green-100);
@@ -176,6 +183,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <td><paper-button class="cancelbutton" name="cancelbutton" noink raised>Cancel</paper-button></td>
           <td><paper-button class="pausebutton" name="pausebutton" noink raised>Pause</paper-button></td>
           <td><paper-button class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>
+          <td><paper-button class="startbutton" name="startbutton" noink raised>Start</paper-button></td>
           <td><h2 class="timer">00:00:00</time-counter></td>
         </tr>
       </table>
@@ -241,6 +249,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getNextButton(){
         return Polymer.dom(this.root).querySelector("paper-button[class=nextVocab]");
+      }
+      _getStartButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=startbutton]");
+      }
+      _getReturnButton(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
       }
     }
     window.customElements.define(PracticeUnitPage.is, PracticeUnitPage);
