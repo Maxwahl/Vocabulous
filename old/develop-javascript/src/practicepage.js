@@ -109,7 +109,7 @@ async function nextCheck(){
         if(input.value == words[position].getWordGerman()){
             vocTries = 0;
             changeLineColor("green");
-            await sleep(1000);
+            await sleep(500);
             changeLineColor("initial");
             input.value = "";
             if(position == words.length-1){
@@ -157,7 +157,6 @@ function changeLineColor(color){
     input.updateStyles({"--paper-input-container-color":color});
     input.updateStyles({"--paper-input-container-focus-color":color});
     input.updateStyles({"--paper-input-container-invalid-color":color});
-    input.updateStyles({"--paper-input-container-input-color":color});
 }
 async function wrong(){
     if(english){
@@ -167,7 +166,7 @@ async function wrong(){
         input.value = words[position].getWordEnglish();
     }
     changeLineColor("orange");
-    await sleep(500);
+    await sleep(1000);
     changeLineColor("initial");
     input.value = "";
     if(position == words.length-1){

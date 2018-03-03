@@ -76,8 +76,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 15px;
         margin-top: 20px;
         --paper-toggle-button-checked-bar-color:  #1E88E5;
-      --paper-toggle-button-checked-button-color: #1E88E5;
-      --paper-toggle-button-checked-ink-color: #1E88E5;
+        --paper-toggle-button-checked-button-color: #1E88E5;
+        --paper-toggle-button-checked-ink-color: #1E88E5;
+        --paper-toggle-button-unchecked-bar-color:  #ff3399;
+        --paper-toggle-button-unchecked-button-color: #ff3399;
+        --paper-toggle-button-unchecked-ink-color: #ff3399;
       }
       paper-button.nextVocab{
         font-size: 0.65em;
@@ -169,6 +172,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: -80px;
         margin-left: 80%;
       }
+      #popuplanguage iron-icon.language{
+        display: none;
+      }
+      #popuplanguage{
+        position: absolute;
+        z-index: 1;
+        width: 500px;
+        background-color: rgba(134, 221, 255, 0.562);
+        color:black;
+        padding: 5px 0;
+        margin-top: 4.5%;
+      }
+      #popuplanguage::after{
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 48.5%;
+        margin-top: -4px;
+        border-width: 7px;
+        border-style: solid;
+        border-color: transparent transparent rgba(134, 221, 255, 0.562) transparent;
+      }
+      iron-icon.next:hover #popupnext{
+        display: block;
+      }
+      #popupnext iron-icon.next{
+        display: none;
+      }
+      #popupnext{
+        position: absolute;
+        z-index: 1;
+        width: 500px;
+        background-color: rgba(134, 221, 255, 0.562);
+        color:black;
+        padding: 5px 0;
+        margin-top: -1.5%;
+        margin-left: 59.5%;
+      }
+      #popupnext::after{
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 48.5%;
+        margin-top: -4px;
+        border-width: 7px;
+        border-style: solid;
+        border-color: transparent transparent rgba(134, 221, 255, 0.562) transparent;
+      }
+      iron-icon.next:hover #popupnext{
+        display: block;
+      }
+
     </style>
 
     <div class="card">
@@ -180,33 +235,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
           <td> <h3 class="english">Englisch</h3></td>
           <td><iron-icon icon="vaadin:info-circle-o" class="language"></iron-icon></td>
+          <div id="popuplanguage" name="languagePopup" style="display: none">When you're selecting "german" you will have to
+              write german words and when you select "english" you will have to write
+              english words.</div>
         </tr>
       </table>
       <div class="progressbars">
           <paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress>
           <h3 class="learnprogress">Learn Progress</h3>
           
-          <paper-progress name="unit" value="50" min="0" max="100" class="blue"></paper-progress>
+          <paper-progress name="unit" value="0" min="0" max="100" class="blue"></paper-progress>
           <h3 class="unitprogress">Unit Progress</h3>
       </div>
       <div>
-          
-          <paper-button class="nextVocab" name="nextVocab" raised noink>Next</paper-button>
-          <h2>house</h2> <!--Vokabel das angezeigt wird-->
-          <paper-input class="vocab"></paper-input> <!--Vokabel das eingegeben wird-->
-          <iron-icon icon="vaadin:info-circle-o" class="next"></iron-icon>
+          <paper-button hidden="true" class="nextVocab" name="nextVocab" raised noink>Next</paper-button>
+          <h2 hidden="true">house</h2> <!--Vokabel das angezeigt wird-->
+          <paper-input hidden="true" class="vocab"></paper-input> <!--Vokabel das eingegeben wird-->
+          <iron-icon hidden="true" icon="vaadin:info-circle-o" class="next"></iron-icon>
+          <div id="popupnext" name="nextPopup" style="display: none">When you are pressing "Next" Vocabulous
+              will check your answer. If it was correct the line will turn green,
+              when it was wrong the line will turn red. You will have two tries.
+              When the line turns orange, Vocabolous is showing you the correct answer.
+              After a short amount of time you will get the next word.</div>
       </div>
       
       <table>
         <tr>
-          <td><paper-button class="cancelbutton" name="cancelbutton" noink raised>Exit</paper-button></td>
-          <td><paper-button class="pausebutton" name="pausebutton" noink raised>Pause</paper-button></td>
-          <td><paper-button class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>
+          <td><paper-button hidden="true" class="cancelbutton" name="cancelbutton" noink raised>Exit</paper-button></td>
+          <td><paper-button hidden="true" class="pausebutton" name="pausebutton" noink raised>Pause</paper-button></td>
+          <td><paper-button hidden="true" class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>
           <td><paper-button class="startbutton" name="startbutton" noink raised>Start</paper-button></td>
-          <td><h2 class="timer">00:00:00</time-counter></td>
+          <td><h2 hidden="true" class="timer">00:00:00</time-counter></td>
         </tr>
       </table>
     </div>
+    <input name="wordCount" style="display:none;">
+    <input name="wrong" style="display:none;">
+    <input name="secondTry" style="display:none;">
   </template>
   <script>
     class PracticeUnitPage extends Polymer.Element {
@@ -249,6 +314,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
+      }
+      _getLanguageInfo(){
+        return Polymer.dom(this.root).querySelector("iron-icon[class=language]");
+      }
+      _getNextInfo(){
+        return Polymer.dom(this.root).querySelector("iron-icon[class=next]");
+      }
+      _getLanguagePupup(){
+        return Polymer.dom(this.root).querySelector("div[name=languagePopup]");
+      }
+      _getNextPupup(){
+        return Polymer.dom(this.root).querySelector("div[name=nextPopup]");
+      }
+      _getWordCount(){
+        return Polymer.dom(this.root).querySelector("input[name=wordCount]");
+      }
+      _getWrong(){
+        return Polymer.dom(this.root).querySelector("input[name=wrong]");
+      }
+      _getSecondTry(){
+        return Polymer.dom(this.root).querySelector("input[name=secondTry]");
       }
     }
     window.customElements.define(PracticeUnitPage.is, PracticeUnitPage);

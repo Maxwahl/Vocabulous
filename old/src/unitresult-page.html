@@ -9,9 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/google-chart/google-chart.html">
 <link rel="import" href="shared-styles.html">
-<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 
 <dom-module id="unitresult-page">
   <template>
@@ -28,45 +26,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: 400;
         font-size: 23px;
       }
-      google-chart {
-        height: 300px;
-        width: 50em;
-      }
-      paper-icon-button.back{
-        font-size: 0.65em;
-        width: 30px;
-        height: 30px;
-        margin-left: -10px;
-        margin-top: -49px;
-        position:absolute;
-      }
     </style>
 
     <div class="card">
       <h1>Unit 1</h1> <!-- Name der Unit -->
-      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
-      <google-chart
-        type='pie'
-        options='{"title": "Word-statistic"}'
-        cols='[{"label":"Name", "type":"string"}, {"label":"Amount", "type":"number"}]'>
-      </google-chart>
+      <div id="piechart" style="width: 900px; height: 500px;"></div>
     </div>
   </template>
 
   <script>
     class UnitresultPage extends Polymer.Element {
       static get is() { return 'unitresult-page'; }
-      _getUnitName(){
-        return Polymer.dom(this.root).querySelector("h1");
-      }
-      _getPieChart(){
-        return Polymer.dom(this.root).querySelector("google-chart");
-      }
-      _getReturnButton(){
-        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
-      }
     }
+
     window.customElements.define(UnitresultPage.is, UnitresultPage);
   </script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script name="unitresultpage" src="../develop-javascript/src/unitresultpage.js" type="module"></script>
 </dom-module>
