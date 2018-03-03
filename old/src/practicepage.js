@@ -36,10 +36,26 @@ var wordPrint = practicePage._getWordPrint();
 console.dir(wordPrint);
 var nextButton = practicePage._getNextButton();
 console.dir(nextButton);
+var startButton = practicePage._getStartButton();
+console.dir(startButton);
+var returnButton = practicePage._getReturnButton();
+console.dir(returnButton);
 var words;
 var english = true;
 var position = 0;
+var vocTries = 0;
 var timer = new Stopwatch(timerCounter);
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="practiceunit-page"){
         changedUnit();
@@ -48,10 +64,20 @@ ironPages.addEventListener("iron-select",function(){
 async function changedUnit(){
     unitName.innerHTML = checked.value;
     words = await BackEndHandler.getWords(unitName.innerHTML); 
+    shuffle(words);
+    input.setAttribute("hidden",true);
+    nextButton.setAttribute("hidden",true);
+    cancelButton.setAttribute("hidden",true);
+    skipButton.setAttribute("hidden",true);
+    pauseButton.setAttribute("hidden",true);
+    timerCounter.setAttribute("hidden",true);
+    wordPrint.setAttribute("hidden",true);
+    startButton.removeAttribute("hidden");
+    returnButton.style.display = "inline";
+    toggleButton.removeAttribute("disabled");
     position = 0;
     timer.pause();
     timer.clear();
-    timer.start();
     unitProgressBar.max = words.length;
     unitProgressBar.value = 0;
     if(english == false){ 
@@ -81,6 +107,7 @@ function sleep(ms) {
 async function nextCheck(){
     if(english){
         if(input.value == words[position].getWordGerman()){
+            vocTries = 0;
             changeLineColor("green");
             await sleep(1000);
             changeLineColor("initial");
@@ -96,11 +123,17 @@ async function nextCheck(){
             return;
         }
         changeLineColor("red");
+        vocTries++;
+        if(vocTries==2){
+            vocTries = 0;
+            wrong();
+        }
         return;
     }
     if(input.value == words[position].getWordEnglish()){
+        vocTries = 0;
         changeLineColor("green");
-        await sleep(1000);
+        await sleep(500);
         changeLineColor("initial");
         input.value = "";
         if(position == words.length-1){
@@ -114,6 +147,11 @@ async function nextCheck(){
         return;
     }
     changeLineColor("red");
+    vocTries++;
+    if(vocTries==2){
+        vocTries = 0;
+        wrong();
+    }
 }
 function changeLineColor(color){
     input.updateStyles({"--paper-input-container-color":color});
@@ -121,7 +159,16 @@ function changeLineColor(color){
     input.updateStyles({"--paper-input-container-invalid-color":color});
     input.updateStyles({"--paper-input-container-input-color":color});
 }
-skipButton.onclick = function(){
+async function wrong(){
+    if(english){
+        input.value = words[position].getWordGerman();
+    }
+    else{
+        input.value = words[position].getWordEnglish();
+    }
+    changeLineColor("orange");
+    await sleep(500);
+    changeLineColor("initial");
     input.value = "";
     if(position == words.length-1){
         overview._routePageChanged("unit-page");
@@ -130,6 +177,17 @@ skipButton.onclick = function(){
     }
     position++;
     unitProgressBar.value = position;
+    if(english){
+        wordPrint.innerHTML = words[position].getWordEnglish();
+        return;
+    }
+    wordPrint.innerHTML = words[position].getWordGerman();
+}
+skipButton.onclick = function(){
+    var skipWord = words[position];
+    words.splice(position,1);
+    words.push(skipWord);
+    input.value = "";
     if(english){
         wordPrint.innerHTML = words[position].getWordEnglish();
         return;
@@ -147,7 +205,6 @@ pauseButton.onclick = function(){
         nextButton.setAttribute("disabled",true);
         cancelButton.setAttribute("disabled",true);
         skipButton.setAttribute("disabled",true);
-        toggleButton.setAttribute("disabled",true);
         pauseButton.textContent = "Continue";
         timer.pause();
         return;
@@ -156,7 +213,21 @@ pauseButton.onclick = function(){
     nextButton.removeAttribute("disabled");
     cancelButton.removeAttribute("disabled");
     skipButton.removeAttribute("disabled");
-    toggleButton.removeAttribute("disabled");
     pauseButton.textContent = "Pause";
+    timer.start();
+}
+returnButton.onclick = function(){overview._routePageChanged("unit-page");}
+startButton.onclick = function(){
+    input.removeAttribute("hidden");
+    nextButton.removeAttribute("hidden");
+    cancelButton.removeAttribute("hidden");
+    skipButton.removeAttribute("hidden");
+    pauseButton.removeAttribute("hidden");
+    timerCounter.removeAttribute("hidden");
+    wordPrint.removeAttribute("hidden");
+    nextButton.removeAttribute("hidden");
+    startButton.setAttribute("hidden",true);
+    returnButton.style.display = "none";
+    toggleButton.setAttribute("disabled",true);
     timer.start();
 }
