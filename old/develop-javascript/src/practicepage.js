@@ -40,11 +40,33 @@ var startButton = practicePage._getStartButton();
 console.dir(startButton);
 var returnButton = practicePage._getReturnButton();
 console.dir(returnButton);
+var languageInfo = practicePage._getLanguageInfo();
+console.dir(languageInfo);
+var nextInfo = practicePage._getNextInfo();
+console.dir(nextInfo);
+var languagePopup = practicePage._getLanguagePupup();
+console.dir(languagePopup);
+var nextPopup = practicePage._getNextPupup();
+console.dir(nextPopup);
+var unitresultPage = overview._getUnitResultPage();
+console.dir(unitresultPage);
+var wordCount = practicePage._getWordCount();
+console.dir(wordCount);
+var wrongCounter = practicePage._getWrong();
+console.dir(wrongCounter);
+var secondTry = practicePage._getSecondTry();
+console.dir(secondTry);
 var words;
 var english = true;
 var position = 0;
 var vocTries = 0;
+var mistakes = 0;
+var secondTryCounter = 0;
 var timer = new Stopwatch(timerCounter);
+languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
+languageInfo.onmouseout = function(){languagePopup.style.display = "none";}
+nextInfo.onmouseover = function(){nextPopup.style.display = "block";}
+nextInfo.onmouseout = function(){nextPopup.style.display = "none";}
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
@@ -61,10 +83,8 @@ ironPages.addEventListener("iron-select",function(){
         changedUnit();
     }
 });
-async function changedUnit(){
-    unitName.innerHTML = checked.value;
-    words = await BackEndHandler.getWords(unitName.innerHTML); 
-    shuffle(words);
+ironPages.addEventListener("iron-select",function(){
+    vocTries = 0;
     input.setAttribute("hidden",true);
     nextButton.setAttribute("hidden",true);
     cancelButton.setAttribute("hidden",true);
@@ -72,14 +92,25 @@ async function changedUnit(){
     pauseButton.setAttribute("hidden",true);
     timerCounter.setAttribute("hidden",true);
     wordPrint.setAttribute("hidden",true);
+    nextInfo.setAttribute("hidden",true);
     startButton.removeAttribute("hidden");
     returnButton.style.display = "inline";
     toggleButton.removeAttribute("disabled");
+    languageInfo.removeAttribute("hidden");
+    unitProgressBar.value = 0;
+});
+async function changedUnit(){
+    unitresultPage.value = "parcticeunit-page";
+    unitName.innerHTML = checked.value;
+    words = await BackEndHandler.getWords(unitName.innerHTML); 
+    wordCount.value = words.length;
+    mistakes = 0;
+    secondTryCounter = 0;
+    shuffle(words);
     position = 0;
     timer.pause();
     timer.clear();
     unitProgressBar.max = words.length;
-    unitProgressBar.value = 0;
     if(english == false){ 
         toggleButton.setAttribute("checked",true);
         english = true;
@@ -107,13 +138,18 @@ function sleep(ms) {
 async function nextCheck(){
     if(english){
         if(input.value == words[position].getWordGerman()){
+            if(vocTries == 1){
+                secondTryCounter++;
+            }
             vocTries = 0;
             changeLineColor("green");
             await sleep(500);
             changeLineColor("initial");
             input.value = "";
             if(position == words.length-1){
-                overview._routePageChanged("unit-page");
+                wrongCounter.value = mistakes;
+                secondTry.value = secondTryCounter;
+                overview._routePageChanged("unitresult-page");
                 changedUnit();
                 return;
             }
@@ -126,18 +162,24 @@ async function nextCheck(){
         vocTries++;
         if(vocTries==2){
             vocTries = 0;
+            mistakes++;
             wrong();
         }
         return;
     }
     if(input.value == words[position].getWordEnglish()){
+        if(vocTries == 1){
+            secondTryCounter++;
+        }
         vocTries = 0;
         changeLineColor("green");
         await sleep(500);
         changeLineColor("initial");
         input.value = "";
         if(position == words.length-1){
-            overview._routePageChanged("unit-page");
+            wrongCounter.value = mistakes;
+            secondTry.value = secondTryCounter;
+            overview._routePageChanged("unitresult-page");
             changedUnit();
             return;
         }
@@ -150,6 +192,7 @@ async function nextCheck(){
     vocTries++;
     if(vocTries==2){
         vocTries = 0;
+        mistakes++;
         wrong();
     }
 }
@@ -170,7 +213,9 @@ async function wrong(){
     changeLineColor("initial");
     input.value = "";
     if(position == words.length-1){
-        overview._routePageChanged("unit-page");
+        wrongCounter.value = mistakes;
+        secondTry.value = secondTryCounter;
+        overview._routePageChanged("unitresult-page");
         changedUnit();
         return;
     }
@@ -200,6 +245,8 @@ input.onkeypress = function(e){
 }
 pauseButton.onclick = function(){
     if(pauseButton.textContent == "Pause"){
+        pauseButton.updateStyles({"background":"red"});
+        pauseButton.updateStyles({"color":"white"});
         input.setAttribute("disabled",true);
         nextButton.setAttribute("disabled",true);
         cancelButton.setAttribute("disabled",true);
@@ -213,6 +260,8 @@ pauseButton.onclick = function(){
     cancelButton.removeAttribute("disabled");
     skipButton.removeAttribute("disabled");
     pauseButton.textContent = "Pause";
+    pauseButton.updateStyles({"background":"initial"});
+    pauseButton.updateStyles({"color":"initial"});
     timer.start();
 }
 returnButton.onclick = function(){overview._routePageChanged("unit-page");}
@@ -228,5 +277,7 @@ startButton.onclick = function(){
     startButton.setAttribute("hidden",true);
     returnButton.style.display = "none";
     toggleButton.setAttribute("disabled",true);
+    nextInfo.removeAttribute("hidden");
+    languageInfo.setAttribute("hidden",true);
     timer.start();
 }

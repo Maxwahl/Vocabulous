@@ -67,10 +67,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin-top: -72.5px;
           margin-left: 40%;
           width: 25%;
-        --paper-input-container-color: initial;
-        --paper-input-container-focus-color: initial;
-        --paper-input-container-invalid-color: initial;
-        --paper-input-container-input-color: initial;
+        --paper-input-container-color: grey;
+        --paper-input-container-focus-color: grey;
+        --paper-input-container-invalid-color: grey;
+        --paper-input-container-input-color: grey;
       }
       paper-toggle-button.language{
         margin-left: 15px;
@@ -272,6 +272,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <input name="wordCount" style="display:none;">
     <input name="wrong" style="display:none;">
     <input name="secondTry" style="display:none;">
+    <input name="wrongVocs" style="display:none;">
   </template>
   <script>
     class PracticeUnitPage extends Polymer.Element {
@@ -335,6 +336,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getSecondTry(){
         return Polymer.dom(this.root).querySelector("input[name=secondTry]");
+      }
+      _getWrongVocs(){
+        return Polymer.dom(this.root).querySelector("input[name=wrongVocs]");
       }
     }
     window.customElements.define(PracticeUnitPage.is, PracticeUnitPage);
