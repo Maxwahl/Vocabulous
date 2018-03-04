@@ -15,6 +15,8 @@ var homeview = overview._getHomeview();
 console.dir(homeview);
 var unitoverview = overview._getUnitoverview();
 console.dir(unitoverview);
+var createunit = overview._getCreateunit();
+console.dir(createunit);
 var statisticview = overview._getStatisticview();
 console.dir(statisticview);
 var messageview = overview._getMessageview();
@@ -37,6 +39,7 @@ console.dir(appdrawer);
 userbutton.onclick = function(){overview._routePageChanged("account-view")}
 homeview.onclick = function(){overview._routePageChanged("home-view")}
 unitoverview.onclick = function(){overview._routePageChanged("unit-overview")}
+createunit.onclick = function(){overview._routePageChanged("create-unit")}
 statisticview.onclick = function(){overview._routePageChanged("statistics-view")}
 messageview.onclick = function(){overview._routePageChanged("messages-view")}
 settingsview.onclick = function(){overview._routePageChanged("settings-view")}

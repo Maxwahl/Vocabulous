@@ -38,11 +38,23 @@ var startButton = selfcheckPage._getStartButton();
 console.dir(startButton);
 var returnButton = selfcheckPage._getReturnButton();
 console.dir(returnButton);
+var languageInfo = selfcheckPage._getLanguageInfo();
+console.dir(languageInfo);
+var languagePopup = selfcheckPage._getLanguagePupup();
+console.dir(languagePopup);
+var unitresultPage = overview._getUnitResultPage();
+console.dir(unitresultPage);
+var wordCount = selfcheckPage._getWordCount();
+console.dir(wordCount);
+var wrongCounter = selfcheckPage._getWrong();
+console.dir(wrongCounter);
 var words;
 var english = true;
 var position = 0;
 var mistakes = 0;
 var timer = new Stopwatch(timerCounter);
+languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
+languageInfo.onmouseout = function(){languagePopup.style.display = "none";}
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
@@ -59,11 +71,7 @@ ironPages.addEventListener("iron-select",function(){
         changedUnit();
     }
 });
-async function changedUnit(){
-    unitName.innerHTML = checked.value;
-    words = await BackEndHandler.getWords(unitName.innerHTML); 
-    shuffle(words);
-    mistakes = 0;
+ironPages.addEventListener("iron-select",function(){
     input.setAttribute("hidden",true);
     nextButton.setAttribute("hidden",true);
     cancelButton.setAttribute("hidden",true);
@@ -73,11 +81,20 @@ async function changedUnit(){
     startButton.removeAttribute("hidden");
     returnButton.style.display = "inline";
     toggleButton.removeAttribute("disabled");
+    languageInfo.removeAttribute("hidden");
+    unitProgressBar.value = 0;
+});
+async function changedUnit(){
+    unitresultPage.value = "selfcheck-page";
+    unitName.innerHTML = checked.value;
+    words = await BackEndHandler.getWords(unitName.innerHTML); 
+    wordCount.value = words.length;
+    shuffle(words);
+    mistakes = 0;
     position = 0;
     timer.pause();
     timer.clear();
     unitProgressBar.max = words.length;
-    unitProgressBar.value = 0;
     if(english == false){ 
         toggleButton.setAttribute("checked",true);
         english = true;
@@ -110,8 +127,8 @@ async function nextCheck(){
         }
         input.value = "";
         if(position == words.length-1){
-            alert("Sie haben " + mistakes + " Fehler gemacht! (von " + words.length + " Vokabeln)");
-            overview._routePageChanged("unit-page");
+            wrongCounter.value = mistakes;
+            overview._routePageChanged("unitresult-page");
             changedUnit();
             return;
         }
@@ -125,8 +142,8 @@ async function nextCheck(){
     }
     input.value = "";
     if(position == words.length-1){
-        alert("Sie haben " + mistakes + " Fehler gemacht! (von " + words.length + " Vokabeln)");
-        overview._routePageChanged("unit-page");
+        wrongCounter.value = mistakes;
+        overview._routePageChanged("unitresult-page");
         changedUnit();
         return;
     }
@@ -161,5 +178,6 @@ startButton.onclick = function(){
     startButton.setAttribute("hidden",true);
     returnButton.style.display = "none";
     toggleButton.setAttribute("disabled",true);
+    languageInfo.setAttribute("hidden",true);
     timer.start();
 }
