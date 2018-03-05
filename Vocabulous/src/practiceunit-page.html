@@ -67,10 +67,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin-top: -72.5px;
           margin-left: 40%;
           width: 25%;
+          
         --paper-input-container-color: grey;
         --paper-input-container-focus-color: grey;
         --paper-input-container-invalid-color: grey;
-        --paper-input-container-input-color: grey;
+        --paper-input-container-input-color: #4f5051;
       }
       paper-toggle-button.language{
         margin-left: 15px;
@@ -78,9 +79,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-toggle-button-checked-bar-color:  #1E88E5;
         --paper-toggle-button-checked-button-color: #1E88E5;
         --paper-toggle-button-checked-ink-color: #1E88E5;
-        --paper-toggle-button-unchecked-bar-color:  #ff3399;
-        --paper-toggle-button-unchecked-button-color: #ff3399;
-        --paper-toggle-button-unchecked-ink-color: #ff3399;
+        --paper-toggle-button-unchecked-bar-color:  #1E88E5;
+        --paper-toggle-button-unchecked-button-color: #1E88E5;
+        --paper-toggle-button-unchecked-ink-color: #1E88E5;
       }
       paper-button.nextVocab{
         font-size: 0.65em;
@@ -231,13 +232,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <table>
         <tr>
-          <td><h3 class="german">Deutsch</h3></td>
+          <td><h3 class="german">German</h3></td>
           <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
-          <td> <h3 class="english">Englisch</h3></td>
+          <td> <h3 class="english">English</h3></td>
           <td><iron-icon icon="vaadin:info-circle-o" class="language"></iron-icon></td>
-          <div id="popuplanguage" name="languagePopup" style="display: none">When you're selecting "german" you will have to
-              write german words and when you select "english" you will have to write
-              english words.</div>
+          <div id="popuplanguage" name="languagePopup" style="display: none">When you select "German" you will have to
+              write German words and when you select "English" you will have to write
+              English words.</div>
         </tr>
       </table>
       <div class="progressbars">
@@ -252,10 +253,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <h2 hidden="true">house</h2> <!--Vokabel das angezeigt wird-->
           <paper-input hidden="true" class="vocab"></paper-input> <!--Vokabel das eingegeben wird-->
           <iron-icon hidden="true" icon="vaadin:info-circle-o" class="next"></iron-icon>
-          <div id="popupnext" name="nextPopup" style="display: none">When you are pressing "Next" Vocabulous
-              will check your answer. If it was correct the line will turn green,
-              when it was wrong the line will turn red. You will have two tries.
-              When the line turns orange, Vocabolous is showing you the correct answer.
+          <div id="popupnext" name="nextPopup" style="display: none">When you press "NEXT" Vocabulous
+              will check your answer. If it is correct the line will turn green,
+              else the line will turn red. You have two tries.
+              When the line turns orange, the correct answer is shown.
               After a short amount of time you will get the next word.</div>
       </div>
       

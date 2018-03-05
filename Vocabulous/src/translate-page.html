@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="create-unit">
+<dom-module id="translate-page">
   <template>
     <style include="shared-styles">
       :host {
@@ -37,21 +37,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <h1>Create Unit</h1>
+      <h1>Translate</h1>
       <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
-      <p>Mit Hilfe dieser Funktion kann der Schüler/Student seine eigene Unit gestalten.</p>
+      <p>Mit Hilfe dieser Funktion kann der Schüler/Student Vokabeln übersetzen.</p>
     </div>
   </template>
 
   <script>
-    class CreateUnit extends Polymer.Element {
-      static get is() { return 'create-unit'; }
+    class TranslatePage extends Polymer.Element {
+      static get is() { return 'translate-page'; }
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
       }
     }
 
-    window.customElements.define(CreateUnit.is, CreateUnit);
+    window.customElements.define(TranslatePage.is, TranslatePage);
   </script>
-   <script name="createunit" src="../develop-javascript/src/createunit.js" type="module"></script>
+   <script name="translate" src="../develop-javascript/src/translatepage.js" type="module"></script>
 </dom-module>

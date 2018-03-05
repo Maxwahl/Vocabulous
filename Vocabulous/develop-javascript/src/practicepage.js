@@ -253,7 +253,7 @@ async function wrong(){
         input.value = words[position].getWordEnglish();
     }
     changeLineColor("orange");
-    await sleep(1000);
+    await sleep(2000);
     changeLineColor("grey");
     input.value = "";
     if(position == words.length-1){
