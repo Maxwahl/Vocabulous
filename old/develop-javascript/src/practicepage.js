@@ -56,10 +56,13 @@ var wrongCounter = practicePage._getWrong();
 console.dir(wrongCounter);
 var secondTry = practicePage._getSecondTry();
 console.dir(secondTry);
+var wrongVocs = practicePage._getWrongVocs();
+console.dir(wrongVocs);
 var words;
 var english = true;
 var position = 0;
 var vocTries = 0;
+var mistakeVocs = [];
 var mistakes = 0;
 var secondTryCounter = 0;
 var timer = new Stopwatch(timerCounter);
@@ -104,6 +107,7 @@ async function changedUnit(){
     unitName.innerHTML = checked.value;
     words = await BackEndHandler.getWords(unitName.innerHTML); 
     wordCount.value = words.length;
+    wrongVocs.value = words;
     mistakes = 0;
     secondTryCounter = 0;
     shuffle(words);
@@ -116,6 +120,19 @@ async function changedUnit(){
         english = true;
     }
     wordPrint.innerHTML = words[0].getWordEnglish();
+}
+function saveWrongVocs(){
+    var text = "";
+    if(mistakeVocs.length == 0){
+        return;
+    }
+    text += (mistakeVocs[0].getWordEnglish() + ",");
+    text +=(mistakeVocs[0].getWordGerman());
+    for(var i = 1; i < mistakeVocs.length; i++){
+        text += ("," + mistakeVocs[i].getWordEnglish() + ",");
+        text +=(mistakeVocs[i].getWordGerman());
+    }
+    wrongVocs.value = text;
 }
 changedUnit();
 cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
@@ -131,7 +148,7 @@ toggleButton.onclick = function(){
     english = true;
     wordPrint.innerHTML = words[position].getWordEnglish();
 }
-nextButton.onclick = function(){nextCheck()};
+nextButton.onclick = async function(){await nextCheck()};
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -144,10 +161,11 @@ async function nextCheck(){
             vocTries = 0;
             changeLineColor("green");
             await sleep(500);
-            changeLineColor("initial");
+            changeLineColor("grey");
             input.value = "";
             if(position == words.length-1){
                 wrongCounter.value = mistakes;
+                saveWrongVocs();
                 secondTry.value = secondTryCounter;
                 overview._routePageChanged("unitresult-page");
                 changedUnit();
@@ -159,11 +177,13 @@ async function nextCheck(){
             return;
         }
         changeLineColor("red");
+        input.value = "";
         vocTries++;
         if(vocTries==2){
             vocTries = 0;
             mistakes++;
-            wrong();
+            mistakeVocs.push(words[position]);
+            await wrong();
         }
         return;
     }
@@ -174,10 +194,11 @@ async function nextCheck(){
         vocTries = 0;
         changeLineColor("green");
         await sleep(500);
-        changeLineColor("initial");
+        changeLineColor("grey");
         input.value = "";
         if(position == words.length-1){
             wrongCounter.value = mistakes;
+            saveWrongVocs();
             secondTry.value = secondTryCounter;
             overview._routePageChanged("unitresult-page");
             changedUnit();
@@ -189,11 +210,13 @@ async function nextCheck(){
         return;
     }
     changeLineColor("red");
+    input.value = "";
     vocTries++;
     if(vocTries==2){
         vocTries = 0;
         mistakes++;
-        wrong();
+        mistakeVocs.push(words[position]);
+        await wrong();
     }
 }
 function changeLineColor(color){
@@ -210,10 +233,11 @@ async function wrong(){
     }
     changeLineColor("orange");
     await sleep(1000);
-    changeLineColor("initial");
+    changeLineColor("grey");
     input.value = "";
     if(position == words.length-1){
         wrongCounter.value = mistakes;
+        saveWrongVocs();
         secondTry.value = secondTryCounter;
         overview._routePageChanged("unitresult-page");
         changedUnit();
@@ -238,9 +262,9 @@ skipButton.onclick = function(){
     }
     wordPrint.innerHTML = words[position].getWordGerman();
 }
-input.onkeypress = function(e){
+input.onkeypress = async function(e){
     if (e.keyCode == 13 || e.which == 13){
-        nextCheck();
+        await nextCheck();
     }
 }
 pauseButton.onclick = function(){

@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/google-chart/google-chart.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 
 <dom-module id="unitresult-page">
   <template>
@@ -40,6 +41,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: -49px;
         position:absolute;
       }
+      paper-button.wrongVocabels{
+        font-size: 0.65em;
+        width: 10%;
+        height: 30px;
+        margin-left: 0%;
+        margin-top: 80px;
+      }
     </style>
 
     <div class="card">
@@ -50,6 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         options='{"title": "Word-statistic"}'
         cols='[{"label":"Name", "type":"string"}, {"label":"Amount", "type":"number"}]'>
       </google-chart>
+      <paper-button class="wrongVocabels" name="wrongVocabels" noink raised>Try wrong Words again</paper-button>
     </div>
   </template>
 
