@@ -28,6 +28,9 @@ public class UnitResources {
         ret.add(Json.createObjectBuilder()
                 .add("name", "Basic Verbs")              
                 .build());
+        ret.add(Json.createObjectBuilder()
+                .add("name", "Basic Adjectives")              
+                .build());
         return ret.build();
     }
     @Path("words/{uName}")
@@ -276,6 +279,28 @@ public class UnitResources {
         ret.add(Json.createObjectBuilder()
                 .add("wordGerman", "verkaufen")
                 .add("wordEnglisch", "sell")        
+                .build());
+       }
+       else if(unit.equals("Basic Adjectives")){
+            ret.add(Json.createObjectBuilder()
+                .add("wordGerman", "groß")
+                .add("wordEnglisch", "big")        
+                .build());
+        ret.add(Json.createObjectBuilder()
+                .add("wordGerman", "schnell")
+                .add("wordEnglisch", "fast")
+                .build());
+        ret.add(Json.createObjectBuilder()
+                .add("wordGerman", "süß")
+                .add("wordEnglisch", "sweet")        
+                .build());
+        ret.add(Json.createObjectBuilder()
+                .add("wordGerman", "gut")
+                .add("wordEnglisch", "good")
+                .build());
+        ret.add(Json.createObjectBuilder()
+                .add("wordGerman", "schön")
+                .add("wordEnglisch", "beautiful")        
                 .build());
        }
         return ret.build(); 
