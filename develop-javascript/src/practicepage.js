@@ -83,7 +83,11 @@ function shuffle(array) {
   }
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="practiceunit-page"){
-        changedUnit();
+        if(wrongVocs.value==""){
+            changedUnit(false);
+            return;
+        }
+        changedUnit(true);
     }
 });
 ironPages.addEventListener("iron-select",function(){
@@ -102,12 +106,14 @@ ironPages.addEventListener("iron-select",function(){
     languageInfo.removeAttribute("hidden");
     unitProgressBar.value = 0;
 });
-async function changedUnit(){
+async function changedUnit(check){
     unitresultPage.value = "parcticeunit-page";
     unitName.innerHTML = checked.value;
     words = await BackEndHandler.getWords(unitName.innerHTML); 
+    if(check){
+        loadWrongVocs();
+    }
     wordCount.value = words.length;
-    wrongVocs.value = words;
     mistakes = 0;
     secondTryCounter = 0;
     shuffle(words);
@@ -126,15 +132,30 @@ function saveWrongVocs(){
     if(mistakeVocs.length == 0){
         return;
     }
-    text += (mistakeVocs[0].getWordEnglish() + ",");
+    text += (mistakeVocs[0].getWordEnglish() + ";");
     text +=(mistakeVocs[0].getWordGerman());
     for(var i = 1; i < mistakeVocs.length; i++){
-        text += ("," + mistakeVocs[i].getWordEnglish() + ",");
+        text += (";" + mistakeVocs[i].getWordEnglish() + ";");
         text +=(mistakeVocs[i].getWordGerman());
     }
     wrongVocs.value = text;
+    console.dir(wrongVocs.value);
+    mistakeVocs = [];
 }
-changedUnit();
+function loadWrongVocs(){
+    console.dir(wrongVocs.value);
+    if(wrongVocs.length == 0){
+        return;
+    }
+    words = [];
+    var inputWords = wrongVocs.value.split(";")
+    for(var i = 0; i < inputWords.length; i++){
+        var word = new Word(inputWords[i+1], inputWords[i]);
+        words.push(word);
+        i++;
+    }
+}
+changedUnit(false);
 cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
 toggleButton.onclick = function(){
     input.value = "";
@@ -168,7 +189,7 @@ async function nextCheck(){
                 saveWrongVocs();
                 secondTry.value = secondTryCounter;
                 overview._routePageChanged("unitresult-page");
-                changedUnit();
+                changedUnit(false);
                 return;
             }
             position++;
@@ -201,7 +222,7 @@ async function nextCheck(){
             saveWrongVocs();
             secondTry.value = secondTryCounter;
             overview._routePageChanged("unitresult-page");
-            changedUnit();
+            changedUnit(false);
             return;
         }
         position++;
@@ -240,7 +261,7 @@ async function wrong(){
         saveWrongVocs();
         secondTry.value = secondTryCounter;
         overview._routePageChanged("unitresult-page");
-        changedUnit();
+        changedUnit(false);
         return;
     }
     position++;
