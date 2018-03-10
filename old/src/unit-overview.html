@@ -54,10 +54,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-bottom: 3px;
         display: block;
       }
+      paper-button.newUnit{
+        font-size: 0.65em;
+        margin-top: -50px;
+        width: 12%;
+        height: 30px;
+        margin-left: 76%;
+      }
+      paper-button.translate{
+        font-size: 0.65em;
+        width: 10%;
+        height: 30px;
+        margin-bottom: 20px;
+      }
     </style>
 
     <div class="card">
       <h1>Units</h1>
+      <div>
+        <paper-button class="newUnit" name="newUnit" raised noink>Create New Unit</paper-button>
+        <paper-button class="translate" name="translate" raised noink>Translate</paper-button>
+      </div>
       <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
       <table id="units">
 
@@ -77,6 +94,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getChecked(){
         return Polymer.dom(this.root).querySelector("input[name=forUnit]");
+      }
+      _getNewUnitButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=newUnit]");
+      }
+      _getTranslateButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=translate]");
       }
     }
     window.customElements.define(UnitOverview.is, UnitOverview);

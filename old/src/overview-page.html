@@ -36,6 +36,7 @@
 <link rel="lazy-import" href="create-unit.html">
 <link rel="lazy-import" href="register-login.html">
 <link rel="lazy-import" href="unitresult-page.html">
+<link rel="lazy-import" href="translate-page.html">
 <link rel="lazy-import" href="my-app.html">
 
 <dom-module id="overview-page">
@@ -127,7 +128,6 @@
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
               <a name="home-view">Home</a>
               <a name="unit-overview">Units</a>
-              <a name="create-unit">Create Unit</a>
               <a name="statistics-view">Statistics</a>
               <a name="messages-view">Messages</a>
               <a name="settings-view">Settings</a>
@@ -164,6 +164,7 @@
           <selfcheck-page name="selfcheck-page"></selfcheck-page>
           <create-unit name="create-unit"></create-unit>
           <unitresult-page name="unitresult-page"></unitresult-page>
+          <translate-page name="translate-page"></translate-page>
         </iron-pages>
       </app-header-layout>
       
@@ -209,9 +210,6 @@
       _getUnitoverview(){
         return Polymer.dom(this.root).querySelector("a[name=unit-overview]");
       }
-      _getCreateunit(){
-        return Polymer.dom(this.root).querySelector("a[name=create-unit]");
-      }
       _getStatisticview(){
         return Polymer.dom(this.root).querySelector("a[name=statistics-view]");
       }
@@ -244,6 +242,12 @@
       }
       _getUnitView(){
         return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
+      }
+      _getCreateUnit(){
+        return Polymer.dom(this.root).querySelector("create-unit[name=create-unit]");
+      }
+      _getTranslatePage(){
+        return Polymer.dom(this.root).querySelector("translate-page[name=translate-page]");
       }
       _getAppHeader(){
         return Polymer.dom(this.root).querySelector("app-header");
