@@ -72,12 +72,12 @@ function loadResultTable(){
         }
     }
     else{
-        wrongVocs  = practicePage._getWrongVocs();
+        /*wrongVocs  = practicePage._getWrongVocs();
         console.dir(wrongVocs);
         if(wrongVocs != null && wrongVocs != undefined){
             wrongVocs.value = "";
             console.dir("wrongVocs gelöscht");
-        }
+        }*/
         wrongVocabelsButton.setAttribute("hidden",true);
         wordCountSelfCheck = selfcheckPage._getWordCount();
         console.dir(wordCountSelfCheck);
