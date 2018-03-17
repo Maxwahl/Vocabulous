@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
 
 <dom-module id="translate-page">
   <template>
@@ -45,6 +46,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: 50px;
         display:none;
       }
+      paper-toggle-button.language{
+        margin-left: 15px;
+        margin-top: 20px;
+        --paper-toggle-button-checked-bar-color:  #1E88E5;
+        --paper-toggle-button-checked-button-color: #1E88E5;
+        --paper-toggle-button-checked-ink-color: #1E88E5;
+        --paper-toggle-button-unchecked-bar-color:  #1E88E5;
+        --paper-toggle-button-unchecked-button-color: #1E88E5;
+        --paper-toggle-button-unchecked-ink-color: #1E88E5;
+      }
+      h3.german{
+        font-weight: 300;
+        font-size: 0.9em;
+        margin-top: 40px;
+        width: 8%;
+        height: 30px;
+        margin-left: 40px;
+        
+      }
+      h3.english{
+        font-weight: 300;
+        font-size: 0.9em;
+        width: 8%;
+        height: 30px;
+        margin-left: 10px;
+        margin-top: 40px;
+      }
     </style>
 
     <div class="card">
@@ -52,6 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
     </div>
+    <table name="translate"></table>
   </template>
 
   <script>
@@ -60,9 +89,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
       }
+      _getSearchBar(){
+        return Polymer.dom(this.root).querySelector("paper-search-bar");
+      }
+      _getTranslateTable(){
+        return Polymer.dom(this.root).querySelector("table[name=translate]");
+      }
+      _getGerman(){
+        return Polymer.dom(this.root).querySelector("h3[class=german]");
+      }
     }
 
     window.customElements.define(TranslatePage.is, TranslatePage);
-  </script>
-   <script name="translate" src="../develop-javascript/src/translatepage.js" type="module"></script>
+  </script>        
+  <!--<script src="https://unpkg.com/translate@1"></script>-->
+  <!--<script src="../develop-javascript/src/classes/translation.min.js" type="module"></script>-->
+  <!--<script src="../node_modules/google-translate-api/test.js" type="module"></script>-->
+  <!--<script data-main="../develop-javascript/src/translatepage.js" src="./../node_modules/require.js"type="module"></script>-->
+  <script src="../develop-javascript/src/translatepage.js" type="module"></script>
+  <script src="../develop-javascript/src/test.js" type="module"></script>
 </dom-module>
