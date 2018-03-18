@@ -5,13 +5,12 @@
  */
 package at.htlleonding.maximilianwahl.user.boundary;
 
-import java.math.BigDecimal;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
+import lib.Model.*;
 
 /**
  *
@@ -25,17 +24,9 @@ public class UsersResource {
     public JsonObject login(@QueryParam("user") String user,
 		@QueryParam("pw") String pw){
         System.out.println(user+pw);
-        if(user.equals("admin") && pw.equals("admin")){
-             return Json.createObjectBuilder()
-                .add("id", 1)
-                .add("Firstname", "Max")
-                .add("Lastname","Mustermann")
-                .add("Email", "max.mustermann@gmx.com")
-                .add("Birthdate", "1.1.1111")
-                .add("Username","admin")
-                .add("Password", "admin")
-                .add("Institution", "bla")
-                .build();
+        User u = Repository.getInstance().login(user, pw);
+        if(u != null){
+            return u.jsonify();
         }
         //TODO connect with database
         else{
@@ -57,17 +48,9 @@ public class UsersResource {
     @GET
     public JsonObject user(@QueryParam("user") String user){
         System.out.println(user);
-        if(user.equals("admin")){
-             return Json.createObjectBuilder()
-                .add("id", 1)
-                .add("Firstname", "Max")
-                .add("Lastname","Mustermann")
-                .add("Email", "max.mustermann@gmx.com")
-                .add("Birthdate", "1.1.1111")
-                .add("Username","admin")
-                .add("Password", "admin")
-                .add("Institution", "bla")
-                .build();
+         User u = Repository.getInstance().user(user);
+        if(u != null){
+            return u.jsonify();
         }
         //TODO connect with database
         else{
@@ -88,9 +71,9 @@ public class UsersResource {
     @GET
     public JsonObject setStartingTheme(@QueryParam("user") int uID,@QueryParam("theme") int themeID){
         System.out.println(uID+" "+themeID);
-        //connect to DB ;0 is Ok 1 is not ok
+        int val = Repository.getInstance().setStartingTheme(uID, themeID);
         return Json.createObjectBuilder()
-                .add("retVal", "0")               
+                .add("retVal", val)               
                 .build();
     }
     

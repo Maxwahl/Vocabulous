@@ -20,9 +20,18 @@ public class User {
     private String lastName;
     private String email;
     private String institution;
-    private String Birthdate;
+    private String birthdate;
+    private int startingTheme;
 
-    public User(int id, String username, String password, String firstName, String lastName, String email, String institution, String Birthdate) {
+    public int getStartingTheme() {
+        return startingTheme;
+    }
+
+    public void setStartingTheme(int startingTheme) {
+        this.startingTheme = startingTheme;
+    }
+
+    public User(int id, String username, String password, String firstName, String lastName, String email, String institution, String birthdate, int startingTheme) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -30,7 +39,8 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.institution = institution;
-        this.Birthdate = Birthdate;
+        this.birthdate = birthdate;
+        this.startingTheme = startingTheme;
     }
 
     
@@ -92,11 +102,11 @@ public class User {
     }
 
     public String getBirthdate() {
-        return Birthdate;
+        return birthdate;
     }
 
-    public void setBirthdate(String Birthdate) {
-        this.Birthdate = Birthdate;
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
     }
     
     public JsonObject jsonify(){
