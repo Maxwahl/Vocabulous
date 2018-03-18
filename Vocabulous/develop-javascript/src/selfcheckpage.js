@@ -68,6 +68,7 @@ function shuffle(array) {
   }
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="selfcheck-page"){
+        timer.clear();
         changedUnit();
     }
 });
@@ -93,7 +94,6 @@ async function changedUnit(){
     mistakes = 0;
     position = 0;
     timer.pause();
-    timer.clear();
     unitProgressBar.max = words.length;
     if(english == false){ 
         toggleButton.setAttribute("checked",true);

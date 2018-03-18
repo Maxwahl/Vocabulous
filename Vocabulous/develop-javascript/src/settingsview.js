@@ -35,6 +35,7 @@ var ironSelector = overview._getIronSelector();
 var appdrawerLayout = overview._getAppdrawer();
 var appdrawer = overview._getAppdrawerForTheme();
 var paperListBox = settings._getPaperListBox();
+var toast = overview._getSettingsToast();
 var isDefault = true;
 console.log(settings);
 console.log(defaultswitch);
@@ -93,6 +94,11 @@ createButton.onclick = function(){
     cancelButton.style.display="inline";
 }
 cancelButton.onclick = function(){
+    if(isDefault){
+        changeTheme(defaultTheme);
+        return;
+    }
+    changeTheme(darkTheme);
     deleteButton.style.display="none";
     paperListBox.style.display = "inline";
     createButton.style.display="inline";
@@ -108,7 +114,7 @@ saveButton.onclick = function(){
     || headerFontColour.color == undefined || menuBackgroundColour.color == undefined
 || menuFontColour.color == undefined || menuNavigationColour.color == undefined
 || menuNavigationFontColour.color == undefined || cardAreaBackgroundColour.color == undefined){
-        alert("Es sind nicht alle Pflichtfelder ausgefüllt!");
+        toast.open();
         return;
     }
     createButton.style.display="inline";
@@ -117,6 +123,42 @@ saveButton.onclick = function(){
     editButon.style.display="inline";
     cancelButton.style.display="none";
     save();
+}
+headerBackgroundColour.onclick = function(){
+    if(headerBackgroundColour.color != undefined && ((createButton.style.display == "none" && saveButton.style.display=="inline") || (editButon.style.display == "inline" && saveButton.style.display=="inline"))){
+        overview.updateStyles({"--app-primary-color":headerBackgroundColour.color});
+    }
+}
+menuFontColour.onclick = function(){    
+    if(menuFontColour.color != undefined && ((createButton.style.display == "none" && saveButton.style.display=="inline") || (editButon.style.display == "inline" && saveButton.style.display=="inline"))){
+        overview.updateStyles({"--app-secondary-color":menuFontColour.color});
+        overview.updateStyles({"color":menuFontColour.color});
+    }
+}
+menuBackgroundColour.onclick = function(){    
+    if(menuBackgroundColour.color != undefined && ((createButton.style.display == "none" && saveButton.style.display=="inline") || (editButon.style.display == "inline" && saveButton.style.display=="inline"))){
+        overview.updateStyles({"--containercolor":menuBackgroundColour.color});
+    }
+}
+headerFontColour.onclick = function(){    
+    if(headerFontColour.color != undefined && ((createButton.style.display == "none" && saveButton.style.display=="inline") || (editButon.style.display == "inline" && saveButton.style.display=="inline"))){
+        appheader.updateStyles({"color":headerFontColour.color});
+    }
+}
+cardAreaBackgroundColour.onclick = function(){    
+    if(cardAreaBackgroundColour.color != undefined && ((createButton.style.display == "none" && saveButton.style.display=="inline") || (editButon.style.display == "inline" && saveButton.style.display=="inline"))){
+        appdrawerLayout.updateStyles({"background-color":cardAreaBackgroundColour.color});
+    }
+}
+menuNavigationColour.onclick = function(){    
+    if(menuNavigationColour.color != undefined && ((createButton.style.display == "none" && saveButton.style.display=="inline") || (editButon.style.display == "inline" && saveButton.style.display=="inline"))){
+        overview.updateStyles({"--navigationcolorbackground":menuNavigationColour.color});
+    }
+}
+menuNavigationFontColour.onclick = function(){
+    if(menuNavigationFontColour.color != undefined && ((createButton.style.display == "none" && saveButton.style.display=="inline") || (editButon.style.display == "inline" && saveButton.style.display=="inline"))){
+        overview.updateStyles({"--navigationcolorfont":menuNavigationFontColour.color});
+    }
 }
 console.dir(paperListBox);
 function save(){

@@ -9,6 +9,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="create-unit">
@@ -34,12 +38,126 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: -49px;
         position:absolute;
       }
+      table{
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      td:hover{
+        background-color: #f2f2f2;
+      }
+      td{
+        border: 0.5px solid #cecece;
+        height: 30px;
+        padding: 10px;
+        text-align: left;
+        font-weight: 200;
+        margin-left: 40px;
+        border-radius: 5px;
+        margin-bottom: 3px;
+        display: block;
+      }
+      paper-input.unitName{
+        margin-left: 50px;
+        width: 300px;
+        margin-top: 20px;
+        --paper-input-container-underline:{
+          border: var(--app-secondary-color);
+        }
+        --paper-input-container-underline-focus:{
+          border: var(--app-secondary-color);
+        }
+      }
+      paper-input.germanVocab{
+        margin-left: 0px;
+        width: 300px;
+        margin-top: -5px;
+        --paper-input-container-underline:{
+          border: var(--app-secondary-color);
+        }
+        --paper-input-container-underline-focus:{
+          border: var(--app-secondary-color);
+        }
+      }
+      paper-input.englishVocab{
+        margin-left: 50%;
+        width: 300px;
+        margin-top: -40px;
+        --paper-input-container-underline:{
+          border: var(--app-secondary-color);
+        }
+        --paper-input-container-underline-focus:{
+          border: var(--app-secondary-color);
+        }
+      }
+
+      paper-button.plus{
+        width: 25px;
+        height: 25px;
+        margin-top: -20px;
+        text-align: center;
+        border-radius: 100px;
+        min-width: 10px;
+        min-height: 10px;
+        padding: 0px;
+        float: right;
+        margin-left: 8px;
+      }
+      iron-icon.plus{
+        width: 17px;
+        height: 17px;
+        color: var(--app-secondary-color);
+      }
+      paper-button.minus{
+        margin: 0px;
+        width: 25px;
+        height: 25px;
+        margin-top: -20px;
+        text-align: center;
+        border-radius: 100px;
+        min-width: 10px;
+        min-height: 10px;
+        padding: 0px;
+        float: right;
+      }
+      iron-icon.minus{
+        width: 17px;
+        height: 17px;
+        color: var(--app-secondary-color);
+      }
+      paper-button.browseUnit{
+        font-size: 0.65em;
+        margin-top: -50px;
+        width: 10%;
+        height: 30px;
+        margin-left: 76%;
+      }
+      paper-button.uploadUnit{
+        font-size: 0.65em;
+        width: 10%;
+        height: 30px;
+        margin-bottom: 20px;
+      }
+      paper-button.save{
+        font-size: 0.65em;
+        margin-left: 40px;
+      }
     </style>
 
     <div class="card">
       <h1>Create Unit</h1>
       <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
-      <p>Mit Hilfe dieser Funktion kann der Schüler/Student seine eigene Unit gestalten.</p>
+      <div>
+        <paper-button class="browseUnit" name="browseUnit" raised noink>Browse Unit</paper-button>
+        <paper-button class="uploadUnit" name="uploadUnit" raised noink>Upload Unit</paper-button>
+      </div>
+      <paper-input class="unitName" label="Unit name" no-label-float></paper-input>
+      <table id="vocabs">
+        <td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input></td>
+      </table>
+      <paper-button class="plus" name="plus" raised noink><iron-icon icon="vaadin:plus" class="plus" noink></iron-icon></paper-button>
+      <paper-button class="minus" name="minus" raised noink><iron-icon icon="vaadin:minus" class="minus" noink></iron-icon></paper-button>
+      <paper-button class="save" name="save" raised noink >Save</paper-button>
     </div>
   </template>
 
