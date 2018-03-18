@@ -13,6 +13,10 @@ var searchBar = unitView._getSearchBar();
 console.dir(searchBar);
 var checked = unitView._getChecked();
 console.dir(checked);
+var newUnitButton = unitView._getNewUnitButton();
+console.dir(newUnitButton);
+var translateButton = unitView._getTranslateButton();
+console.dir(translateButton);
 var ironPages = overview._getIronPages();
 console.dir(ironPages);
 var units = [];
@@ -60,3 +64,5 @@ function clearFilter(){
         unitTable.rows[i].style.display = "block";
     }
 }
+newUnitButton.onclick = function(){overview._routePageChanged("create-unit")}
+translateButton.onclick = function(){overview._routePageChanged("translate-page")};
