@@ -153,7 +153,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
       <paper-input class="unitName" label="Unit name" no-label-float></paper-input>
       <table id="vocabs">
-        <td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input></td>
+        <tr><td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input></td></tr>
       </table>
       <paper-button class="plus" name="plus" raised noink><iron-icon icon="vaadin:plus" class="plus" noink></iron-icon></paper-button>
       <paper-button class="minus" name="minus" raised noink><iron-icon icon="vaadin:minus" class="minus" noink></iron-icon></paper-button>
@@ -166,6 +166,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get is() { return 'create-unit'; }
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
+      }
+      _getMinusIcon(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=minus]");
+      }
+      _getPlusIcon(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=plus]");
+      }
+      _getSaveButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=save]");
+      }
+      _getWordTable(){
+        return Polymer.dom(this.root).querySelector("table[id=vocabs]");
+      }
+      _getUnitNameInput(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=unitName]");
       }
     }
 

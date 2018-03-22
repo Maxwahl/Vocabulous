@@ -18,6 +18,7 @@
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
@@ -169,6 +170,7 @@
       </app-header-layout>
       
     </app-drawer-layout>
+    <paper-toast id="toast0" text="Es sind nicht alle Pflichtfelder ausgefüllt!"></paper-toast>
   </template>
 
   <script>
@@ -285,6 +287,9 @@
 
       _showPage404() {
         this.page = 'not-found';
+      }
+      _getSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast0]");
       }
     }
 
