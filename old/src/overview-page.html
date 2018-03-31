@@ -19,6 +19,8 @@
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/paper-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
@@ -38,6 +40,8 @@
 <link rel="lazy-import" href="register-login.html">
 <link rel="lazy-import" href="unitresult-page.html">
 <link rel="lazy-import" href="translate-page.html">
+<link rel="lazy-import" href="browse-unit.html">
+<link rel="lazy-import" href="upload-unit.html">
 <link rel="lazy-import" href="my-app.html">
 
 <dom-module id="overview-page">
@@ -106,7 +110,14 @@
         font-weight: 300;
         margin-left: 20px;
       }
-
+      iron-icon{
+        float:left;
+        margin-top: 3%;
+        height: 20px;
+        width: 20px;
+        padding-right: 5%;
+        color: #595959;
+      }
      
     </style>
 
@@ -127,13 +138,12 @@
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
             <app-toolbar style="font-weight:300">Menu</app-toolbar>
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-              <a name="home-view">Home</a>
-              <a name="unit-overview">Units</a>
-              <a name="statistics-view">Statistics</a>
-              <a name="messages-view">Messages</a>
-              <a name="settings-view">Settings</a>
+              <a name="home-view"><iron-icon icon="vaadin:home"></iron-icon><span>Home</span></a>
+              <a name="unit-overview"><iron-icon icon="vaadin:book"></iron-icon><span>Units</span></a>
+              <a name="statistics-view"><iron-icon icon="vaadin:bar-chart-h"></iron-icon><span>Statistics</span></a>
+              <a name="messages-view"><iron-icon icon="vaadin:envelope"></iron-icon><span>Messages</span></a>
+              <a name="settings-view"><iron-icon icon="vaadin:cog"></iron-icon><span>Settings</span></a>
             </iron-selector>
-            
         </app-drawer>
 
       <!-- Main content -->
@@ -166,11 +176,13 @@
           <create-unit name="create-unit"></create-unit>
           <unitresult-page name="unitresult-page"></unitresult-page>
           <translate-page name="translate-page"></translate-page>
+          <browse-unit name="browse-unit"></browse-unit>
+          <upload-unit name="upload-unit"></upload-unit>
         </iron-pages>
       </app-header-layout>
       
     </app-drawer-layout>
-    <paper-toast id="toast0" text="Es sind nicht alle Pflichtfelder ausgefüllt!"></paper-toast>
+    <paper-toast id="toast0" text="Insert all required fields to save!"></paper-toast>
   </template>
 
   <script>
@@ -250,6 +262,12 @@
       }
       _getTranslatePage(){
         return Polymer.dom(this.root).querySelector("translate-page[name=translate-page]");
+      }
+      _getBrowseUnit(){
+        return Polymer.dom(this.root).querySelector("browse-unit[name=browse-unit]");
+      }
+      _getUploadUnit(){
+        return Polymer.dom(this.root).querySelector("upload-unit[name=upload-unit]");
       }
       _getAppHeader(){
         return Polymer.dom(this.root).querySelector("app-header");

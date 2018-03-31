@@ -11,6 +11,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <!--<link rel="import" href="../bower_components/paper-search/paper-search-bar.html">-->
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
+<link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="unit-overview">
@@ -69,14 +75,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 30px;
         margin-bottom: 20px;
       }
+      d2l-dropdown{
+        float:right;
+      }
+      paper-icon-button{
+        width: 35px;
+        height: 35px;
+        float:right;
+      }
     </style>
-
+    	
     <div class="card">
       <h1>Units</h1>
-      <div>
-        <paper-button class="newUnit" name="newUnit" raised noink>Create New Unit</paper-button>
-        <paper-button class="translate" name="translate" raised noink>Translate</paper-button>
-      </div>
+        <d2l-dropdown>
+          <paper-icon-button class="d2l-dropdown-opener" name="menu" icon="vaadin:ellipsis-dots-v" noink></paper-icon-button>
+          <d2l-dropdown-menu>
+            <d2l-menu label="Menu">
+              <d2l-menu-item name="newUnit" text="Create New Unit"></d2l-menu-item>
+             <d2l-menu-item name="translate" text="Translate"></d2l-menu-item></d2l-menu>
+          </d2l-dropdown-menu>
+      </d2l-dropdown>
       <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
       <table id="units">
 
@@ -98,10 +116,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return Polymer.dom(this.root).querySelector("input[name=forUnit]");
       }
       _getNewUnitButton(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=newUnit]");
+        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=newUnit]");
       }
       _getTranslateButton(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=translate]");
+        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=translate]");
       }
     }
     window.customElements.define(UnitOverview.is, UnitOverview);

@@ -76,6 +76,7 @@ function changeTheme(theme){
     overview.updateStyles({"--app-primary-color":theme.getHeaderBackgroundcolor()});
     overview.updateStyles({"--app-secondary-color":theme.getMenuFontColor()});
     overview.updateStyles({"color":theme.getMenuFontColor()});
+    overview.updateStyles({"--itemcolor":theme.getMenuFontColor()});
     overview.updateStyles({"--containercolor":theme.getMenuBackgroundColor()});
     appheader.updateStyles({"color":theme.getHeaderFontColor()});
     appdrawerLayout.updateStyles({"background-color":theme.getCardAreaBackgroundColor()});

@@ -13,6 +13,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
+<link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="create-unit">
@@ -142,15 +146,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 0.65em;
         margin-left: 40px;
       }
+  
+      d2l-dropdown{
+        float:right;
+      }
     </style>
 
     <div class="card">
       <h1>Create Unit</h1>
       <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
-      <div>
-        <paper-button class="browseUnit" name="browseUnit" raised noink>Browse Unit</paper-button>
-        <paper-button class="uploadUnit" name="uploadUnit" raised noink>Upload Unit</paper-button>
-      </div>
+      <d2l-dropdown>
+          <paper-icon-button style="width: 35px;height: 35px;"class="d2l-dropdown-opener" name="menu" icon="vaadin:ellipsis-dots-v" noink></paper-icon-button>
+          <d2l-dropdown-menu>
+              <d2l-menu label="Menu">
+                <d2l-menu-item name="browseUnit" text="Browse Unit"></d2l-menu-item>
+                <d2l-menu-item name="uploadUnit" text="Upload Unit"></d2l-menu-item>
+              </d2l-menu>
+          </d2l-dropdown-menu>
+      </d2l-dropdown>
+
       <paper-input class="unitName" label="Unit name" no-label-float></paper-input>
       <table id="vocabs">
         <tr><td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input></td></tr>
@@ -181,6 +195,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getUnitNameInput(){
         return Polymer.dom(this.root).querySelector("paper-input[class=unitName]");
+      }
+      _getBrowseUnitButton(){
+        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=browseUnit]");
+      }
+      _getUploadUnitButton(){
+        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=uploadUnit]");
       }
     }
 
