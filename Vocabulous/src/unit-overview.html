@@ -23,8 +23,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 10px;
       }
@@ -38,6 +38,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 40px;
         margin-top: 50px;
         width: 97%;
+        color: var(--secondaryFontColorCard);
+        --background-color:var(--cardBackgroundcolor);
+        --disabled-text-color:var(--secondaryFontColorCard);
         /*padding-bottom: 30px;*/
       }
       paper-search-bar::-ms-clear{
@@ -49,15 +52,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 100%;
       }
       td:hover{
-        background-color: #f2f2f2;
+        background-color: var(--hover-color);
       }
       td{
-        border: 0.5px solid #cecece;
+        border: 0.5px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
         font-weight: 200;
         margin-left: 40px;
+        color:var(--secondaryFontColorCard);
         border-radius: 5px;
         margin-bottom: 3px;
         display: block;

@@ -18,8 +18,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 17px;
       }
@@ -62,7 +62,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <google-chart
         type='pie'
-        options='{"title": "Word-statistic"}'
         cols='[{"label":"Name", "type":"string"}, {"label":"Amount", "type":"number"}]'>
       </google-chart>
       <paper-button class="wrongVocabels" name="wrongVocabels" noink raised>Try wrong Words again</paper-button>

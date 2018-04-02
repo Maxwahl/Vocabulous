@@ -26,8 +26,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color: var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 10px;
       }
@@ -65,10 +65,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin-top: -72.5px;
           margin-left: 40%;
           width: 25%;
-        --paper-input-container-color: grey;
-        --paper-input-container-focus-color: grey;
-        --paper-input-container-invalid-color: grey;
-        --paper-input-container-input-color: grey;
+        color:var(--secondaryFontColorCard);
+        --paper-input-container-color: var(--secondaryFontColorCard);
+        --paper-input-container-focus-color: var(--secondaryFontColorCard);
+        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
       }
       paper-toggle-button.language{
         margin-left: 15px;

@@ -20,9 +20,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding-top: 16px;
         padding-bottom: 16px;
         padding-left: 16px;
-        color: #757575;
+        color: var(--cardFontColor);
         border-radius: 5px;
-        background-color: #fff;
+        background-color: var(--cardBackgroundcolor);
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
 
@@ -40,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       h1 {
         margin: 16px 0;
-        color: #212121;
+        color: var(--headlineCard);
         font-size: 22px;
         font-weight: 400;
       }
@@ -49,4 +49,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
   </template>
+  <script>
+      class SharedStyles extends Polymer.Element {
+  
+        static get is() { return 'shared-styles'; }
+  
+        _changeCardBackgroundcolor(color){
+          this.updateStyles({'--cardBackgroundcolor': color});
+        }
+      }
+      window.customElements.define(SharedStyles.is, SharedStyles);
+    </script>
 </dom-module>
