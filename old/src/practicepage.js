@@ -83,6 +83,7 @@ function shuffle(array) {
   }
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="practiceunit-page"){
+        timer.clear();
         if(wrongVocs.value==""){
             changedUnit(false);
             return;
@@ -119,7 +120,6 @@ async function changedUnit(check){
     shuffle(words);
     position = 0;
     timer.pause();
-    timer.clear();
     unitProgressBar.max = words.length;
     if(english == false){ 
         toggleButton.setAttribute("checked",true);
@@ -253,7 +253,7 @@ async function wrong(){
         input.value = words[position].getWordEnglish();
     }
     changeLineColor("orange");
-    await sleep(1000);
+    await sleep(2000);
     changeLineColor("grey");
     input.value = "";
     if(position == words.length-1){
