@@ -14,6 +14,7 @@ import javax.json.JsonObject;
  */
 public class Theme {
     private int id;
+    private int owner;
     private String name;
     private String hBgC;
     private String mFC;
@@ -95,9 +96,18 @@ public class Theme {
         this.mNFC = mNFC;
     }
 
-    public Theme(int id, String name, String hBgC, String mFC, String hFC, String cABgC, String mNC, String mBgC, String mNFC) {
+    public int getOwner() {
+        return owner;
+    }
+
+    public void setOwner(int owner) {
+        this.owner = owner;
+    }
+
+    public Theme(int id, String name,int owner, String hBgC, String mFC, String hFC, String cABgC, String mNC, String mBgC, String mNFC) {
         this.id = id;
         this.name = name;
+        this.owner = owner;
         this.hBgC = hBgC;
         this.mFC = mFC;
         this.hFC = hFC;

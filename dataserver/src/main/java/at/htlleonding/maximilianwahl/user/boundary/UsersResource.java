@@ -23,7 +23,6 @@ public class UsersResource {
     @GET
     public JsonObject login(@QueryParam("user") String user,
 		@QueryParam("pw") String pw){
-        System.out.println(user+pw);
         User u = Repository.getInstance().login(user, pw);
         if(u != null){
             return u.jsonify();
@@ -45,10 +44,10 @@ public class UsersResource {
         //TODO - Save Login
     }
     @Path("user")
+    
     @GET
     public JsonObject user(@QueryParam("user") String user){
-        System.out.println(user);
-         User u = Repository.getInstance().user(user);
+        User u = Repository.getInstance().user(user);
         if(u != null){
             return u.jsonify();
         }
@@ -70,7 +69,6 @@ public class UsersResource {
     @Path("startingTheme")
     @GET
     public JsonObject setStartingTheme(@QueryParam("user") int uID,@QueryParam("theme") int themeID){
-        System.out.println(uID+" "+themeID);
         int val = Repository.getInstance().setStartingTheme(uID, themeID);
         return Json.createObjectBuilder()
                 .add("retVal", val)               
@@ -80,9 +78,9 @@ public class UsersResource {
     @Path("changeUser")
     @GET
     public JsonObject changeUser(@QueryParam("id") int id,@QueryParam("user") String user,@QueryParam("pw") String pw,@QueryParam("fN") String fN,@QueryParam("lN") String lN,@QueryParam("Email") String email,@QueryParam("bD") String birthDate,@QueryParam("inst") String inst){
-        //connect to DB ;0 is Ok 1 is not ok
+        int val = Repository.getInstance().changeUser(id, user, pw, fN, lN, email, birthDate, inst);
         return Json.createObjectBuilder()
-                .add("retVal", "0")               
+                .add("retVal", val)               
                 .build();
     }
 }

@@ -5,6 +5,7 @@
  */
 package at.htlleonding.maximilianwahl.user.boundary;
 
+import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
@@ -13,6 +14,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
+import lib.Model.Repository;
+import lib.Model.Theme;
 
 /**
  *
@@ -24,29 +27,23 @@ public class ThemesResource {
     @Path("startingTheme/{uID}")
     @GET
     public JsonObject startingTheme(@PathParam("uID") int id){
-        System.out.println(id);
-        //TODO connect with database
-        return Json.createObjectBuilder()
-                .add("id",1)
-                .add("name", "Dark")
-                .add("headerBackgroundColor","#ffffff")
-                .add("headerFontColor", "#ffffff")
-                .add("menuBackgroundColor","#ffffff")
-                .add("menuFontColor", "#ffffff")
-                .add("menuNavigationFontColor","#ffffff")
-                .add("cardAreaBackgroundColor", "#ffffff")                
-                .add("menuNavigationColor","#ffffff")
-                .build();
+        Theme theme  = Repository.getInstance().getStartingTheme(id);
+        if(theme != null){
+            return theme.jsonify();
+        }
+        return Repository.getInstance().getDefaultTheme().jsonify();
     }
     
     @Path("userThemes/{uID}")
     @GET
     public JsonArray userThemes(@PathParam("uID") int id){
         System.out.println(id);
-        //TODO connect with database
+        List<Theme> themes = Repository.getInstance().getUserThemes(id);
         JsonArrayBuilder ret = Json.createArrayBuilder();
-        
-        ret.add(Json.createObjectBuilder()
+        themes.forEach((t) -> {
+            ret.add(t.jsonify());
+        });
+        /*ret.add(Json.createObjectBuilder()
                 .add("id",2)
                 .add("name", "custom1")
                 .add("headerBackgroundColor","#012345")
@@ -68,33 +65,31 @@ public class ThemesResource {
                 .add("cardAreaBackgroundColor", "#ab5fff")
                 .add("menuNavigationColor","#24fde9")
                 .build());
+        */
         return ret.build();
     }
     @Path("deleteTheme")
     @GET
     public JsonObject deleteTheme(@QueryParam("theme") int themeID){
-         System.out.println(themeID);
-        //connect to DB ;0 is Ok 1 is not ok
+        int val =Repository.getInstance().deleteTheme(themeID);
         return Json.createObjectBuilder()
-                .add("retVal", "0")               
+                .add("retVal", val)               
                 .build();
     }
     @Path("newTheme")
     @GET
     public JsonObject newTheme(@QueryParam("owner") int owner,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF){
-        //connect to DB ;0 is Ok 1 is not ok
+        int val = Repository.getInstance().addTheme(owner,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF);
         return Json.createObjectBuilder()
-                .add("retVal", "0")               
+                .add("retVal", val)               
                 .build();
     }
     @Path("changeTheme")
     @GET
     public JsonObject changeTheme(@QueryParam("theme") int id,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF){
-        //connect to DB ;0 is Ok 1 is not ok
+        int val = Repository.getInstance().changeTheme(id,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF);
         return Json.createObjectBuilder()
-                .add("retVal", "0")               
+                .add("retVal", val)               
                 .build();
     }
-    
-    
 }

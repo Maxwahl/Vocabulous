@@ -5,12 +5,15 @@
  */
 package at.htlleonding.maximilianwahl.user.boundary;
 
+import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import lib.Model.Chapter;
+import lib.Model.Repository;
 
 /**
  *
@@ -21,8 +24,12 @@ public class UnitResources {
     @Path("units")
     @GET
     public JsonArray getUnits(){
+        List<Chapter> chapters = Repository.getInstance().getChapters();
         JsonArrayBuilder ret = Json.createArrayBuilder();
-        ret.add(Json.createObjectBuilder()
+        for(Chapter c:chapters){
+            ret.add(c.jsonifyUnit());
+        }
+        /*ret.add(Json.createObjectBuilder()
                 .add("name", "Basic Nouns")              
                 .build());
         ret.add(Json.createObjectBuilder()
@@ -30,14 +37,15 @@ public class UnitResources {
                 .build());
         ret.add(Json.createObjectBuilder()
                 .add("name", "Basic Adjectives")              
-                .build());
+                .build());*/
         return ret.build();
     }
     @Path("words/{uName}")
     @GET
     public JsonArray getVocab(@PathParam("uName") String unit){
-       JsonArrayBuilder ret = Json.createArrayBuilder();
-       if(unit.equals("Basic Nouns")){
+       Chapter c = Repository.getInstance().getChapter(unit);
+       return c.jsonifyVocab();
+       /*if(unit.equals("Basic Nouns")){
         ret.add(Json.createObjectBuilder()
                 .add("wordGerman", "Haus")
                 .add("wordEnglisch", "house")
@@ -302,7 +310,7 @@ public class UnitResources {
                 .add("wordGerman", "schön")
                 .add("wordEnglisch", "beautiful")        
                 .build());
-       }
+       }*/
         return ret.build(); 
     }
 }
