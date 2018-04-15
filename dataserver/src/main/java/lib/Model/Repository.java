@@ -19,10 +19,12 @@ public class Repository {
     private List<User> users;
     private List<Theme> themes;
     private List<Chapter> chapters;
+    private List<Vocab> allVocab;
     private Repository(){
        users = new ArrayList<>();
        themes = new ArrayList<>();
        chapters = new ArrayList<>();
+       allVocab = new ArrayList<>();
     }
     public static Repository getInstance(){
         if(instance == null){
@@ -89,12 +91,12 @@ public class Repository {
         return 0;
     }
 
-    public int addTheme(int owner, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF) {
-        themes.add(new Theme(themes.size()-1,name,owner,hBG,mFC,hFC,cABG,mNC,mBG,mNF));
+    public int addTheme(int owner, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cHL,String pF) {
+        themes.add(new Theme(themes.size()-1,name,owner,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cHL,pF));
         return 0;
     }
 
-    public int changeTheme(int id, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF) {
+    public int changeTheme(int id, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cHL,String pF) {
         Theme toChange = themes.stream().filter((it)->it.getId() == id).findFirst().get();
         toChange.setName(name);
         toChange.sethBgC(hBG);
@@ -104,14 +106,25 @@ public class Repository {
         toChange.setmNC(mNC);
         toChange.setmBgC(mBG);
         toChange.setmNFC(mNF);
+        toChange.setcHL(cHL);
+        toChange.setpF(pF);
         return 0;
     }
 
-    public List<Chapter> getChapters() {
-        return chapters;
+    public List<Chapter> getChapter(int uID) {
+        return chapters.stream().filter((it)->it.getOwner() ==-1 || it.getId() == uID).collect(Collectors.toList());
+    }
+
+    public List<Vocab> getAllVocab() {
+        return allVocab;
     }
 
     public Chapter getChapter(String unit) {
         return chapters.stream().filter((it)->it.getName().equals(unit)).findFirst().get();
+    }
+
+    public int addChapter(int uID, String cName) {
+        chapters.add(new Chapter(chapters.size()+1,cName,uID));
+        return chapters.size();
     }
 }
