@@ -6,7 +6,7 @@
 |------------------- |:-------------------: |
 | Projektleiter		 | Urbanides Konstantin |
 | Erstellt am 		 | 19.11.2017		    |
-| Zuletzt geändert	 | 10.02.2018			|
+| Zuletzt geändert	 | 16.04.2018			|
 | Zustand			 | in Bearbeitung		|
 | Dokumentenablage	 | ---------------		|
 
@@ -120,9 +120,6 @@ Es muss ein Account angelegt werden, um seine Ergebnisse zu speichern. Es sollen
 #### Transportfähigkeit
 
 Die Software kann von Notebooks, Tablets und Smartphones verwendet werden. Dies macht das System transportabel.
-#### Flexibilität
-
-Das System hat stellt eine Datenbank mit vordefinierten Units zur verfügung. Bei bedarf können jedoch auch eigene Units erstellt werden bzw. hochgeladen werden.
 ## 6 Mengengerüst
 | Gesamtanzahl der Nutzer | 1000 Personen |
 | ----------------------- |:-------------:|
