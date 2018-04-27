@@ -58,6 +58,11 @@ ironPages.addEventListener("iron-select",function(){
 function loadResultTable(){
     unitName.innerHTML = checked.value;
     var rows;
+    piechart.options = {
+        "title":"Word-statistic",
+        "backgroundColor": getComputedStyle(myapp).getPropertyValue("--cardBackgroundcolor"),
+        "colors": ["#019F1F", "#DD0101", "#ff8000"]
+    }
     if(unitresultPage.value == "parcticeunit-page"){
         wrongVocabelsButton.removeAttribute("hidden");
         wordCountPractice = practicePage._getWordCount();
