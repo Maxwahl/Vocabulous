@@ -25,8 +25,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 10px;
       }
@@ -42,13 +42,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 96.5%;
       }
       td{
-        border: 0.5px solid #cecece;
+        border: 0.5px solid var(--secondaryFontColorCard);
         height: 15px;
         padding: 10px;
         font-weight: 200;
         text-align: left;
         margin-left: 40px;
         border-radius: 5px;
+        color:var(--secondaryFontColorCard);
         width: 48.25%;
       }
       tr{

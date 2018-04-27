@@ -133,7 +133,6 @@
         data="{{routeData}}"
         tail="{{subroute}}">
     </app-route>
-
     <app-drawer-layout fullbleed force-narrow>
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
@@ -181,7 +180,6 @@
           <upload-unit name="upload-unit"></upload-unit>
         </iron-pages>
       </app-header-layout>
-      
     </app-drawer-layout>
     <paper-toast id="toast0" text="Insert all required fields to save!"></paper-toast>
   </template>
@@ -222,14 +220,26 @@
       _getHomeview(){
         return Polymer.dom(this.root).querySelector("a[name=home-view]");
       }
+      _getHomeviewPage(){
+        return Polymer.dom(this.root).querySelector("home-view[name=home-view]");
+      }
       _getUnitoverview(){
         return Polymer.dom(this.root).querySelector("a[name=unit-overview]");
+      }
+      _getUnitoverviewPage(){
+        return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
       }
       _getStatisticview(){
         return Polymer.dom(this.root).querySelector("a[name=statistics-view]");
       }
+      _getStatisticviewPage(){
+        return Polymer.dom(this.root).querySelector("statistics-view[name=statistics-view]");
+      }
       _getMessageview(){
         return Polymer.dom(this.root).querySelector("a[name=messages-view]");
+      }
+      _getMessageviewPage(){
+        return Polymer.dom(this.root).querySelector("messages-view[name=messages-view]");
       }
       _getAccountview(){
         return Polymer.dom(this.root).querySelector("account-view[name=account-view]");
@@ -315,4 +325,5 @@
     window.customElements.define(OverviewPage.is, OverviewPage);
   </script>
   <script src="../develop-javascript/src/overviewpage.js" type="module"></script>
+
 </dom-module>

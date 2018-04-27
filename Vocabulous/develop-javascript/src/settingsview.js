@@ -4,20 +4,7 @@ var myapp = document.querySelector("my-app");
 var sharedStyle = myapp._getSharedStyle();
 console.dir(sharedStyle);
 var overview = myapp._getOverviewpage();
-/*var homeview = overview._getHomeviewPage();
-var unitoverview = overview._getUnitoverviewPage();
-var unitPage = overview._getUnitPage();
-var statisticsview = overview._getStatisticviewPage();
-var messageview = overview._getMessageviewPage();
-var accountView = overview._getAccountview();*/
 var settings = overview._getSettingsviewTag();
-/*var practiceUnitPage = overview._getPracticeUnitPage();
-var selfcheckPage = overview._getSelfCheckPage();
-var createUnitPage = overview._getCreateUnit();
-var unitResultPage = overview._getUnitResultPage();
-var translatePage = overview._getTranslatePage();
-var browseUnitPage = overview._getBrowseUnit();
-var uploadUnitPage = overview._getUploadUnit();*/
 var defaultswitch = settings._getDefaultswitch();
 var darkswitch = settings._getDarkswitch();
 var themeName = settings._getThemeName();
@@ -45,6 +32,28 @@ var cardHeadlineColour = settings._getCardHeadlineColour();
 console.log(cardHeadlineColour);
 var cardFontColour = settings._getCardFontColour();
 console.log(cardFontColour);
+
+var headerBackgroundColourview = settings._getHeaderBackgroundColourView();
+console.log(headerBackgroundColourview);
+var headerFontColourview = settings._getHeaderFontColourView();
+console.log(headerFontColourview);
+var menuBackgroundColourview = settings._getMenuBackgroundColourView();
+console.log(menuBackgroundColourview);
+var menuFontColourview = settings._getMenuFontColourView();
+console.log(menuFontColourview);
+var menuNavigationColourview = settings._getMenuNavigationColourView();
+console.log(menuNavigationColourview);
+var menuNavigationFontColourview = settings._getMenuNavigationFontColourView();
+console.log(menuNavigationFontColourview);
+var cardAreaBackgroundColourview = settings._getCardAreaBackgroundColourView();
+console.log(cardAreaBackgroundColourview);
+var cardBackgroundColourview = settings._getCardBackgroundColourView();
+console.log(cardBackgroundColourview);
+var cardHeadlineColourview = settings._getCardHeadlineColourView();
+console.log(cardHeadlineColourview);
+var cardFontColourview = settings._getCardFontColourView();
+console.log(cardFontColourview);
+
 var createTheme = settings._getCreateThemeDiv();
 var createButton = settings._getCreateNewThemeButton();
 var cancelButton = settings._getCancelButton();
@@ -103,20 +112,36 @@ function changeTheme(theme){
     appdrawerLayout.updateStyles({"background-color":theme.getCardAreaBackgroundColor()});
     overview.updateStyles({"--navigationcolorbackground":theme.getMenuNavigationColor()});
     overview.updateStyles({"--navigationcolorfont":theme.getMenuNavigationFontColor()});
-    /*homeview.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    unitPage.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    unitoverview.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    statisticsview.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    messageview.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    accountView.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    settings.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    practiceUnitPage.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    selfcheckPage.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    createUnitPage.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    unitResultPage.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    translatePage.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    browseUnitPage.updateStyles({"--cardBackgroundcolor":"#03DC2B"});
-    uploadUnitPage.updateStyles({"--cardBackgroundcolor":"#03DC2B"});*/
+    headerBackgroundColourview.style.backgroundColor = theme.getHeaderBackgroundcolor();
+    headerFontColourview.style.backgroundColor = theme.getHeaderFontColor();
+    menuBackgroundColourview.style.backgroundColor = theme.getMenuBackgroundColor();
+    menuFontColourview.style.backgroundColor = theme.getMenuFontColor();
+    menuNavigationColourview.style.backgroundColor = theme.getMenuNavigationColor();
+    menuNavigationFontColourview.style.backgroundColor = theme.getMenuNavigationFontColor();
+    cardAreaBackgroundColourview.style.backgroundColor = theme.getCardAreaBackgroundColor();
+    cardBackgroundColourview.style.backgroundColor = theme.getCardBackgroundColor();
+    cardHeadlineColourview.style.backgroundColor = theme.getCardHeadLineColor();
+    cardFontColourview.style.backgroundColor = theme.getParagraphFontColor();
+    headerBackgroundColourview.removeAttribute("hidden");
+    headerFontColourview.removeAttribute("hidden");
+    menuBackgroundColourview.removeAttribute("hidden");
+    menuFontColourview.removeAttribute("hidden");
+    menuNavigationColourview.removeAttribute("hidden");
+    menuNavigationFontColourview.removeAttribute("hidden");
+    cardAreaBackgroundColourview.removeAttribute("hidden");
+    cardBackgroundColourview.removeAttribute("hidden");
+    cardHeadlineColourview.removeAttribute("hidden");
+    cardFontColourview.removeAttribute("hidden");
+    headerBackgroundColour.style.opacity = "0";;
+    headerFontColour.style.opacity = "0";
+    menuBackgroundColour.style.opacity = "0";
+    menuFontColour.style.opacity = "0";
+    menuNavigationColour.style.opacity = "0";
+    menuNavigationFontColour.style.opacity = "0";
+    cardAreaBackgroundColour.style.opacity = "0";
+    cardBackgroundColour.style.opacity = "0";
+    cardHeadlineColour.style.opacity = "0";
+    cardFontColour.style.opacity = "0";
     myapp.updateStyles({"--cardBackgroundcolor":theme.getCardBackgroundColor()});
     myapp.updateStyles({"--headlineCard":theme.getCardHeadLineColor()});
     myapp.updateStyles({"--cardFontColor":"--headlineCard"});
@@ -155,7 +180,30 @@ function LightenDarkenColor(col, amt) {
     return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
   
 }
+function editMode(){
+    headerBackgroundColour.style.opacity = "1";;
+    headerFontColour.style.opacity = "1";
+    menuBackgroundColour.style.opacity = "1";
+    menuFontColour.style.opacity = "1";
+    menuNavigationColour.style.opacity = "1";
+    menuNavigationFontColour.style.opacity = "1";
+    cardAreaBackgroundColour.style.opacity = "1";
+    cardBackgroundColour.style.opacity = "1";
+    cardHeadlineColour.style.opacity = "1";
+    cardFontColour.style.opacity = "1";
+    headerBackgroundColourview.setAttribute("hidden",true);
+    headerFontColourview.setAttribute("hidden",true);
+    menuBackgroundColourview.setAttribute("hidden",true);
+    menuFontColourview.setAttribute("hidden",true);
+    menuNavigationColourview.setAttribute("hidden",true);
+    menuNavigationFontColourview.setAttribute("hidden",true);
+    cardAreaBackgroundColourview.setAttribute("hidden",true);
+    cardBackgroundColourview.setAttribute("hidden",true);
+    cardHeadlineColourview.setAttribute("hidden",true);
+    cardFontColourview.setAttribute("hidden",true);
+}
 createButton.onclick = function(){
+    editMode();
     clear();
     deleteButton.style.display="none";
     paperListBox.style.display = "none";
@@ -168,9 +216,10 @@ createButton.onclick = function(){
 cancelButton.onclick = function(){
     if(isDefault){
         changeTheme(defaultTheme);
-        return;
     }
-    changeTheme(darkTheme);
+    else{
+        changeTheme(darkTheme);
+    }
     deleteButton.style.display="none";
     paperListBox.style.display = "inline";
     createButton.style.display="inline";
@@ -344,6 +393,7 @@ function check(name){
 var paperElement=settings._getFirstPaperItem();
 paperElement.onclick = function(){check("no custom theme selected")};
 editButon.onclick = function(){
+    editMode();
     deleteButton.style.display="inline";
     createButton.style.display="none";
     paperListBox.style.display = "none";

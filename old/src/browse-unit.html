@@ -23,13 +23,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color: var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 10px;
       }
       h1{
-        color: var(--app-primary-color);
+        color:  var(--headlineCard);
         margin-left: 40px;
         font-weight: 400;
         font-size: 23px;

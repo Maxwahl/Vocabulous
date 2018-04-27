@@ -48,8 +48,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles" include="iron-flex iron-flex-alignment">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         --app-grid-columns: 2;
         --app-grid-item-height: 60px;
         display: block;
@@ -115,6 +115,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: 300;
         margin-left: 40px;
         margin-top: 0px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      h3.card{
+        font-weight: 400;
+        margin-left: 40px;
+        margin-top: 20px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
@@ -216,6 +223,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
+      h3.cardBackground{
+        font-weight: 300;
+        margin-left: 40px;
+        margin-top: 0px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.cardBackground{
+        margin-left: -150px;
+        margin-top: -40px;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      h3.headlineColor{
+        font-weight: 300;
+        margin-left: 40px;
+        margin-top: 0px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.headlineColor{
+        margin-left: 20px;
+        margin-top: -40px;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      h3.cardFontColor{
+        font-weight: 300;
+        margin-left: 200px;
+        margin-top: 0px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.cardFontColor{
+        margin-left: 20px;
+        margin-top: -40px;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
       .buttons{
         font-size: 0.65em;
         margin-left: 40px;
@@ -223,8 +269,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-dropdown-menu{
         margin-left: 120px;
         margin-top: -30px;
+        --disabled-text-color:var(--secondaryFontColorCard);
+        -webkit-tap-highlight-color:var(--cardBackgroundcolor);
+        --paper-dropdown-menu-color:var(--cardBackgroundcolor);
+        --secondary-text-color:var(--secondaryFontColorCard);
+        --primary-text-color:var(--secondaryFontColorCard);
       }
-      
+      paper-item{
+        color:var(--secondaryFontColorCard);
+        background-color:var(--cardBackgroundcolor);
+      }
       paper-input.themeName{
         margin-left: 40px;
         width: 300px;
@@ -293,6 +347,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <td><h3 class="displayAreaBackground">Background colour</h3></td>
               <td><paper-swatch-picker class="displayAreaBackground" noink></paper-swatch-picker></td>
           </tr>
+          <tr>
+              <td><h3 class="displayArea">Card</h3></td>
+          </tr>
+          <tr>
+              <td><h3 class="cardBackground">Background colour</h3></td>
+              <td><paper-swatch-picker class="cardBackground" noink></paper-swatch-picker></td>
+              <td><h3 class="headlineColor">Headline colour</h3></td>
+              <td><paper-swatch-picker class="headlineColor" noink></paper-swatch-picker></td>
+              <td><h3 class="cardFontColor">Paragraph font colour</h3></td>
+              <td><paper-swatch-picker class="cardFontColor" noink></paper-swatch-picker></td>
+          </tr>
         </table>
     </div>
     <div class="buttons">
@@ -341,6 +406,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getCardAreaBackgroundColour(){
         return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=displayAreaBackground]");
+      }
+      _getCardBackgroundColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=cardBackground]");
+      }
+      _getCardHeadlineColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=headlineColor]");
+      }
+      _getCardFontColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=cardFontColor]");
       }
       _getCreateThemeDiv(){
         return Polymer.dom(this.root).querySelector("div[class=createTheme]");

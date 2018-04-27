@@ -26,8 +26,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color: var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 10px;
       }
@@ -65,10 +65,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin-top: -72.5px;
           margin-left: 40%;
           width: 25%;
-        --paper-input-container-color: grey;
-        --paper-input-container-focus-color: grey;
-        --paper-input-container-invalid-color: grey;
-        --paper-input-container-input-color: grey;
+        color:var(--secondaryFontColorCard);
+        --paper-input-container-color: var(--secondaryFontColorCard);
+        --paper-input-container-focus-color: var(--secondaryFontColorCard);
+        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
       }
       paper-toggle-button.language{
         margin-left: 15px;
@@ -176,21 +177,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #popuplanguage{
         position: absolute;
         z-index: 1;
-        width: 500px;
-        background-color: rgba(134, 221, 255, 0.562);
+        width: 400px;
+        background-color: #dddddd;
         color:black;
-        padding: 5px 0;
-        margin-top: 4.5%;
+        padding: 10px;
+        margin-top: 5.5%;
+        margin-left: 1.75%;
+        opacity: 0.7;
       }
       #popuplanguage::after{
         content: "";
         position: absolute;
         bottom: 100%;
-        left: 48.5%;
+        left: 50%;
         margin-top: -4px;
         border-width: 7px;
         border-style: solid;
-        border-color: transparent transparent rgba(134, 221, 255, 0.562) transparent;
+        border-color: transparent transparent #dddddd transparent;
+        opacity: 0.7;
       }
     </style>
 

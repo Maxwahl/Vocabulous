@@ -23,13 +23,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color: var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 10px;
       }
       h1{
-        color: var(--app-primary-color);
+        color: var(--headlineCard);
         margin-left: 40px;
         font-weight: 400;
         font-size: 23px;
@@ -48,10 +48,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-bottom: 30px;
       }
       td:hover{
-        background-color: #f2f2f2;
+        background-color: var(--hover-color);
       }
       td{
-        border: 0.5px solid #cecece;
+        border: 0.5px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
@@ -59,6 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 40px;
         border-radius: 5px;
         margin-bottom: 3px;
+        color: var(--secondaryFontColorCard);
         display: block;
       }
       paper-input.unitName{
@@ -75,6 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-input.germanVocab{
         margin-left: 0px;
         width: 300px;
+        color: var(--secondaryFontColorCard);
         margin-top: -5px;
         --paper-input-container-underline:{
           border: var(--app-secondary-color);
@@ -86,6 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-input.englishVocab{
         margin-left: 50%;
         width: 300px;
+        color: var(--secondaryFontColorCard);
         margin-top: -40px;
         --paper-input-container-underline:{
           border: var(--app-secondary-color);
@@ -94,7 +97,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: var(--app-secondary-color);
         }
       }
-
+      paper-input{
+        color:var(--secondaryFontColorCard);
+        --paper-input-container-color: var(--secondaryFontColorCard);
+        --paper-input-container-focus-color: var(--secondaryFontColorCard);
+        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
+      }
       paper-button.plus{
         width: 25px;
         height: 25px;
