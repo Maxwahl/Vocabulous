@@ -65,7 +65,7 @@ var ironSelector = overview._getIronSelector();
 var appdrawerLayout = overview._getAppdrawer();
 var appdrawer = overview._getAppdrawerForTheme();
 var paperListBox = settings._getPaperListBox();
-var toast = overview._getSettingsToast();
+var toast0 = overview._getSettingsToast0();
 var isDefault = true;
 console.log(settings);
 console.log(defaultswitch);
@@ -236,7 +236,7 @@ saveButton.onclick = function(){
 || menuFontColour.color == undefined || menuNavigationColour.color == undefined
 || menuNavigationFontColour.color == undefined || cardAreaBackgroundColour.color == undefined || 
 cardBackgroundColour == undefined || cardHeadlineColour ==undefined || cardFontColour == undefined){
-        toast.open();
+        toast0.open();
         return;
     }
     createButton.style.display="inline";

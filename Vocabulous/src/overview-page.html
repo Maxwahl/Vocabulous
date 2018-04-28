@@ -119,6 +119,18 @@
         opacity: 0.6;
 
       }
+      #toast1{
+        background-color: green;
+        color: white;
+      }
+      #toast2{
+        background-color: red;
+        color: white;
+      }
+      #toast3{
+        background-color: orange;
+        color: white;
+      }
       
      /*#595959*/
     </style>
@@ -183,6 +195,9 @@
       </app-header-layout>
     </app-drawer-layout>
     <paper-toast id="toast0" text="Insert all required fields to save!"></paper-toast>
+    <paper-toast id="toast1" duration=1000 text="This vocab is correct!"></paper-toast>
+    <paper-toast id="toast2" duration=2000 text="This vocab is wrong! Second Try"></paper-toast>
+    <paper-toast id="toast3" duration=2500 text="This vocab is wrong again!"></paper-toast>
   </template>
 
   <script>
@@ -318,8 +333,17 @@
       _showPage404() {
         this.page = 'not-found';
       }
-      _getSettingsToast(){
+      _getSettingsToast0(){
         return Polymer.dom(this.root).querySelector("paper-toast[id=toast0]");
+      }
+      _getSettingsToast1(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast1]");
+      }
+      _getSettingsToast2(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast2]");
+      }
+      _getSettingsToast3(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast3]");
       }
     }
 
