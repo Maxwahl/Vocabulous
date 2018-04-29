@@ -20,6 +20,19 @@ public class Repository {
     private List<Theme> themes;
     private List<Chapter> chapters;
     private List<Vocab> allVocab;
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public List<Theme> getThemes() {
+        return themes;
+    }
+
+    public List<Chapter> getChapters() {
+        return chapters;
+    }
+    
     private Repository(){
        users = new ArrayList<>();
        themes = new ArrayList<>();
@@ -121,6 +134,9 @@ public class Repository {
 
     public Chapter getChapter(String unit) {
         return chapters.stream().filter((it)->it.getName().equals(unit)).findFirst().get();
+    }
+    public Chapter getChapterByID(int cID) {
+        return chapters.stream().filter((it)->it.getId() ==cID).findFirst().get();
     }
 
     public int addChapter(int uID, String cName) {
