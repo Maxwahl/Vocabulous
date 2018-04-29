@@ -65,7 +65,7 @@ var ironSelector = overview._getIronSelector();
 var appdrawerLayout = overview._getAppdrawer();
 var appdrawer = overview._getAppdrawerForTheme();
 var paperListBox = settings._getPaperListBox();
-var toast0 = overview._getSettingsToast0();
+var toast0 = overview._getSettingsToast();
 var isDefault = true;
 console.log(settings);
 console.log(defaultswitch);
@@ -216,10 +216,13 @@ createButton.onclick = function(){
 cancelButton.onclick = function(){
     if(isDefault){
         changeTheme(defaultTheme);
+        defaultswitch.setAttribute("checked",true);   
     }
     else{
         changeTheme(darkTheme);
+        darkswitch.setAttribute("checked",true); 
     }
+    paperListBox.selectIndex(0);
     deleteButton.style.display="none";
     paperListBox.style.display = "inline";
     createButton.style.display="inline";
@@ -388,7 +391,7 @@ function check(name){
     cardAreaBackgroundColour.color = currentTheme.getCardAreaBackgroundColor();
     cardBackgroundColour.color = currentTheme.getCardBackgroundColor();
     cardHeadlineColour.color = currentTheme.getCardHeadLineColor();
-    cardFontColour.color = currentTheme._getCardFontColour();
+    cardFontColour.color = currentTheme.getParagraphFontColor();
 }
 var paperElement=settings._getFirstPaperItem();
 paperElement.onclick = function(){check("no custom theme selected")};
