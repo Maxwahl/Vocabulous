@@ -58,6 +58,9 @@ var secondTry = practicePage._getSecondTry();
 console.dir(secondTry);
 var wrongVocs = practicePage._getWrongVocs();
 console.dir(wrongVocs);
+var toast1 = overview._getCorrectWordToast();
+var toast2 = overview._getSecondTryToast();
+var toast3 = overview._getWrongWordToast();
 var words;
 var english = true;
 var position = 0;
@@ -181,6 +184,7 @@ async function nextCheck(){
             }
             vocTries = 0;
             changeLineColor("green");
+            toast1.open();
             await sleep(500);
             changeLineColor("grey");
             input.value = "";
@@ -198,6 +202,7 @@ async function nextCheck(){
             return;
         }
         changeLineColor("red");
+        toast2.open();
         input.value = "";
         vocTries++;
         if(vocTries==2){
@@ -214,6 +219,7 @@ async function nextCheck(){
         }
         vocTries = 0;
         changeLineColor("green");
+        toast1.open();
         await sleep(500);
         changeLineColor("grey");
         input.value = "";
@@ -231,6 +237,7 @@ async function nextCheck(){
         return;
     }
     changeLineColor("red");
+    toast2.open();
     input.value = "";
     vocTries++;
     if(vocTries==2){
@@ -253,6 +260,7 @@ async function wrong(){
         input.value = words[position].getWordEnglish();
     }
     changeLineColor("orange");
+    toast3.open();
     await sleep(2000);
     changeLineColor("grey");
     input.value = "";
