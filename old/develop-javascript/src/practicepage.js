@@ -201,7 +201,7 @@ async function nextCheck(){
             wordPrint.innerHTML = words[position].getWordEnglish();
             return;
         }
-        changeLineColor("red");
+        changeLineColor("orange");
         toast2.open();
         input.value = "";
         vocTries++;
@@ -236,7 +236,7 @@ async function nextCheck(){
         wordPrint.innerHTML = words[position].getWordGerman();
         return;
     }
-    changeLineColor("red");
+    changeLineColor("orange");
     toast2.open();
     input.value = "";
     vocTries++;
@@ -259,7 +259,7 @@ async function wrong(){
     else{
         input.value = words[position].getWordEnglish();
     }
-    changeLineColor("orange");
+    changeLineColor("red");
     toast3.open();
     await sleep(2000);
     changeLineColor("grey");
