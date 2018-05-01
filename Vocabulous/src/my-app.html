@@ -48,7 +48,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         --app-primary-color: #00b4f0;
         --app-secondary-color: black;
-
+        --cardBackgroundcolor: #fff;
+        --cardFontColor: #757575;
+        --headlineCard: #212121;
+        --secondaryFontColorCard:#A4A4A4;
+        --hover-color: #f2f2f2;
         display: block;
       }
 
@@ -99,6 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <register-login name="register-login"></register-login>
           <overview-page name="overview-page"></overview-page>
         </iron-pages>
+        <shared-style></shared-style>
   </template>
 
   <script>
@@ -152,6 +157,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getOverviewpage(){
         return Polymer.dom(this.root).querySelector("overview-page");
+      }
+      _getSharedStyle(){
+        return Polymer.dom(this.root).querySelector("shared-style");
       }
       /*ready() {
         super.ready();

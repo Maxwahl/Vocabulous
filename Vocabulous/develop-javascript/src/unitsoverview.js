@@ -13,7 +13,20 @@ var searchBar = unitView._getSearchBar();
 console.dir(searchBar);
 var checked = unitView._getChecked();
 console.dir(checked);
+var newUnitButton = unitView._getNewUnitButton();
+console.dir(newUnitButton);
+var translateButton = unitView._getTranslateButton();
+console.dir(translateButton);
+var ironPages = overview._getIronPages();
+console.dir(ironPages);
 var units = [];
+
+ironPages.addEventListener("iron-select",function(){
+    if(ironPages.selected=="unit-overview"){
+        searchBar.query = "";
+        clearFilter();
+    }
+});
 (async function(){
     units = await BackEndHandler.getUnits();
     var rowCount = 0;
@@ -38,7 +51,7 @@ searchBar.onkeyup = function(){
         return;
     }
     for(var i = 0; i < unitTable.rows.length; i++){
-        if(unitTable.rows[i].innerHTML.toLowerCase().search(searchBar.query.toLowerCase())== -1){
+        if(!unitTable.rows[i].cells[0].innerHTML.toLowerCase().startsWith(searchBar.query.toLowerCase())){
             unitTable.rows[i].style.display = "none";
         }
         else{
@@ -51,3 +64,5 @@ function clearFilter(){
         unitTable.rows[i].style.display = "block";
     }
 }
+newUnitButton.onclick = function(){overview._routePageChanged("create-unit")}
+translateButton.onclick = function(){overview._routePageChanged("translate-page")};

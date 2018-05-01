@@ -18,6 +18,9 @@
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
@@ -33,7 +36,12 @@
 <link rel="lazy-import" href="practiceunit-page.html">
 <link rel="lazy-import" href="selfcheck-page.html">
 <link rel="lazy-import" href="not-found.html">
+<link rel="lazy-import" href="create-unit.html">
 <link rel="lazy-import" href="register-login.html">
+<link rel="lazy-import" href="unitresult-page.html">
+<link rel="lazy-import" href="translate-page.html">
+<link rel="lazy-import" href="browse-unit.html">
+<link rel="lazy-import" href="upload-unit.html">
 <link rel="lazy-import" href="my-app.html">
 
 <dom-module id="overview-page">
@@ -44,7 +52,7 @@
         --app-secondary-color: black;
         --containercolor: #ffffff;
         --navigationcolorbackground:#f2f2f2;
-        --navigationcolorfont:#000000;
+        --itemcolor: black;
         color:black;
         display: block;
       }
@@ -75,6 +83,7 @@
 
       paper-button {
         font-size: 15px;
+        font-weight: 300;
       }
 
       .drawer-list {
@@ -83,12 +92,12 @@
       }
 
       .drawer-list a {
-        
         display: block;
         padding: 0 16px;
         text-decoration: none;
         color: var(--app-secondary-color);
         line-height: 40px;
+        font-weight: 300;
       }
 
       .drawer-list a.iron-selected {
@@ -96,8 +105,34 @@
         font-weight: bold;
         background-color: var(--navigationcolorbackground);
       }
+      div.maintitle{
+        font-weight: 300;
+        margin-left: 20px;
+      }
+      iron-icon{
+        float:left;
+        margin-top: 3%;
+        height: 20px;
+        width: 20px;
+        padding-right: 5%;
+        color: var(--itemcolor);
+        opacity: 0.6;
 
-     
+      }
+      #toast1{
+        background-color: green;
+        color: white;
+      }
+      #toast2{
+        background-color: orange;
+        color: white;
+      }
+      #toast3{
+        background-color: red;
+        color: white;
+      }
+      
+     /*#595959*/
     </style>
 
     <app-location
@@ -111,19 +146,17 @@
         data="{{routeData}}"
         tail="{{subroute}}">
     </app-route>
-
     <app-drawer-layout fullbleed force-narrow>
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-            <app-toolbar>Menu</app-toolbar>
+            <app-toolbar style="font-weight:300">Menu</app-toolbar>
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-              <a name="home-view">Home</a>
-              <a name="unit-overview">Unit Overview</a>
-              <a name="statistics-view">Statistics</a>
-              <a name="messages-view">Messages</a>
-              <a name="settings-view">Settings</a> 
+              <a name="home-view"><iron-icon icon="vaadin:home"></iron-icon><span>Home</span></a>
+              <a name="unit-overview"><iron-icon icon="vaadin:book"></iron-icon><span>Units</span></a>
+              <a name="statistics-view"><iron-icon icon="vaadin:bar-chart-h"></iron-icon><span>Statistics</span></a>
+              <a name="messages-view"><iron-icon icon="vaadin:envelope"></iron-icon><span>Messages</span></a>
+              <a name="settings-view"><iron-icon icon="vaadin:cog"></iron-icon><span>Settings</span></a>
             </iron-selector>
-            
         </app-drawer>
 
       <!-- Main content -->
@@ -131,8 +164,8 @@
         <app-header slot="header" fixed condenses effects="waterfall">
             
           <app-toolbar>
-              <paper-icon-button name="menuicon" icon="my-icons:menu"></paper-icon-button>
-            <div main-title>Vocabulous</div>
+            <paper-icon-button name="menuicon" icon="my-icons:menu" noink></paper-icon-button>
+            <div class="maintitle" main-title>Vocabulous</div>
             <paper-button name="user">Max Mustermann </paper-button> <!--User Account Button -->
             <paper-icon-button name="accounticon" icon="vaadin:user" class="user"></paper-icon-button> <!--User Account Button -->
             <paper-button name="logout">Log out</paper-button> <!--Log out Button -->
@@ -153,10 +186,18 @@
           <not-found name="not-found"></not-found>
           <practiceunit-page name="practiceunit-page"></practiceunit-page>
           <selfcheck-page name="selfcheck-page"></selfcheck-page>
+          <create-unit name="create-unit"></create-unit>
+          <unitresult-page name="unitresult-page"></unitresult-page>
+          <translate-page name="translate-page"></translate-page>
+          <browse-unit name="browse-unit"></browse-unit>
+          <upload-unit name="upload-unit"></upload-unit>
         </iron-pages>
       </app-header-layout>
-      
     </app-drawer-layout>
+    <paper-toast id="toast0" text="Insert all required fields to save!"></paper-toast>
+    <paper-toast id="toast1" duration=1000 text="This vocab is correct!"></paper-toast>
+    <paper-toast id="toast2" duration=2000 text="This vocab is wrong! Second Try"></paper-toast>
+    <paper-toast id="toast3" duration=2500 text="This vocab is wrong again!"></paper-toast>
   </template>
 
   <script>
@@ -195,14 +236,26 @@
       _getHomeview(){
         return Polymer.dom(this.root).querySelector("a[name=home-view]");
       }
+      _getHomeviewPage(){
+        return Polymer.dom(this.root).querySelector("home-view[name=home-view]");
+      }
       _getUnitoverview(){
         return Polymer.dom(this.root).querySelector("a[name=unit-overview]");
+      }
+      _getUnitoverviewPage(){
+        return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
       }
       _getStatisticview(){
         return Polymer.dom(this.root).querySelector("a[name=statistics-view]");
       }
+      _getStatisticviewPage(){
+        return Polymer.dom(this.root).querySelector("statistics-view[name=statistics-view]");
+      }
       _getMessageview(){
         return Polymer.dom(this.root).querySelector("a[name=messages-view]");
+      }
+      _getMessageviewPage(){
+        return Polymer.dom(this.root).querySelector("messages-view[name=messages-view]");
       }
       _getAccountview(){
         return Polymer.dom(this.root).querySelector("account-view[name=account-view]");
@@ -231,6 +284,18 @@
       _getUnitView(){
         return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
       }
+      _getCreateUnit(){
+        return Polymer.dom(this.root).querySelector("create-unit[name=create-unit]");
+      }
+      _getTranslatePage(){
+        return Polymer.dom(this.root).querySelector("translate-page[name=translate-page]");
+      }
+      _getBrowseUnit(){
+        return Polymer.dom(this.root).querySelector("browse-unit[name=browse-unit]");
+      }
+      _getUploadUnit(){
+        return Polymer.dom(this.root).querySelector("upload-unit[name=upload-unit]");
+      }
       _getAppHeader(){
         return Polymer.dom(this.root).querySelector("app-header");
       }
@@ -249,6 +314,12 @@
       _getPracticeUnitPage(){
         return Polymer.dom(this.root).querySelector("practiceunit-page[name=practiceunit-page]");
       }
+      _getSelfCheckPage(){
+        return Polymer.dom(this.root).querySelector("selfcheck-page[name=selfcheck-page]");
+      }
+      _getUnitResultPage(){
+        return Polymer.dom(this.root).querySelector("unitresult-page[name=unitresult-page]");
+      }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl(page + '.html');
@@ -262,9 +333,22 @@
       _showPage404() {
         this.page = 'not-found';
       }
+      _getSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast0]");
+      }
+      _getCorrectWordToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast1]");
+      }
+      _getSecondTryToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast2]");
+      }
+      _getWrongWordToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast3]");
+      }
     }
 
     window.customElements.define(OverviewPage.is, OverviewPage);
   </script>
   <script src="../develop-javascript/src/overviewpage.js" type="module"></script>
+
 </dom-module>

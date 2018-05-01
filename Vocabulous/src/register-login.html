@@ -20,6 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-text-field.html">
 <link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
 <link rel="import" href="../bower_components/vaadin-valo-theme/color.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="register-login">
@@ -47,17 +48,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 0 !important;
         padding: 0 !important;
       }
-      /*.header::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        top: 36%;
-        border-bottom: 4px solidvar(--valo-primary-color-50pct);
-      }*/
+      
       .header h1 {
-        color: gray;
+        color:  #6d6d6d;
         font-size: 24px;
-        font-weight: 200;
+        font-family: 'Open sans';
+        font-weight: 400;
         margin: 0 auto 5px;
         text-align: left;
         width: 250px;
@@ -87,6 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <span class="error-message">[[errorMessage]]</span>
       <vaadin-button theme="primary" id="loginButton" on-tap="_logIn">Login</vaadin-button>
     </div>
+    <paper-toast id="toast0" text="Wrong username or password!"></paper-toast>
   </template>
   <script>
     class RegisterLogin extends Polymer.Element {
@@ -111,6 +108,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getPassword(){
         return Polymer.dom(this.root).querySelector("vaadin-password-field");
+      }
+      _getToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast0]");
       }
     }
     

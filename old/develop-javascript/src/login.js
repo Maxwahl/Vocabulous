@@ -7,14 +7,15 @@ var loginButton = register._getLoginButton();
 var user;
 var username = register._getUsername();
 var password = register._getPassword();
+var toast = register._getToast();
 async function checkLogin(){
     if(username == undefined || password == undefined || username.value == "" || password.value == ""){
-        alert("Wrong username or password!");
+        toast.open();
         return false;
     }
     user = await BackEndHandler.login(username.value, password.value);
     if(user == null){
-        alert("Wrong username or password!");
+        toast.open();
         return false;
     }
     myapp._updatePage("overview-page");
