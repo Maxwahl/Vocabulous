@@ -140,7 +140,7 @@ public class Theme {
     public JsonObject jsonify(){
         return Json.createObjectBuilder()
                 .add("id",1)
-                .add("name", "Dark")
+                .add("name",this.name)
                 .add("headerBackgroundColor",this.gethBgC())
                 .add("headerFontColor",this.gethFC())
                 .add("menuBackgroundColor",this.mBgC)
