@@ -121,7 +121,6 @@ public class Repository {
     
     public User login(String uName,String password){
         User ret = users.stream().filter((it) -> it.getUsername().equals(uName) && it.getPassword().equals(password)).findFirst().get();
-        System.out.println("testestest");
         return ret;
     }
     public User user(String uName){
@@ -199,7 +198,7 @@ public class Repository {
     }
 
     public List<Chapter> getChapter(int uID) {
-        return chapters.stream().filter((it)->it.getOwner() ==-1 || it.getId() == uID).collect(Collectors.toList());
+        return chapters.stream().filter((it)->it.getOwner() ==-1 || it.getOwner() == uID).collect(Collectors.toList());
     }
 
     public List<Vocab> getAllVocab() {
