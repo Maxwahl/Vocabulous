@@ -14,6 +14,7 @@ import javax.json.JsonObject;
  */
 public class Theme {
     private int id;
+    private int owner;
     private String name;
     private String hBgC;
     private String mFC;
@@ -22,6 +23,8 @@ public class Theme {
     private String mNC;
     private String mBgC;
     private String mNFC;
+    private String cHL;
+    private String pF;
 
     public int getId() {
         return id;
@@ -95,9 +98,34 @@ public class Theme {
         this.mNFC = mNFC;
     }
 
-    public Theme(int id, String name, String hBgC, String mFC, String hFC, String cABgC, String mNC, String mBgC, String mNFC) {
+    public int getOwner() {
+        return owner;
+    }
+
+    public void setOwner(int owner) {
+        this.owner = owner;
+    }
+
+    public String getcHL() {
+        return cHL;
+    }
+
+    public void setcHL(String cHL) {
+        this.cHL = cHL;
+    }
+
+    public String getpF() {
+        return pF;
+    }
+
+    public void setpF(String pF) {
+        this.pF = pF;
+    }
+
+    public Theme(int id, String name,int owner, String hBgC, String mFC, String hFC, String cABgC, String mNC, String mBgC, String mNFC,String cHL,String pF) {
         this.id = id;
         this.name = name;
+        this.owner = owner;
         this.hBgC = hBgC;
         this.mFC = mFC;
         this.hFC = hFC;
@@ -105,6 +133,8 @@ public class Theme {
         this.mNC = mNC;
         this.mBgC = mBgC;
         this.mNFC = mNFC;
+        this.cHL = cHL;
+        this.pF = pF;
     }
     
     public JsonObject jsonify(){
@@ -118,6 +148,8 @@ public class Theme {
                 .add("menuNavigationFontColor",this.getmNFC())
                 .add("cardAreaBackgroundColor", this.getcABgC())                
                 .add("menuNavigationColor",this.getmNC())
+                .add("cardHeadLineColor", this.getcHL())                
+                .add("paragraphFontColor",this.getpF())
                 .build();
     }
 }
