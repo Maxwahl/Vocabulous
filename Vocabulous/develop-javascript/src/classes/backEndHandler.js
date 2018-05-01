@@ -80,7 +80,7 @@ export default class BackEndHandler{
         return retVal;
     }
     static async getUnits(uID){
-        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/units?uID"=uID);
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/units?uID="+uID);
         let units = [];
         while(jsonText.length>0){
             const {name} = jsonText.pop();
