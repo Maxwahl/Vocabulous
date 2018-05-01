@@ -11,7 +11,7 @@ package lib.Model;
  */
 public class Database {
     public void init(){
-        Repository.getInstance().getUsers().add(new User(1,"admin","admin","Max","Mustermann","max.m@gmx.at","htl-leonding","1.1.1980",0));
+        //
         Repository.getInstance().getChapters().add(new Chapter(1,"Basic Nouns",-1));
         Repository.getInstance().getChapters().add(new Chapter(2,"Basic Verbs",-1));
         Repository.getInstance().getChapters().add(new Chapter(3,"Basic Adjectives",-1));

@@ -38,6 +38,79 @@ public class Repository {
        themes = new ArrayList<>();
        chapters = new ArrayList<>();
        allVocab = new ArrayList<>();
+       users.add(new User(1,"admin","admin","Max","Mustermann","max.m@gmx.at","htl-leonding","1.1.1980",2));
+       chapters.add(new Chapter(1,"Basic Nouns",-1));
+       chapters.add(new Chapter(2,"Basic Verbs",-1));
+       chapters.add(new Chapter(3,"Basic Adjectives",-1));
+       themes.add(new Theme(2,"custom",1,"#012345","#012345","#012345","#012345","#012345","#012345","#012345","#012345","#012345"));
+       chapters.get(0).addWord("house", "Haus");
+       chapters.get(0).addWord("car", "Auto");
+       chapters.get(0).addWord("plane", "Flugzeug");
+       chapters.get(0).addWord("train", "Zug");
+       chapters.get(0).addWord("dog", "Hund");
+       chapters.get(0).addWord("cat", "Katze");
+       chapters.get(0).addWord("street", "Straße");
+       chapters.get(0).addWord("city", "Stadt");
+       chapters.get(0).addWord("cow", "Kuh");
+       chapters.get(0).addWord("door", "Tür");
+       chapters.get(0).addWord("lamp", "Lampe");
+       chapters.get(0).addWord("television", "Fernseher");
+       chapters.get(0).addWord("music", "Musik");
+       chapters.get(0).addWord("stairway", "Stiege");
+       chapters.get(0).addWord("fork", "Gabel");
+       chapters.get(0).addWord("knife", "Messer");
+       chapters.get(0).addWord("spoon", "Löffel");
+       chapters.get(0).addWord("key", "Schlüssel");
+       chapters.get(0).addWord("music", "Musik");
+       chapters.get(0).addWord("stairway", "Stiege");
+       chapters.get(0).addWord("underground", "U-Bahn");
+       chapters.get(0).addWord("sign", "Schild");
+       chapters.get(0).addWord("ice cream", "Eiscreme");
+       chapters.get(0).addWord("Stadion", "stadium");
+       chapters.get(0).addWord("seat", "Sessel");
+       chapters.get(0).addWord("telephone", "Telefon");
+       chapters.get(0).addWord("game", "Spiel");
+       chapters.get(0).addWord("apple", "Apfel");
+       chapters.get(0).addWord("iron", "Eisen");
+       chapters.get(0).addWord("trousers", "Hose");
+       chapters.get(0).addWord("shoes", "Schuhe");
+       chapters.get(1).addWord("make", "machen");
+       chapters.get(1).addWord("do", "tun");
+       chapters.get(1).addWord("go", "gehen");
+       chapters.get(1).addWord("eat", "essen");
+       chapters.get(1).addWord("sleep", "schlafen");
+       chapters.get(1).addWord("drink", "trinken");
+       chapters.get(1).addWord("drive", "fahren");
+       chapters.get(1).addWord("speak", "sprechen");
+       chapters.get(1).addWord("read", "lesen");
+       chapters.get(1).addWord("write", "schreiben");
+       chapters.get(1).addWord("run", "laufen");
+       chapters.get(1).addWord("see", "sehen");
+       chapters.get(1).addWord("ask", "fragen");
+       chapters.get(1).addWord("cook", "kochen");
+       chapters.get(1).addWord("work", "arbeiten");
+       chapters.get(1).addWord("clean", "putzen");
+       chapters.get(1).addWord("fly", "fliegen");
+       chapters.get(1).addWord("paint", "malen");
+       chapters.get(1).addWord("play", "spielen");
+       chapters.get(1).addWord("forget", "vergessen");
+       chapters.get(1).addWord("touch", "berühren");
+       chapters.get(1).addWord("hear", "hören");
+       chapters.get(1).addWord("taste", "schmecken");
+       chapters.get(1).addWord("smell", "riechen");
+       chapters.get(1).addWord("think", "denken");
+       chapters.get(1).addWord("cut", "schneiden");
+       chapters.get(1).addWord("iron", "bügeln");
+       chapters.get(1).addWord("fold", "falten");
+       chapters.get(1).addWord("buy", "kaufen");       
+       chapters.get(1).addWord("sell", "verkaufen");       
+       chapters.get(2).addWord("big", "groß");
+       chapters.get(2).addWord("fast", "schnell");
+       chapters.get(2).addWord("sweet", "süß");
+       chapters.get(2).addWord("good", "gut");
+       chapters.get(2).addWord("beautiful", "schön");      
+
+
     }
     public static Repository getInstance(){
         if(instance == null){
@@ -47,7 +120,8 @@ public class Repository {
     }
     
     public User login(String uName,String password){
-        User ret = users.stream().filter((it) -> it.getUsername().equals(uName) && it.getPassword().equals(password)).findFirst().get(); 
+        User ret = users.stream().filter((it) -> it.getUsername().equals(uName) && it.getPassword().equals(password)).findFirst().get();
+        System.out.println("testestest");
         return ret;
     }
     public User user(String uName){
