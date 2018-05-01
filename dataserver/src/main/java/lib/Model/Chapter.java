@@ -72,4 +72,7 @@ public class Chapter {
                return ret.build();
     }
     
+    public void addWord(String wE,String wG){
+        vocab.add(new Vocab(Repository.getInstance().getAllVocab().size()+1,wE,wG));
+    }
 }
