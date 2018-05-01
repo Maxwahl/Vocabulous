@@ -30,8 +30,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/simple-overlay/simple-overlay.html">
-<link rel="import" href="../bower_components/simple-overlay/simple-overlay.html">
 <link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
 <link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="my-icons.html">
@@ -43,8 +41,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="app-grid-style"> /*include="shared-styles"*/
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color: var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         --app-grid-columns: 2;
         --app-grid-item-height: 60px;
         display: block;
@@ -54,14 +52,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .card {
         margin: 24px;
         padding: 16px;
-        color: #757575;
+        color: var(--cardFontColor);
         border-radius: 5px;
-        background-color: #fff;
+        background-color: var(--cardBackgroundcolor);
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
       }
       
       h1{
-        color: var(--app-primary-color);
+        color: var(--headlineCard);
         margin-left: 40px;
         font-weight: 400;
         font-size: 23px;
@@ -173,6 +171,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .buttons{
         font-size: 0.65em;
         margin-left: 40px;
+      }
+      paper-input{
+        color:var(--secondaryFontColorCard);
+        --paper-input-container-color: var(--secondaryFontColorCard);
+        --paper-input-container-focus-color: var(--secondaryFontColorCard);
+        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
       }
     </style>
       <div class="card">

@@ -6,7 +6,7 @@ import Word from "./word.js";
 export default class BackEndHandler{
 
     static async fetchFromServer(get){
-        return await fetch(get).then(response => response.json());
+        return await fetch(get, {mode: 'cors'}).then(response => response.json());
     }
 
     static answer(get){

@@ -31,7 +31,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/simple-overlay/simple-overlay.html">
 <link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
 <link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../bower_components/paper-swatch-picker/paper-swatch-picker.html">
@@ -48,8 +47,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles" include="iron-flex iron-flex-alignment">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         --app-grid-columns: 2;
         --app-grid-item-height: 60px;
         display: block;
@@ -59,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       h1{
         color: var(--app-primary-color);
         margin-left: 40px;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 23px;
       }
       h2.themes{
@@ -118,6 +117,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 15px;
         color:var(--app-secondary-color);
       }
+      h3.card{
+        font-weight: 400;
+        margin-left: 40px;
+        margin-top: 20px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
       h3.headerColor{
         font-weight: 300;
         margin-left: 40px;
@@ -173,13 +179,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       h3.menuNavigationColor{
         font-weight: 300;
         margin-left: 200px;
-        margin-top: 0px;
         font-size: 15px;
         color:var(--app-secondary-color);
       }
       paper-swatch-picker.menuNavigationColor{
         margin-left: 20px;
-        margin-top: -40px;
+        margin-top: -30px;
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
@@ -216,6 +221,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: absolute;
         --paper-swatch-picker-color-size: 10px;
       }
+      h3.cardBackground{
+        font-weight: 300;
+        margin-left: 40px;
+        margin-top: 0px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.cardBackground{
+        margin-left: -150px;
+        margin-top: -40px;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      h3.headlineColor{
+        font-weight: 300;
+        margin-left: 40px;
+        margin-top: 0px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.headlineColor{
+        margin-left: 20px;
+        margin-top: -40px;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
+      h3.cardFontColor{
+        font-weight: 300;
+        margin-left: 200px;
+        margin-top: 0px;
+        font-size: 15px;
+        color:var(--app-secondary-color);
+      }
+      paper-swatch-picker.cardFontColor{
+        margin-left: 20px;
+        margin-top: -40px;
+        position: absolute;
+        --paper-swatch-picker-color-size: 10px;
+      }
       .buttons{
         font-size: 0.65em;
         margin-left: 40px;
@@ -223,8 +267,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-dropdown-menu{
         margin-left: 120px;
         margin-top: -30px;
+        --disabled-text-color:var(--secondaryFontColorCard);
+        -webkit-tap-highlight-color:var(--cardBackgroundcolor);
+        --paper-dropdown-menu-color:var(--cardBackgroundcolor);
+        --secondary-text-color:var(--secondaryFontColorCard);
+        --primary-text-color:var(--secondaryFontColorCard);
       }
-      
+      paper-item{
+        color:var(--secondaryFontColorCard);
+        background-color:var(--cardBackgroundcolor);
+      }
       paper-input.themeName{
         margin-left: 40px;
         width: 300px;
@@ -236,6 +288,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           border: var(--app-secondary-color);
         }
       }
+      div.colorview{
+        width: 15px;
+        height: 15px;
+        margin-top: -15px;
+        border-style: solid;
+        border-color: black;
+        border-width: 0.5px;
+        border-radius: 20%;
+      }    
     </style>
 
     <div class="card">
@@ -267,31 +328,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </tr>
           <tr>
               <td><h3 class="headerBackground">Background colour</h3></td>
-              <td><paper-swatch-picker class="headerBackground" noink></paper-swatch-picker></td>
+              <td><paper-swatch-picker class="headerBackground" noink></paper-swatch-picker><div name="headerBackgroundview" class="colorview" hidden="true" style="margin-left: -130px"></div></td>
               <td><h3 class="headerColor">Font colour</h3></td>
-              <td><paper-swatch-picker class="headerColor" noink></paper-swatch-picker></td>
+              <td><paper-swatch-picker class="headerColor" noink></paper-swatch-picker><div name="headerColorview" hidden="true" class="colorview" style="margin-left: 40px"></div></td>
           </tr>
           <tr>
               <td><h3 class="menu">Menu</h3></td>
           </tr>
           <tr>
               <td><h3 class="menuBackground">Background color</h3></td>
-              <td><paper-swatch-picker class="menuBackground" noink></paper-swatch-picker></td>
+              <td><paper-swatch-picker class="menuBackground" noink></paper-swatch-picker><div name="menuBackgroundview" hidden="true" class="colorview" style="margin-left: -130px"></div></td>
               <td><h3 class="menuColor">Font colour</h3></td>
-              <td><paper-swatch-picker class="menuColor" noink></paper-swatch-picker></td>
+              <td><paper-swatch-picker class="menuColor" noink></paper-swatch-picker><div name="menuColorview" hidden="true" class="colorview" style="margin-left: 40px"></div></td>
               <td><h3 class="menuNavigationColor">Navigation colour</h3></td>
-              <td><paper-swatch-picker class="menuNavigationColor" noink></paper-swatch-picker></td>
+              <td><paper-swatch-picker class="menuNavigationColor" noink></paper-swatch-picker><div name="menuNaviationColorview" hidden="true" class="colorview" style="margin-left: 50px"></div></td>
           </tr>
           <tr>
             <td><h3 class="menuNavigationFontColor">Navigation Font colour</h3></td>
-            <td><paper-swatch-picker class="menuNavigationFontColor" noink></paper-swatch-picker></td>
+            <td><paper-swatch-picker class="menuNavigationFontColor" noink></paper-swatch-picker><div name="menuNavigationFontColorview" hidden="true" class="colorview" style="margin-left: -130px"></div></td>
           </tr>
           <tr>
               <td><h3 class="displayArea">Card Area</h3></td>
           </tr>
           <tr>
               <td><h3 class="displayAreaBackground">Background colour</h3></td>
-              <td><paper-swatch-picker class="displayAreaBackground" noink></paper-swatch-picker></td>
+              <td><paper-swatch-picker class="displayAreaBackground" noink></paper-swatch-picker><div name="displayAreaBackgroundview" hidden="true" class="colorview" style="margin-left: -130px"></div></td>
+          </tr>
+          <tr>
+              <td><h3 class="displayArea">Card</h3></td>
+          </tr>
+          <tr>
+              <td><h3 class="cardBackground">Background colour</h3></td>
+              <td><paper-swatch-picker class="cardBackground" noink></paper-swatch-picker><div name="cardBackgroundview" hidden="true" class="colorview" style="margin-left: -130px"></div></td>
+              <td><h3 class="headlineColor">Headline colour</h3></td>
+              <td><paper-swatch-picker class="headlineColor" noink></paper-swatch-picker><div name="headlineColorview" hidden="true" class="colorview" style="margin-left: 40px"></div></td>
+              <td><h3 class="cardFontColor">Paragraph Font colour</h3></td>
+              <td><paper-swatch-picker class="cardFontColor" noink></paper-swatch-picker><div name="cardFontColorview" hidden="true" class="colorview" style="margin-left: 50px"></div></td>
           </tr>
         </table>
     </div>
@@ -321,6 +393,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getThemeName(){
         return Polymer.dom(this.root).querySelector("paper-input[class=themeName]");
       }
+      _getHeaderBackgroundColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=headerBackgroundview]");
+      }
+      _getHeaderFontColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=headerColorview]");
+      }
+      _getMenuBackgroundColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=menuBackgroundview]");
+      }
+      _getMenuFontColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=menuColorview]");
+      }
+      _getMenuNavigationColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=menuNaviationColorview]");
+      }
+      _getMenuNavigationFontColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=menuNavigationFontColorview]");
+      }
+      _getCardAreaBackgroundColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=displayAreaBackgroundview]");
+      }
+      _getCardBackgroundColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=cardBackgroundview]");
+      }
+      _getCardHeadlineColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=headlineColorview]");
+      }
+      _getCardFontColourView(){
+        return Polymer.dom(this.root).querySelector("div[name=cardFontColorview]");
+      }
       _getHeaderBackgroundColour(){
         return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=headerBackground]");
       }
@@ -341,6 +443,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getCardAreaBackgroundColour(){
         return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=displayAreaBackground]");
+      }
+      _getCardBackgroundColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=cardBackground]");
+      }
+      _getCardHeadlineColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=headlineColor]");
+      }
+      _getCardFontColour(){
+        return Polymer.dom(this.root).querySelector("paper-swatch-picker[class=cardFontColor]");
       }
       _getCreateThemeDiv(){
         return Polymer.dom(this.root).querySelector("div[class=createTheme]");

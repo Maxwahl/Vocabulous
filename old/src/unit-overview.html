@@ -11,27 +11,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <!--<link rel="import" href="../bower_components/paper-search/paper-search-bar.html">-->
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
+<link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="unit-overview">
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 10px;
       }
       h1{
         color: var(--app-primary-color);
         margin-left: 40px;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 23px;
       }
       paper-search-bar{
         margin: 40px;
         margin-top: 50px;
         width: 97%;
+        color: var(--secondaryFontColorCard);
+        --background-color:var(--cardBackgroundcolor);
+        --disabled-text-color:var(--secondaryFontColorCard);
         /*padding-bottom: 30px;*/
       }
       paper-search-bar::-ms-clear{
@@ -42,22 +51,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       table{
         width: 100%;
       }
-     
+      td:hover{
+        background-color: var(--hover-color);
+      }
       td{
-        border: 0.5px solid #cecece;
+        border: 0.5px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
-        font-weight: 500;
+        font-weight: 200;
         margin-left: 40px;
+        color:var(--secondaryFontColorCard);
         border-radius: 5px;
         margin-bottom: 3px;
         display: block;
       }
+      paper-button.newUnit{
+        font-size: 0.65em;
+        margin-top: -50px;
+        width: 12%;
+        height: 30px;
+        margin-left: 76%;
+      }
+      paper-button.translate{
+        font-size: 0.65em;
+        width: 10%;
+        height: 30px;
+        margin-bottom: 20px;
+      }
+      d2l-dropdown{
+        float:right;
+      }
+      paper-icon-button{
+        width: 35px;
+        height: 35px;
+        float:right;
+      }
     </style>
-
+    	
     <div class="card">
       <h1>Units</h1>
+        <d2l-dropdown>
+          <paper-icon-button class="d2l-dropdown-opener" name="menu" icon="vaadin:ellipsis-dots-v" noink></paper-icon-button>
+          <d2l-dropdown-menu>
+            <d2l-menu label="Menu">
+              <d2l-menu-item name="newUnit" text="Create New Unit"></d2l-menu-item>
+             <d2l-menu-item name="translate" text="Translate"></d2l-menu-item></d2l-menu>
+          </d2l-dropdown-menu>
+      </d2l-dropdown>
       <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
       <table id="units">
 
@@ -77,6 +118,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getChecked(){
         return Polymer.dom(this.root).querySelector("input[name=forUnit]");
+      }
+      _getNewUnitButton(){
+        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=newUnit]");
+      }
+      _getTranslateButton(){
+        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=translate]");
       }
     }
     window.customElements.define(UnitOverview.is, UnitOverview);
