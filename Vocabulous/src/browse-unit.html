@@ -1,0 +1,70 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
+<link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="browse-unit">
+  <template>
+    <style include="shared-styles">
+      :host {
+        --app-primary-color: var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
+        display: block;
+        padding: 10px;
+      }
+      h1{
+        color:  var(--headlineCard);
+        margin-left: 40px;
+        font-weight: 400;
+        font-size: 23px;
+      }
+      paper-icon-button.back{
+        font-size: 0.65em;
+        width: 30px;
+        height: 30px;
+        margin-left: -10px;
+        margin-top: -49px;
+        position:absolute;
+      }
+      p{
+        margin-left: 40px;
+      }
+    </style>
+
+    <div class="card">
+      <h1>Browse Unit</h1>
+      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
+      <p>Die Units, die von anderen Usern erstellt wurden, können mit Hilfe eines Filters bei der Searchbar angezeigt
+         und in die eigene Unit-Sammlung übernommen werden.
+      </p>
+    </div>
+  </template>
+
+  <script>
+    class BrowseUnit extends Polymer.Element {
+      static get is() { return 'browse-unit'; }
+      _getReturnButton(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
+      }
+    }
+
+    window.customElements.define(BrowseUnit.is, BrowseUnit);
+  </script>
+   <script name="createunit" src="../develop-javascript/src/browseunit.js" type="module"></script>
+</dom-module>

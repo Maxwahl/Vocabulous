@@ -15,34 +15,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
+<link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="unit-page">
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 10px;
       }
       h1{
         color: var(--app-primary-color);
         margin-left: 40px;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 23px;
       }
       table{
+        margin-top: 100px;
         margin-left: 40px;
         width: 96.5%;
       }
       td{
-        border: 0.5px solid #cecece;
+        border: 0.5px solid var(--secondaryFontColorCard);
         height: 15px;
         padding: 10px;
+        font-weight: 200;
         text-align: left;
         margin-left: 40px;
         border-radius: 5px;
+        color:var(--secondaryFontColorCard);
         width: 48.25%;
       }
       tr{
@@ -66,19 +73,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 30px;
         height: 30px;
         margin-left: -10px;
-        margin-top: -50px;
+        margin-top: -49px;
         position:absolute;
       }
-
+      d2l-dropdown{
+        float:right;
+      }
     </style>
 
     <div class="card">
       <h1>Unit 1</h1> <!--Name der Unit-->
       <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
-      <div>
-        <paper-button class="practiceUnit" name="practiceUnit" raised noink>Practice Unit</paper-button>
-        <paper-button class="selfCheck" name="selfCheck" raised noink>Self-check</paper-button>
-      </div>
+      <d2l-dropdown>
+              <paper-icon-button style="width: 35px;height: 35px;"class="d2l-dropdown-opener" name="menu" icon="vaadin:ellipsis-dots-v" noink></paper-icon-button>
+              <d2l-dropdown-menu>
+                  <d2l-menu label="Menu">
+                    <d2l-menu-item text="Practice Variants">
+                        <d2l-menu>
+                            <d2l-menu-item name="practiceUnit" text="Practice Unit"></d2l-menu-item>
+                        </d2l-menu>
+                    </d2l-menu-item>
+                    <d2l-menu-item name="selfCheck" text="Self-check"></d2l-menu-item>
+                  </d2l-menu>
+              </d2l-dropdown-menu>
+      </d2l-dropdown>
   
       <table id="vocabulary">
         
@@ -99,10 +117,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
       }
       _getPracticeButton(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=practiceUnit]");
+        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=practiceUnit]");
       }
       _getExamButton(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=selfCheck]");
+        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=selfCheck]");
       }
     }
     window.customElements.define(UnitPage.is, UnitPage);

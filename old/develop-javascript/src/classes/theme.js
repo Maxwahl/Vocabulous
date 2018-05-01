@@ -1,5 +1,5 @@
 export default class Theme{
-    constructor(id,name, headerBackgroundcolor, menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menunNavigationFontColor)
+    constructor(id,name, headerBackgroundcolor, menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationFontColor, cardBackgroundColor, cardHeadLineColor, paragraphFontColor)
     {
         this.id = id;
         this.name=name;
@@ -9,7 +9,10 @@ export default class Theme{
         this.cardAreaBackgroundColor = cardAreaBackgroundColor;
         this.menuNavigationColor = menuNavigationColor;
         this.menuBackgroundColor = menuBackgroundColor;
-        this.menunNavigationFontColor = menunNavigationFontColor;
+        this.menuNavigationFontColor = menuNavigationFontColor;
+        this.cardBackgroundColor = cardBackgroundColor;
+        this.cardHeadLineColor = cardHeadLineColor;
+        this.paragraphFontColor = paragraphFontColor;
     }
     getId(){
         return this.id;
@@ -36,6 +39,15 @@ export default class Theme{
         return this.menuBackgroundColor;
     }
     getMenuNavigationFontColor(){
-        return this.menunNavigationFontColor;
+        return this.menuNavigationFontColor;
+    }
+    getCardBackgroundColor(){
+        return this.cardBackgroundColor;
+    }
+    getCardHeadLineColor(){
+        return this.cardHeadLineColor;
+    }
+    getParagraphFontColor(){
+        return this.paragraphFontColor;
     }
 }

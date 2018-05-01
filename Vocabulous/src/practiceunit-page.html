@@ -19,6 +19,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="../bower_components/time-counter/time-counter.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 <link rel="import" href="my-icons.html">
 <link rel="import" href="shared-styles.html">
 
@@ -26,8 +28,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style include="shared-styles">
       :host {
-        --app-primary-color: #2f3238;
-        --app-secondary-color: grey;
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
         padding: 10px;
       }
@@ -65,17 +67,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin-top: -72.5px;
           margin-left: 40%;
           width: 25%;
-        --paper-input-container-color: initial;
-        --paper-input-container-focus-color: initial;
-        --paper-input-container-invalid-color: initial;
-        --paper-input-container-input-color: initial;
+          
+        color:var(--secondaryFontColorCard);
+        --paper-input-container-color: var(--secondaryFontColorCard);
+        --paper-input-container-focus-color: var(--secondaryFontColorCard);
+        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
       }
       paper-toggle-button.language{
         margin-left: 15px;
         margin-top: 20px;
         --paper-toggle-button-checked-bar-color:  #1E88E5;
-      --paper-toggle-button-checked-button-color: #1E88E5;
-      --paper-toggle-button-checked-ink-color: #1E88E5;
+        --paper-toggle-button-checked-button-color: #1E88E5;
+        --paper-toggle-button-checked-ink-color: #1E88E5;
+        --paper-toggle-button-unchecked-bar-color:  #1E88E5;
+        --paper-toggle-button-unchecked-button-color: #1E88E5;
+        --paper-toggle-button-unchecked-ink-color: #1E88E5;
       }
       paper-button.nextVocab{
         font-size: 0.65em;
@@ -100,6 +107,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: 80px;
       }
       paper-button.skipbutton{
+        font-size: 0.65em;
+        width: 8%;
+        height: 30px;
+        margin-left: 0%;
+        margin-top: 80px;
+      }
+      paper-button.startbutton{
         font-size: 0.65em;
         width: 8%;
         height: 30px;
@@ -146,6 +160,72 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: -49px;
         position:absolute;
       }
+      iron-icon.language{
+        color: var(--app-secondary-color);
+        width: 15px;
+        height: 15px;
+        margin-top: 15px;
+        margin-left: 10px;
+      }
+      iron-icon.next{
+        color: var(--app-secondary-color);
+        width: 15px;
+        height: 15px;
+        margin-top: -80px;
+        margin-left: 80%;
+      }
+      #popuplanguage iron-icon.language{
+        display: none;
+      }
+      #popuplanguage{
+        position: absolute;
+        z-index: 1;
+        width: 500px;
+        background-color: rgba(134, 221, 255, 0.562);
+        color:black;
+        padding: 5px 0;
+        margin-top: 4.5%;
+      }
+      #popuplanguage::after{
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 48.5%;
+        margin-top: -4px;
+        border-width: 7px;
+        border-style: solid;
+        border-color: transparent transparent rgba(134, 221, 255, 0.562) transparent;
+      }
+      iron-icon.next:hover #popupnext{
+        display: block;
+      }
+      #popupnext iron-icon.next{
+        display: none;
+      }
+      #popupnext{
+        position: absolute;
+        z-index: 1;
+        width: 500px;
+        background-color: rgba(134, 221, 255, 0.562);
+        color:black;
+        padding: 5px 0;
+        margin-top: -1.5%;
+        margin-left: 59.5%;
+      }
+      #popupnext::after{
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 48.5%;
+        margin-top: -4px;
+        border-width: 7px;
+        border-style: solid;
+        border-color: transparent transparent rgba(134, 221, 255, 0.562) transparent;
+      }
+      iron-icon.next:hover #popupnext{
+        display: block;
+      }
+
     </style>
 
     <div class="card">
@@ -153,59 +233,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <table>
         <tr>
-          <td><h3 class="german">Deutsch</h3></td>
+          <td><h3 class="german">German</h3></td>
           <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
-          <td> <h3 class="english">Englisch</h3></td>
+          <td> <h3 class="english">English</h3></td>
+          <td><iron-icon icon="vaadin:info-circle-o" class="language"></iron-icon></td>
+          <div id="popuplanguage" name="languagePopup" style="display: none">When you select "German" you will have to
+              write German words and when you select "English" you will have to write
+              English words.</div>
         </tr>
       </table>
       <div class="progressbars">
           <paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress>
           <h3 class="learnprogress">Learn Progress</h3>
           
-          <paper-progress name="unit" value="50" min="0" max="100" class="blue"></paper-progress>
+          <paper-progress name="unit" value="0" min="0" max="100" class="blue"></paper-progress>
           <h3 class="unitprogress">Unit Progress</h3>
       </div>
       <div>
-          <paper-button class="nextVocab" name="nextVocab" raised noink>Next</paper-button>
-          <h2>house</h2> <!--Vokabel das angezeigt wird-->
-          <paper-input class="vocab"></paper-input> <!--Vokabel das eingegeben wird-->
+          <paper-button hidden="true" class="nextVocab" name="nextVocab" raised noink>Next</paper-button>
+          <h2 hidden="true">house</h2> <!--Vokabel das angezeigt wird-->
+          <paper-input hidden="true" class="vocab"></paper-input> <!--Vokabel das eingegeben wird-->
+          <iron-icon hidden="true" icon="vaadin:info-circle-o" class="next"></iron-icon>
+          <div id="popupnext" name="nextPopup" style="display: none">When you press "NEXT" Vocabulous
+              will check your answer. If it is correct the line will turn green,
+              else the line will turn red. You have two tries.
+              When the line turns orange, the correct answer is shown.
+              After a short amount of time you will get the next word.</div>
       </div>
       
       <table>
         <tr>
-          <td><paper-button class="cancelbutton" name="cancelbutton" noink raised>Cancel</paper-button></td>
-          <td><paper-button class="pausebutton" name="pausebutton" noink raised>Pause</paper-button></td>
-          <td><paper-button class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>
-          <td><h2 class="timer">00:00:00</time-counter></td>
+          <td><paper-button hidden="true" class="cancelbutton" name="cancelbutton" noink raised>Exit</paper-button></td>
+          <td><paper-button hidden="true" class="pausebutton" name="pausebutton" noink raised>Pause</paper-button></td>
+          <td><paper-button hidden="true" class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>
+          <td><paper-button class="startbutton" name="startbutton" noink raised>Start</paper-button></td>
+          <td><h2 hidden="true" class="timer">00:00:00</time-counter></td>
         </tr>
       </table>
     </div>
+    <input name="wordCount" style="display:none;">
+    <input name="wrong" style="display:none;">
+    <input name="secondTry" style="display:none;">
+    <input name="wrongVocs" style="display:none;">
   </template>
-  <!-- Beispielcode für Timer
-    <time-counter id="timer"></time-counter>
-
-    <button id="restart">Restart</button>
-    <button id="stop">Stop</button>
-
-    <script>
-      var timerElement = document.querySelector('#timer')
-      var restartButton = document.querySelector('#restart')
-      var stopButton = document.querySelector('#stop')
-
-      var restartTimer = function () {
-        timerElement.startDate = Date.now()
-      }
-
-      var stopTimer = function () {
-        timerElement.startDate = undefined
-      }
-
-      restartButton.addEventListener('click', restartTimer)
-      stopButton.addEventListener('click', stopTimer)
-
-      restartTimer()
-    </script>
-  -->
   <script>
     class PracticeUnitPage extends Polymer.Element {
       static get is() { return 'practiceunit-page'; }
@@ -241,6 +311,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getNextButton(){
         return Polymer.dom(this.root).querySelector("paper-button[class=nextVocab]");
+      }
+      _getStartButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=startbutton]");
+      }
+      _getReturnButton(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
+      }
+      _getLanguageInfo(){
+        return Polymer.dom(this.root).querySelector("iron-icon[class=language]");
+      }
+      _getNextInfo(){
+        return Polymer.dom(this.root).querySelector("iron-icon[class=next]");
+      }
+      _getLanguagePupup(){
+        return Polymer.dom(this.root).querySelector("div[name=languagePopup]");
+      }
+      _getNextPupup(){
+        return Polymer.dom(this.root).querySelector("div[name=nextPopup]");
+      }
+      _getWordCount(){
+        return Polymer.dom(this.root).querySelector("input[name=wordCount]");
+      }
+      _getWrong(){
+        return Polymer.dom(this.root).querySelector("input[name=wrong]");
+      }
+      _getSecondTry(){
+        return Polymer.dom(this.root).querySelector("input[name=secondTry]");
+      }
+      _getWrongVocs(){
+        return Polymer.dom(this.root).querySelector("input[name=wrongVocs]");
       }
     }
     window.customElements.define(PracticeUnitPage.is, PracticeUnitPage);
