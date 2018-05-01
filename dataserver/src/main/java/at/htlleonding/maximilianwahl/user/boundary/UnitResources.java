@@ -46,7 +46,7 @@ public class UnitResources {
     @Path("addWord")
     @GET
     public JsonObject addWord(@QueryParam("cID") int cID,@QueryParam("wE") String wE,@QueryParam("wG") String wG){
-        Chapter c = Repository.getInstance().getChapter(cID).stream().filter((it)-> it.getId()==cID).findFirst().get();
+        Chapter c = Repository.getInstance().getChapterByID(cID);
         c.addWord(wE, wG);
         int val = 0;
          return Json.createObjectBuilder()
