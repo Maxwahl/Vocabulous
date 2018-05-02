@@ -66,7 +66,7 @@ public class UsersResource {
         }
     }
     
-    @Path("startingTheme")
+    @Path("setStartingTheme")
     @GET
     public JsonObject setStartingTheme(@QueryParam("user") int uID,@QueryParam("theme") int themeID){
         int val = Repository.getInstance().setStartingTheme(uID, themeID);

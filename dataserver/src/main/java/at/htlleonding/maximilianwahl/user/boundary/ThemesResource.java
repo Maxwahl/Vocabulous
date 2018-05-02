@@ -37,35 +37,11 @@ public class ThemesResource {
     @Path("userThemes/{uID}")
     @GET
     public JsonArray userThemes(@PathParam("uID") int id){
-        System.out.println(id);
         List<Theme> themes = Repository.getInstance().getUserThemes(id);
         JsonArrayBuilder ret = Json.createArrayBuilder();
         themes.forEach((t) -> {
             ret.add(t.jsonify());
         });
-        /*ret.add(Json.createObjectBuilder()
-                .add("id",2)
-                .add("name", "custom1")
-                .add("headerBackgroundColor","#012345")
-                .add("headerFontColor", "#6789AB")
-                .add("menuBackgroundColor","#CDEF01")
-                .add("menuFontColor", "#234567")
-                .add("menuNavigationFontColor","#89ABCD")
-                .add("cardAreaBackgroundColor", "#EF0123")
-                .add("menuNavigationColor","#456789")
-                .build());
-        ret.add(Json.createObjectBuilder()
-                .add("id",3)
-                .add("name", "custom2")
-                .add("headerBackgroundColor","#f5ffff")
-                .add("headerFontColor", "#ffff8f")
-                .add("menuBackgroundColor","#f0ffff")
-                .add("menuFontColor", "#f21fff")
-                .add("menuNavigationFontColor","#fa7fff")
-                .add("cardAreaBackgroundColor", "#ab5fff")
-                .add("menuNavigationColor","#24fde9")
-                .build());
-        */
         return ret.build();
     }
     @Path("deleteTheme")
