@@ -4,6 +4,12 @@ import Word from './classes/word.js';
 console.log("Javascript: createunit loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
+
+var user;
+var register = myapp._getRegisterLogin();
+var username = register._getUsername();
+var password = register._getPassword();
+
 console.dir(overview);
 var createunit = overview._getCreateUnit();
 console.dir(createunit);
@@ -61,7 +67,11 @@ function reset(){
     cell.innerHTML = "<paper-input class='germanVocab' label='German word' no-label-float></paper-input><paper-input class='englishVocab' label='English word' no-label-float></paper-input>";
     unitNameInput.value = "";
 }
-function save(){
+async function save(){
+    if(unitNameInput.value == undefined || unitNameInput.value == ""){
+        toast.open();
+        return;
+    }
     for(var i = 0; i < wordTable.rows.length; i++){
         if(wordTable.rows[i].cells[0].childNodes[0].value == "" || wordTable.rows[i].cells[0].childNodes[0].value == undefined
         || wordTable.rows[i].cells[0].childNodes[1].value == "" || wordTable.rows[i].cells[0].childNodes[1].value == undefined){
@@ -69,9 +79,12 @@ function save(){
             return;
         }
     }
-    if(unitNameInput.value == undefined || unitNameInput.value == ""){
-        toast.open();
-        return;
+    user = await BackEndHandler.login(username.value, password.value);
+    console.log(user.id);
+    var unitId = await BackEndHandler.createUnit(user, unitNameInput.value);
+    for(var i = 0; i < wordTable.rows.length; i++){
+        var word = new Word(wordTable.rows[i].cells[0].childNodes[0].value, wordTable.rows[i].cells[0].childNodes[1].value);
+        await BackEndHandler.addWordToUnit(unitId, word);
     }
     overview._routePageChanged("unit-overview");
     reset();
