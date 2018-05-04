@@ -46,7 +46,7 @@ export default class BackEndHandler{
     }
     static async startingTheme(uId){
         const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardHeadLineColor,paragraphFontColor} = await this.answer("http://localhost:8080/dataserver/webresources/themes/startingTheme/"+uId);
-        theme = new Theme(id,name,headerBackgroundColor,menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationFontColor,cardHeadLineColor,paragraphFontColor);
+        theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
         return theme;      
     }
     static async userThemes(uId){
@@ -54,17 +54,17 @@ export default class BackEndHandler{
         let themes = [];
         while(jsonText.length>0){
             const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardHeadLineColor,paragraphFontColor} = jsonText.pop();
-            let theme = new Theme(id,name,headerBackgroundColor,menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationFontColor,cardHeadLineColor,paragraphFontColor);
+            let theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
             themes.push(theme);
         }
         return themes;
     }
     static async insertTheme(uID,theme){
-        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/themes/newTheme?owner="+uID+"&name="+theme.getName()+"&hBG="+theme.getHeaderBackgroundColor()+"&mFC="+theme.getMenuFontColor()+"&hFC="+theme.getHeaderFontColor()+"&cABG="+theme.getCardAreaBackgroundColor()+"&mNC="+theme.getMenuNavigationColor()+"&mBG="+theme.getMenuBackgroundColor()+"&mNF="+theme.getMenuNavigationFontColor()+"&cHL="+theme.getCardHeadLineColor()+"&pF="+theme.getParagraphFontColor());
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/themes/newTheme?owner="+uID+"&name="+theme.getName()+"&hBG="+theme.getHeaderBackgroundcolorDB()+"&mFC="+theme.getMenuFontColorDB()+"&hFC="+theme.getHeaderFontColorDB()+"&cABG="+theme.getCardAreaBackgroundColorDB()+"&mNC="+theme.getMenuNavigationColorDB()+"&mBG="+theme.getMenuBackgroundColorDB()+"&mNF="+theme.getMenuNavigationFontColorDB()+"&cHL="+theme.getCardHeadLineColorDB()+"&pF="+theme.getParagraphFontColorDB());
         return retVal;
     }
     static async changeTheme(theme){
-        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/themes/changeTheme?theme="+theme.getId()+"&name="+theme.getName()+"&hBG="+theme.getHeaderBackgroundColor()+"&mFC="+theme.getMenuFontColor()+"&hFC="+theme.getHeaderFontColor()+"&cABG="+theme.getCardAreaBackgroundColor()+"&mNC="+theme.getMenuNavigationColor()+"&mBG="+theme.getMenuBackgroundColor()+"&mNF="+theme.getMenuNavigationFontColor()+"&cHL="+theme.getCardHeadLineColor()+"&pF="+theme.getParagraphFontColor());
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/themes/changeTheme?theme="+theme.getId()+"&name="+theme.getName()+"&hBG="+theme.getHeaderBackgroundcolorDB()+"&mFC="+theme.getMenuFontColorDB()+"&hFC="+theme.getHeaderFontColorDB()+"&cABG="+theme.getCardAreaBackgroundColorDB()+"&mNC="+theme.getMenuNavigationColorDB()+"&mBG="+theme.getMenuBackgroundColorDB()+"&mNF="+theme.getMenuNavigationFontColorDB()+"&cHL="+theme.getCardHeadLineColorDB()+"&pF="+theme.getParagraphFontColorDB());
         return retVal;
     }
     static async changeStartingTheme(uId,tId){
