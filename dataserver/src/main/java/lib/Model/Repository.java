@@ -182,8 +182,9 @@ public class Repository {
     }
 
     public int addTheme(int owner, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cBG,String cHL,String pF) {
-        themes.add(new Theme(themes.size(),name,owner,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cBG,cHL,pF));
-        return 0;
+        Theme t = new Theme(themes.size(),name,owner,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cBG,cHL,pF);
+        themes.add(t);
+        return t.getId();
     }
 
     public int changeTheme(int id, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cBG,String cHL,String pF) {
