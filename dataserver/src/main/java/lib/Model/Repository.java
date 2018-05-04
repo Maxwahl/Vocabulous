@@ -42,8 +42,8 @@ public class Repository {
        chapters.add(new Chapter(1,"Basic Nouns",-1));
        chapters.add(new Chapter(2,"Basic Verbs",-1));
        chapters.add(new Chapter(3,"Basic Adjectives",-1));
-       themes.add(new Theme(1,"customtheme",1,"#012345","#012345","#012345","#012345","#012345","#012345","#012345","#012345","#012345"));
-       themes.add(new Theme(2,"customtheme2",1,"#012345","#012345","#012345","#0123456","#012345","#012345","#012345","#012345","#012345"));
+       themes.add(new Theme(1,"customtheme",1,"012345","012345","012345","012345","012345","012345","012345","012345","012345"));
+       themes.add(new Theme(2,"customtheme2",1,"012345","012345","012345","0123456","012345","012345","012345","012345","012345"));
        chapters.get(0).addWord("house", "Haus");
        chapters.get(0).addWord("car", "Auto");
        chapters.get(0).addWord("plane", "Flugzeug");
@@ -154,7 +154,8 @@ public class Repository {
     }
 
     public Theme getStartingTheme(int id) {
-       Theme res = themes.stream().filter((it)->it.getId() == (users.stream().filter((u)->u.getId() == id).findFirst().get()).getStartingTheme()).findFirst().get();
+       int startingTheme = users.stream().filter((it)->it.getId()==id).map((it)->it.getStartingTheme()).findFirst().get();
+       Theme res = themes.stream().filter((it)->it.getId() == startingTheme).findFirst().get();
        return res;
     }
     public Theme getDefaultTheme() {
