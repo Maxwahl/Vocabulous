@@ -5,6 +5,7 @@
  */
 package lib.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -57,6 +58,7 @@ public class Chapter {
         this.id = id;
         this.name = name;
         this.owner = owner;
+        this.vocab = new ArrayList<>();
     }
     
     public JsonObject jsonifyUnit(){
@@ -73,6 +75,6 @@ public class Chapter {
     }
     
     public void addWord(String wE,String wG){
-        vocab.add(new Vocab(Repository.getInstance().getAllVocab().size()+1,wE,wG));
+        vocab.add(new Vocab(0,wE,wG));
     }
 }

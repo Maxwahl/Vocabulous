@@ -37,35 +37,11 @@ public class ThemesResource {
     @Path("userThemes/{uID}")
     @GET
     public JsonArray userThemes(@PathParam("uID") int id){
-        System.out.println(id);
         List<Theme> themes = Repository.getInstance().getUserThemes(id);
         JsonArrayBuilder ret = Json.createArrayBuilder();
         themes.forEach((t) -> {
             ret.add(t.jsonify());
         });
-        /*ret.add(Json.createObjectBuilder()
-                .add("id",2)
-                .add("name", "custom1")
-                .add("headerBackgroundColor","#012345")
-                .add("headerFontColor", "#6789AB")
-                .add("menuBackgroundColor","#CDEF01")
-                .add("menuFontColor", "#234567")
-                .add("menuNavigationFontColor","#89ABCD")
-                .add("cardAreaBackgroundColor", "#EF0123")
-                .add("menuNavigationColor","#456789")
-                .build());
-        ret.add(Json.createObjectBuilder()
-                .add("id",3)
-                .add("name", "custom2")
-                .add("headerBackgroundColor","#f5ffff")
-                .add("headerFontColor", "#ffff8f")
-                .add("menuBackgroundColor","#f0ffff")
-                .add("menuFontColor", "#f21fff")
-                .add("menuNavigationFontColor","#fa7fff")
-                .add("cardAreaBackgroundColor", "#ab5fff")
-                .add("menuNavigationColor","#24fde9")
-                .build());
-        */
         return ret.build();
     }
     @Path("deleteTheme")
@@ -78,16 +54,16 @@ public class ThemesResource {
     }
     @Path("newTheme")
     @GET
-    public JsonObject newTheme(@QueryParam("owner") int owner,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF,@QueryParam("cHL") String cHL,@QueryParam("pF") String pF){
-        int val = Repository.getInstance().addTheme(owner,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cHL,pF);
+    public JsonObject newTheme(@QueryParam("owner") int owner,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF,@QueryParam("cBG") String cBG,@QueryParam("cHL") String cHL,@QueryParam("pF") String pF){
+        int val = Repository.getInstance().addTheme(owner,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cBG,cHL,pF);
         return Json.createObjectBuilder()
                 .add("retVal", val)               
                 .build();
     }
     @Path("changeTheme")
     @GET
-    public JsonObject changeTheme(@QueryParam("theme") int id,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF,@QueryParam("cHL") String cHL,@QueryParam("pF") String pF){
-        int val = Repository.getInstance().changeTheme(id,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cHL,pF);
+    public JsonObject changeTheme(@QueryParam("theme") int id,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF,@QueryParam("cBG") String cBG,@QueryParam("cHL") String cHL,@QueryParam("pF") String pF){
+        int val = Repository.getInstance().changeTheme(id,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cBG,cHL,pF);
         return Json.createObjectBuilder()
                 .add("retVal", val)               
                 .build();
