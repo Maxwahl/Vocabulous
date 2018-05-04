@@ -46,7 +46,7 @@ export default class BackEndHandler{
     }
     static async startingTheme(uId){
         const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardBackgroundColor,cardHeadLineColor,paragraphFontColor} = await this.answer("http://localhost:8080/dataserver/webresources/themes/startingTheme/"+uId);
-        theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardBackgroundColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
+        let theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardBackgroundColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
         return theme;      
     }
     static async userThemes(uId){
@@ -72,7 +72,7 @@ export default class BackEndHandler{
         return retVal;
     }
     static async changeUser(user){
-        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/changeUser?user="+user.getId()+"&user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstName()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/changeUser?user="+user.getId()+"&user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
         return retVal;
     }
     static async deleteTheme(tId){
