@@ -446,6 +446,7 @@ async function loadThemes(){
     var newElement = document.createElement("paper-item");
     newElement.innerHTML="no custom theme selected";
     paperListBox.appendChild(newElement);
+    newElement.onclick = function(){check("no custom theme selected",1)};
     paperListBox.selectIndex(0);
     console.log(user.getId());
     data = await BackEndHandler.userThemes(user.getId());

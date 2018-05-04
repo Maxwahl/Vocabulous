@@ -45,38 +45,38 @@ export default class BackEndHandler{
         return user;
     }
     static async startingTheme(uId){
-        const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardHeadLineColor,paragraphFontColor} = await this.answer("http://localhost:8080/dataserver/webresources/themes/startingTheme/"+uId);
-        theme = new Theme(id,name,headerBackgroundColor,menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationFontColor,cardHeadLineColor,paragraphFontColor);
+        const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardBackgroundColor,cardHeadLineColor,paragraphFontColor} = await this.answer("http://localhost:8080/dataserver/webresources/themes/startingTheme/"+uId);
+        let theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardBackgroundColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
         return theme;      
     }
     static async userThemes(uId){
         let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/themes/userThemes/"+uId);
         let themes = [];
         while(jsonText.length>0){
-            const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardHeadLineColor,paragraphFontColor} = jsonText.pop();
-            let theme = new Theme(id,name,headerBackgroundColor,menuFontColor,headerFontColor,cardAreaBackgroundColor,menuNavigationColor,menuBackgroundColor,menuNavigationFontColor,cardHeadLineColor,paragraphFontColor);
+            const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardBackgroundColor,cardHeadLineColor,paragraphFontColor} = jsonText.pop();
+            let theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardBackgroundColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
             themes.push(theme);
         }
         return themes;
     }
     static async insertTheme(uID,theme){
-        const {retVal} = await this.answer("localhost:8080/dataserver/webresources/themes/newTheme?owner="+uID+"&name="+theme.getName()+"&hBG="+theme.getHeaderBackgroundColor()+"&mFC="+theme.getMenuFontColor()+"&hFC="+theme.getHeaderFontColor()+"&cABG="+theme.getCardAreaBackgroundColor()+"&mNC="+theme.getMenuNavigationColor()+"&mBG="+theme.getMenuBackgroundColor()+"&mNF="+theme.getMenuNavigationFontColor()+"&cHL="+theme.getCardHeadLineColor()+"&pF="+theme.paragraphFontColor());
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/themes/newTheme?owner="+uID+"&name="+theme.getName()+"&hBG="+theme.getHeaderBackgroundcolorDB()+"&mFC="+theme.getMenuFontColorDB()+"&hFC="+theme.getHeaderFontColorDB()+"&cABG="+theme.getCardAreaBackgroundColorDB()+"&mNC="+theme.getMenuNavigationColorDB()+"&mBG="+theme.getMenuBackgroundColorDB()+"&mNF="+theme.getMenuNavigationFontColorDB()+"&cBG="+theme.getCardBackgroundColorDB()+"&cHL="+theme.getCardHeadLineColorDB()+"&pF="+theme.getParagraphFontColorDB());
         return retVal;
     }
     static async changeTheme(theme){
-        const {retVal} = await this.answer("localhost:8080/dataserver/webresources/themes/changeTheme?theme="+theme.getId()+"&name="+theme.getName()+"&hBG="+theme.getHeaderBackgroundColor()+"&mFC="+theme.getMenuFontColor()+"&hFC="+theme.getHeaderFontColor()+"&cABG="+theme.getCardAreaBackgroundColor()+"&mNC="+theme.getMenuNavigationColor()+"&mBG="+theme.getMenuBackgroundColor()+"&mNF="+theme.getMenuNavigationFontColor()+"&cHL="+theme.getCardHeadLineColor()+"&pF="+theme.paragraphFontColor());
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/themes/changeTheme?theme="+theme.getId()+"&name="+theme.getName()+"&hBG="+theme.getHeaderBackgroundcolorDB()+"&mFC="+theme.getMenuFontColorDB()+"&hFC="+theme.getHeaderFontColorDB()+"&cABG="+theme.getCardAreaBackgroundColorDB()+"&mNC="+theme.getMenuNavigationColorDB()+"&mBG="+theme.getMenuBackgroundColorDB()+"&mNF="+theme.getMenuNavigationFontColorDB()+"&cBG="+theme.getCardBackgroundColorDB()+"&cHL="+theme.getCardHeadLineColorDB()+"&pF="+theme.getParagraphFontColorDB());
         return retVal;
     }
     static async changeStartingTheme(uId,tId){
-        const {retVal} = await this.answer("localhost:8080/dataserver/webresources/users/setStartingTheme?user="+uId+"&theme="+tId);
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/setStartingTheme?user="+uId+"&theme="+tId);
         return retVal;
     }
     static async changeUser(user){
-        const {retVal} = await this.answer("localhost:8080/dataserver/webresources/users/changeUser?user="+user.getId()+"&user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstName()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/changeUser?user="+user.getId()+"&user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
         return retVal;
     }
     static async deleteTheme(tId){
-        const {retVal} = await this.answer("localhost:8080/dataserver/webresources/themes/deleteTheme?theme="+tId);
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/themes/deleteTheme?theme="+tId);
         return retVal;
     }
     static async getUnits(uID){
@@ -104,7 +104,7 @@ export default class BackEndHandler{
         return retVal;//retVal is unitID
     }
     static async addWordToUnit(cID,word){
-        const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addWord?cID="+cID+"&wE="+word.wordEnglisch()+"&wG="+w.wordGerman());
+        const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addWord?cID="+cID+"&wE="+word.getWordEnglish()+"&wG="+w.getWordGerman());
         return retVal;
     }
 }
