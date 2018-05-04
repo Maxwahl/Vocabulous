@@ -156,7 +156,6 @@ public class Repository {
 
     public Theme getStartingTheme(int id) {
        int startingTheme = users.stream().filter((it)->it.getId()==id).map((it)->it.getStartingTheme()).findFirst().get();
-        System.out.println("themeid: "+startingTheme);
        Theme res = themes.stream().filter((it)->it.getId() == startingTheme).findFirst().get();
        return res;
     }
