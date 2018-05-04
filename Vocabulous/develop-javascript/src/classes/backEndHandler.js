@@ -72,7 +72,7 @@ export default class BackEndHandler{
         return retVal;
     }
     static async changeUser(user){
-        const {retVal} = await this.answer("localhost:8080/dataserver/webresources/users/changeUser?user="+user.getId()+"&user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstName()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/changeUser?id="+user.getId()+"&user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
         return retVal;
     }
     static async deleteTheme(tId){
