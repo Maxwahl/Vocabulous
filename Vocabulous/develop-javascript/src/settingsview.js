@@ -1,4 +1,10 @@
+//Derzeit Problem mit startTheme setzen und laden der Themes von User.
+
+
+
+
 import Theme from './classes/theme.js';
+import BackEndHandler from './classes/backEndHandler.js';
 console.log("Javascript: settingsview loaded");
 var myapp = document.querySelector("my-app");
 var sharedStyle = myapp._getSharedStyle();
@@ -32,7 +38,11 @@ var cardHeadlineColour = settings._getCardHeadlineColour();
 console.log(cardHeadlineColour);
 var cardFontColour = settings._getCardFontColour();
 console.log(cardFontColour);
-
+var user;
+var register = myapp._getRegisterLogin();
+var username = register._getUsername();
+var password = register._getPassword();
+var ironPages = overview._getIronPages();
 var headerBackgroundColourview = settings._getHeaderBackgroundColourView();
 console.log(headerBackgroundColourview);
 var headerFontColourview = settings._getHeaderFontColourView();
@@ -78,6 +88,8 @@ deleteButton.style.display="none";
 editButon.style.display="none";
 defaultswitch.onclick = function(){toggle()}
 darkswitch.onclick = function(){toggle()}
+var data;
+
 function toggle(){
     paperListBox.selectIndex(0);
     deleteButton.style.display="none";
@@ -101,7 +113,18 @@ function toggle(){
     darkswitch.removeAttribute("checked");
     isDefault = true;
 }
-console.log(overview.style);
+ironPages.addEventListener("iron-select",async function(){
+    if(ironPages.selected=="settings-view"){
+        await load();
+    }
+});
+(async function start(){
+    await load();
+  })();
+async function load(){
+    user = await BackEndHandler.login(username.value, password.value);
+    loadThemes();
+}
 function changeTheme(theme){
     overview.updateStyles({"--app-primary-color":theme.getHeaderBackgroundcolor()});
     overview.updateStyles({"--app-secondary-color":theme.getMenuFontColor()});
@@ -306,21 +329,53 @@ cardFontColour.onclick = function(){
 }
 
 console.dir(paperListBox);
-function save(){
+async function save(){
     //DB save data
     paperListBox.style.display = "inline";
     var newTheme = new Theme(5, themeName.value, headerBackgroundColour.color,menuFontColour.color,headerFontColour.color,cardAreaBackgroundColour.color,menuNavigationColour.color,menuBackgroundColour.color, menuNavigationFontColour.color,cardBackgroundColour.color, cardHeadlineColour.color, cardFontColour.color);
-    data.push(newTheme); //Später durch Datenbank ersetzt
-    console.log(newTheme);
+    var themesId = await BackEndHandler.insertTheme(user.getId(), newTheme);
+    await BackEndHandler.changeStartingTheme(user.getId(), themesId);
+    console.log(newTheme);/*
     var newElement = document.createElement("paper-item");
     newElement.innerHTML=newTheme.getName();
     newElement.onclick = function(){check(newTheme.getName())};
     console.dir(newElement);
     paperListBox.appendChild(newElement);
-    paperListBox.selectIndex(data.length);
-    changeTheme(newTheme);
+    paperListBox.selectIndex(data.length);*/
+    await loadThemes();
+    console.dir(paperListBox.children[0].innerHTML);
+    for(var i = 0; i<paperListBox.children.length;i++){
+        if(paperListBox.children[i].innerHTML == newTheme.getName()){
+            paperListBox.selectIndex(i);
+            break;
+        }
+    }
+    await changeTheme(newTheme);
     darkswitch.removeAttribute("checked");        
     defaultswitch.removeAttribute("checked");
+}
+function clearThemes(){
+    while(paperListBox.firstChild){
+        console.dir(paperListBox.firstChild);
+        paperListBox.removeChild(paperListBox.firstChild);
+    }
+}
+async function loadThemes(){
+    clearThemes();
+    var newElement = document.createElement("paper-item");
+    newElement.innerHTML="no custom theme selected";
+    paperListBox.appendChild(newElement);
+    paperListBox.selectIndex(0);
+    console.log(user.getId());
+    data = await BackEndHandler.userThemes(user.getId());
+    console.dir(data);
+    for(var i = 0; i<data.length;i++){
+        var newElement = document.createElement("paper-item");
+        newElement.innerHTML=data[i].getName();
+        newElement.onclick = function(){check(data[i].getName())};
+        paperListBox.appendChild(newElement);
+    }
+
 }
 function clear(){
     themeName.value = null;
@@ -345,7 +400,7 @@ function clear(){
     cardFontColour.color = "#757575";
     cardFontColour.color = undefined;
 }
-function check(name){
+async function check(name){
     if(name=="no custom theme selected"){
         createButton.style.display="inline";
         createTheme.style.display="none";
@@ -368,6 +423,7 @@ function check(name){
     darkswitch.removeAttribute("checked");        
     defaultswitch.removeAttribute("checked");
     var currentTheme;
+    data = await BackEndHandler.userThemes(user.getId());
     for(var i = 0; i<data.length;i++){
         if(data[i].getName() == name){
             currentTheme = data[i];
@@ -395,7 +451,7 @@ function check(name){
 }
 var paperElement=settings._getFirstPaperItem();
 paperElement.onclick = function(){check("no custom theme selected")};
-editButon.onclick = function(){
+editButon.onclick = async function(){
     editMode();
     deleteButton.style.display="inline";
     createButton.style.display="none";
@@ -404,9 +460,10 @@ editButon.onclick = function(){
     saveButton.style.display="inline";
     cancelButton.style.display="none";
     editButon.style.display="none";
+    data = await BackEndHandler.userThemes(user.getId());
     for(var i = 0; i<data.length;i++){
         if(data[i].getName() == themeName.value){
-            data.splice(i, 1);
+            BackEndHandler.deleteTheme(data[i].getId());
             break;
         }
     }
