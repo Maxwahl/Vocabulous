@@ -22,9 +22,18 @@ public class Theme {
     private String cABgC;
     private String mNC;
     private String mBgC;
+    private String cBG;
     private String mNFC;
     private String cHL;
     private String pF;
+
+    public String getcBG() {
+        return cBG;
+    }
+
+    public void setcBG(String cBG) {
+        this.cBG = cBG;
+    }
 
     public int getId() {
         return id;
@@ -122,7 +131,7 @@ public class Theme {
         this.pF = pF;
     }
 
-    public Theme(int id, String name,int owner, String hBgC, String mFC, String hFC, String cABgC, String mNC, String mBgC, String mNFC,String cHL,String pF) {
+    public Theme(int id, String name,int owner, String hBgC, String mFC, String hFC, String cABgC, String mNC, String mBgC, String mNFC,String cBG,String cHL,String pF) {
         this.id = id;
         this.name = name;
         this.owner = owner;
@@ -133,6 +142,7 @@ public class Theme {
         this.mNC = mNC;
         this.mBgC = mBgC;
         this.mNFC = mNFC;
+        this.cBG = cBG;
         this.cHL = cHL;
         this.pF = pF;
     }
@@ -148,6 +158,7 @@ public class Theme {
                 .add("menuNavigationFontColor",this.getmNFC())
                 .add("cardAreaBackgroundColor", this.getcABgC())                
                 .add("menuNavigationColor",this.getmNC())
+                .add("cardBackgroundColor",this.cBG)
                 .add("cardHeadLineColor", this.getcHL())                
                 .add("paragraphFontColor",this.getpF())
                 .build();
