@@ -54,16 +54,16 @@ public class ThemesResource {
     }
     @Path("newTheme")
     @GET
-    public JsonObject newTheme(@QueryParam("owner") int owner,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF,@QueryParam("cHL") String cHL,@QueryParam("pF") String pF){
-        int val = Repository.getInstance().addTheme(owner,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cHL,pF);
+    public JsonObject newTheme(@QueryParam("owner") int owner,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF,@QueryParam("cBG") String cBG,@QueryParam("cHL") String cHL,@QueryParam("pF") String pF){
+        int val = Repository.getInstance().addTheme(owner,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cBG,cHL,pF);
         return Json.createObjectBuilder()
                 .add("retVal", val)               
                 .build();
     }
     @Path("changeTheme")
     @GET
-    public JsonObject changeTheme(@QueryParam("theme") int id,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF,@QueryParam("cHL") String cHL,@QueryParam("pF") String pF){
-        int val = Repository.getInstance().changeTheme(id,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cHL,pF);
+    public JsonObject changeTheme(@QueryParam("theme") int id,@QueryParam("name") String name,@QueryParam("hBG") String hBG,@QueryParam("mFC") String mFC,@QueryParam("hFC") String hFC,@QueryParam("cABG") String cABG,@QueryParam("mNC") String mNC,@QueryParam("mBG") String mBG,@QueryParam("mNF") String mNF,@QueryParam("cBG") String cBG,@QueryParam("cHL") String cHL,@QueryParam("pF") String pF){
+        int val = Repository.getInstance().changeTheme(id,name,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cBG,cHL,pF);
         return Json.createObjectBuilder()
                 .add("retVal", val)               
                 .build();

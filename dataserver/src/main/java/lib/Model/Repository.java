@@ -42,8 +42,9 @@ public class Repository {
        chapters.add(new Chapter(1,"Basic Nouns",-1));
        chapters.add(new Chapter(2,"Basic Verbs",-1));
        chapters.add(new Chapter(3,"Basic Adjectives",-1));
-       themes.add(new Theme(1,"customtheme",1,"012345","012345","012345","012345","012345","012345","012345","012345","012345"));
-       themes.add(new Theme(2,"customtheme2",1,"012345","012345","012345","123456","012345","012345","012345","012345","012345"));
+       themes.add(new Theme(0,"Dark",-1,"2E2E2E","FFFFFF","FFFFFF","585858","6E6E6E","424242","FFFFFF","424242","FFFFFF","E0ECF8"));
+       themes.add(new Theme(1,"Default",-1,"1E88E5","000000","FFFFFF","eeeeee","f2f2f2","ffffff","000000","FFFFFF","212121","A4A4A4"));
+       themes.add(new Theme(2,"custom",1,"012345","012345","123456","123456","123456","123456","123456","123456","123456","123456"));
        chapters.get(0).addWord("house", "Haus");
        chapters.get(0).addWord("car", "Auto");
        chapters.get(0).addWord("plane", "Flugzeug");
@@ -160,7 +161,7 @@ public class Repository {
        return res;
     }
     public Theme getDefaultTheme() {
-        return themes.stream().filter((it)-> it.getId() == 0).findFirst().get();
+        return themes.stream().filter((it)-> it.getId() == 1).findFirst().get();
     }
 
     public List<Theme> getUserThemes(int id) {
@@ -180,12 +181,12 @@ public class Repository {
         return 0;
     }
 
-    public int addTheme(int owner, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cHL,String pF) {
-        themes.add(new Theme(themes.size(),name,owner,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cHL,pF));
+    public int addTheme(int owner, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cBG,String cHL,String pF) {
+        themes.add(new Theme(themes.size(),name,owner,hBG,mFC,hFC,cABG,mNC,mBG,mNF,cBG,cHL,pF));
         return 0;
     }
 
-    public int changeTheme(int id, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cHL,String pF) {
+    public int changeTheme(int id, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cBG,String cHL,String pF) {
         Theme toChange = themes.stream().filter((it)->it.getId() == id).findFirst().get();
         toChange.setName(name);
         toChange.sethBgC(hBG);
@@ -195,6 +196,7 @@ public class Repository {
         toChange.setmNC(mNC);
         toChange.setmBgC(mBG);
         toChange.setmNFC(mNF);
+        toChange.setcBG(cBG);
         toChange.setcHL(cHL);
         toChange.setpF(pF);
         return 0;
