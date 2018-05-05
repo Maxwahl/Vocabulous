@@ -82,5 +82,5 @@ save.onclick = function(){
     syncronizeUser();
 }
 function syncronizeUser(){
-    BackEndHandler.changeUser(user);
+    //Syncronisiere Daten mit DB
 }

@@ -20,27 +20,16 @@ console.dir(translateButton);
 var ironPages = overview._getIronPages();
 console.dir(ironPages);
 var units = [];
-var user;
-var register = myapp._getRegisterLogin();
-var username = register._getUsername();
-var password = register._getPassword();
 
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="unit-overview"){
         searchBar.query = "";
         clearFilter();
-        load();
     }
 });
-load();
-async function load(){
-    user = await BackEndHandler.login(username.value, password.value);
-    console.log("Unitsoverview: "+user.getId());
-    units = await BackEndHandler.getUnits(user.getId());
+(async function(){
+    units = await BackEndHandler.getUnits();
     var rowCount = 0;
-    while ( unitTable.rows.length > 0 ){
-        unitTable.deleteRow(0);
-    }
     for(var i = 0; i < units.length; i++){
         var newRow = unitTable.insertRow(rowCount);
         rowCount++;
@@ -53,7 +42,7 @@ async function load(){
             overview._routePageChanged("unit-page")};
         console.dir(newData);
     }
-}
+})();
 searchBar.addEventListener("paper-search-clear",e=>clearFilter());
 searchBar.onkeyup = function(){
     console.dir(searchBar.query);

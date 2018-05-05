@@ -1,10 +1,4 @@
-//Derzeit Problem mit startTheme setzen und laden der Themes von User.
-
-
-
-
 import Theme from './classes/theme.js';
-import BackEndHandler from './classes/backEndHandler.js';
 console.log("Javascript: settingsview loaded");
 var myapp = document.querySelector("my-app");
 var sharedStyle = myapp._getSharedStyle();
@@ -38,11 +32,7 @@ var cardHeadlineColour = settings._getCardHeadlineColour();
 console.log(cardHeadlineColour);
 var cardFontColour = settings._getCardFontColour();
 console.log(cardFontColour);
-var user;
-var register = myapp._getRegisterLogin();
-var username = register._getUsername();
-var password = register._getPassword();
-var ironPages = overview._getIronPages();
+
 var headerBackgroundColourview = settings._getHeaderBackgroundColourView();
 console.log(headerBackgroundColourview);
 var headerFontColourview = settings._getHeaderFontColourView();
@@ -86,55 +76,8 @@ saveButton.style.display="none";
 cancelButton.style.display="none";
 deleteButton.style.display="none";
 editButon.style.display="none";
-defaultswitch.onclick = function(){
-    paperListBox.selectIndex(0);
-    deleteButton.style.display="none";
-    paperListBox.style.display = "inline";
-    createButton.style.display="inline";
-    createTheme.style.display="none";
-    saveButton.style.display="none";
-    editButon.style.display="none";
-    cancelButton.style.display="none";
-    console.log(headerBackgroundColour.color);
-    clear();
-    if(!defaultswitch.hasAttribute("checked")){
-        changeTheme(darkTheme);
-        BackEndHandler.changeStartingTheme(user.getId(),0);
-        defaultswitch.removeAttribute("checked");      
-        darkswitch.setAttribute("checked",true);
-        return;
-    }
-    BackEndHandler.changeStartingTheme(user.getId(),1);
-    changeTheme(defaultTheme);
-    defaultswitch.setAttribute("checked",true);      
-    darkswitch.removeAttribute("checked");
-}
-darkswitch.onclick = function(){
-    paperListBox.selectIndex(0);
-    deleteButton.style.display="none";
-    paperListBox.style.display = "inline";
-    createButton.style.display="inline";
-    createTheme.style.display="none";
-    saveButton.style.display="none";
-    editButon.style.display="none";
-    cancelButton.style.display="none";
-    console.log(headerBackgroundColour.color);
-    clear();
-    if(!darkswitch.hasAttribute("checked")){
-        changeTheme(defaultTheme);
-        BackEndHandler.changeStartingTheme(user.getId(),1);
-        defaultswitch.setAttribute("checked",true);      
-        darkswitch.removeAttribute("checked");
-        return;
-    }
-    changeTheme(darkTheme);
-    defaultswitch.removeAttribute("checked");
-    BackEndHandler.changeStartingTheme(user.getId(),0);      
-    darkswitch.setAttribute("checked",true);
-}
-var data;
-var boolForIron = false;
-/*
+defaultswitch.onclick = function(){toggle()}
+darkswitch.onclick = function(){toggle()}
 function toggle(){
     paperListBox.selectIndex(0);
     deleteButton.style.display="none";
@@ -157,47 +100,8 @@ function toggle(){
     defaultswitch.setAttribute("checked",true);      
     darkswitch.removeAttribute("checked");
     isDefault = true;
-}*/
-ironPages.addEventListener("iron-select", function(){
-    console.log(ironPages.selected);
-    if(ironPages.selected != "settings-view"){
-        boolForIron = false;
-    }
-    if(ironPages.selected=="settings-view" && !boolForIron){
-        boolForIron = true;
-        load();
-    }
-});
-( function start(){
-    load();
-  })();
-async function load(){
-    user = await BackEndHandler.login(username.value, password.value);
-    var theme = await BackEndHandler.startingTheme(user.getId());
-    await loadThemes();
-    if(theme.getId()==0){//dark
-        /*isDefault=false;
-        changeTheme(darkTheme);
-        defaultswitch.removeAttribute("checked");      
-        darkswitch.setAttribute("checked",true);*/
-        check("no custom theme selected", 0);
-        paperListBox.selectIndex(0);
-    }
-    else if(theme.getId()==1){//default
-        /*changeTheme(defaultTheme);
-        defaultswitch.setAttribute("checked",true);      
-        darkswitch.removeAttribute("checked");
-        isDefault = true;*/
-        check("no custom theme selected",1);
-        paperListBox.selectIndex(0);
-    }
-    else{//custom
-        //changeTheme(theme);
-        defaultswitch.removeAttribute("checked");    
-        darkswitch.removeAttribute("checked");
-        check(theme.getName(), theme.getId());
-    }
 }
+console.log(overview.style);
 function changeTheme(theme){
     overview.updateStyles({"--app-primary-color":theme.getHeaderBackgroundcolor()});
     overview.updateStyles({"--app-secondary-color":theme.getMenuFontColor()});
@@ -309,23 +213,15 @@ createButton.onclick = function(){
     editButon.style.display="none";
     cancelButton.style.display="inline";
 }
-cancelButton.onclick = async function(){
-    var theme = await BackEndHandler.startingTheme(user.getId());
-    await loadThemes();
-    if(theme.getId()==1){
-        check("no custom theme selected",1);
-        defaultswitch.setAttribute("checked",true); 
-        paperListBox.selectIndex(0);  
-    }
-    else if(theme.getId()==0){
-        check("no custom theme selected", 0);
-        darkswitch.setAttribute("checked",true); 
-        paperListBox.selectIndex(0);
+cancelButton.onclick = function(){
+    if(isDefault){
+        changeTheme(defaultTheme);
+        defaultswitch.setAttribute("checked",true);   
     }
     else{
-        check(theme.getName(), theme.getId());
+        changeTheme(darkTheme);
+        darkswitch.setAttribute("checked",true); 
     }
-    paperListBox.style.display = "inline";/*
     paperListBox.selectIndex(0);
     deleteButton.style.display="none";
     paperListBox.style.display = "inline";
@@ -334,7 +230,7 @@ cancelButton.onclick = async function(){
     saveButton.style.display="none";
     editButon.style.display="none";
     cancelButton.style.display="none";
-    console.log(headerBackgroundColour.color);*/
+    console.log(headerBackgroundColour.color);
     clear();
 }
 saveButton.onclick = function(){
@@ -410,53 +306,21 @@ cardFontColour.onclick = function(){
 }
 
 console.dir(paperListBox);
-async function save(){
+function save(){
     //DB save data
     paperListBox.style.display = "inline";
     var newTheme = new Theme(5, themeName.value, headerBackgroundColour.color,menuFontColour.color,headerFontColour.color,cardAreaBackgroundColour.color,menuNavigationColour.color,menuBackgroundColour.color, menuNavigationFontColour.color,cardBackgroundColour.color, cardHeadlineColour.color, cardFontColour.color);
-    var themesId = await BackEndHandler.insertTheme(user.getId(), newTheme);
-    await BackEndHandler.changeStartingTheme(user.getId(), themesId);
-    console.log(newTheme);/*
+    data.push(newTheme); //Später durch Datenbank ersetzt
+    console.log(newTheme);
     var newElement = document.createElement("paper-item");
     newElement.innerHTML=newTheme.getName();
     newElement.onclick = function(){check(newTheme.getName())};
     console.dir(newElement);
     paperListBox.appendChild(newElement);
-    paperListBox.selectIndex(data.length);*/
-    await loadThemes();
-    console.dir(paperListBox.children[0].innerHTML);
-    for(var i = 0; i<paperListBox.children.length;i++){
-        if(paperListBox.children[i].innerHTML == newTheme.getName()){
-            paperListBox.selectIndex(i);
-            break;
-        }
-    }
-    await changeTheme(newTheme);
+    paperListBox.selectIndex(data.length);
+    changeTheme(newTheme);
     darkswitch.removeAttribute("checked");        
     defaultswitch.removeAttribute("checked");
-}
-function clearThemes(){
-    while(paperListBox.firstChild){
-        console.dir(paperListBox.firstChild);
-        paperListBox.removeChild(paperListBox.firstChild);
-    }
-}
-async function loadThemes(){
-    clearThemes();
-    var newElement = document.createElement("paper-item");
-    newElement.innerHTML="no custom theme selected";
-    paperListBox.appendChild(newElement);
-    paperListBox.selectIndex(0);
-    console.log(user.getId());
-    data = await BackEndHandler.userThemes(user.getId());
-    console.dir(data);
-    for(var i = 0; i<data.length;i++){
-        var newElement = document.createElement("paper-item");
-        newElement.innerHTML=data[i].getName();
-        newElement.onclick = function(){check(this.innerHTML,5)};
-        paperListBox.appendChild(newElement);
-    }
-
 }
 function clear(){
     themeName.value = null;
@@ -481,7 +345,7 @@ function clear(){
     cardFontColour.color = "#757575";
     cardFontColour.color = undefined;
 }
-async function check(name, id){
+function check(name){
     if(name=="no custom theme selected"){
         createButton.style.display="inline";
         createTheme.style.display="none";
@@ -490,37 +354,27 @@ async function check(name, id){
         cancelButton.style.display="none";
         console.log(headerBackgroundColour.color);
         clear();
-        if(id==1){
+        if(isDefault){
             changeTheme(defaultTheme);
             darkswitch.removeAttribute("checked");      
             defaultswitch.setAttribute("checked",true);
-            BackEndHandler.changeStartingTheme(user.getId(),1);     
             return;
         }
         changeTheme(darkTheme);
         darkswitch.setAttribute("checked",true);      
         defaultswitch.removeAttribute("checked");
-        BackEndHandler.changeStartingTheme(user.getId(),0);     
         return;
     }
     darkswitch.removeAttribute("checked");        
     defaultswitch.removeAttribute("checked");
     var currentTheme;
-    data = await BackEndHandler.userThemes(user.getId());
     for(var i = 0; i<data.length;i++){
         if(data[i].getName() == name){
             currentTheme = data[i];
             break;
         }
     }
-    for(var i = 0; i<paperListBox.children.length;i++){
-        if(paperListBox.children[i].innerHTML == currentTheme.getName()){
-            paperListBox.selectIndex(i);
-            break;
-        }
-    }
     changeTheme(currentTheme);
-    BackEndHandler.changeStartingTheme(user.getId(), currentTheme.getId());     
     createButton.style.display="inline";
     createTheme.style.display="inline";
     saveButton.style.display="none";
@@ -540,8 +394,8 @@ async function check(name, id){
     cardFontColour.color = currentTheme.getParagraphFontColor();
 }
 var paperElement=settings._getFirstPaperItem();
-paperElement.onclick = function(){check("no custom theme selected",1)};
-editButon.onclick = async function(){
+paperElement.onclick = function(){check("no custom theme selected")};
+editButon.onclick = function(){
     editMode();
     deleteButton.style.display="inline";
     createButton.style.display="none";
@@ -550,10 +404,9 @@ editButon.onclick = async function(){
     saveButton.style.display="inline";
     cancelButton.style.display="none";
     editButon.style.display="none";
-    data = await BackEndHandler.userThemes(user.getId());
     for(var i = 0; i<data.length;i++){
         if(data[i].getName() == themeName.value){
-            BackEndHandler.deleteTheme(data[i].getId());
+            data.splice(i, 1);
             break;
         }
     }

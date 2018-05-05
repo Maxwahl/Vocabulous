@@ -154,6 +154,7 @@
               <a name="home-view"><iron-icon icon="vaadin:home"></iron-icon><span>Home</span></a>
               <a name="unit-overview"><iron-icon icon="vaadin:book"></iron-icon><span>Units</span></a>
               <a name="statistics-view"><iron-icon icon="vaadin:bar-chart-h"></iron-icon><span>Statistics</span></a>
+              <a name="messages-view"><iron-icon icon="vaadin:envelope"></iron-icon><span>Messages</span></a>
               <a name="settings-view"><iron-icon icon="vaadin:cog"></iron-icon><span>Settings</span></a>
             </iron-selector>
         </app-drawer>
@@ -179,6 +180,7 @@
           <unit-overview name="unit-overview"></unit-overview>
           <unit-page name="unit-page"></unit-page>
           <statistics-view name="statistics-view"></statistics-view>
+          <messages-view name="messages-view"></messages-view>
           <account-view name="account-view"></account-view>
           <settings-view name="settings-view"></settings-view>
           <not-found name="not-found"></not-found>
@@ -248,6 +250,9 @@
       }
       _getStatisticviewPage(){
         return Polymer.dom(this.root).querySelector("statistics-view[name=statistics-view]");
+      }
+      _getMessageview(){
+        return Polymer.dom(this.root).querySelector("a[name=messages-view]");
       }
       _getMessageviewPage(){
         return Polymer.dom(this.root).querySelector("messages-view[name=messages-view]");

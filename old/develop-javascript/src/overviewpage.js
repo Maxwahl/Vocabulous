@@ -1,7 +1,5 @@
 import User from './classes/user.js';
 import BackEndHandler from './classes/backEndHandler.js';
-import Theme from './classes/theme.js';
-import ChangeThemes from './classes/changeTheme.js';
 var user;
 var menuopen = false;
 var myapp = document.querySelector("my-app");
@@ -19,6 +17,7 @@ var unitoverview = overview._getUnitoverview();
 console.dir(unitoverview);
 var statisticview = overview._getStatisticview();
 console.dir(statisticview);
+var messageview = overview._getMessageview();
 var logoutbutton = overview._getLogoutbutton();
 console.dir(logoutbutton);
 var userbutton = overview._getUserbutton();
@@ -34,14 +33,12 @@ console.dir(appdrawer);
 (async function start(){
   user = await BackEndHandler.login(username.value, password.value);
   userbutton.textContent = user.getUsername();
-  console.log(user.getId());
-  var theme = await BackEndHandler.startingTheme(user.getId());
-  ChangeThemes.changeTheme(theme);
 })();
 userbutton.onclick = function(){overview._routePageChanged("account-view")}
 homeview.onclick = function(){overview._routePageChanged("home-view")}
 unitoverview.onclick = function(){overview._routePageChanged("unit-overview")}
 statisticview.onclick = function(){overview._routePageChanged("statistics-view")}
+messageview.onclick = function(){overview._routePageChanged("messages-view")}
 settingsview.onclick = function(){overview._routePageChanged("settings-view")}
 logoutbutton.onclick = function(){location.reload();}
 accounticon.onclick = function(){overview._routePageChanged("account-view")}
