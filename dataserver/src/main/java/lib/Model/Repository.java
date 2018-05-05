@@ -221,4 +221,17 @@ public class Repository {
         chapters.add(new Chapter(chapters.size()+1,cName,uID));
         return chapters.size();
     }
+
+    public int deleteUnit(int uID) {
+        int index = 0;
+        for(int i = 0;i<chapters.size();i++){
+            Chapter c = chapters.get(i);
+            if(c.getId() == uID){
+                index = i;
+            }
+        }
+        chapters.remove(index);
+        
+        return 0;
+    }
 }
