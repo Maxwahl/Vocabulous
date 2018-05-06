@@ -87,6 +87,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 35px;
         float:right;
       }
+      paper-icon-button.trash{
+        color:grey;
+      }
+      paper-icon-button.trash{
+        color:grey;
+      }
+      paper-icon-button.trash:hover{
+        color: red;
+      }
     </style>
     	
     <div class="card">
@@ -100,8 +109,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </d2l-dropdown-menu>
       </d2l-dropdown>
       <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
+      <paper-icon-button class="trash" name="trash" icon="vaadin:trash"></paper-icon-button>
       <table id="units">
-
+       
       </table>
       <input name="forUnit" style="display:none;">
     </div>

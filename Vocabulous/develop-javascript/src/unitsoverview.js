@@ -46,8 +46,17 @@ async function load(){
         rowCount++;
         var newData = newRow.insertCell(0);
         newData.innerHTML = units[i].getName();
-        var text = units[i].getName();
+        //var text = units[i].getName();
         newData.value = units[i].getName();
+        var trash = document.createElement("paper-icon-button");
+        trash.setAttribute("class", "trash");
+        trash.setAttribute("name", "trash"+i);
+        trash.setAttribute("icon", "vaadin:trash");
+        trash.setAttribute("value", units[i].getId());
+        trash.onclick = async function(){
+            await BackEndHandler.deleteUnit(this.value);
+        }
+        newData.appendChild(trash);
         newData.onclick=function(){
             checked.value = this.value;
             overview._routePageChanged("unit-page")};
