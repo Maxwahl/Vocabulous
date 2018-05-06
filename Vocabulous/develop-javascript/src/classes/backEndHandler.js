@@ -87,8 +87,8 @@ export default class BackEndHandler{
         let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/units?uID="+uID);
         let units = [];
         while(jsonText.length>0){
-            const {name} = jsonText.pop();
-            let unit = new Unit(name);
+            const {id,name} = jsonText.pop();
+            let unit = new Unit(id,name);
             units.push(unit);
         }
         return units;
