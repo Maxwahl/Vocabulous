@@ -64,13 +64,17 @@ Das benötigte Vokabelüberprüfungsprogramm wird die Studenten, Schüler und Ku
 
 Ab Beginn des Studienjahres 2018/2019 wird das Vokabelüberprüfungsprogramm im Echtbetrieb eingesetzt werden, obwohl das Projekt ausgenommen von den spezifischen Einrichtungen für das Studienjahr 2018/2019 schon Ende Juni 2018 fertigzustellen ist.
 #### Ergebnis
-Es wird eine datenbankbasierte Web-Anwendung, über die sich neue Vokabeln in einem modernen und übersichtlichen Format erlernen lassen, entstehen. Mit Hilfe dieser Anwendung soll der Lernprozess der Studenten, Schüler und Kunden vereinfacht werden und eine Verbesserung der Noten ermöglicht werden.
+Mit Hilfe dieser Anwendung soll der Lernprozess der Studenten, Schüler und Kunden vereinfacht werden und eine Verbesserung der Noten ermöglichen.
 
 ## 3 Aufgabenstellung
 Das Sprachlerninstitut hat somit eine Entwicklung/Erstellung eines Vokabelüberprüfungsprogrammes angeordnet. Es ist ein Programm zu entwickeln, dass nicht nur auf PCs sondern auch auf Smartphones einsetzbar ist, um auch in Zeiten, wo kein Computer zur Verfügung steht, Vokabeln lernen zu können. Das Vokabelprüfprogramm dient als Ergänzung zum Präsenzunterricht in den Kursräumlichkeiten des Language4everyone Institutes.
 
 ## 4 Funktionale Anforderungen
 Der Benutzer kann mit dieser Software vorgegebene Lernabschnitte, sogenannte Units lernen. Um den Lernfortschritt zu überprüfen, können Selbstkontrollen in Form von kleinen Wiederholungen durchgeführt werden. Zur besseren Übersicht werden die Fortschritte mit Hilfe von Diagrammen und Statistiken angezeigt.
+
+#### Flexibilität
+
+Die Software kann auf Notebooks, Tablets und Smartphones verwendet werden, dies macht das System transportabel und flexibel.
 
 ## 4.1 Use Case Diagramm
 <img src="Images\UseCaseDiagram.png" alt="Drawing" style="width: 500px;"/>
@@ -117,9 +121,7 @@ Es wird durch Komprimieren von Bildern und Optimieren der Software die Ladezeit 
 #### Sicherheit
 
 Es muss ein Account angelegt werden, um seine Ergebnisse zu speichern. Es sollen außerdem Maßnahmen getroffen werden, um Datenverlust bei einem Absturz oder bei anderen Komplikationen vermieden werden (Durch beispielsweise Backups, die automatisch geladen werden und immer wieder aktualisiert werden.).
-#### Transportfähigkeit
 
-Die Software kann von Notebooks, Tablets und Smartphones verwendet werden. Dies macht das System transportabel.
 ## 6 Mengengerüst
 | Gesamtanzahl der Nutzer | 1000 Personen |
 | ----------------------- |:-------------:|
