@@ -63,6 +63,7 @@ public class Chapter {
     
     public JsonObject jsonifyUnit(){
         return Json.createObjectBuilder()
+                .add("id",this.getId())
                 .add("name",this.getName())              
                 .build();
     }

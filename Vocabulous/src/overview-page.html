@@ -42,6 +42,7 @@
 <link rel="lazy-import" href="translate-page.html">
 <link rel="lazy-import" href="browse-unit.html">
 <link rel="lazy-import" href="upload-unit.html">
+<link rel="lazy-import" href="practiceunit-page-selectionmode.html">
 <link rel="lazy-import" href="my-app.html">
 
 <dom-module id="overview-page">
@@ -189,6 +190,7 @@
           <translate-page name="translate-page"></translate-page>
           <browse-unit name="browse-unit"></browse-unit>
           <upload-unit name="upload-unit"></upload-unit>
+          <practiceunit-page-selectionmode name="practiceunit-page-selectionmode"></practiceunit-page-selectionmode>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -308,6 +310,9 @@
       }
       _getPracticeUnitPage(){
         return Polymer.dom(this.root).querySelector("practiceunit-page[name=practiceunit-page]");
+      }
+      _getPracticeUnitPageSelectionmode(){
+        return Polymer.dom(this.root).querySelector("practiceunit-page-selectionmode[name=practiceunit-page-selectionmode]");
       }
       _getSelfCheckPage(){
         return Polymer.dom(this.root).querySelector("selfcheck-page[name=selfcheck-page]");

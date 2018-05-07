@@ -156,7 +156,6 @@ public class Repository {
 
     public Theme getStartingTheme(int id) {
        int startingTheme = users.stream().filter((it)->it.getId()==id).map((it)->it.getStartingTheme()).findFirst().get();
-        System.out.println("themeid: "+startingTheme);
        Theme res = themes.stream().filter((it)->it.getId() == startingTheme).findFirst().get();
        return res;
     }
@@ -221,5 +220,18 @@ public class Repository {
     public int addChapter(int uID, String cName) {
         chapters.add(new Chapter(chapters.size()+1,cName,uID));
         return chapters.size();
+    }
+
+    public int deleteUnit(int uID) {
+        int index = 0;
+        for(int i = 0;i<chapters.size();i++){
+            Chapter c = chapters.get(i);
+            if(c.getId() == uID){
+                index = i;
+            }
+        }
+        chapters.remove(index);
+        
+        return 0;
     }
 }

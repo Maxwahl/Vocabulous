@@ -113,7 +113,7 @@ public class User {
         return Json.createObjectBuilder()
                 .add("id", this.getId())
                 .add("Firstname", this.getFirstName())
-                .add("Lastname",this.getFirstName())
+                .add("Lastname",this.getLastName())
                 .add("Email",this.getEmail())
                 .add("Birthdate", this.getBirthdate())
                 .add("Username",this.getUsername())
