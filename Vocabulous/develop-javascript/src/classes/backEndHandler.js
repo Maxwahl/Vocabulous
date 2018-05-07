@@ -83,8 +83,8 @@ export default class BackEndHandler{
         let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/units?uID="+uID);
         let units = [];
         while(jsonText.length>0){
-            const {name} = jsonText.pop();
-            let unit = new Unit(name);
+            const {id,name} = jsonText.pop();
+            let unit = new Unit(id,name);
             units.push(unit);
         }
         return units;
@@ -105,6 +105,10 @@ export default class BackEndHandler{
     }
     static async addWordToUnit(cID,word){
         const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addWord?cID="+cID+"&wE="+word.getWordEnglish()+"&wG="+w.getWordGerman());
+        return retVal;
+    }
+    static async deleteUnit(uID){
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/units/deleteUnit?uID="+uID);
         return retVal;
     }
 }

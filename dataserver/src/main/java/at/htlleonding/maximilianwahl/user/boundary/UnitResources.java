@@ -61,4 +61,12 @@ public class UnitResources {
        return c.jsonifyVocab();
 
     }
+    @Path("deleteUnit")
+    @GET
+    public JsonObject deleteUnit(@QueryParam("uID") int uID){
+        int val = Repository.getInstance().deleteUnit(uID);
+        return Json.createObjectBuilder()
+                .add("retVal", val)               
+                .build();   
+    }
 }
