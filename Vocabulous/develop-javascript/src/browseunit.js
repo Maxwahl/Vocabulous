@@ -12,7 +12,7 @@ console.dir(returnButton);
 var searchbar = browseunit._getSearchBar();
 console.dir(searchbar);
 var ironPages = overview._getIronPages();
-var paperFilterDialog = browseunit._getPaperFilterDialog();
+var paperDialog = browseunit._getPaperDialog();
 
 returnButton.onclick = function(){
     overview._routePageChanged("create-unit");
@@ -23,4 +23,4 @@ ironPages.addEventListener("iron-select",function(){
         searchBar.query = "";
     }
 });
-searchbar.addEventListener("paper-search-filter",e=>paperFilterDialog.open());
+searchbar.addEventListener("paper-search-filter",e=>paperDialog.open());
