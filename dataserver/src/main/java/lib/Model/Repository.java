@@ -38,7 +38,7 @@ public class Repository {
        themes = new ArrayList<>();
        chapters = new ArrayList<>();
        allVocab = new ArrayList<>();
-       users.add(new User(1,"admin","admin","Max","Mustermann","max.m@gmx.at","htl-leonding","1.1.1980",2));
+       users.add(new User(1,"admin","admin","Max","Mustermann","max.m@gmx.at","htl-leonding","1.1.1980",1));
        chapters.add(new Chapter(1,"Basic Nouns",-1));
        chapters.add(new Chapter(2,"Basic Verbs",-1));
        chapters.add(new Chapter(3,"Basic Adjectives",-1));

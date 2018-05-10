@@ -5,7 +5,10 @@
  */
 package lib.Model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.json.Json;
+import javax.json.JsonObject;
 
 /**
  *
@@ -76,4 +79,15 @@ public class Test {
         this.date = date;
     }
     
+     public JsonObject jsonify(){
+        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
+        return Json.createObjectBuilder()
+                .add("id", this.getId())
+                .add("user", this.getUser())
+                .add("unit",this.getUnit())
+                .add("date",f.format(this.getDate()))
+                .add("correct",this.getRight())
+                .add("wrong",this.getWrong())
+                .build();
+    }
 }
