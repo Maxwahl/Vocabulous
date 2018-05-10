@@ -111,6 +111,12 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 ironPages.addEventListener("iron-select",function(){
+    if(ironPages.selected=="practice-page"){
+        load();
+    }
+});
+load();
+function load(){
     vocTries = 0;
     input.setAttribute("hidden",true);
     nextButton.setAttribute("hidden",true);
@@ -125,7 +131,7 @@ ironPages.addEventListener("iron-select",function(){
     toggleButton.removeAttribute("disabled");
     languageInfo.removeAttribute("hidden");
     unitProgressBar.value = 0;
-});
+}
 async function changedUnit(check){
     unitresultPage.value = "parcticeunit-page";
     unitName.innerHTML = checked.value;
