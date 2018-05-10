@@ -21,8 +21,7 @@
     "paper-input": "^2.0.1",
     "paper-button": "^2.0.0",
     "vaadin-valo-theme": "vaadin/vaadin-valo-theme#^0.3.2",
-    "time-counter": "^1.0.1",
-    "web-animations-js": "^2.3.1"
+    "time-counter": "^1.0.1"
   },
   "resolutions": {
     "polymer": "^2.0",

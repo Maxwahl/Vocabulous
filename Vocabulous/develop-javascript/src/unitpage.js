@@ -21,8 +21,6 @@ var returnButton = unitpage._getReturnButton();
 console.dir(returnButton);
 var practiceButton = unitpage._getPracticeButton();
 console.dir(practiceButton);
-var practiceButtonSelectionmode = unitpage._getPracticeButtonSelectionmode();
-console.dir(practiceButtonSelectionmode);
 var examButton = unitpage._getExamButton();
 console.dir(examButton);
 var words;
@@ -48,5 +46,4 @@ async function changedUnit(){
 changedUnit();
 returnButton.onclick = function(){overview._routePageChanged("unit-overview")}
 practiceButton.onclick = function(){overview._routePageChanged("practiceunit-page")};
-practiceButtonSelectionmode.onclick = function(){overview._routePageChanged("practiceunit-page-selectionmode")};
 examButton.onclick = function(){overview._routePageChanged("selfcheck-page")};

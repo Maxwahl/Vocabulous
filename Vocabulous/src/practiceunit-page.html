@@ -14,16 +14,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="../bower_components/time-counter/time-counter.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
-<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="my-icons.html">
 <link rel="import" href="shared-styles.html">
 
@@ -157,27 +154,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       paper-icon-button.back{
         font-size: 0.65em;
-        width: 45px;
-        height: 45px;
+        width: 30px;
+        height: 30px;
         margin-left: -10px;
-        margin-top: -55px;
+        margin-top: -49px;
         position:absolute;
       }
-      paper-icon-button.language{
+      iron-icon.language{
         color: var(--app-secondary-color);
-        width: 35px;
-        height: 35px;
+        width: 15px;
+        height: 15px;
         margin-top: 15px;
         margin-left: 10px;
       }
-      paper-icon-button.next{
+      iron-icon.next{
         color: var(--app-secondary-color);
-        width: 35px;
-        height: 35px;
+        width: 15px;
+        height: 15px;
         margin-top: -80px;
         margin-left: 80%;
       }
-      /*#popuplanguage iron-icon.language{
+      #popuplanguage iron-icon.language{
         display: none;
       }
       #popuplanguage{
@@ -227,30 +224,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       iron-icon.next:hover #popupnext{
         display: block;
-      }*/
-      #infoLanguage, #infoNext{
-        border-radius: 5px;
-        border-color: var(--secondaryFontColorCard);
-        background-color: var(--hover-color);
-        color: var(--secondaryFontColorCard);
       }
 
     </style>
 
     <div class="card">
       <h1>Unit 1</h1> <!--Name der Unit-->
-      <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
+      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <table>
         <tr>
           <td><h3 class="german">German</h3></td>
           <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
           <td> <h3 class="english">English</h3></td>
-          <td><paper-icon-button icon="icons:info-outline" class="language"></paper-icon-button></td>
-          <paper-dialog id="infoLanguage">
-            <p>When you select "German" you will have to
-              write German words and when you select "English" you will have to write
-              English words.</p>
-          </paper-dialog>
+          <td><iron-icon icon="vaadin:info-circle-o" class="language"></iron-icon></td>
           <div id="popuplanguage" name="languagePopup" style="display: none">When you select "German" you will have to
               write German words and when you select "English" you will have to write
               English words.</div>
@@ -267,14 +253,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-button hidden="true" class="nextVocab" name="nextVocab" raised noink>Next</paper-button>
           <h2 hidden="true">house</h2> <!--Vokabel das angezeigt wird-->
           <paper-input hidden="true" class="vocab"></paper-input> <!--Vokabel das eingegeben wird-->
-          <iron-icon hidden="true" icon="icons:info-outline" class="next"></iron-icon>
-          <paper-dialog id="infoNext">
-            <p>When you press "NEXT" Vocabulous
-              will check your answer. If it is correct the line will turn green,
-              else the line will turn red. You have two tries.
-              When the line turns orange, the correct answer is shown.
-              After a short amount of time you will get the next word.</p>
-          </paper-dialog>
+          <iron-icon hidden="true" icon="vaadin:info-circle-o" class="next"></iron-icon>
           <div id="popupnext" name="nextPopup" style="display: none">When you press "NEXT" Vocabulous
               will check your answer. If it is correct the line will turn green,
               else the line will turn red. You have two tries.
@@ -362,12 +341,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getWrongVocs(){
         return Polymer.dom(this.root).querySelector("input[name=wrongVocs]");
-      }
-      _getPaperDialogLanguage(){
-        return Polymer.dom(this.root).querySelector("paper-dialog[id=infoLanguage]");
-      }
-      _getPaperDialogNext(){
-        return Polymer.dom(this.root).querySelector("paper-dialog[id=infoNext]");
       }
     }
     window.customElements.define(PracticeUnitPage.is, PracticeUnitPage);

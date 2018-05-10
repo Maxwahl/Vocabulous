@@ -50,34 +50,4 @@ export default class Theme{
     getParagraphFontColor(){
         return this.paragraphFontColor;
     }
-    getHeaderBackgroundcolorDB(){
-        return this.headerBackgroundcolor.substr(1);
-    }
-    getMenuFontColorDB(){
-        return this.menuFontColor.substr(1);
-    }
-    getHeaderFontColorDB(){
-        return this.headerFontColor.substr(1);
-    }
-    getCardAreaBackgroundColorDB(){
-        return this.cardAreaBackgroundColor.substr(1);
-    }
-    getMenuNavigationColorDB(){
-        return this.menuNavigationColor.substr(1);
-    }
-    getMenuBackgroundColorDB(){
-        return this.menuBackgroundColor.substr(1);
-    }
-    getMenuNavigationFontColorDB(){
-        return this.menuNavigationFontColor.substr(1);
-    }
-    getCardBackgroundColorDB(){
-        return this.cardBackgroundColor.substr(1);
-    }
-    getCardHeadLineColorDB(){
-        return this.cardHeadLineColor.substr(1);
-    }
-    getParagraphFontColorDB(){
-        return this.paragraphFontColor.substr(1);
-    }
 }

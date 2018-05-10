@@ -19,8 +19,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
 <link rel="import" href="../bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="../bower_components/time-counter/time-counter.html">
-<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="my-icons.html">
 <link rel="import" href="shared-styles.html">
 
@@ -153,23 +151,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       paper-icon-button.back{
         font-size: 0.65em;
-        width: 45px;
-        height: 45px;
+        width: 30px;
+        height: 30px;
         margin-left: -10px;
-        margin-top: -55px;
+        margin-top: -49px;
         position:absolute;
       }
       iron-icon.language{
         color: var(--app-secondary-color);
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
         margin-top: 15px;
         margin-left: 10px;
       }
       iron-icon.next{
         color: var(--app-secondary-color);
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
         margin-top: -80px;
         margin-left: 80%;
       }
@@ -199,13 +197,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <h1>Unit 1</h1> <!--Name der Unit-->
-      <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
+      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <table>
         <tr>
           <td><h3 class="german">German</h3></td>
           <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
           <td> <h3 class="english">English</h3></td>          
-          <td><iron-icon icon="icons:info-outline" class="language"></iron-icon></td>
+          <td><iron-icon icon="vaadin:info-circle-o" class="language"></iron-icon></td>
           <div id="popuplanguage" name="languagePopup" style="display: none">When you select "German" you will have to
             write German words and when you select "English" you will have to write
             English words.</div>

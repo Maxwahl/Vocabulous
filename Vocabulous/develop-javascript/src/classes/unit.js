@@ -1,9 +1,8 @@
 export default class Unit{
-    constructor(id, name)
+    constructor(name)
     {
         this.name = name;
         this.data = [];
-        this.id=id;
     }
     getName(){
         return this.name;
@@ -13,8 +12,5 @@ export default class Unit{
     }
     getWords(){
         return this.data;
-    }
-    getId(){
-        return this.id;
     }
 }

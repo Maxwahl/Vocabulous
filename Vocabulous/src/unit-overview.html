@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<!--<link rel="import" href="../bower_components/paper-search/paper-search-bar.html">-->
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
@@ -16,8 +17,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
 <link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
 <link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
-<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="unit-overview">
@@ -83,46 +82,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       d2l-dropdown{
         float:right;
       }
-      
-      paper-icon-button.trash{
-        color:grey;
-        --iron-icon-width: 25px;
-        --iron-icon-height: 25px;
-        float:right;
-        margin-top: -5px;
-      }
-      paper-icon-button.trash:hover{
-        color: red;
-      }
-      paper-button.confirmButtons{
-        color:var(--secondaryFontColorCard);
-      }
-      #confirm{
-        /*border: 2px solid;*/
-        border-radius: 5px;
-        border-color: var(--secondaryFontColorCard);
-        background-color: var(--hover-color);
-        color: var(--secondaryFontColorCard);
-      }
-      #menu{
-        width: 45px;
-        height: 45px;
+      paper-icon-button{
+        width: 35px;
+        height: 35px;
         float:right;
       }
     </style>
     	
     <div class="card">
-      <h1>Units</h1>      
-      <paper-dialog id="confirm">
-        <h2>Confirm</h2>
-        <p>Do you really want to delete this Unit?</p>
-        <div class="buttons">
-          <paper-button class="confirmButtons"name="no">No</paper-button>
-          <paper-button class="confirmButtons"name="yes">Yes</paper-button>
-        </div>
-      </paper-dialog>
+      <h1>Units</h1>
         <d2l-dropdown>
-          <paper-icon-button id="menu" class="d2l-dropdown-opener" name="menu" icon="icons:more-vert" noink></paper-icon-button>
+          <paper-icon-button class="d2l-dropdown-opener" name="menu" icon="vaadin:ellipsis-dots-v" noink></paper-icon-button>
           <d2l-dropdown-menu>
             <d2l-menu label="Menu">
               <d2l-menu-item name="newUnit" text="Create New Unit"></d2l-menu-item>
@@ -130,11 +100,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </d2l-dropdown-menu>
       </d2l-dropdown>
       <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
-      <!--<paper-icon-button class="trash" name="trash" icon="vaadin:trash"></paper-icon-button>-->
-
-      
       <table id="units">
-       
+
       </table>
       <input name="forUnit" style="display:none;">
     </div>
@@ -157,15 +124,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getTranslateButton(){
         return Polymer.dom(this.root).querySelector("d2l-menu-item[name=translate]");
-      }
-      _getPaperDialog(){
-        return Polymer.dom(this.root).querySelector("paper-dialog[id=confirm]");
-      }
-      _getPaperDialogNo(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=no]");
-      }
-      _getPaperDialogYes(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=yes]");
       }
     }
     window.customElements.define(UnitOverview.is, UnitOverview);

@@ -104,7 +104,7 @@ export default class BackEndHandler{
         return retVal;//retVal is unitID
     }
     static async addWordToUnit(cID,word){
-        const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addWord?cID="+cID+"&wE="+word.getWordEnglish()+"&wG="+word.getWordGerman());
+        const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addWord?cID="+cID+"&wE="+word.getWordEnglish()+"&wG="+w.getWordGerman());
         return retVal;
     }
     static async deleteUnit(uID){

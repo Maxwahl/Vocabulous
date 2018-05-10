@@ -1,7 +1,5 @@
 import User from './classes/user.js';
 import BackEndHandler from './classes/backEndHandler.js';
-import Theme from './classes/theme.js';
-import ChangeThemes from './classes/changeTheme.js';
 var user;
 var menuopen = false;
 var myapp = document.querySelector("my-app");
@@ -34,9 +32,6 @@ console.dir(appdrawer);
 (async function start(){
   user = await BackEndHandler.login(username.value, password.value);
   userbutton.textContent = user.getUsername();
-  console.log(user.getId());
-  var theme = await BackEndHandler.startingTheme(user.getId());
-  ChangeThemes.changeTheme(theme);
 })();
 userbutton.onclick = function(){overview._routePageChanged("account-view")}
 homeview.onclick = function(){overview._routePageChanged("home-view")}
