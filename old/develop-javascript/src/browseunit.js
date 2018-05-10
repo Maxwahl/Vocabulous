@@ -9,8 +9,18 @@ var browseunit = overview._getBrowseUnit();
 console.dir(browseunit);
 var returnButton = browseunit._getReturnButton();
 console.dir(returnButton);
+var searchbar = browseunit._getSearchBar();
+console.dir(searchbar);
+var ironPages = overview._getIronPages();
+var paperDialog = browseunit._getPaperDialog();
 
 returnButton.onclick = function(){
     overview._routePageChanged("create-unit");
     reset();
 }
+ironPages.addEventListener("iron-select",function(){
+    if(ironPages.selected=="browse-unit"){
+        searchBar.query = "";
+    }
+});
+searchbar.addEventListener("paper-search-filter",e=>paperDialog.open());

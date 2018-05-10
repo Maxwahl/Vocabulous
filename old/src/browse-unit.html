@@ -20,6 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-search/paper-search-bar.html">
 <link rel="import" href="../bower_components/iron-icons/image-icons.html">
 <link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/communication-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="browse-unit">
@@ -47,8 +49,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       paper-search-bar{
         margin-left: 40px;
+        margin-top: 50px;
+        width: 97%;
+        color: var(--secondaryFontColorCard);
+        --background-color:var(--cardBackgroundcolor);
+        --disabled-text-color:var(--secondaryFontColorCard);
       }
       #filters{
+        width: 400px;
         border-radius: 5px;
         border-color: var(--secondaryFontColorCard);
         background-color: var(--hover-color);
@@ -59,21 +67,57 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         float:right;
         color: #a5a5a5;
       }
+      paper-input.input{
+        width: 100%;
+        color:var(--secondaryFontColorCard);
+        --paper-input-container-color: var(--secondaryFontColorCard);
+        --paper-input-container-focus-color: var(--secondaryFontColorCard);
+        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
+      }
+      #save{
+        font-size: 0.85em;
+        margin-left: 0px;
+        margin-top: 20px;
+      }
+      iron-icon.emailIcon{
+        width: 30px;
+        height: 30px;
+        margin-right: 20px;
+      }
+      paper-checkbox{
+        --iron-icon-width: 25px;
+        --iron-icon-height: 25px;
+        float:right;
+        margin-top: -5px;
+        --paper-checkbox-unchecked-color: var(--secondaryFontColorCard);
+        --paper-checkbox-checked-color: green;
+        --paper-checkbox-checked-ink-color: green;
+      }
+      #transfer{
+        font-size: 0.65em;
+        margin-left: 40px;
+        margin-top: 20px;
+      }
     </style>
 
     <div class="card">
       <h1>Browse Unit</h1>
       <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
-      <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
-      <paper-icon-button id="tune" name="tune" icon="image:tune"></paper-icon-button>
-      <paper-filter-dialog id="filters">
-        <h2>Filters</h2>
-        <p>Filter für die Searchbar</p>
-        <div class="buttons">
-          <paper-button class="confirmButtons"name="no">No</paper-button>
-          <paper-button class="confirmButtons"name="yes">Yes</paper-button>
+      <paper-search-bar search="{{search}}" loading="[[loading]]"></paper-search-bar>
+      <!--<paper-icon-button id="tune" name="tune" icon="image:tune"></paper-icon-button>-->
+      <paper-dialog id="filters">
+        <h2>Filter</h2>
+        <div>
+            <paper-input class="input" label="Enter email of your friend"><iron-icon class="emailIcon" icon="communication:mail-outline" slot="prefix"></iron-icon></paper-input>
+            <paper-button id="save" name="save" raised noink>Apply</paper-button>
         </div>
-      </paper-filter-dialog>
+      </paper-dialog>
+
+      <table id="units">
+          <paper-checkbox noink></paper-checkbox>
+      </table>
+      <paper-button id="transfer" name="transfer" raised noink>Transfer Units</paper-button>
     </div>
   </template>
 
@@ -83,8 +127,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
       }
-      _getPaperFilterDialog(){
-        return Polymer.dom(this.root).querySelector("paper-filter-dialog[id=filters]");
+      _getPaperDialog(){
+        return Polymer.dom(this.root).querySelector("paper-dialog[id=filters]");
+      }
+      _getSearchBar(){
+        return Polymer.dom(this.root).querySelector("paper-search-bar");
       }
     }
 

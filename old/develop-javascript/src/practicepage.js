@@ -75,11 +75,17 @@ var secondTryCounter = 0;
 var timer = new Stopwatch(timerCounter);
 /*languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
 languageInfo.onmouseout = function(){languagePopup.style.display = "none";}*/
-languageInfo.onclick = async function(){
+languageInfo.onmouseover = function(){
     infoLanguageAlert.open();
 }
-nextInfo.onclick = async function(){
+nextInfo.onmouseover = function(){
     infoNextAlert.open();
+}
+languageInfo.onmouseout = function(){
+    infoLanguageAlert.close();
+}
+nextInfo.onmouseout = function(){
+    infoNextAlert.close();
 }
 /*nextInfo.onmouseover = function(){nextPopup.style.display = "block";}
 nextInfo.onmouseout = function(){nextPopup.style.display = "none";}*/
@@ -105,6 +111,12 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 ironPages.addEventListener("iron-select",function(){
+    if(ironPages.selected=="practice-page"){
+        load();
+    }
+});
+load();
+function load(){
     vocTries = 0;
     input.setAttribute("hidden",true);
     nextButton.setAttribute("hidden",true);
@@ -119,7 +131,7 @@ ironPages.addEventListener("iron-select",function(){
     toggleButton.removeAttribute("disabled");
     languageInfo.removeAttribute("hidden");
     unitProgressBar.value = 0;
-});
+}
 async function changedUnit(check){
     unitresultPage.value = "parcticeunit-page";
     unitName.innerHTML = checked.value;

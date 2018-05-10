@@ -15,8 +15,8 @@ var createunit = overview._getCreateUnit();
 console.dir(createunit);
 var returnButton = createunit._getReturnButton();
 console.dir(returnButton);
-var minusIcon = createunit._getMinusIcon();
-console.dir(minusIcon);
+var removeIcon = createunit._getRemoveIcon();
+console.dir(removeIcon);
 var plusIcon = createunit._getPlusIcon();
 console.dir(plusIcon);
 var saveButton = createunit._getSaveButton();
@@ -44,18 +44,18 @@ ironPages.addEventListener("iron-select",function(){
 });
 function loadCreateUnit(){
     reset();
-    minusIcon.setAttribute("hidden",true);
+    removeIcon.setAttribute("hidden",true);
 }
 plusIcon.onclick = function(){
     var row = wordTable.insertRow(wordTable.rows.length);
     var cell = row.insertCell(0);
-    cell.innerHTML = "<paper-input class='germanVocab' label='German word' no-label-float></paper-input><paper-input class='englishVocab' label='English word' no-label-float></paper-input>";
-    minusIcon.removeAttribute("hidden");
+    cell.innerHTML = "<paper-input class='germanVocab' label='German word' no-label-float></paper-input><paper-input class='englishVocab' label='English word' no-label-float></paper-input><paper-icon-button class='remove' icon='icons:clear' noink></paper-icon-button>";
+    removeIcon.removeAttribute("hidden");
 }
-minusIcon.onclick = function(){
+removeIcon.onclick = function(){
     wordTable.deleteRow(wordTable.rows.length-1);
     if(wordTable.rows.length == 1){
-        minusIcon.setAttribute("hidden",true);
+        removeIcon.setAttribute("hidden",true);
     }
 }
 function reset(){

@@ -163,17 +163,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: -55px;
         position:absolute;
       }
-      paper-icon-button.language{
+      iron-icon.language{
         color: var(--app-secondary-color);
-        width: 35px;
-        height: 35px;
+        width: 20px;
+        height: 20px;
         margin-top: 15px;
         margin-left: 10px;
       }
-      paper-icon-button.next{
+      iron-icon.next{
         color: var(--app-secondary-color);
-        width: 35px;
-        height: 35px;
+        width: 20px;
+        height: 20px;
         margin-top: -80px;
         margin-left: 80%;
       }
@@ -229,6 +229,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }*/
       #infoLanguage, #infoNext{
+        width: 400px;
         border-radius: 5px;
         border-color: var(--secondaryFontColorCard);
         background-color: var(--hover-color);
@@ -245,7 +246,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <td><h3 class="german">German</h3></td>
           <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
           <td> <h3 class="english">English</h3></td>
-          <td><paper-icon-button icon="icons:info-outline" class="language"></paper-icon-button></td>
+          <td><iron-icon icon="icons:info-outline" class="language"></iron-icon></td>
           <paper-dialog id="infoLanguage">
             <p>When you select "German" you will have to
               write German words and when you select "English" you will have to write
