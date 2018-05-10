@@ -21,6 +21,10 @@
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../bower_components/iron-icons/editor-icons.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
@@ -42,6 +46,7 @@
 <link rel="lazy-import" href="translate-page.html">
 <link rel="lazy-import" href="browse-unit.html">
 <link rel="lazy-import" href="upload-unit.html">
+<link rel="lazy-import" href="practiceunit-page-selectionmode.html">
 <link rel="lazy-import" href="my-app.html">
 
 <dom-module id="overview-page">
@@ -76,8 +81,8 @@
       }
 
       paper-icon-button.user{
-        width: 35px;
-        height: 35px;
+        width: 45px;
+        height: 45px;
         margin-right: 30px;
       }
 
@@ -131,6 +136,9 @@
         background-color: red;
         color: white;
       }
+      #homeview,#unitoverview,#statisticsview,#settingsview{
+        margin-top: 8px;
+      }
       
      /*#595959*/
     </style>
@@ -151,10 +159,10 @@
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
             <app-toolbar style="font-weight:300">Menu</app-toolbar>
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-              <a name="home-view"><iron-icon icon="vaadin:home"></iron-icon><span>Home</span></a>
-              <a name="unit-overview"><iron-icon icon="vaadin:book"></iron-icon><span>Units</span></a>
-              <a name="statistics-view"><iron-icon icon="vaadin:bar-chart-h"></iron-icon><span>Statistics</span></a>
-              <a name="settings-view"><iron-icon icon="vaadin:cog"></iron-icon><span>Settings</span></a>
+              <a name="home-view"><iron-icon id="homeview" icon="icons:home"></iron-icon><span>Home</span></a>
+              <a name="unit-overview"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
+              <a name="statistics-view"><iron-icon id="statisticsview" icon="editor:show-chart"></iron-icon><span>Statistics</span></a>
+              <a name="settings-view"><iron-icon id="settingsview" icon="icons:settings"></iron-icon><span>Settings</span></a>
             </iron-selector>
         </app-drawer>
 
@@ -166,7 +174,7 @@
             <paper-icon-button name="menuicon" icon="my-icons:menu" noink></paper-icon-button>
             <div class="maintitle" main-title>Vocabulous</div>
             <paper-button name="user">Max Mustermann </paper-button> <!--User Account Button -->
-            <paper-icon-button name="accounticon" icon="vaadin:user" class="user"></paper-icon-button> <!--User Account Button -->
+            <paper-icon-button name="accounticon" icon="social:person" class="user"></paper-icon-button> <!--User Account Button -->
             <paper-button name="logout">Log out</paper-button> <!--Log out Button -->
           </app-toolbar>
         </app-header>
@@ -189,6 +197,7 @@
           <translate-page name="translate-page"></translate-page>
           <browse-unit name="browse-unit"></browse-unit>
           <upload-unit name="upload-unit"></upload-unit>
+          <practiceunit-page-selectionmode name="practiceunit-page-selectionmode"></practiceunit-page-selectionmode>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -308,6 +317,9 @@
       }
       _getPracticeUnitPage(){
         return Polymer.dom(this.root).querySelector("practiceunit-page[name=practiceunit-page]");
+      }
+      _getPracticeUnitPageSelectionmode(){
+        return Polymer.dom(this.root).querySelector("practiceunit-page-selectionmode[name=practiceunit-page-selectionmode]");
       }
       _getSelfCheckPage(){
         return Polymer.dom(this.root).querySelector("selfcheck-page[name=selfcheck-page]");

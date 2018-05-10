@@ -16,7 +16,7 @@ var darkswitch = settings._getDarkswitch();
 var themeName = settings._getThemeName();
 var data = [];                                   //Wird später durch DB erstetzt
 var darkTheme = new Theme(0, "Dark Theme","#2E2E2E","#FFFFFF","#FFFFFF","#585858","#6E6E6E","#424242","#FFFFFF", "#424242","#ffffff","#E0ECF8");
-var defaultTheme = new Theme(1, "Default Theme","#1E88E5","#000000","#FFFFFF","#eeeeee","#f2f2f2","#ffffff","#000000","#FFFFFF","#212121","#A4A4A4");
+var defaultTheme = new Theme(1, "Default Theme","#1E88E5","#000000","#FFFFFF","#eeeeee","#f2f2f2","#ffffff","#000000","#FFFFFF","#212121","#777777");
 console.log(themeName);
 var headerBackgroundColour = settings._getHeaderBackgroundColour();
 console.log(headerBackgroundColour);
@@ -446,6 +446,7 @@ async function loadThemes(){
     var newElement = document.createElement("paper-item");
     newElement.innerHTML="no custom theme selected";
     paperListBox.appendChild(newElement);
+    newElement.onclick = function(){check("no custom theme selected",1)};
     paperListBox.selectIndex(0);
     console.log(user.getId());
     data = await BackEndHandler.userThemes(user.getId());

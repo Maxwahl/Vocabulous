@@ -43,7 +43,7 @@ public class Repository {
        chapters.add(new Chapter(2,"Basic Verbs",-1));
        chapters.add(new Chapter(3,"Basic Adjectives",-1));
        themes.add(new Theme(0,"Dark",-1,"2E2E2E","FFFFFF","FFFFFF","585858","6E6E6E","424242","FFFFFF","424242","FFFFFF","E0ECF8"));
-       themes.add(new Theme(1,"Default",-1,"1E88E5","000000","FFFFFF","eeeeee","f2f2f2","ffffff","000000","FFFFFF","212121","A4A4A4"));
+       themes.add(new Theme(1,"Default",-1,"1E88E5","000000","FFFFFF","eeeeee","f2f2f2","ffffff","000000","FFFFFF","212121","777777"));
        themes.add(new Theme(2,"custom",1,"012345","012345","123456","123456","123456","123456","123456","123456","123456","123456"));
        chapters.get(0).addWord("house", "Haus");
        chapters.get(0).addWord("car", "Auto");
