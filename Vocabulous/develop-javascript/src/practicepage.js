@@ -75,11 +75,17 @@ var secondTryCounter = 0;
 var timer = new Stopwatch(timerCounter);
 /*languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
 languageInfo.onmouseout = function(){languagePopup.style.display = "none";}*/
-languageInfo.onclick = async function(){
+languageInfo.onmouseover = function(){
     infoLanguageAlert.open();
 }
-nextInfo.onclick = async function(){
+nextInfo.onmouseover = function(){
     infoNextAlert.open();
+}
+languageInfo.onmouseout = function(){
+    infoLanguageAlert.close();
+}
+nextInfo.onmouseout = function(){
+    infoNextAlert.close();
 }
 /*nextInfo.onmouseover = function(){nextPopup.style.display = "block";}
 nextInfo.onmouseout = function(){nextPopup.style.display = "none";}*/

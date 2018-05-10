@@ -47,6 +47,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       paper-search-bar{
         margin-left: 40px;
+        margin-top: 50px;
+        width: 97%;
+        color: var(--secondaryFontColorCard);
+        --background-color:var(--cardBackgroundcolor);
+        --disabled-text-color:var(--secondaryFontColorCard);
       }
       #filters{
         border-radius: 5px;
@@ -64,8 +69,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <h1>Browse Unit</h1>
       <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
-      <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
-      <paper-icon-button id="tune" name="tune" icon="image:tune"></paper-icon-button>
+      <paper-search-bar search="{{search}}" loading="[[loading]]" ></paper-search-bar>
+      <!--<paper-icon-button id="tune" name="tune" icon="image:tune"></paper-icon-button>-->
       <paper-filter-dialog id="filters">
         <h2>Filters</h2>
         <p>Filter für die Searchbar</p>
@@ -85,6 +90,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getPaperFilterDialog(){
         return Polymer.dom(this.root).querySelector("paper-filter-dialog[id=filters]");
+      }
+      _getSearchBar(){
+        return Polymer.dom(this.root).querySelector("paper-search-bar");
       }
     }
 

@@ -58,6 +58,10 @@ var secondTry = practicePage._getSecondTry();
 console.dir(secondTry);
 var wrongVocs = practicePage._getWrongVocs();
 console.dir(wrongVocs);
+var infoLanguageAlert = practicePage._getPaperDialogLanguage();
+console.dir(infoLanguageAlert);
+var infoNextAlert = practicePage._getPaperDialogNext();
+console.dir(infoLanguageAlert);
 var toast1 = overview._getCorrectWordToast();
 var toast2 = overview._getSecondTryToast();
 var toast3 = overview._getWrongWordToast();
@@ -69,10 +73,16 @@ var mistakeVocs = [];
 var mistakes = 0;
 var secondTryCounter = 0;
 var timer = new Stopwatch(timerCounter);
-languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
-languageInfo.onmouseout = function(){languagePopup.style.display = "none";}
-nextInfo.onmouseover = function(){nextPopup.style.display = "block";}
-nextInfo.onmouseout = function(){nextPopup.style.display = "none";}
+/*languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
+languageInfo.onmouseout = function(){languagePopup.style.display = "none";}*/
+languageInfo.onclick = async function(){
+    infoLanguageAlert.open();
+}
+nextInfo.onclick = async function(){
+    infoNextAlert.open();
+}
+/*nextInfo.onmouseover = function(){nextPopup.style.display = "block";}
+nextInfo.onmouseout = function(){nextPopup.style.display = "none";}*/
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {

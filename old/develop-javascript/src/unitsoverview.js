@@ -65,8 +65,9 @@ async function load(){
         newData.value = units[i].getName();
         var trash = document.createElement("paper-icon-button");
         trash.setAttribute("class", "trash");
+        trash.setAttribute("noink", "");
         trash.setAttribute("name", "trash"+i);
-        trash.setAttribute("icon", "vaadin:trash");
+        trash.setAttribute("icon", "icons:delete");
         trash.value=units[i].getId();
         console.log(trash.value);
         trash.onclick = async function(){

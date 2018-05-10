@@ -9,18 +9,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown.html">
-<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
-<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
-<link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
-<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
 
-<dom-module id="upload-unit">
+<dom-module id="practiceunit-page-selectionmode">
   <template>
     <style include="shared-styles">
       :host {
@@ -43,29 +36,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: -55px;
         position:absolute;
       }
-      p{
+      h3.german{
+        font-weight: 300;
+        font-size: 0.9em;
+        margin-top: 40px;
+        width: 8%;
+        height: 30px;
         margin-left: 40px;
+        
+      }
+      h3.english{
+        font-weight: 300;
+        font-size: 0.9em;
+        width: 8%;
+        height: 30px;
+        margin-left: 10px;
+        margin-top: 40px;
       }
     </style>
 
     <div class="card">
-      <h1>Upload Unit</h1>
+      <h1>Unit 1</h1>
       <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
-      <p>Units können mit Hilfe einer CSV-Datei, die per Drag and Drop in ein vorhandes Feld gezogen
-        in die eigene Unit-Sammlung übernommen werden.
-      </p>
     </div>
   </template>
 
   <script>
-    class UploadUnit extends Polymer.Element {
-      static get is() { return 'upload-unit'; }
+    class PracticeUnitPageSelectionMode extends Polymer.Element {
+      static get is() { return 'practiceunit-page-selectionmode'; }
+      _getUnitName(){
+        return Polymer.dom(this.root).querySelector("h1");
+      }
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
       }
     }
-
-    window.customElements.define(UploadUnit.is, UploadUnit);
-  </script>
-   <script name="createunit" src="../develop-javascript/src/uploadunit.js" type="module"></script>
+    window.customElements.define(PracticeUnitPageSelectionMode.is, PracticeUnitPageSelectionMode);
+  </script>        
+  
+  <script src="../develop-javascript/src/practicepage_selectionmode.js" type="module"></script>
 </dom-module>
