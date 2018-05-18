@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/image-icons.html">
 <link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="browse-unit">
@@ -80,7 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 0px;
         margin-top: 20px;
       }
-      iron-icon.emailIcon{
+      iron-icon.socialIcon{
         width: 30px;
         height: 30px;
         margin-right: 20px;
@@ -109,7 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-dialog id="filters">
         <h2>Filter</h2>
         <div>
-            <paper-input class="input" label="Enter email of your friend"><iron-icon class="emailIcon" icon="communication:mail-outline" slot="prefix"></iron-icon></paper-input>
+            <paper-input class="input" label="Enter username of your friend"><iron-icon class="socialIcon" icon="social:people" slot="prefix"></iron-icon></paper-input>
             <paper-button id="save" name="save" raised noink>Apply</paper-button>
         </div>
       </paper-dialog>

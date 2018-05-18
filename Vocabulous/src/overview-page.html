@@ -205,6 +205,7 @@
     <paper-toast id="toast1" duration=1000 text="This vocab is correct!"></paper-toast>
     <paper-toast id="toast2" duration=2000 text="This vocab is wrong! Second Try"></paper-toast>
     <paper-toast id="toast3" duration=2500 text="This vocab is wrong again!"></paper-toast>
+    <paper-toast id="toast4" duration=2500 text="No vocabulary inserted!"></paper-toast>
   </template>
 
   <script>
@@ -351,6 +352,9 @@
       }
       _getWrongWordToast(){
         return Polymer.dom(this.root).querySelector("paper-toast[id=toast3]");
+      }
+      _getNoWordToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast4]");
       }
     }
 

@@ -69,6 +69,15 @@ var mistakeVocs = [];
 var mistakes = 0;
 var secondTryCounter = 0;
 var timer = new Stopwatch(timerCounter);
+
+var wordTable = practicePageSelectionmode._getWordTable();
+var wordButtonOne = practicePageSelectionmode._getWordButtonOne();
+var wordButtonTwo = practicePageSelectionmode._getWordButtonTwo();
+var wordButtonThree = practicePageSelectionmode._getWordButtonThree();
+var wordButtonFour = practicePageSelectionmode._getWordButtonFour();
+var wordButtonFive = practicePageSelectionmode._getWordButtonFive();
+var wordButtonSix = practicePageSelectionmode._getWordButtonSix();
+
 /*languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
 languageInfo.onmouseout = function(){languagePopup.style.display = "none";}*/
 languageInfo.onmouseover = function(){
@@ -114,6 +123,7 @@ ironPages.addEventListener("iron-select",function(){
 load();
 function load(){
     vocTries = 0;
+    wordTable.setAttribute("hidden", true);
     nextButton.setAttribute("hidden",true);
     cancelButton.setAttribute("hidden",true);
     skipButton.setAttribute("hidden",true);
@@ -175,7 +185,7 @@ function loadWrongVocs(){
 }
 changedUnit(false);
 cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
-toggleButton.onclick = function(){
+/*toggleButton.onclick = function(){
     
     if(english){
         toggleButton.removeAttribute("checked");
@@ -187,7 +197,7 @@ toggleButton.onclick = function(){
     english = true;
     
 }
-nextButton.onclick = async function(){await nextCheck()};
+nextButton.onclick = async function(){await nextCheck()};*/
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -295,7 +305,7 @@ async function nextCheck(){
     }
     wordPrint.innerHTML = words[position].getWordGerman();
 }*/
-skipButton.onclick = function(){
+/*skipButton.onclick = function(){
     var skipWord = words[position];
     words.splice(position,1);
     words.push(skipWord);
@@ -305,7 +315,7 @@ skipButton.onclick = function(){
         return;
     }
     
-}
+}*/
 /*input.onkeypress = async function(e){
     if (e.keyCode == 13 || e.which == 13){
         await nextCheck();
@@ -334,7 +344,7 @@ pauseButton.onclick = function(){
 }
 returnButton.onclick = function(){overview._routePageChanged("unit-page");}
 startButton.onclick = function(){
-    
+    wordTable.removeAttribute("hidden");
     nextButton.removeAttribute("hidden");
     cancelButton.removeAttribute("hidden");
     skipButton.removeAttribute("hidden");
@@ -347,4 +357,84 @@ startButton.onclick = function(){
     nextInfo.removeAttribute("hidden");
     languageInfo.setAttribute("hidden",true);
     timer.start();
+    loadNextRound();
 }
+function loadNextRound(){
+    var round = [];
+    var index = 3;
+    if(words.length < 3){
+        index = words.length;
+    }
+    for(var i = 0; i < index; i++){
+        var array = [words[0].getWordEnglish(), words[0].getWordGerman()];
+        round.push(array);
+        array = [words[0].getWordGerman(), words[0].getWordEnglish()];
+        round.push(array);
+        words.shift();
+    }
+    shuffle(round);
+    var currWord;
+    if(round.length != 0){
+        wordButtonOne.removeAttribute("hidden");
+        currWord = round.shift();
+        wordButtonOne.innerHTML=currWord[0];
+        wordButtonOne.value=currWord[1];
+    }
+    else{
+        wordButtonOne.setAttribute("hidden",true);
+    }
+    if(round.length != 0){
+        wordButtonTwo.removeAttribute("hidden");
+        currWord = round.shift();
+        wordButtonTwo.innerHTML=currWord[0];
+        wordButtonTwo.value=currWord[1];
+    }
+    else{
+        wordButtonTwo.setAttribute("hidden",true);
+    }
+    if(round.length != 0){
+        wordButtonThree.removeAttribute("hidden");
+        currWord = round.shift();
+        wordButtonThree.innerHTML=currWord[0];
+        wordButtonThree.value=currWord[1];
+    }
+    else{
+        wordButtonThree.setAttribute("hidden",true);
+    }
+    if(round.length != 0){
+        wordButtonFour.removeAttribute("hidden");
+        currWord = round.shift();
+        wordButtonFour.innerHTML=currWord[0];
+        wordButtonFour.value=currWord[1];
+    }
+    else{
+        wordButtonFour.setAttribute("hidden",true);
+    }
+    if(round.length != 0){
+        wordButtonFive.removeAttribute("hidden");
+        currWord = round.shift();
+        wordButtonFive.innerHTML=currWord[0];
+        wordButtonFive.value=currWord[1];
+    }
+    else{
+        wordButtonFive.setAttribute("hidden",true);
+    }
+    if(round.length != 0){
+        wordButtonSix.removeAttribute("hidden");
+        currWord = round.shift();
+        wordButtonSix.innerHTML=currWord[0];
+        wordButtonSix.value=currWord[1];
+    }
+    else{
+        wordButtonSix.setAttribute("hidden",true);
+    }
+}
+function handleWordButton(button){
+
+}
+wordButtonOne.onclick = function(){handleWordButton(this);}
+wordButtonTwo.onclick = function(){handleWordButton(this);}
+wordButtonThree.onclick = function(){handleWordButton(this);}
+wordButtonFour.onclick = function(){handleWordButton(this);}
+wordButtonFive.onclick = function(){handleWordButton(this);}
+wordButtonSix.onclick = function(){handleWordButton(this);}

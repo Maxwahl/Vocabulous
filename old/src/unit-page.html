@@ -21,6 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
+<link rel="import" href="../bower_components/iron-icons/editor-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="unit-page">
@@ -81,6 +82,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       d2l-dropdown{
         float:right;
       }
+      paper-icon-button.edit{
+        width: 35px;
+        height: 35px;
+        float: right;
+        margin-top: 5px;
+      }
     </style>
 
     <div class="card">
@@ -100,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   </d2l-menu>
               </d2l-dropdown-menu>
       </d2l-dropdown>
-  
+      <paper-icon-button class="edit" name="edit" icon="editor:mode-edit"></paper-icon-button>
       <table id="vocabulary">
         
       </table>

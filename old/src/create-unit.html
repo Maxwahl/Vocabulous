@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="create-unit">
@@ -161,6 +162,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       d2l-dropdown{
         float:right;
       }
+      paper-icon-button.remove{
+        color:grey;
+        --iron-icon-width: 25px;
+        --iron-icon-height: 25px;
+        float:right;
+        margin-top: -42.5px;
+      }
+      paper-icon-button.remove:hover{
+        color: red;
+      }
     </style>
 
     <div class="card">
@@ -178,22 +189,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <paper-input class="unitName" label="Unit name" no-label-float></paper-input>
       <table id="vocabs">
-        <tr><td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input></td></tr>
+        <tr><td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input><paper-icon-button class="remove" name="remove" icon="icons:clear" noink></paper-icon-button></td></tr>
       </table>
       <paper-button class="plus" name="plus" raised noink><iron-icon icon="icons:add" class="plus" noink></iron-icon></paper-button>
-      <paper-button class="minus" name="minus" raised noink><iron-icon icon="icons:remove" class="minus" noink></iron-icon></paper-button>
+      
       <paper-button class="save" name="save" raised noink >Save</paper-button>
     </div>
   </template>
-
+  
   <script>
     class CreateUnit extends Polymer.Element {
       static get is() { return 'create-unit'; }
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
       }
-      _getMinusIcon(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=minus]");
+      _getRemoveIcon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=remove]");
       }
       _getPlusIcon(){
         return Polymer.dom(this.root).querySelector("paper-button[name=plus]");

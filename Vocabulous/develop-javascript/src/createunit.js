@@ -15,8 +15,9 @@ var createunit = overview._getCreateUnit();
 console.dir(createunit);
 var returnButton = createunit._getReturnButton();
 console.dir(returnButton);
-var removeIcon = createunit._getRemoveIcon();
-console.dir(removeIcon);
+/*var removeIcon = createunit._getRemoveIcon();
+console.dir(removeIcon);*/
+var removeIndex = 0;
 var plusIcon = createunit._getPlusIcon();
 console.dir(plusIcon);
 var saveButton = createunit._getSaveButton();
@@ -32,6 +33,7 @@ console.dir(uploadUnitButton);
 var ironPages = overview._getIronPages();
 console.dir(ironPages);
 var toast = overview._getSettingsToast();
+var toast2 = overview._getNoWordToast();
 returnButton.onclick = function(){
     overview._routePageChanged("unit-overview");
     reset();
@@ -44,30 +46,77 @@ ironPages.addEventListener("iron-select",function(){
 });
 function loadCreateUnit(){
     reset();
-    removeIcon.setAttribute("hidden",true);
+    //removeIcon.setAttribute("hidden",true);
 }
 plusIcon.onclick = function(){
     var row = wordTable.insertRow(wordTable.rows.length);
+    row.setAttribute("name", "row"+removeIndex);
     var cell = row.insertCell(0);
-    cell.innerHTML = "<paper-input class='germanVocab' label='German word' no-label-float></paper-input><paper-input class='englishVocab' label='English word' no-label-float></paper-input><paper-icon-button class='remove' icon='icons:clear' noink></paper-icon-button>";
-    removeIcon.removeAttribute("hidden");
+    cell.innerHTML = "<paper-input class='germanVocab' label='German word' no-label-float></paper-input><paper-input class='englishVocab' label='English word' no-label-float></paper-input>";
+    var deleteButton = document.createElement("paper-icon-button");
+    deleteButton.setAttribute("class", "remove");
+    deleteButton.setAttribute("noink", "");
+    deleteButton.setAttribute("name", removeIndex);
+    removeIndex++;
+    deleteButton.setAttribute("icon", "icons:clear");
+    deleteButton.onclick = function(){deleteOnClick(this);}
+    cell.appendChild(deleteButton);
+    //removeIcon.removeAttribute("hidden");
 }
-removeIcon.onclick = function(){
+/*removeIcon.onclick = function(){
     wordTable.deleteRow(wordTable.rows.length-1);
     if(wordTable.rows.length == 1){
-        removeIcon.setAttribute("hidden",true);
+        //removeIcon.setAttribute("hidden",true);
     }
+}*/
+function deleteOnClick(button){
+    var row = wordTable.querySelector("tr[name=row"+button.getAttribute("name")+"]");
+    row.parentNode.removeChild(row);
 }
 function reset(){
     while(wordTable.rows.length != 0){
         wordTable.deleteRow(0);
     }
     var row = wordTable.insertRow(wordTable.rows.length);
+    row.setAttribute("name", "row"+removeIndex);
     var cell = row.insertCell(0);
-    cell.innerHTML = "<paper-input class='germanVocab' label='German word' no-label-float></paper-input><paper-input class='englishVocab' label='English word' no-label-float></paper-input>";
+    /*
+    var germanInput = document.createElement("<paper-input class='germanVocab' label='German word' no-label-float></paper-input>");
+    var englishInput = document.createElement("<paper-input class='englishVocab' label='English word' no-label-float></paper-input>");
+    var deleteButton = document.createElement("<paper-icon-button class='remove' name='remove' icon='icons:clear' noink></paper-icon-button>");
+    deleteButton.onclick = function(){alert("test")}
+    cell.appendChild(germanInput);
+    cell.appendChild(englishInput);
+    cell.appendChild(deleteButton);*/
+    /*var germanInput = document.createElement("paper-input");
+    germanInput.innerHTML = "<paper-input class='germanVocab' label='German word' no-label-float></paper-input>";
+    var englishInput = document.createElement("paper-input");
+    englishInput.innerHTML = "<paper-input class='englishVocab' label='English word' no-label-float></paper-input>";
+    var deleteButton = document.createElement("paper-icon-button");
+    deleteButton.innerHTML = "<paper-icon-button class='remove' name='remove' icon='icons:clear' noink></paper-icon-button>";
+    deleteButton.onclick = function(){alert("test")}
+    cell.appendChild(germanInput);
+    cell.appendChild(englishInput);
+    cell.appendChild(deleteButton);*/
+    //cell.innerHTML = "<paper-input class='germanVocab' label='German word' no-label-float></paper-input><paper-input class='englishVocab' label='English word' no-label-float></paper-input><paper-icon-button onclick='deleteOnClick()' class='remove' name='remove' icon='icons:clear' noink></paper-icon-button>";
+    cell.innerHTML = "<paper-input class='germanVocab' label='German word' no-label-float></paper-input><paper-input class='englishVocab' label='English word' no-label-float></paper-input><paper-icon-button class='remove' name='remove' icon='icons:clear' noink></paper-icon-button>";
+    var deleteButton = document.createElement("paper-icon-button");
+    deleteButton.setAttribute("class", "remove");
+    deleteButton.setAttribute("noink", "");
+    deleteButton.setAttribute("name", removeIndex);
+    removeIndex++;
+    deleteButton.setAttribute("icon", "icons:clear");
+    deleteButton.onclick = function(){deleteOnClick(this);}
+    cell.appendChild(deleteButton);
     unitNameInput.value = "";
 }
+
+
 async function save(){
+    if(wordTable.rows.length == 0){
+        toast2.open();
+        return;
+    }
     if(unitNameInput.value == undefined || unitNameInput.value == ""){
         toast.open();
         return;

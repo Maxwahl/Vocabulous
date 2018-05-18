@@ -111,7 +111,7 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 ironPages.addEventListener("iron-select",function(){
-    if(ironPages.selected=="practice-page"){
+    if(ironPages.selected=="practiceunit-page"){
         load();
     }
 });
