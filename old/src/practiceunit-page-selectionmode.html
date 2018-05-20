@@ -222,7 +222,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-progress name="unit" value="0" min="0" max="100" class="blue"></paper-progress>
           <h3 class="unitprogress">Unit Progress</h3>
       </div>
-      <table>
+      <table name="input">
         <tr>
           <td><paper-button id="vocab1" name="vocab1" toggles noink raised>Haus</paper-button></td>
           <td><paper-button id="vocab3" name="vocab3" toggles noink raised>Apfel</paper-button></td>
@@ -326,6 +326,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getPaperDialogNext(){
         return Polymer.dom(this.root).querySelector("paper-dialog[id=infoNext]");
+      }
+      _getWordTable(){
+        return Polymer.dom(this.root).querySelector("table[name=input]");
+      }
+      _getWordButtonOne(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=vocab1]");
+      }
+      _getWordButtonTwo(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=vocab2]");
+      }
+      _getWordButtonThree(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=vocab3]");
+      }
+      _getWordButtonFour(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=vocab4]");
+      }
+      _getWordButtonFive(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=vocab5]");
+      }
+      _getWordButtonSix(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=vocab6]");
       }
     }
     window.customElements.define(PracticeUnitPageSelectionMode.is, PracticeUnitPageSelectionMode);

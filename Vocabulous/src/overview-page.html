@@ -25,7 +25,6 @@
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/av-icons.html">
 <link rel="import" href="../bower_components/iron-icons/editor-icons.html">
-<link rel="import" href="../bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
@@ -140,11 +139,8 @@
       #homeview,#unitoverview,#statisticsview,#settingsview{
         margin-top: 8px;
       }
-      paper-progress.learnProgress {
-        --paper-progress-active-color: var(--paper-light-green-500);
-        --paper-progress-secondary-color: var(--paper-light-green-100);
-      }
-      /*<app-toolbar><paper-progress name="learnProgress" value="250" min="0" max="800" class="learnProgress"></paper-progress></app-toolbar>*/
+      
+     /*#595959*/
     </style>
 
     <app-location
@@ -162,8 +158,6 @@
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
             <app-toolbar style="font-weight:300">Menu</app-toolbar>
-            <app-toolbar><paper-progress name="learnProgress" value="250" min="0" max="800" class="learnProgress"></paper-progress></app-toolbar>
-            
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
               <a name="home-view"><iron-icon id="homeview" icon="icons:home"></iron-icon><span>Home</span></a>
               <a name="unit-overview"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
