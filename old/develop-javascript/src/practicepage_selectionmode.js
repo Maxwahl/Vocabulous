@@ -20,54 +20,32 @@ var cancelButton = practicePageSelectionmode._getCancelButton();
 console.dir(cancelButton);
 var pauseButton = practicePageSelectionmode._getPauseButton();
 console.dir(pauseButton);
-var skipButton = practicePageSelectionmode._getSkipButton();
-console.dir(skipButton);
 var timerCounter = practicePageSelectionmode._getTimeCounter();
 console.dir(timerCounter);
-var toggleButton = practicePageSelectionmode._getToggleButton();
-console.dir(toggleButton);
 var learnProgressBar = practicePageSelectionmode._getLearnProgressBar();
 console.dir(learnProgressBar);
 var unitProgressBar = practicePageSelectionmode._getUnitProgressBar();
 console.dir(unitProgressBar);
-var nextButton = practicePageSelectionmode._getNextButton();
-console.dir(nextButton);
 var startButton = practicePageSelectionmode._getStartButton();
 console.dir(startButton);
 var returnButton = practicePageSelectionmode._getReturnButton();
 console.dir(returnButton);
-var languageInfo = practicePageSelectionmode._getLanguageInfo();
-console.dir(languageInfo);
-var nextInfo = practicePageSelectionmode._getNextInfo();
-console.dir(nextInfo);
 var languagePopup = practicePageSelectionmode._getLanguagePupup();
 console.dir(languagePopup);
-var nextPopup = practicePageSelectionmode._getNextPupup();
-console.dir(nextPopup);
 var unitresultPage = overview._getUnitResultPage();
 console.dir(unitresultPage);
 var wordCount = practicePageSelectionmode._getWordCount();
 console.dir(wordCount);
 var wrongCounter = practicePageSelectionmode._getWrong();
 console.dir(wrongCounter);
-var secondTry = practicePageSelectionmode._getSecondTry();
-console.dir(secondTry);
-var wrongVocs = practicePageSelectionmode._getWrongVocs();
-console.dir(wrongVocs);
-var infoLanguageAlert = practicePageSelectionmode._getPaperDialogLanguage();
-console.dir(infoLanguageAlert);
-var infoNextAlert = practicePageSelectionmode._getPaperDialogNext();
-console.dir(infoLanguageAlert);
-var toast1 = overview._getCorrectWordToast();
-var toast2 = overview._getSecondTryToast();
-var toast3 = overview._getWrongWordToast();
+var correctVocs = practicePageSelectionmode._getCorrectVocs();
+console.dir(correctVocs);
 var words;
 var english = true;
 var position = 0;
 var vocTries = 0;
 var mistakeVocs = [];
-var mistakes = 0;
-var secondTryCounter = 0;
+var rightWords = 0;
 var timer = new Stopwatch(timerCounter);
 
 var wordTable = practicePageSelectionmode._getWordTable();
@@ -78,22 +56,16 @@ var wordButtonFour = practicePageSelectionmode._getWordButtonFour();
 var wordButtonFive = practicePageSelectionmode._getWordButtonFive();
 var wordButtonSix = practicePageSelectionmode._getWordButtonSix();
 
-/*languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
-languageInfo.onmouseout = function(){languagePopup.style.display = "none";}*/
-languageInfo.onmouseover = function(){
-    infoLanguageAlert.open();
-}
-nextInfo.onmouseover = function(){
-    infoNextAlert.open();
-}
-languageInfo.onmouseout = function(){
-    infoLanguageAlert.close();
-}
-nextInfo.onmouseout = function(){
-    infoNextAlert.close();
-}
-/*nextInfo.onmouseover = function(){nextPopup.style.display = "block";}
-nextInfo.onmouseout = function(){nextPopup.style.display = "none";}*/
+var pointCheckerOne = false;
+var pointCheckerTwo = false;
+var pointCheckerThree = false;
+var pointCheckerFour = false;
+var pointCheckerFive = false;
+var pointCheckerSix = false;
+
+var selectedButton1 = null;
+var selectedButton2 = null;
+
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
@@ -108,11 +80,7 @@ function shuffle(array) {
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="practiceunit-page-selectionmode"){
         timer.clear();
-        if(wrongVocs.value==""){
-            changedUnit(false);
-            return;
-        }
-        changedUnit(true);
+        changedUnit();
     }
 });
 ironPages.addEventListener("iron-select",function(){
@@ -124,28 +92,19 @@ load();
 function load(){
     vocTries = 0;
     wordTable.setAttribute("hidden", true);
-    nextButton.setAttribute("hidden",true);
     cancelButton.setAttribute("hidden",true);
-    skipButton.setAttribute("hidden",true);
     pauseButton.setAttribute("hidden",true);
     timerCounter.setAttribute("hidden",true);
-    nextInfo.setAttribute("hidden",true);
     startButton.removeAttribute("hidden");
     returnButton.style.display = "inline";
-    toggleButton.removeAttribute("disabled");
-    languageInfo.removeAttribute("hidden");
     unitProgressBar.value = 0;
 }
-async function changedUnit(check){
+async function changedUnit(){
     unitresultPage.value = "parcticeunit-page-selectionmode";
     unitName.innerHTML = checked.value;
     words = await BackEndHandler.getWords(unitName.innerHTML); 
-    if(check){
-        loadWrongVocs();
-    }
     wordCount.value = words.length;
-    mistakes = 0;
-    secondTryCounter = 0;
+    rightWords = 0;
     shuffle(words);
     position = 0;
     timer.pause();
@@ -154,21 +113,6 @@ async function changedUnit(check){
         toggleButton.setAttribute("checked",true);
         english = true;
     }
-}
-function saveWrongVocs(){
-    var text = "";
-    if(mistakeVocs.length == 0){
-        return;
-    }
-    text += (mistakeVocs[0].getWordEnglish() + ";");
-    text +=(mistakeVocs[0].getWordGerman());
-    for(var i = 1; i < mistakeVocs.length; i++){
-        text += (";" + mistakeVocs[i].getWordEnglish() + ";");
-        text +=(mistakeVocs[i].getWordGerman());
-    }
-    wrongVocs.value = text;
-    console.dir(wrongVocs.value);
-    mistakeVocs = [];
 }
 function loadWrongVocs(){
     console.dir(wrongVocs.value);
@@ -183,185 +127,53 @@ function loadWrongVocs(){
         i++;
     }
 }
-changedUnit(false);
+changedUnit();
 cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
-/*toggleButton.onclick = function(){
-    
-    if(english){
-        toggleButton.removeAttribute("checked");
-        english = false;
-        
-        return;
-    }
-    toggleButton.setAttribute("checked",true);
-    english = true;
-    
-}
-nextButton.onclick = async function(){await nextCheck()};*/
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-async function nextCheck(){
-    /*if(english){
-        if(input.value == words[position].getWordGerman()){
-            if(vocTries == 1){
-                secondTryCounter++;
-            }
-            vocTries = 0;
-            changeLineColor("green");
-            toast1.open();
-            await sleep(500);
-            changeLineColor("grey");
-            input.value = "";
-            if(position == words.length-1){
-                wrongCounter.value = mistakes;
-                saveWrongVocs();
-                secondTry.value = secondTryCounter;
-                overview._routePageChanged("unitresult-page");
-                changedUnit(false);
-                return;
-            }
-            position++;
-            unitProgressBar.value = position;
-            wordPrint.innerHTML = words[position].getWordEnglish();
-            return;
-        }
-        changeLineColor("orange");
-        toast2.open();
-        input.value = "";
-        vocTries++;
-        if(vocTries==2){
-            vocTries = 0;
-            mistakes++;
-            mistakeVocs.push(words[position]);
-            await wrong();
-        }
-        return;
-    }
-    if(input.value == words[position].getWordEnglish()){
-        if(vocTries == 1){
-            secondTryCounter++;
-        }
-        vocTries = 0;
-        changeLineColor("green");
-        toast1.open();
-        await sleep(500);
-        changeLineColor("grey");
-        input.value = "";
-        if(position == words.length-1){
-            wrongCounter.value = mistakes;
-            saveWrongVocs();
-            secondTry.value = secondTryCounter;
-            overview._routePageChanged("unitresult-page");
-            changedUnit(false);
-            return;
-        }
-        position++;
-        unitProgressBar.value = position;
-        wordPrint.innerHTML = words[position].getWordGerman();
-        return;
-    }
-    changeLineColor("orange");
-    toast2.open();
-    input.value = "";
-    vocTries++;
-    if(vocTries==2){
-        vocTries = 0;
-        mistakes++;
-        mistakeVocs.push(words[position]);
-        await wrong();
-    }*/
-}
-/*function changeLineColor(color){
-    input.updateStyles({"--paper-input-container-color":color});
-    input.updateStyles({"--paper-input-container-focus-color":color});
-    input.updateStyles({"--paper-input-container-invalid-color":color});
-}*/
-/*async function wrong(){
-    if(english){
-        input.value = words[position].getWordGerman();
-    }
-    else{
-        input.value = words[position].getWordEnglish();
-    }
-    changeLineColor("red");
-    toast3.open();
-    await sleep(2000);
-    changeLineColor("grey");
-    input.value = "";
-    if(position == words.length-1){
-        wrongCounter.value = mistakes;
-        saveWrongVocs();
-        secondTry.value = secondTryCounter;
-        overview._routePageChanged("unitresult-page");
-        changedUnit(false);
-        return;
-    }
-    position++;
-    unitProgressBar.value = position;
-    if(english){
-        wordPrint.innerHTML = words[position].getWordEnglish();
-        return;
-    }
-    wordPrint.innerHTML = words[position].getWordGerman();
-}*/
-/*skipButton.onclick = function(){
-    var skipWord = words[position];
-    words.splice(position,1);
-    words.push(skipWord);
-    
-    if(english){
-        
-        return;
-    }
-    
-}*/
-/*input.onkeypress = async function(e){
-    if (e.keyCode == 13 || e.which == 13){
-        await nextCheck();
-    }
-}*/
 pauseButton.onclick = function(){
     if(pauseButton.textContent == "Pause"){
         pauseButton.updateStyles({"background":"red"});
         pauseButton.updateStyles({"color":"white"});
         
-        nextButton.setAttribute("disabled",true);
         cancelButton.setAttribute("disabled",true);
-        skipButton.setAttribute("disabled",true);
         pauseButton.textContent = "Continue";
         timer.pause();
         return;
     }
     
-    nextButton.removeAttribute("disabled");
     cancelButton.removeAttribute("disabled");
-    skipButton.removeAttribute("disabled");
     pauseButton.textContent = "Pause";
     pauseButton.updateStyles({"background":"initial"});
-    pauseButton.updateStyles({"color":"initial"});
+    pauseButton.updateStyles({"color":"var(--headlineCard)"});
     timer.start();
 }
 returnButton.onclick = function(){overview._routePageChanged("unit-page");}
 startButton.onclick = function(){
     wordTable.removeAttribute("hidden");
-    nextButton.removeAttribute("hidden");
     cancelButton.removeAttribute("hidden");
-    skipButton.removeAttribute("hidden");
     pauseButton.removeAttribute("hidden");
     timerCounter.removeAttribute("hidden");
-    nextButton.removeAttribute("hidden");
     startButton.setAttribute("hidden",true);
     returnButton.style.display = "none";
-    toggleButton.setAttribute("disabled",true);
-    nextInfo.removeAttribute("hidden");
-    languageInfo.setAttribute("hidden",true);
     timer.start();
     loadNextRound();
 }
 function loadNextRound(){
+    pointCheckerOne = false;
+    pointCheckerTwo = false;
+    pointCheckerThree = false;
+    pointCheckerFour = false;
+    pointCheckerFive = false;
+    pointCheckerSix = false;
     var round = [];
     var index = 3;
+    if(words.length == 0){
+        correctVocs.value = rightWords;
+        overview._routePageChanged("unitresult-page");
+        changedUnit();
+    }
     if(words.length < 3){
         index = words.length;
     }
@@ -429,12 +241,186 @@ function loadNextRound(){
         wordButtonSix.setAttribute("hidden",true);
     }
 }
-function handleWordButton(button){
-
+async function handleWordButton(button){
+    if(button.active == false){
+        if(selectedButton1 == button){
+            selectedButton1 = null;
+        }
+        if(selectedButton2 == button){
+            selectedButton2 = null;
+        }
+        return;
+    }
+    if(selectedButton1 != null && selectedButton2 != null){
+        button.active = false;
+        return;
+    }
+    if(selectedButton1 == null){
+        selectedButton1 = button;
+    }
+    else if(selectedButton2 == null){
+        selectedButton2 = button;
+    }
+    if(selectedButton1 != null && selectedButton2 != null){
+        if(selectedButton1.innerHTML == selectedButton2.value && selectedButton1.value == selectedButton2.innerHTML){
+            updateButtonStyle(selectedButton1,"green","white",false, getPointChecker(selectedButton1));
+            updateButtonStyle(selectedButton2,"green","white",false,true);
+            unitProgressBar.value++;
+            await sleep(1000);
+            updateButtonStyle(selectedButton1,"initial","var(--headlineCard)", true, getPointChecker(selectedButton1));
+            updateButtonStyle(selectedButton2,"initial","var(--headlineCard)", true,true);
+        }
+        else{
+            updateButtonStyle(selectedButton1,"red","white", false, getPointChecker(selectedButton1));
+            updateButtonStyle(selectedButton2,"red","white", false,true);
+            await sleep(1000);
+            updateButtonStyle(selectedButton1,"initial","var(--headlineCard)", false, getPointChecker(selectedButton1));
+            updateButtonStyle(selectedButton2,"initial","var(--headlineCard)", false,true);
+        }
+        selectedButton1 = null;
+        selectedButton2 = null;
+        if(checkWordButtonsForHidden()){
+            loadNextRound();
+        }
+    }
 }
-wordButtonOne.onclick = function(){handleWordButton(this);}
-wordButtonTwo.onclick = function(){handleWordButton(this);}
-wordButtonThree.onclick = function(){handleWordButton(this);}
-wordButtonFour.onclick = function(){handleWordButton(this);}
-wordButtonFive.onclick = function(){handleWordButton(this);}
-wordButtonSix.onclick = function(){handleWordButton(this);}
+function checkWordButtonsForHidden(){
+    if(! wordButtonOne.hasAttribute("hidden")){
+        return false;
+    }
+    if(! wordButtonTwo.hasAttribute("hidden")){
+        return false;
+    }
+    if(! wordButtonThree.hasAttribute("hidden")){
+        return false;
+    }
+    if(! wordButtonFour.hasAttribute("hidden")){
+        return false;
+    }
+    if(! wordButtonFive.hasAttribute("hidden")){
+        return false;
+    }
+    if(! wordButtonSix.hasAttribute("hidden")){
+        return false;
+    }
+    return true;
+}
+function updateButtonStyle(button, background, font, correct, other){
+    if(button == wordButtonOne){            
+        wordButtonOne.updateStyles({"background":background});
+        wordButtonOne.updateStyles({"color":font});
+        wordButtonOne.active = false;
+        if(correct){
+            wordButtonOne.setAttribute("hidden", true);
+            if(!pointCheckerOne && !other){
+                rightWords++;
+            }
+        }
+        if(background == "red"){
+            pointCheckerOne = true;
+        }
+        return;
+    }
+    if(button == wordButtonTwo){
+        wordButtonTwo.updateStyles({"background":background});
+        wordButtonTwo.updateStyles({"color":font});
+        wordButtonTwo.active = false;
+        if(correct){
+            wordButtonTwo.setAttribute("hidden", true);
+            if(!pointCheckerTwo && !other){
+                rightWords++;
+            }
+        }
+        if(background == "red"){
+            pointCheckerTwo = true;
+        }
+        return;
+    }
+    if(button == wordButtonThree){
+        wordButtonThree.updateStyles({"background":background});
+        wordButtonThree.updateStyles({"color":font});
+        wordButtonThree.active = false;
+        if(correct){
+            wordButtonThree.setAttribute("hidden", true);
+            if(!pointCheckerThree && !other){
+                rightWords++;
+            }
+        }
+        if(background == "red"){
+            pointCheckerThree = true;
+        }
+        return;
+    }
+    if(button == wordButtonFour){
+        wordButtonFour.updateStyles({"background":background});
+        wordButtonFour.updateStyles({"color":font});
+        wordButtonFour.active = false;
+        if(correct){
+            wordButtonFour.setAttribute("hidden", true);
+            if(!pointCheckerFour && !other){
+                rightWords++;
+            }
+        }
+        if(background == "red"){
+            pointCheckerFour = true;
+        }
+        return;
+    }
+    if(button == wordButtonFive){
+        wordButtonFive.updateStyles({"background":background});
+        wordButtonFive.updateStyles({"color":font});
+        wordButtonFive.active = false;
+        if(correct){
+            wordButtonFive.setAttribute("hidden", true);
+            if(!pointCheckerFive && !other){
+                rightWords++;
+            }
+        }
+        if(background == "red"){
+            pointCheckerFive = true;
+        }
+        return;
+    }
+    if(button == wordButtonSix){
+        wordButtonSix.updateStyles({"background":background});
+        wordButtonSix.updateStyles({"color":font});
+        wordButtonSix.active = false;
+        if(correct){
+            wordButtonSix.setAttribute("hidden", true);
+            if(!pointCheckerSix && !other){
+                rightWords++;
+            }
+        }
+        if(background == "red"){
+            pointCheckerSix = true;
+        }
+        return;
+    }
+}
+function getPointChecker(button){
+    if(button.value == wordButtonOne.innerHTML){    
+        return pointCheckerOne;
+    }
+    if(button.value == wordButtonTwo.innerHTML){
+        return pointCheckerTwo;
+    }
+    if(button.value == wordButtonThree.innerHTML){
+        return pointCheckerThree;
+    }
+    if(button.value == wordButtonFour.innerHTML){
+        return pointCheckerFour;
+    }
+    if(button.value == wordButtonFive.innerHTML){
+        return pointCheckerFive;
+    }
+    if(button.value == wordButtonSix.innerHTML){
+        return pointCheckerSix;
+    }
+    return false;
+}
+wordButtonOne.onclick = async function(){await handleWordButton(this);}
+wordButtonTwo.onclick = async function(){await handleWordButton(this);}
+wordButtonThree.onclick = async function(){await handleWordButton(this);}
+wordButtonFour.onclick = async function(){await handleWordButton(this);}
+wordButtonFive.onclick = async function(){await handleWordButton(this);}
+wordButtonSix.onclick = async function(){await handleWordButton(this);}

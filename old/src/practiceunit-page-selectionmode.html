@@ -203,7 +203,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <h1>Unit 1</h1> <!--Name der Unit-->
       <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
-      <table>
+      <!--<table>
         <tr>
           <td><h3 class="german">German</h3></td>
           <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
@@ -215,14 +215,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               English words.</p>
           </paper-dialog>
         </tr>
-      </table>
+      </table>-->
       <div class="progressbars">
           <paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress>
           <h3 class="learnprogress">Learn Progress</h3>
           <paper-progress name="unit" value="0" min="0" max="100" class="blue"></paper-progress>
           <h3 class="unitprogress">Unit Progress</h3>
       </div>
-      <table name="input">
+      <table name="input" hidden="true">
         <tr>
           <td><paper-button id="vocab1" name="vocab1" toggles noink raised>Haus</paper-button></td>
           <td><paper-button id="vocab3" name="vocab3" toggles noink raised>Apfel</paper-button></td>
@@ -240,10 +240,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <tr>
           <td><paper-button hidden="true" class="cancelbutton" name="cancelbutton" noink raised>Exit</paper-button></td>
           <td><paper-button hidden="true" class="pausebutton" name="pausebutton" noink raised>Pause</paper-button></td>
-          <td><paper-button hidden="true" class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>
+          <!--<td><paper-button hidden="true" class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>-->
           <td><paper-button class="startbutton" name="startbutton" noink raised>Start</paper-button></td>
           <td><h2 hidden="true" class="timer">00:00:00</time-counter></td>
-          <td><paper-button hidden="true" class="nextVocab" name="nextVocab" raised noink>Next</paper-button></td>
+          <!--<td><paper-button hidden="true" class="nextVocab" name="nextVocab" raised noink>Next</paper-button></td>
           <td><iron-icon hidden="true" icon="icons:info-outline" class="next"></iron-icon></td>
           <paper-dialog id="infoNext">
             <p>When you press "NEXT" Vocabulous
@@ -253,12 +253,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               After a short amount of time you will get the next word.</p>
           </paper-dialog>
         </tr>
-      </table>
+      </table>-->
     </div>
     <input name="wordCount" style="display:none;">
     <input name="wrong" style="display:none;">
-    <input name="secondTry" style="display:none;">
-    <input name="wrongVocs" style="display:none;">
+    <!--<input name="secondTry" style="display:none;">-->
+    <input name="correctVocs" style="display:none;">
   </template>
 
   <script>
@@ -273,24 +273,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getPauseButton(){
         return Polymer.dom(this.root).querySelector("paper-button[name=pausebutton]");
       }
-      _getSkipButton(){
+  /*_getSkipButton(){
         return Polymer.dom(this.root).querySelector("paper-button[name=skipbutton]");
-      }
+      }*/
       _getTimeCounter(){
         return Polymer.dom(this.root).querySelector("h2[class=timer]");
       }
-      _getToggleButton(){
+      /*_getToggleButton(){
         return Polymer.dom(this.root).querySelector("paper-toggle-button");
-      }
+      }*/
       _getLearnProgressBar(){
         return Polymer.dom(this.root).querySelector("paper-progress[name=learn]");
       }
       _getUnitProgressBar(){
         return Polymer.dom(this.root).querySelector("paper-progress[name=unit]");
       }
-      _getNextButton(){
+      /*_getNextButton(){
         return Polymer.dom(this.root).querySelector("paper-button[class=nextVocab]");
-      }
+      }*/
       _getStartButton(){
         return Polymer.dom(this.root).querySelector("paper-button[name=startbutton]");
       }
@@ -315,18 +315,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getWrong(){
         return Polymer.dom(this.root).querySelector("input[name=wrong]");
       }
-      _getSecondTry(){
+      /*_getSecondTry(){
         return Polymer.dom(this.root).querySelector("input[name=secondTry]");
+      }*/
+      _getCorrectVocs(){
+        return Polymer.dom(this.root).querySelector("input[name=correctVocs]");
       }
-      _getWrongVocs(){
-        return Polymer.dom(this.root).querySelector("input[name=wrongVocs]");
-      }
-      _getPaperDialogLanguage(){
+      /*_getPaperDialogLanguage(){
         return Polymer.dom(this.root).querySelector("paper-dialog[id=infoLanguage]");
-      }
-      _getPaperDialogNext(){
+      }*/
+      /*_getPaperDialogNext(){
         return Polymer.dom(this.root).querySelector("paper-dialog[id=infoNext]");
-      }
+      }*/
       _getWordTable(){
         return Polymer.dom(this.root).querySelector("table[name=input]");
       }

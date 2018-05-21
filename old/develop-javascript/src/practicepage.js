@@ -336,7 +336,7 @@ pauseButton.onclick = function(){
     skipButton.removeAttribute("disabled");
     pauseButton.textContent = "Pause";
     pauseButton.updateStyles({"background":"initial"});
-    pauseButton.updateStyles({"color":"initial"});
+    pauseButton.updateStyles({"color":"var(--headlineCard)"});
     timer.start();
 }
 returnButton.onclick = function(){overview._routePageChanged("unit-page");}
