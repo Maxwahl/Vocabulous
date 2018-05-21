@@ -69,4 +69,22 @@ public class UnitResources {
                 .add("retVal", val)               
                 .build();   
     }
+    @Path("allUnits")
+    @GET
+    public JsonArray getAllUnits(){
+        JsonArrayBuilder ret = Json.createArrayBuilder();
+        for(Chapter c:Repository.getInstance().getChapters()){
+            ret.add(c.jsonifyUnit());
+        }
+        return ret.build();
+    }
+    
+    @Path("deleteWord")
+    @GET
+    public JsonObject deleteWord(@QueryParam("uID") int uID,@QueryParam("wE")String wE){
+        int val = Repository.getInstance().deleteWord(uID,wE);
+        return Json.createObjectBuilder()
+                .add("retVal", val)               
+                .build();   
+    }
 }

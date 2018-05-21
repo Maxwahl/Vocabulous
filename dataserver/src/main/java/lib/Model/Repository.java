@@ -234,4 +234,16 @@ public class Repository {
         
         return 0;
     }
+
+    public int deleteWord(int uID, String wE) {
+        int index = 0;
+        Chapter c =chapters.stream().filter(it->it.getId()==uID).findFirst().get();
+        for(int i = 0;i<c.getVocab().size();i++){
+            if(c.getVocab().get(i).getWordEnglisch().equals(wE)){
+                index =i;
+            }    
+        }
+        c.getVocab().remove(index);
+        return 0;
+    }
 }
