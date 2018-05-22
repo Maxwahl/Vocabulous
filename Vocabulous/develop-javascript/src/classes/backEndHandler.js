@@ -121,7 +121,7 @@ export default class BackEndHandler{
         }
         return units;
     }
-    static async addWordToUnit(cID,wE){
+    static async deleteWordFromUnit(cID,wE){
         const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/deleteWord?uID="+cID+"&wE="+word.getWordEnglish());
         return retVal;
     }
