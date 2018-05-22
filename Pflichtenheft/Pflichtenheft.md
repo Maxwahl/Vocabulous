@@ -102,7 +102,7 @@ Mit Hilfe der Statistiken werden die Ergebnisse übersichtlich dargestellt. Es w
 
 ### Vokabel-Prüfung
 
-<img src="Images\GUI-Vokabelprüfung01.png" alt="Drawing" style="width: 500px;"/>
+<img src="Images\GUI-Vokabelprüfung01.PNG" alt="Drawing" style="width: 500px;"/>
 
 ### Statistik
 
