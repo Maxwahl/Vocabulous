@@ -135,6 +135,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getExamButton(){
         return Polymer.dom(this.root).querySelector("d2l-menu-item[name=selfCheck]");
       }
+      _getEditButton(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=edit]");
+      }
     }
     window.customElements.define(UnitPage.is, UnitPage);
   </script>

@@ -26,6 +26,12 @@ console.dir(practiceButtonSelectionmode);
 var examButton = unitpage._getExamButton();
 console.dir(examButton);
 var words;
+var editButton = unitpage._getEditButton();
+editButton.onclick = function(){
+    var updateInput = overview._getUpdateInput();
+    updateInput.value = unitName.innerHTML;
+    overview._routePageChanged("create-unit");
+}
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="unit-page"){
         changedUnit();

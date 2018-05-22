@@ -33,6 +33,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 10px;
       }
+      table{
+        width: 100%;
+      }
+      td:hover{
+        background-color: var(--hover-color);
+      }
+      td{
+        border: 0.5px solid var(--secondaryFontColorCard);
+        height: 30px;
+        padding: 10px;
+        text-align: left;
+        font-weight: 200;
+        margin-left: 40px;
+        color:var(--secondaryFontColorCard);
+        border-radius: 5px;
+        margin-bottom: 3px;
+        display: block;
+      }
       h1{
         color:  var(--headlineCard);
         margin-left: 40px;
@@ -115,7 +133,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-dialog>
 
       <table id="units">
-          <paper-checkbox noink></paper-checkbox>
+          
       </table>
       <paper-button id="transfer" name="transfer" raised noink>Transfer Units</paper-button>
     </div>
@@ -133,9 +151,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getSearchBar(){
         return Polymer.dom(this.root).querySelector("paper-search-bar");
       }
+      _getTable(){
+        return Polymer.dom(this.root).querySelector("table[id=units]");
+      }
     }
 
     window.customElements.define(BrowseUnit.is, BrowseUnit);
   </script>
-   <script name="createunit" src="../develop-javascript/src/browseunit.js" type="module"></script>
+   <script name="browseunit" src="../develop-javascript/src/browseunit.js" type="module"></script>
 </dom-module>

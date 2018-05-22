@@ -219,6 +219,7 @@
     <paper-toast id="toast2" duration=2000 text="This vocab is wrong! Second Try"></paper-toast>
     <paper-toast id="toast3" duration=2500 text="This vocab is wrong again!"></paper-toast>
     <paper-toast id="toast4" duration=2500 text="No vocabulary inserted!"></paper-toast>
+    <input name="updateUnit" style="display:none;"><!--Für Update Unit benötigt-->
   </template>
 
   <script>
@@ -368,6 +369,9 @@
       }
       _getNoWordToast(){
         return Polymer.dom(this.root).querySelector("paper-toast[id=toast4]");
+      }
+      _getUpdateInput(){
+        return Polymer.dom(this.root).querySelector("input[name=updateUnit]");
       }
     }
 
