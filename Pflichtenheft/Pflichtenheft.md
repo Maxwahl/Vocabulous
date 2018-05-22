@@ -25,6 +25,7 @@
 | 	  12.12.2017| Use Case Diagramm, Aktivitätsdiagramm            |Änderungen laut Feedback eingebaut             |       David Hiebl|
 | 	  02.02.2018| Nicht-funktionale Anforderungen, Abbildungsverzeichnis            |Änderungen laut Feedback eingebaut             |       David Hiebl|
 | 	  07.02.2018| Aufgabenstellung hinzugefügt            |generelle Überarbeitung             |       Konstantin Urbanides|
+| 	  22.05.2018| GUI (Use Cases)            |Grafiken erneuert             |       Konstantin Urbanides|
 
 ## Inhalt
 
@@ -101,7 +102,7 @@ Mit Hilfe der Statistiken werden die Ergebnisse übersichtlich dargestellt. Es w
 
 ### Vokabel-Prüfung
 
-<img src="Images\GUI-Vokabelprüfung.png" alt="Drawing" style="width: 500px;"/>
+<img src="Images\GUI-Vokabelprüfung01.png" alt="Drawing" style="width: 500px;"/>
 
 ### Statistik
 
