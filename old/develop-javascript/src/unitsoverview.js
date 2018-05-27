@@ -13,6 +13,7 @@ var searchBar = unitView._getSearchBar();
 console.dir(searchBar);
 var checked = unitView._getChecked();
 console.dir(checked);
+var uid = unitView._getUnitId();
 var newUnitButton = unitView._getNewUnitButton();
 console.dir(newUnitButton);
 var translateButton = unitView._getTranslateButton();
@@ -63,6 +64,7 @@ async function load(){
         newData.innerHTML = units[i].getName();
         //var text = units[i].getName();
         newData.value = units[i].getName();
+        newData.setAttribute("name", units[i].getId());
         var trash = document.createElement("paper-icon-button");
         trash.setAttribute("class", "trash");
         trash.setAttribute("noink", "");
@@ -88,6 +90,7 @@ async function load(){
         newData.onclick=function(){
             if(!trashHover){
                 checked.value = this.value;
+                uid.value = this.getAttribute("name");
                 overview._routePageChanged("unit-page");
             }
             else{

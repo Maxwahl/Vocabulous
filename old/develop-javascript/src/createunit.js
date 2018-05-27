@@ -34,8 +34,10 @@ var ironPages = overview._getIronPages();
 console.dir(ironPages);
 var toast = overview._getSettingsToast();
 var toast2 = overview._getNoWordToast();
+var updateInput = overview._getUpdateInput();
 returnButton.onclick = function(){
     overview._routePageChanged("unit-overview");
+    updateInput.value = "";
     reset();
 }
 loadCreateUnit();
@@ -44,9 +46,30 @@ ironPages.addEventListener("iron-select",function(){
         loadCreateUnit();
     }
 });
+async function loadWords(){
+    unitNameInput.value = updateInput.value;
+    var words = await BackEndHandler.getWords(updateInput.value); 
+    wordTable.deleteRow(0);
+    for(var i = 0; i < words.length; i++){
+        var row = wordTable.insertRow(wordTable.rows.length);
+        row.setAttribute("name", "row"+removeIndex);
+        var cell = row.insertCell(0);
+        cell.innerHTML = "<paper-input class='germanVocab' label='German word' value='"+words[i].getWordGerman()+"' no-label-float></paper-input><paper-input class='englishVocab' label='English word' value='"+words[i].getWordEnglish()+"' no-label-float></paper-input>";
+        var deleteButton = document.createElement("paper-icon-button");
+        deleteButton.setAttribute("class", "remove");
+        deleteButton.setAttribute("noink", "");
+        deleteButton.setAttribute("name", removeIndex);
+        removeIndex++;
+        deleteButton.setAttribute("icon", "icons:clear");
+        deleteButton.onclick = function(){deleteOnClick(this);}
+        cell.appendChild(deleteButton);
+    }
+}
 function loadCreateUnit(){
     reset();
-    //removeIcon.setAttribute("hidden",true);
+    if(updateInput.value != ""){
+        loadWords();
+    }
 }
 plusIcon.onclick = function(){
     var row = wordTable.insertRow(wordTable.rows.length);
@@ -69,8 +92,12 @@ plusIcon.onclick = function(){
         //removeIcon.setAttribute("hidden",true);
     }
 }*/
-function deleteOnClick(button){
+async function deleteOnClick(button){
     var row = wordTable.querySelector("tr[name=row"+button.getAttribute("name")+"]");
+    /*if(updateInput.value != ""){
+        var word = new Word(row.cells[0].childNodes[0].value, row.cells[0].childNodes[1].value);
+        deleteWords.push(word);
+    }*/
     row.parentNode.removeChild(row);
 }
 function reset(){
@@ -113,6 +140,15 @@ function reset(){
 
 
 async function save(){
+    if(updateInput.value != ""){
+        var unitoverview = overview._getUnitView();
+        var uId = unitoverview._getUnitId();
+        var words = await BackEndHandler.getWords(updateInput.value); 
+        while(words.length != 0){
+            BackEndHandler.deleteWordFromUnit(uId.value, words[0]);
+            words.shift();
+        }
+    }
     if(wordTable.rows.length == 0){
         toast2.open();
         return;
@@ -128,13 +164,22 @@ async function save(){
             return;
         }
     }
-    user = await BackEndHandler.login(username.value, password.value);
-    console.log(user.id);
-    var unitId = await BackEndHandler.createUnit(user, unitNameInput.value);
+    var unitId;
+    if(updateInput.value == ""){
+        user = await BackEndHandler.login(username.value, password.value);
+        console.log(user.id);
+        var unitId = await BackEndHandler.createUnit(user, unitNameInput.value);
+    }
+    else{
+        var unitoverview = overview._getUnitView();
+        var uId = unitoverview._getUnitId();
+        unitId = uId.value;
+    }
     for(var i = 0; i < wordTable.rows.length; i++){
         var word = new Word(wordTable.rows[i].cells[0].childNodes[0].value, wordTable.rows[i].cells[0].childNodes[1].value);
         await BackEndHandler.addWordToUnit(unitId, word);
     }
+    updateInput.value = "";
     overview._routePageChanged("unit-overview");
     reset();
 }

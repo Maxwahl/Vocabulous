@@ -137,6 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
        
       </table>
       <input name="forUnit" style="display:none;">
+      <input name="uId" style="display:none;"><!--Für Update Unit benötigt-->
     </div>
   </template>
 
@@ -166,6 +167,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getPaperDialogYes(){
         return Polymer.dom(this.root).querySelector("paper-button[name=yes]");
+      }
+      _getUnitId(){
+        return Polymer.dom(this.root).querySelector("input[name=uId]");
       }
     }
     window.customElements.define(UnitOverview.is, UnitOverview);
