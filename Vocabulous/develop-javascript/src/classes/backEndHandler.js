@@ -72,11 +72,7 @@ export default class BackEndHandler{
         return retVal;
     }
     static async changeUser(user){
-<<<<<<< HEAD
-        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/changeUser?user="+user.getId()+"&user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
-=======
         const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/changeUser?id="+user.getId()+"&user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
->>>>>>> development-javaee
         return retVal;
     }
     static async deleteTheme(tId){
@@ -108,7 +104,7 @@ export default class BackEndHandler{
         return retVal;//retVal is unitID
     }
     static async addWordToUnit(cID,word){
-        const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addWord?cID="+cID+"&wE="+word.getWordEnglish()+"&wG="+w.getWordGerman());
+        const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addWord?cID="+cID+"&wE="+word.getWordEnglish()+"&wG="+word.getWordGerman());
         return retVal;
     }
     static async deleteUnit(uID){
@@ -125,7 +121,7 @@ export default class BackEndHandler{
         }
         return units;
     }
-    static async deleteWordFromUnit(cID,wE){
+    static async deleteWordFromUnit(cID,word){
         const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/deleteWord?uID="+cID+"&wE="+word.getWordEnglish());
         return retVal;
     }
