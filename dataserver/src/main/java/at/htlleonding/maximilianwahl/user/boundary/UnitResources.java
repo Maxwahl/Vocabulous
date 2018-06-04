@@ -87,11 +87,11 @@ public class UnitResources {
                 .add("retVal", val)               
                 .build();   
     }
-    @Path("defaultUnits")
+    @Path("otherUnits")
     @GET
-    public JsonArray getAllUnits(){
+    public JsonArray getAllUnits(@QueryParam("uID")int uID){
         JsonArrayBuilder ret = Json.createArrayBuilder();
-        for(Chapter c:Repository.getInstance().getChapter(-1)){
+        for(Chapter c:Repository.getInstance().getOtherUnits(uID)){
             ret.add(c.jsonifyUnit());
         }
         return ret.build();

@@ -126,8 +126,8 @@ export default class BackEndHandler{
         return retVal;
     }
 
-    static async getDefaultUnits(){
-        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/defaultUnits");
+    static async getOtherUnits(uID){
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/otherUnits?uID="+uID);
         let units = [];
         while(jsonText.length>0){
             const {id,name} = jsonText.pop();

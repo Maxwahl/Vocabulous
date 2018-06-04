@@ -246,4 +246,8 @@ public class Repository {
         c.getVocab().remove(index);
         return 0;
     }
+
+    public Iterable<Chapter> getOtherUnits(int uID) {
+        return chapters.stream().filter((it)->it.getId()!=uID && it.getId()!= -1).collect(Collectors.toList());
+    }
 }
