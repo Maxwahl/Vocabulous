@@ -87,4 +87,13 @@ public class UnitResources {
                 .add("retVal", val)               
                 .build();   
     }
+    @Path("defaultUnits")
+    @GET
+    public JsonArray getAllUnits(){
+        JsonArrayBuilder ret = Json.createArrayBuilder();
+        for(Chapter c:Repository.getInstance().getChapter(-1)){
+            ret.add(c.jsonifyUnit());
+        }
+        return ret.build();
+    }
 }
