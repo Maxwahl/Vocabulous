@@ -117,6 +117,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 40px;
         margin-top: 20px;
       }
+      
+      #confirm{
+        /*border: 2px solid;*/
+        border-radius: 5px;
+        border-color: var(--secondaryFontColorCard);
+        background-color: var(--hover-color);
+        color: var(--secondaryFontColorCard);
+      }
     </style>
 
     <div class="card">
@@ -136,6 +144,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           
       </table>
       <paper-button id="transfer" name="transfer" raised noink>Transfer Units</paper-button>
+      <paper-dialog id="confirm">
+        <h2>Confirm</h2>
+        <p>Do you really want to transfer these Units?</p>
+        <div class="buttons">
+          <paper-button class="confirmButtons"name="no">No</paper-button>
+          <paper-button class="confirmButtons"name="yes">Yes</paper-button>
+        </div>
+      </paper-dialog>
+      
     </div>
   </template>
 
@@ -153,6 +170,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getTable(){
         return Polymer.dom(this.root).querySelector("table[id=units]");
+      }
+      _getTransferButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[id=transfer]");
+      }
+      
+      _getPaperDialog(){
+        return Polymer.dom(this.root).querySelector("paper-dialog[id=confirm]");
+      }
+      _getPaperDialogNo(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=no]");
+      }
+      _getPaperDialogYes(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=yes]");
       }
     }
 

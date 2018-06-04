@@ -179,6 +179,12 @@ async function save(){
         var word = new Word(wordTable.rows[i].cells[0].childNodes[0].value, wordTable.rows[i].cells[0].childNodes[1].value);
         await BackEndHandler.addWordToUnit(unitId, word);
     }
+    if(updateInput.value != ""){
+        updateInput.value = "";
+        overview._routePageChanged("unit-page");
+        reset();
+        return;
+    }
     updateInput.value = "";
     overview._routePageChanged("unit-overview");
     reset();
