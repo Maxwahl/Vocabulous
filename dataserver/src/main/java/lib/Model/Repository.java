@@ -250,4 +250,24 @@ public class Repository {
     public Iterable<Chapter> getOtherUnits(int uID) {
         return chapters.stream().filter((it)->it.getId()!=uID && it.getId()!= -1).collect(Collectors.toList());
     }
+
+    public int changeName(int uID, String nn) {
+        int res = 0;
+        Chapter c = chapters.stream().filter((it)->it.getId() == uID).findFirst().get();
+        c.setName(nn);
+        return res;
+    }
+
+    public Iterable<Chapter> getUnitsByUser(String username) {
+        User u = users.stream().filter(it->it.getUsername().equalsIgnoreCase(username)).findFirst().get();
+        return chapters.stream().filter(it->it.getOwner()==u.getId()).collect(Collectors.toList());
+    }
+
+    public int copyUnit(int uID, int cID) {
+        Chapter toCopy = chapters.stream().filter(it->it.getId()==cID).findFirst().get();
+        Chapter copied = (Chapter) org.apache.commons.lang.SerializationUtils.clone(toCopy);
+        copied.setId(chapters.size()+1);
+        copied.setOwner(uID);
+        return 0;
+    }
 }

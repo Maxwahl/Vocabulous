@@ -5,6 +5,7 @@
  */
 package lib.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.json.Json;
@@ -16,7 +17,7 @@ import javax.json.JsonObject;
  *
  * @author mexxw
  */
-public class Chapter {
+public class Chapter implements Serializable{
     private int id;
     private String name;
     private int owner;

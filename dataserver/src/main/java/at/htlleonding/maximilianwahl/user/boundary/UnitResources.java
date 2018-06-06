@@ -96,4 +96,29 @@ public class UnitResources {
         }
         return ret.build();
     }
+    @Path("changeName")
+    @GET
+    public JsonObject changeNAme(@QueryParam("uID") int uID,@QueryParam("nn")String nn){
+        int val = Repository.getInstance().changeName(uID,nn);
+        return Json.createObjectBuilder()
+                .add("retVal", val)               
+                .build();   
+    }
+    @Path("byUser")
+    @GET
+    public JsonArray getAllUnits(@QueryParam("username")String username){
+        JsonArrayBuilder ret = Json.createArrayBuilder();
+        for(Chapter c:Repository.getInstance().getUnitsByUser(username)){
+            ret.add(c.jsonifyUnit());
+        }
+        return ret.build();
+    }
+    @Path("addUnit")
+    @GET
+    public JsonObject addUnit(@QueryParam("uID") int uID,@QueryParam("cID")int cID){
+        int val = Repository.getInstance().copyUnit(uID,cID);
+        return Json.createObjectBuilder()
+                .add("retVal", val)               
+                .build();   
+    }
 }
