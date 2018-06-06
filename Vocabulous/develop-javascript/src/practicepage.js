@@ -58,6 +58,10 @@ var secondTry = practicePage._getSecondTry();
 console.dir(secondTry);
 var wrongVocs = practicePage._getWrongVocs();
 console.dir(wrongVocs);
+var infoLanguageAlert = practicePage._getPaperDialogLanguage();
+console.dir(infoLanguageAlert);
+var infoNextAlert = practicePage._getPaperDialogNext();
+console.dir(infoLanguageAlert);
 var toast1 = overview._getCorrectWordToast();
 var toast2 = overview._getSecondTryToast();
 var toast3 = overview._getWrongWordToast();
@@ -69,10 +73,22 @@ var mistakeVocs = [];
 var mistakes = 0;
 var secondTryCounter = 0;
 var timer = new Stopwatch(timerCounter);
-languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
-languageInfo.onmouseout = function(){languagePopup.style.display = "none";}
-nextInfo.onmouseover = function(){nextPopup.style.display = "block";}
-nextInfo.onmouseout = function(){nextPopup.style.display = "none";}
+/*languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
+languageInfo.onmouseout = function(){languagePopup.style.display = "none";}*/
+languageInfo.onmouseover = function(){
+    infoLanguageAlert.open();
+}
+nextInfo.onmouseover = function(){
+    infoNextAlert.open();
+}
+languageInfo.onmouseout = function(){
+    infoLanguageAlert.close();
+}
+nextInfo.onmouseout = function(){
+    infoNextAlert.close();
+}
+/*nextInfo.onmouseover = function(){nextPopup.style.display = "block";}
+nextInfo.onmouseout = function(){nextPopup.style.display = "none";}*/
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
@@ -95,6 +111,12 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 ironPages.addEventListener("iron-select",function(){
+    if(ironPages.selected=="practiceunit-page"){
+        load();
+    }
+});
+load();
+function load(){
     vocTries = 0;
     input.setAttribute("hidden",true);
     nextButton.setAttribute("hidden",true);
@@ -109,7 +131,7 @@ ironPages.addEventListener("iron-select",function(){
     toggleButton.removeAttribute("disabled");
     languageInfo.removeAttribute("hidden");
     unitProgressBar.value = 0;
-});
+}
 async function changedUnit(check){
     unitresultPage.value = "parcticeunit-page";
     unitName.innerHTML = checked.value;
@@ -314,7 +336,7 @@ pauseButton.onclick = function(){
     skipButton.removeAttribute("disabled");
     pauseButton.textContent = "Pause";
     pauseButton.updateStyles({"background":"initial"});
-    pauseButton.updateStyles({"color":"initial"});
+    pauseButton.updateStyles({"color":"var(--headlineCard)"});
     timer.start();
 }
 returnButton.onclick = function(){overview._routePageChanged("unit-page");}

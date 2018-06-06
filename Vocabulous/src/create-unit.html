@@ -17,6 +17,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
 <link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
 <link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="create-unit">
@@ -36,10 +39,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       paper-icon-button.back{
         font-size: 0.65em;
-        width: 30px;
-        height: 30px;
+        width: 45px;
+        height: 45px;
         margin-left: -10px;
-        margin-top: -49px;
+        margin-top: -55px;
         position:absolute;
       }
       table{
@@ -51,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--hover-color);
       }
       td{
-        border: 0.5px solid var(--secondaryFontColorCard);
+        border: 0.75px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
@@ -117,9 +120,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 8px;
       }
       iron-icon.plus{
-        width: 17px;
-        height: 17px;
-        color: var(--app-secondary-color);
+        width: 21px;
+        height: 21px;
+        color: grey;
       }
       paper-button.minus{
         margin: 0px;
@@ -134,8 +137,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         float: right;
       }
       iron-icon.minus{
-        width: 17px;
-        height: 17px;
+        width: 21px;
+        height: 21px;
         color: var(--app-secondary-color);
       }
       paper-button.browseUnit{
@@ -159,13 +162,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       d2l-dropdown{
         float:right;
       }
+      paper-icon-button.remove{
+        color:grey;
+        --iron-icon-width: 25px;
+        --iron-icon-height: 25px;
+        float:right;
+        margin-top: -42.5px;
+      }
+      paper-icon-button.remove:hover{
+        color: red;
+      }
     </style>
 
     <div class="card">
       <h1>Create Unit</h1>
-      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
+      <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
       <d2l-dropdown>
-          <paper-icon-button style="width: 35px;height: 35px;"class="d2l-dropdown-opener" name="menu" icon="vaadin:ellipsis-dots-v" noink></paper-icon-button>
+          <paper-icon-button style="width: 45px;height: 45px;"class="d2l-dropdown-opener" name="menu" icon="icons:more-vert" noink></paper-icon-button>
           <d2l-dropdown-menu>
               <d2l-menu label="Menu">
                 <d2l-menu-item name="browseUnit" text="Browse Unit"></d2l-menu-item>
@@ -176,22 +189,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <paper-input class="unitName" label="Unit name" no-label-float></paper-input>
       <table id="vocabs">
-        <tr><td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input></td></tr>
+        <tr><td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input><paper-icon-button class="remove" name="remove" icon="icons:clear" noink></paper-icon-button></td></tr>
       </table>
-      <paper-button class="plus" name="plus" raised noink><iron-icon icon="vaadin:plus" class="plus" noink></iron-icon></paper-button>
-      <paper-button class="minus" name="minus" raised noink><iron-icon icon="vaadin:minus" class="minus" noink></iron-icon></paper-button>
+      <paper-button class="plus" name="plus" raised noink><iron-icon icon="icons:add" class="plus" noink></iron-icon></paper-button>
+      
       <paper-button class="save" name="save" raised noink >Save</paper-button>
     </div>
   </template>
-
+  
   <script>
     class CreateUnit extends Polymer.Element {
       static get is() { return 'create-unit'; }
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
       }
-      _getMinusIcon(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=minus]");
+      _getRemoveIcon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=remove]");
       }
       _getPlusIcon(){
         return Polymer.dom(this.root).querySelector("paper-button[name=plus]");

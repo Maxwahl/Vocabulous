@@ -21,9 +21,17 @@ var returnButton = unitpage._getReturnButton();
 console.dir(returnButton);
 var practiceButton = unitpage._getPracticeButton();
 console.dir(practiceButton);
+var practiceButtonSelectionmode = unitpage._getPracticeButtonSelectionmode();
+console.dir(practiceButtonSelectionmode);
 var examButton = unitpage._getExamButton();
 console.dir(examButton);
 var words;
+var editButton = unitpage._getEditButton();
+editButton.onclick = function(){
+    var updateInput = overview._getUpdateInput();
+    updateInput.value = unitName.innerHTML;
+    overview._routePageChanged("create-unit");
+}
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="unit-page"){
         changedUnit();
@@ -46,4 +54,5 @@ async function changedUnit(){
 changedUnit();
 returnButton.onclick = function(){overview._routePageChanged("unit-overview")}
 practiceButton.onclick = function(){overview._routePageChanged("practiceunit-page")};
+practiceButtonSelectionmode.onclick = function(){overview._routePageChanged("practiceunit-page-selectionmode")};
 examButton.onclick = function(){overview._routePageChanged("selfcheck-page")};
