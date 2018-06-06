@@ -122,15 +122,15 @@ public class Repository {
     }
     
     public User login(String uName,String password){
-        User ret = users.stream().filter((it) -> it.getUsername().equals(uName) && it.getPassword().equals(password)).findFirst().get();
+        User ret = users.stream().filter((it) -> it.getUsername().equals(uName) && it.getPassword().equals(password)).findFirst().orElse(null);
         return ret;
     }
     public User user(String uName){
-        User ret = users.stream().filter((it) -> it.getUsername().equals(uName)).findFirst().get(); 
+        User ret = users.stream().filter((it) -> it.getUsername().equals(uName)).findFirst().orElse(null);
         return ret;
     }
     public int setStartingTheme(int uID,int themeID){
-        User u = users.stream().filter((it) -> it.getId() == uID).findFirst().get(); 
+        User u = users.stream().filter((it) -> it.getId() == uID).findFirst().orElse(null);
         if(u != null){
             u.setStartingTheme(themeID);
             //change in DB
@@ -139,7 +139,7 @@ public class Repository {
         return 1;
     }
     public int changeUser(int uID,String user, String pw,String fN,String lN, String email,String birthDate,String inst){
-        User u = users.stream().filter((it) -> it.getId() == uID).findFirst().get(); 
+        User u = users.stream().filter((it) -> it.getId() == uID).findFirst().orElse(null); 
         if(u != null){
             u.setUsername(user);
             u.setPassword(pw);
@@ -168,16 +168,18 @@ public class Repository {
     }
 
     public int deleteTheme(int themeID) {
-        int index = 0;
+        int index = -1;
         for(int i = 0;i<themes.size();i++){
             Theme t = themes.get(i);
             if(t.getId() == themeID){
                 index = i;
             }
         }
-        themes.remove(index);
-        
-        return 0;
+        if(index!=-1){
+            themes.remove(index);  
+            return 0;
+        }
+        return 1;
     }
 
     public int addTheme(int owner, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cBG,String cHL,String pF) {
@@ -187,19 +189,22 @@ public class Repository {
     }
 
     public int changeTheme(int id, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF,String cBG,String cHL,String pF) {
-        Theme toChange = themes.stream().filter((it)->it.getId() == id).findFirst().get();
-        toChange.setName(name);
-        toChange.sethBgC(hBG);
-        toChange.setmFC(mFC);
-        toChange.sethFC(hFC);
-        toChange.setcABgC(cABG);
-        toChange.setmNC(mNC);
-        toChange.setmBgC(mBG);
-        toChange.setmNFC(mNF);
-        toChange.setcBG(cBG);
-        toChange.setcHL(cHL);
-        toChange.setpF(pF);
-        return 0;
+        Theme toChange = themes.stream().filter((it)->it.getId() == id).findFirst().orElse(null);
+        if(toChange != null){
+            toChange.setName(name);
+            toChange.sethBgC(hBG);
+            toChange.setmFC(mFC);
+            toChange.sethFC(hFC);
+            toChange.setcABgC(cABG);
+            toChange.setmNC(mNC);
+            toChange.setmBgC(mBG);
+            toChange.setmNFC(mNF);
+            toChange.setcBG(cBG);
+            toChange.setcHL(cHL);
+            toChange.setpF(pF);
+            return 0;
+        }
+        return 1;
     }
 
     public List<Chapter> getChapter(int uID) {
@@ -211,10 +216,10 @@ public class Repository {
     }
 
     public Chapter getChapter(String unit) {
-        return chapters.stream().filter((it)->it.getName().equals(unit)).findFirst().get();
+        return chapters.stream().filter((it)->it.getName().equals(unit)).findFirst().orElse(null);
     }
     public Chapter getChapterByID(int cID) {
-        return chapters.stream().filter((it)->it.getId() ==cID).findFirst().get();
+        return chapters.stream().filter((it)->it.getId() ==cID).findFirst().orElse(null);
     }
 
     public int addChapter(int uID, String cName) {
@@ -223,28 +228,35 @@ public class Repository {
     }
 
     public int deleteUnit(int uID) {
-        int index = 0;
+        int index = -1;
         for(int i = 0;i<chapters.size();i++){
             Chapter c = chapters.get(i);
             if(c.getId() == uID){
                 index = i;
             }
         }
-        chapters.remove(index);
-        
-        return 0;
+        if(index != -1){
+            chapters.remove(index);
+            return 0;
+        }
+        return 1;
     }
 
     public int deleteWord(int uID, String wE) {
-        int index = 0;
-        Chapter c =chapters.stream().filter(it->it.getId()==uID).findFirst().get();
-        for(int i = 0;i<c.getVocab().size();i++){
-            if(c.getVocab().get(i).getWordEnglisch().equals(wE)){
-                index =i;
-            }    
+        int index = -1;
+        Chapter c =chapters.stream().filter(it->it.getId()==uID).findFirst().orElse(null);
+        if(c != null){
+            for(int i = 0;i<c.getVocab().size();i++){
+                if(c.getVocab().get(i).getWordEnglisch().equals(wE)){
+                    index =i;
+                }    
+            }
+            if(index!=-1){
+                c.getVocab().remove(index);
+                return 0;   
+            }            
         }
-        c.getVocab().remove(index);
-        return 0;
+        return 1;
     }
 
     public Iterable<Chapter> getOtherUnits(int uID) {
@@ -252,22 +264,30 @@ public class Repository {
     }
 
     public int changeName(int uID, String nn) {
-        int res = 0;
-        Chapter c = chapters.stream().filter((it)->it.getId() == uID).findFirst().get();
-        c.setName(nn);
-        return res;
+        Chapter c = chapters.stream().filter((it)->it.getId() == uID).findFirst().orElse(null);
+        if(c!=null){
+            c.setName(nn);
+            return 0;
+        }
+        return 1;
     }
 
     public Iterable<Chapter> getUnitsByUser(String username) {
-        User u = users.stream().filter(it->it.getUsername().equalsIgnoreCase(username)).findFirst().get();
-        return chapters.stream().filter(it->it.getOwner()==u.getId()).collect(Collectors.toList());
+        User u = users.stream().filter(it->it.getUsername().equalsIgnoreCase(username)).findFirst().orElse(null);
+        if(u!= null){
+            return chapters.stream().filter(it->it.getOwner()==u.getId()).collect(Collectors.toList());
+        }
+        return new ArrayList<>();
     }
 
     public int copyUnit(int uID, int cID) {
-        Chapter toCopy = chapters.stream().filter(it->it.getId()==cID).findFirst().get();
-        Chapter copied = (Chapter) org.apache.commons.lang.SerializationUtils.clone(toCopy);
-        copied.setId(chapters.size()+1);
-        copied.setOwner(uID);
-        return 0;
+        Chapter toCopy = chapters.stream().filter(it->it.getId()==cID).findFirst().orElse(null);
+        if(toCopy != null){
+             Chapter copied = (Chapter) org.apache.commons.lang.SerializationUtils.clone(toCopy);
+            copied.setId(chapters.size()+1);
+            copied.setOwner(uID);
+            return 0;
+        }
+        return 1;
     }
 }

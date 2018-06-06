@@ -58,8 +58,10 @@ public class UnitResources {
     @GET
     public JsonArray getVocab(@PathParam("uName") String unit){
        Chapter c = Repository.getInstance().getChapter(unit);
-       return c.jsonifyVocab();
-
+       if(c!=null){
+                  return c.jsonifyVocab();
+       }
+       return Json.createArrayBuilder().build();
     }
     @Path("deleteUnit")
     @GET
@@ -89,7 +91,7 @@ public class UnitResources {
     }
     @Path("otherUnits")
     @GET
-    public JsonArray getAllUnits(@QueryParam("uID")int uID){
+    public JsonArray getOtherUnits(@QueryParam("uID")int uID){
         JsonArrayBuilder ret = Json.createArrayBuilder();
         for(Chapter c:Repository.getInstance().getOtherUnits(uID)){
             ret.add(c.jsonifyUnit());
@@ -98,7 +100,7 @@ public class UnitResources {
     }
     @Path("changeName")
     @GET
-    public JsonObject changeNAme(@QueryParam("uID") int uID,@QueryParam("nn")String nn){
+    public JsonObject changeName(@QueryParam("uID") int uID,@QueryParam("nn")String nn){
         int val = Repository.getInstance().changeName(uID,nn);
         return Json.createObjectBuilder()
                 .add("retVal", val)               
