@@ -286,6 +286,7 @@ public class Repository {
              Chapter copied = (Chapter) org.apache.commons.lang.SerializationUtils.clone(toCopy);
             copied.setId(chapters.size()+1);
             copied.setOwner(uID);
+            chapters.add(copied);
             return 0;
         }
         return 1;
