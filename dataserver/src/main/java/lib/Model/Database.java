@@ -141,7 +141,31 @@ public class Database {
     }
 
     int addTheme(int owner, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF, String cBG, String cHL, String pF) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(PreparedStatement stmt = connection
+                .prepareStatement("insert into theme (owner,name,hBgC,mFC,hFC,cABgC,mNC,mBgC,cBG,mNFC,cHL,pF) values (?,?,?,?,?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS)){
+        stmt.setInt(1,owner);
+        stmt.setString(2,name);
+        stmt.setString(3,hBG);
+        stmt.setString(4,mFC);
+        stmt.setString(5,hFC);
+        stmt.setString(6,cABG);
+        stmt.setString(7,mNC);
+        stmt.setString(8,mBG);
+        stmt.setString(9,mNF);
+        stmt.setString(10,cBG);
+        stmt.setString(11,cHL);
+        stmt.setString(12,pF);
+        int ok = stmt.executeUpdate();
+        if(ok>0){
+            ResultSet res = stmt.getGeneratedKeys();
+            if(res.next()){
+                return res.getInt(1);
+            }
+        }
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return -1;
     }
 
     void changeTheme(int id, String name, String hBG, String mFC, String cABG, String mNC, String mBG, String mNF, String cBG, String cHL, String pF) {
