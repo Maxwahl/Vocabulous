@@ -109,7 +109,7 @@ confirmAlertYes.onclick = function(){
             }
         }    
     }
-    for(var i = 0; i < transUnit.length; i++){
+    for(var i = 0; i < transUnits.length; i++){
         BackEndHandler.addUnit(user.getId(), transUnits[i]);
     }
     confirmAlert.close();
@@ -122,17 +122,17 @@ filterSave.onclick = async function(){
         table.deleteRow(0);
     }
     units = [];
-    var filterUnits = await BackEndHandler.getOtherUnits(user.getId());
+    var otherUnits = await BackEndHandler.getOtherUnits(user.getId());
     var filterUser = await BackEndHandler.user(filterUn.value);
     if(filterUser == undefined || filterUser == null){
         return;
     }
     var filterUnits = await BackEndHandler.getUnits(filterUser.getId());
     loop1:
-    for(var i = 0; i < units.length; i++){
+    for(var i = 0; i < otherUnits.length; i++){
         loop2:
         for(var a = 0; i < filterUnits.length; a++){
-            if(filterUnits[a] == units[i]){
+            if(filterUnits[a].getId() == otherUnits[i].getId()){
                 units.push(filterUnits[i]);
                 break loop2;
             }

@@ -121,10 +121,16 @@ filterSave.onclick = async function(){
     while(table.rows.length != 0){
         table.deleteRow(0);
     }
+    if(filterUn.value == ""){
+        load();
+        filterDialog.close();
+        return;
+    }
     units = [];
     var otherUnits = await BackEndHandler.getOtherUnits(user.getId());
     var filterUser = await BackEndHandler.user(filterUn.value);
     if(filterUser == undefined || filterUser == null){
+        filterDialog.close();
         return;
     }
     var filterUnits = await BackEndHandler.getUnits(filterUser.getId());
