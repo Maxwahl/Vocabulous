@@ -45,3 +45,7 @@ nbdist/
 .nb-gradle/
 nbactions.xml
 dataserver/nb-configuration\.xml
+
+dataserver/dataserver/
+
+dataserver/derby\.properties

@@ -16,6 +16,7 @@ public class Vocab {
     private int id;
     private String wordEnglisch;
     private String wordGerman;
+    private int unit;
 
     public int getId() {
         return id;
@@ -41,10 +42,19 @@ public class Vocab {
         this.wordGerman = wordGerman;
     }
 
-    public Vocab(int id, String wordEnglisch, String wordGerman) {
+    public int getUnit() {
+        return unit;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
+    }
+    
+    public Vocab(int id, String wordEnglisch, String wordGerman,int unit) {
         this.id = id;
         this.wordEnglisch = wordEnglisch;
         this.wordGerman = wordGerman;
+        this.unit = unit;
     }
     
     public JsonObject jsonify(){
