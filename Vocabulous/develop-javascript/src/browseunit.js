@@ -17,7 +17,9 @@ console.dir(searchbar);
 var transferButton = browseunit._getTransferButton();
 console.log(transUnits);
 var ironPages = overview._getIronPages();
-var paperDialog = browseunit._getPaperDialog();
+var filterDialog = browseunit._getPaperDialogFilters();
+var filterUn = browseunit._getPaperDialogFiltersName();
+var filterSave = browseunit._getPaperDialogFiltersSave();
 var ironPages = overview._getIronPages();
 var units;
 var table = browseunit._getTable();
@@ -28,6 +30,7 @@ var confirmAlertYes = browseunit._getPaperDialogYes();
 console.dir(confirmAlertYes);
 var confirmAlert = browseunit._getPaperDialog();
 console.dir(confirmAlert);
+var user;
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="browse-unit"){
         searchbar.query = "";
@@ -39,7 +42,7 @@ async function load(){
     while(table.rows.length != 0){
         table.deleteRow(0);
     }
-    var user = await BackEndHandler.login(username.value, password.value);
+    user = await BackEndHandler.login(username.value, password.value);
     units = await BackEndHandler.getOtherUnits(user.getId());
     for(var i = 0; i < units.length; i++){
         var row = table.insertRow(0);
@@ -71,7 +74,7 @@ ironPages.addEventListener("iron-select",function(){
         searchbar.query = "";
     }
 });
-searchbar.addEventListener("paper-search-filter",e=>paperDialog.open());
+searchbar.addEventListener("paper-search-filter",e=>filterDialog.open());
 searchbar.addEventListener("paper-search-clear",e=>clearFilter());
 
 function clearFilter(){
@@ -106,8 +109,55 @@ confirmAlertYes.onclick = function(){
             }
         }    
     }
+    for(var i = 0; i < transUnit.length; i++){
+        BackEndHandler.addUnit(user.getId(), transUnits[i]);
+    }
     confirmAlert.close();
 }
 confirmAlertNo.onclick = function(){
     confirmAlert.close();
+}
+filterSave.onclick = async function(){ 
+    while(table.rows.length != 0){
+        table.deleteRow(0);
+    }
+    units = [];
+    var filterUnits = await BackEndHandler.getOtherUnits(user.getId());
+    var filterUser = await BackEndHandler.user(filterUn.value);
+    if(filterUser == undefined || filterUser == null){
+        return;
+    }
+    var filterUnits = await BackEndHandler.getUnits(filterUser.getId());
+    loop1:
+    for(var i = 0; i < units.length; i++){
+        loop2:
+        for(var a = 0; i < filterUnits.length; a++){
+            if(filterUnits[a] == units[i]){
+                units.push(filterUnits[i]);
+                break loop2;
+            }
+        }
+    }
+    for(var i = 0; i < units.length; i++){
+        var row = table.insertRow(0);
+        row.setAttribute("name", units[i].getId());
+        var cell = row.insertCell(0);
+        var checkbox = document.createElement("paper-checkbox");
+        checkbox.setAttribute("noink", "noink");
+        checkbox.setAttribute("value", units[i].getId());
+        checkbox.setAttribute("name", units[i].getId());
+        checkbox.onclick = function(){
+            if(this.active){
+                transUnits.push(this.value);
+                return;
+            }
+            var index = transUnits.indexOf(this.value);
+            if (index > -1) {
+                transUnits.splice(index, 1);
+            }
+        };
+        cell.innerHTML = units[i].getName()/*+"<paper-checkbox noink value='"+units[i].getId()+"'></paper-checkbox>"*/;
+        cell.appendChild(checkbox);
+    }
+    filterDialog.close();
 }

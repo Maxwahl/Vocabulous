@@ -125,4 +125,16 @@ export default class BackEndHandler{
         const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/deleteWord?uID="+cID+"&wE="+word.getWordEnglish());
         return retVal;
     }
+
+    static async getOtherUnits(uID){
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/otherUnits?uID="+uID);
+        let units = [];
+        while(jsonText.length>0){
+            const {id,name} = jsonText.pop();
+            let unit = new Unit(id,name);
+            units.push(unit);
+        }
+        return units;
+    }
+
 }

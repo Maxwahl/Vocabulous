@@ -40,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--hover-color);
       }
       td{
-        border: 0.5px solid var(--secondaryFontColorCard);
+        border: 0.75px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
@@ -107,7 +107,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --iron-icon-width: 25px;
         --iron-icon-height: 25px;
         float:right;
-        margin-top: -5px;
+        margin-top: 7.5px;
         --paper-checkbox-unchecked-color: var(--secondaryFontColorCard);
         --paper-checkbox-checked-color: green;
         --paper-checkbox-checked-ink-color: green;
@@ -116,6 +116,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 0.65em;
         margin-left: 40px;
         margin-top: 20px;
+        width: 11%;
+      }
+      
+      #confirm{
+        /*border: 2px solid;*/
+        border-radius: 5px;
+        border-color: var(--secondaryFontColorCard);
+        background-color: var(--hover-color);
+        color: var(--secondaryFontColorCard);
       }
     </style>
 
@@ -135,11 +144,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <table id="units">
           
       </table>
-      <paper-button id="transfer" name="transfer" raised noink>Transfer Units</paper-button>
+      <paper-button id="transfer" name="transfer" raised noink><iron-icon icon="icons:file-download"></iron-icon>Transfer Units</paper-button>
+      
+      <paper-dialog id="confirm">
+        <h2>Confirm</h2>
+        <p>Do you really want to transfer these Units?</p>
+        <div class="buttons">
+          <paper-button class="confirmButtons"name="no">No</paper-button>
+          <paper-button class="confirmButtons"name="yes">Yes</paper-button>
+        </div>
+      </paper-dialog>
+      
     </div>
   </template>
 
   <script>
+    /*<paper-icon-button id="transfer" name="transfer" raised noink></paper-icon-button>*/
     class BrowseUnit extends Polymer.Element {
       static get is() { return 'browse-unit'; }
       _getReturnButton(){
@@ -153,6 +173,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getTable(){
         return Polymer.dom(this.root).querySelector("table[id=units]");
+      }
+      _getTransferButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[id=transfer]");
+      }
+      
+      _getPaperDialog(){
+        return Polymer.dom(this.root).querySelector("paper-dialog[id=confirm]");
+      }
+      _getPaperDialogNo(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=no]");
+      }
+      _getPaperDialogYes(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=yes]");
       }
     }
 

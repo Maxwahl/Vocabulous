@@ -136,5 +136,22 @@ export default class BackEndHandler{
         }
         return units;
     }
-
+    static async changeUnitName(uID,newName){
+        const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/changeName?uID="+uID+"&nn="+newName);
+        return retVal;
+    }
+    static async getUnitsByName(username){
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/byUser?username="+username);
+        let units = [];
+        while(jsonText.length>0){
+            const {id,name} = jsonText.pop();
+            let unit = new Unit(id,name);
+            units.push(unit);
+        }
+        return units;  
+    }
+    static async addUnit(uID,cID){
+        const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addUnit?uID="+uID+"&cID="+cID);
+        return retVal; 
+    }
 }
