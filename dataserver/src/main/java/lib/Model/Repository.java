@@ -209,7 +209,7 @@ public class Repository {
         Chapter c = chapters.stream().filter((it)->it.getId() == uID).findFirst().orElse(null);
         if(c!=null){
             c.setName(nn);
-            Database.changeChapterName(uID,nn);
+            Database.getInstance().changeChapterName(uID,nn);
             return 0;
         }
         return 1;

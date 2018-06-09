@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,9 +27,6 @@ public class Database {
     static final String USER = "dataserver";
     static final String PASSWORD = "passme";
 
-    static void changeChapterName(int uID, String nn) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     private Connection connection;
     
     public static Database getInstance(){
@@ -105,15 +103,41 @@ public class Database {
     }
 
     void updateStartingTheme(int uID, int themeID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(PreparedStatement stmt = connection
+                .prepareStatement("update account set startingtheme = ? where id = ?")){
+        stmt.setInt(1,themeID);
+        stmt.setInt(2,uID);
+        stmt.executeUpdate();
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
     }
 
     void changeUser(int uID, String user, String pw, String fN, String lN, String email, String birthDate, String inst) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(PreparedStatement stmt = connection
+                .prepareStatement("update account set user = ?,password = ?,firstName = ?,lastName = ?,email = ?,birthdate = ?,institution = ? where id = ?")){
+        stmt.setString(1,user);
+        stmt.setString(2,pw);
+        stmt.setString(3,fN);
+        stmt.setString(4,lN);
+        stmt.setString(5,email);
+        stmt.setString(6,birthDate);
+        stmt.setString(7,inst);
+        stmt.setInt(4,uID);
+        stmt.executeUpdate();
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
     }
 
     void deleteTheme(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(PreparedStatement stmt = connection
+                .prepareStatement("delete from Theme where id = ?")){
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }    
     }
 
     int addTheme(int owner, String name, String hBG, String mFC, String hFC, String cABG, String mNC, String mBG, String mNF, String cBG, String cHL, String pF) {
@@ -121,22 +145,105 @@ public class Database {
     }
 
     void changeTheme(int id, String name, String hBG, String mFC, String cABG, String mNC, String mBG, String mNF, String cBG, String cHL, String pF) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(PreparedStatement stmt = connection
+                .prepareStatement("update theme set name = ?,hbgc = ?,mFC = ?,cabgc = ?,mnc = ?,mbgc = ?,cbg = ?,mnfc = ?,chl = ?,pf = ? where id = ?")){
+        stmt.setString(1,name);
+        stmt.setString(2,hBG);
+        stmt.setString(3,mFC);
+        stmt.setString(4,cABG);
+        stmt.setString(5,mNC);
+        stmt.setString(6,mBG);
+        stmt.setString(7,mNF);
+        stmt.setString(8,cBG);
+        stmt.setString(9,cHL);
+        stmt.setString(10,pF);
+        stmt.setInt(11,id);
+        stmt.executeUpdate();
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
     }
 
     int addChapter(int uID, String cName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(PreparedStatement stmt = connection
+                .prepareStatement("insert into chapter (name,owner) values (?,?)",Statement.RETURN_GENERATED_KEYS)){
+        stmt.setString(1,cName);
+        stmt.setInt(2,uID);
+        int ok = stmt.executeUpdate();
+        if(ok>0){
+            ResultSet res = stmt.getGeneratedKeys();
+            if(res.next()){
+                return res.getInt(1);
+            }
+        }
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return -1;
     }
 
     void deleteChapter(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(PreparedStatement stmt = connection
+                .prepareStatement("delete from Chapter where id = ?")){
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }    
     }
 
     void deleteVocab(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(PreparedStatement stmt = connection
+                .prepareStatement("delete from Vocab where id = ?")){
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }    
     }
 
     void copyChapter(Chapter copied) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try(PreparedStatement stmt = connection
+                .prepareStatement("insert into chapter (name,owner) values (?,?)",Statement.RETURN_GENERATED_KEYS)){
+        stmt.setString(1,copied.getName());
+        stmt.setInt(2,copied.getOwner());
+        int ok = stmt.executeUpdate();
+        if(ok>0){
+            ResultSet res = stmt.getGeneratedKeys();
+            if(res.next()){
+                copied.setId(res.getInt(1));
+            }
+        }
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        for(Vocab v:copied.getVocab()){
+            try(PreparedStatement stmt = connection
+                .prepareStatement("insert into vocab (wE,wG,chapter) values(?,?,?)",Statement.RETURN_GENERATED_KEYS)){
+                stmt.setString(1,v.getWordEnglisch());
+                stmt.setString(0,v.getWordGerman());
+                stmt.setInt(2,copied.getId());
+                int ok = stmt.executeUpdate();
+                if(ok>0){
+                ResultSet res = stmt.getGeneratedKeys();
+                if(res.next()){
+                    v.setId(res.getInt(1));
+                }
+            }
+            } catch(SQLException ex){
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+            }
+        }
+    }
+    
+    void changeChapterName(int uID, String nn) {
+        try(PreparedStatement stmt = connection
+                .prepareStatement("update chapter set name = ? where id = ?")){
+        stmt.setString(1,nn);
+        stmt.setInt(2,uID);
+        stmt.executeUpdate();
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
     }
 }
