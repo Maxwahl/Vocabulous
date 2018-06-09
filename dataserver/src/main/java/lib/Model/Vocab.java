@@ -5,6 +5,7 @@
  */
 package lib.Model;
 
+import java.io.Serializable;
 import javax.json.Json;
 import javax.json.JsonObject;
 
@@ -12,7 +13,7 @@ import javax.json.JsonObject;
  *
  * @author mexxw
  */
-public class Vocab {
+public class Vocab implements Serializable {
     private int id;
     private String wordEnglisch;
     private String wordGerman;
