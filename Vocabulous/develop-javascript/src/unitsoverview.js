@@ -15,6 +15,7 @@ var checked = unitView._getChecked();
 console.dir(checked);
 var uid = unitView._getUnitId();
 var newUnitButton = unitView._getNewUnitButton();
+var updateInput = overview._getUpdateInput();
 console.dir(newUnitButton);
 var translateButton = unitView._getTranslateButton();
 console.dir(translateButton);
@@ -50,6 +51,7 @@ confirmAlertYes.onclick = async function(){
     load();
 }
 async function load(){
+    updateInput.value = "";
     user = await BackEndHandler.login(username.value, password.value);
     console.log("Unitsoverview: "+user.getId());
     units = await BackEndHandler.getUnits(user.getId());
