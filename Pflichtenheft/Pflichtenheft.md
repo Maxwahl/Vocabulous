@@ -26,6 +26,7 @@
 | 	  02.02.2018| Nicht-funktionale Anforderungen, Abbildungsverzeichnis            |Änderungen laut Feedback eingebaut             |       David Hiebl|
 | 	  07.02.2018| Aufgabenstellung hinzugefügt            |generelle Überarbeitung             |       Konstantin Urbanides|
 | 	  22.05.2018| GUI (Use Cases)            |Grafiken erneuert             |       Konstantin Urbanides|
+| 	  09.06.2018| Systemarchitektur hinzugefügt    |  generelle Überarbeitung     |       Konstantin Urbanides|
 
 ## Inhalt
 
@@ -39,10 +40,11 @@
 * 4 Funktionale Anforderungen
     * 4.1 Use Case Diagramm
 * 5 Nicht-funktionale Anforderungen
-* 6 Mengengerüst
-* 7 Lieferumfang
-* 8 Abnahmekriterien
-* 9 Abbildungsverzeichnis
+* 6 Systemarchitektur
+* 7 Mengengerüst
+* 8 Lieferumfang
+* 9 Abnahmekriterien
+* 10 Abbildungsverzeichnis
 
 
 
@@ -64,18 +66,12 @@ Das benötigte Vokabelüberprüfungsprogramm wird die Studenten, Schüler und Ku
 #### Zeitlich
 
 Ab Beginn des Studienjahres 2018/2019 wird das Vokabelüberprüfungsprogramm im Echtbetrieb eingesetzt werden, obwohl das Projekt ausgenommen von den spezifischen Einrichtungen für das Studienjahr 2018/2019 schon Ende Juni 2018 fertigzustellen ist.
-#### Ergebnis
-Mit Hilfe dieser Anwendung soll der Lernprozess der Studenten, Schüler und Kunden vereinfacht werden und eine Verbesserung der Noten ermöglichen.
 
 ## 3 Aufgabenstellung
 Das Sprachlerninstitut hat somit eine Entwicklung/Erstellung eines Vokabelüberprüfungsprogrammes angeordnet. Es ist ein Programm zu entwickeln, dass nicht nur auf PCs sondern auch auf Smartphones einsetzbar ist, um auch in Zeiten, wo kein Computer zur Verfügung steht, Vokabeln lernen zu können. Das Vokabelprüfprogramm dient als Ergänzung zum Präsenzunterricht in den Kursräumlichkeiten des Language4everyone Institutes.
 
 ## 4 Funktionale Anforderungen
 Der Benutzer kann mit dieser Software vorgegebene Lernabschnitte, sogenannte Units lernen. Um den Lernfortschritt zu überprüfen, können Selbstkontrollen in Form von kleinen Wiederholungen durchgeführt werden. Zur besseren Übersicht werden die Fortschritte mit Hilfe von Diagrammen und Statistiken angezeigt.
-
-#### Flexibilität
-
-Die Software kann auf Notebooks, Tablets und Smartphones verwendet werden, dies macht das System transportabel und flexibel.
 
 ## 4.1 Use Case Diagramm
 <img src="Images\UseCaseDiagram.png" alt="Drawing" style="width: 500px;"/>
@@ -114,8 +110,12 @@ Mit Hilfe der Statistiken werden die Ergebnisse übersichtlich dargestellt. Es w
 
 
 ## 5 Nicht-funktionale Anforderungen
+#### Flexibilität
+Die Software kann auf Notebooks, Tablets und Smartphones verwendet werden, dies macht das System transportabel und flexibel.
+
 #### Benutzbarkeit
 Die Software erhält ein modernes Design, dass die Benutzer (Schüler, Studenten) anspricht. Es ist einfach und übersichtlich aufgebaut, um den Anwender durch unnötige Komplexität nicht zum Verzweifeln zu bringen.
+
 #### Effizienz
 Es wird durch Komprimieren von Bildern und Optimieren der Software die Ladezeit auf ein Minimum veringert(max. 0,5 Sekunden).
 
@@ -123,23 +123,39 @@ Es wird durch Komprimieren von Bildern und Optimieren der Software die Ladezeit 
 
 Es muss ein Account angelegt werden, um seine Ergebnisse zu speichern. Es sollen außerdem Maßnahmen getroffen werden, um Datenverlust bei einem Absturz oder bei anderen Komplikationen vermieden werden (Durch beispielsweise Backups, die automatisch geladen werden und immer wieder aktualisiert werden.).
 
-## 6 Mengengerüst
+## 6 Systemarchitektur
+### Deploymentdiagramm
+<img src="Images\Systemarchitektur.png" alt="Drawing" style="width: 500px;"/>
+
+### Three Layer Logic
+<img src="Images\ThreeLayerLogic.gif" alt="Drawing" style="width: 500px;"/>
+
+##### [Quelle](https://ccm.net/contents/151-networking-3-tier-client-server-architecture)
+
+### Three Layer Logic - Vocabulous
+<img src="Images\ThreeLayerLogic_Vocabulous.gif" alt="Drawing" style="width: 500px;"/>
+
+## 7 Mengengerüst
 | Gesamtanzahl der Nutzer | 1000 Personen |
 | ----------------------- |:-------------:|
 | Anzahl der gleichzeitigen Nutzer | 250 Personen |
 
 
-## 7 Lieferumfang
+## 8 Lieferumfang
 Benutzerhandbuch inkl. Anmeldedaten für die Kunden und Studenten.
 
-## 8 Abnahmekriterien
+## 9 Abnahmekriterien
 Vollfunktionstüchtiges Programm, welches sofort in den Echtzeitbetrieb übernommen werden kann.
 
 
-## 9 Abbildungsverzeichnis
+## 10 Abbildungsverzeichnis
 * [Use Case Diagramm](#31-use-case-diagramm)
 * GUI
     * [Main Page](#main-page)
     * [Vokabel-Prüfung](#vokabel-prüfung)
     * [Statistik](#statistik)
 * [Aktivitätsdiagramm](#aktivitätsdiagramm)
+* Systemarchitektur
+    * [Deploymentdiagramm](#deploymentdiagramm)
+    * [Three Layer Logic](#three_layer_logic)
+    * [Three Layer Logic - Vocabulous](#three_layer_logic_-_vocabulous)
