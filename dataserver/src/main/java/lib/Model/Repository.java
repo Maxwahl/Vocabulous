@@ -202,7 +202,7 @@ public class Repository {
     }
 
     public Iterable<Chapter> getOtherUnits(int uID) {
-        return chapters.stream().filter((it)->it.getId()!=uID && it.getId()!= -1).collect(Collectors.toList());
+        return chapters.stream().filter((it)->it.getOwner()!=uID && it.getOwner()!= -1).collect(Collectors.toList());
     }
 
     public int changeName(int uID, String nn) {
