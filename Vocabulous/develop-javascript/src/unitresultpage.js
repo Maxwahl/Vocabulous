@@ -26,6 +26,8 @@ var wrongPractice;
 var secondTryPractice;
 var selfcheckPage = overview._getSelfCheckPage();
 console.dir(selfcheckPage);
+var practiceSelectionMode = overview._getPracticeUnitPageSelectionmode();
+console.dir(practiceSelectionMode);
 var wordCountSelfCheck;
 var wrongSelfcheck;
 var returnButton = unitresultPage._getReturnButton();
@@ -85,6 +87,19 @@ function loadResultTable(){
             timer.style.marginTop = '0px';
             timer.style.marginLeft = '0%';
         }
+    }
+    else if(unitresultPage.value == "parcticeunit-page-selectionmode"){
+        wrongVocabelsButton.setAttribute("hidden",true);
+        var correct = practiceSelectionMode._getCorrectVocs();
+        wordCountPractice = practiceSelectionMode._getWordCount();
+        time = practiceSelectionMode._getTimeCounter();
+        console.dir(time);
+        timer.innerHTML = time.innerHTML;
+        timer.style.marginTop = '0px';
+        timer.style.marginLeft = '0%';
+        piechart.rows = [["Correct",
+        parseInt(correct.value)],
+        ["Wrong",parseInt(wordCountPractice.value - correct.value)]];
     }
     else{
         /*wrongVocs  = practicePage._getWrongVocs();
