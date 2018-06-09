@@ -100,7 +100,7 @@ searchbar.onkeyup = function(){
 transferButton.onclick = function(){
     confirmAlert.open();
 }
-confirmAlertYes.onclick = function(){
+confirmAlertYes.onclick = async function(){
     for(var i = 0; i < table.rows.length; i++){
         for(var a = 0; a < transUnits.length; a++){
             console.log(table.rows[i].getAttribute("name"));
@@ -110,7 +110,7 @@ confirmAlertYes.onclick = function(){
         }    
     }
     for(var i = 0; i < transUnits.length; i++){
-        BackEndHandler.addUnit(user.getId(), transUnits[i]);
+        await BackEndHandler.addUnit(user.getId(), transUnits[i]);
     }
     confirmAlert.close();
 }

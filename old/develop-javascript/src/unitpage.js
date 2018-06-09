@@ -24,11 +24,11 @@ console.dir(practiceButton);
 var practiceButtonSelectionmode = unitpage._getPracticeButtonSelectionmode();
 console.dir(practiceButtonSelectionmode);
 var examButton = unitpage._getExamButton();
+var updateInput = overview._getUpdateInput();
 console.dir(examButton);
 var words;
 var editButton = unitpage._getEditButton();
 editButton.onclick = function(){
-    var updateInput = overview._getUpdateInput();
     updateInput.value = unitName.innerHTML;
     overview._routePageChanged("create-unit");
 }
@@ -39,6 +39,10 @@ ironPages.addEventListener("iron-select",function(){
 });
 async function changedUnit(){
     unitName.innerHTML = checked.value;
+    if(updateInput.value !=""){
+        unitName.innerHTML = updateInput.value;
+        updateInput.value = "";
+    }
     words = await BackEndHandler.getWords(unitName.innerHTML); 
     while(wordTable.rows.length != 0){
         wordTable.deleteRow(0);

@@ -1,6 +1,8 @@
 import BackEndHandler from './classes/backEndHandler.js';
 import Unit from './classes/unit.js';
 import Word from './classes/word.js';
+//import languages from '../../node_modules/google-translate-api/languages';
+//import translate from '../../node_modules/google-translate-api/index';
 //import languages from './../../node_modules/google-translate-api/languages.js';
 //import translate from './../../node_modules/google-translate-api/index.js';
 //import require from './../../node_modules/require.js';
@@ -40,6 +42,16 @@ function clearFilter(){
     }
 }
 searchbar.onkeyup = async function(){
+    //const translate = require('google-translate-api');
+
+    translate('Ik spreek Engels', {to: 'en'}).then(res => {
+        console.log(res.text);
+        //=> I speak English
+        console.log(res.from.language.iso);
+        //=> nl
+    }).catch(err => {
+        console.error(err);
+    });
     /*const res = await translate('translator', {from: 'auto', to: 'nl'});
     searchbar.query = res.text;*/
     /*window.open("https://www.dict.cc/?s="+searchbar.query);

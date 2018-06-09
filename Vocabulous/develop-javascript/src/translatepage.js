@@ -41,9 +41,15 @@ function clearFilter(){
         translatepage.deleteRow(0);
     }
 }
+var translate;
 searchbar.onkeyup = async function(){
-    //const translate = require('google-translate-api');
 
+    //const translate =  require('../../node_modules/google-translate-api/index');
+    const translate =  '../../node_modules/google-translate-api';
+    require([translate], function(result){
+        translate = result;
+    });
+    
     translate('Ik spreek Engels', {to: 'en'}).then(res => {
         console.log(res.text);
         //=> I speak English

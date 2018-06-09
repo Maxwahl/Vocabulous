@@ -180,7 +180,8 @@ async function save(){
         await BackEndHandler.addWordToUnit(unitId, word);
     }
     if(updateInput.value != ""){
-        updateInput.value = "";
+        updateInput.value = unitNameInput.value;
+        await BackEndHandler.changeUnitName(unitId, unitNameInput.value);
         overview._routePageChanged("unit-page");
         reset();
         return;
