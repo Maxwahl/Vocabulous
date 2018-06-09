@@ -136,7 +136,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-dialog id="filters">
         <h2>Filter</h2>
         <div>
-            <paper-input class="input" label="Enter username of your friend"><iron-icon class="socialIcon" icon="social:people" slot="prefix"></iron-icon></paper-input>
+            <paper-input class="input" name="unfilter" label="Enter username of your friend"><iron-icon class="socialIcon" icon="social:people" slot="prefix"></iron-icon></paper-input>
             <paper-button id="save" name="save" raised noink>Apply</paper-button>
         </div>
       </paper-dialog>
@@ -165,8 +165,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
       }
-      _getPaperDialog(){
+      _getPaperDialogFilters(){
         return Polymer.dom(this.root).querySelector("paper-dialog[id=filters]");
+      }
+      _getPaperDialogFiltersName(){
+        return Polymer.dom(this.root).querySelector("paper-input[name=unfilter]");
+      }
+      _getPaperDialogFiltersSave(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=save]");
       }
       _getSearchBar(){
         return Polymer.dom(this.root).querySelector("paper-search-bar");
