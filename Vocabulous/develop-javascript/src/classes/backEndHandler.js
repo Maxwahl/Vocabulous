@@ -154,4 +154,18 @@ export default class BackEndHandler{
         const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addUnit?uID="+uID+"&cID="+cID);
         return retVal; 
     }
+    static async getVocabByID(uId){
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/getVocabByID?uID="+uID);
+        let words = [];
+        while(jsonText.length>0){
+            const {wordGerman,wordEnglisch} = jsonText.pop();
+            let word = new Word(wordGerman,wordEnglisch);
+            words.push(word);
+        }
+        return words;
+    }
+    static async getUnitName(uId){
+        const {name} = await this.answer("http://localhost:8080/dataserver/webresources/units/getUnitName?uID="+uID);
+        return name;
+    }
 }

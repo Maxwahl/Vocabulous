@@ -234,4 +234,12 @@ public class Repository {
         }
         return 1;
     }
+
+    public String getUnitName(int uID) {
+        Chapter c = chapters.stream().filter(it-> it.getId() == uID).findFirst().orElse(null);
+        if(c != null){
+            return c.getName();
+        }
+        return "";
+    }
 }
