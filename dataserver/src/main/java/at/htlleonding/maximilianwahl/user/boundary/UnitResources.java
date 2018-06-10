@@ -123,7 +123,7 @@ public class UnitResources {
                 .add("retVal", val)               
                 .build();   
     }
-    @Path("getUnitByID")
+    @Path("getVocabByID")
     @GET
     public JsonArray getVocabByID(@QueryParam("uID") int uID){
         Chapter c = Repository.getInstance().getChapterByID(uID);
