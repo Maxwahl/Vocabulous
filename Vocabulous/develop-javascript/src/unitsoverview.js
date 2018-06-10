@@ -51,7 +51,7 @@ confirmAlertYes.onclick = async function(){
     load();
 }
 async function load(){
-    updateInput.value = "";
+    updateInput.value = -1;
     user = await BackEndHandler.login(username.value, password.value);
     console.log("Unitsoverview: "+user.getId());
     units = await BackEndHandler.getUnits(user.getId());
@@ -65,7 +65,7 @@ async function load(){
         var newData = newRow.insertCell(0);
         newData.innerHTML = units[i].getName();
         //var text = units[i].getName();
-        newData.value = units[i].getName();
+        newData.value = units[i].getId();
         newData.setAttribute("name", units[i].getId());
         var trash = document.createElement("paper-icon-button");
         trash.setAttribute("class", "trash");

@@ -101,8 +101,8 @@ function load(){
 }
 async function changedUnit(){
     unitresultPage.value = "parcticeunit-page-selectionmode";
-    unitName.innerHTML = checked.value;
-    words = await BackEndHandler.getWords(unitName.innerHTML); 
+    unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
+    words = await BackEndHandler.getVocabByID(checked.value); 
     wordCount.value = words.length;
     rightWords = 0;
     shuffle(words);

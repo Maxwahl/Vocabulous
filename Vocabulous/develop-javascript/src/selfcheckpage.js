@@ -87,8 +87,8 @@ ironPages.addEventListener("iron-select",function(){
 });
 async function changedUnit(){
     unitresultPage.value = "selfcheck-page";
-    unitName.innerHTML = checked.value;
-    words = await BackEndHandler.getWords(unitName.innerHTML); 
+    unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
+    words = await BackEndHandler.getVocabByID(checked.value); 
     wordCount.value = words.length;
     shuffle(words);
     mistakes = 0;

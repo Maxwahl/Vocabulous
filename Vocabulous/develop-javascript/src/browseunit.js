@@ -30,6 +30,7 @@ var confirmAlertYes = browseunit._getPaperDialogYes();
 console.dir(confirmAlertYes);
 var confirmAlert = browseunit._getPaperDialog();
 console.dir(confirmAlert);
+var transmissionToast = overview._getTransmissionToast();
 var user;
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="browse-unit"){
@@ -113,6 +114,7 @@ confirmAlertYes.onclick = async function(){
         await BackEndHandler.addUnit(user.getId(), transUnits[i]);
     }
     confirmAlert.close();
+    transmissionToast.open();
 }
 confirmAlertNo.onclick = function(){
     confirmAlert.close();

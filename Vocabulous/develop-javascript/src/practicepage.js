@@ -134,8 +134,8 @@ function load(){
 }
 async function changedUnit(check){
     unitresultPage.value = "parcticeunit-page";
-    unitName.innerHTML = checked.value;
-    words = await BackEndHandler.getWords(unitName.innerHTML); 
+    unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
+    words = await BackEndHandler.getVocabByID(checked.value); 
     if(check){
         loadWrongVocs();
     }
@@ -273,6 +273,7 @@ function changeLineColor(color){
     input.updateStyles({"--paper-input-container-color":color});
     input.updateStyles({"--paper-input-container-focus-color":color});
     input.updateStyles({"--paper-input-container-invalid-color":color});
+    input.updateStyles({"--paper-input-container-input-color":color})
 }
 async function wrong(){
     if(english){

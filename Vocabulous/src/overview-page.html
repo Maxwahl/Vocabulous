@@ -152,6 +152,14 @@
       #homeview,#unitoverview,#statisticsview,#settingsview{
         margin-top: 8px;
       }
+      #toast5{
+        background-color: green;
+        color: white;
+      }
+      #toast7{
+        background-color: green;
+        color: white;
+      }
     </style>
 
     <app-location
@@ -219,6 +227,9 @@
     <paper-toast id="toast2" duration=2000 text="This vocab is wrong! Second Try"></paper-toast>
     <paper-toast id="toast3" duration=2500 text="This vocab is wrong again!"></paper-toast>
     <paper-toast id="toast4" duration=2500 text="No vocabulary inserted!"></paper-toast>
+    <paper-toast id="toast5" duration=2500 text="All settings have been saved!"></paper-toast>
+    <paper-toast id="toast6" text="Insert all required fields to save correctly!"></paper-toast>
+    <paper-toast id="toast7" duration=2500 text="Transmission completed successfully!"></paper-toast>
     <input name="updateUnit" style="display:none;"><!--Für Update Unit benötigt-->
   </template>
 
@@ -369,6 +380,15 @@
       }
       _getNoWordToast(){
         return Polymer.dom(this.root).querySelector("paper-toast[id=toast4]");
+      }
+      _getAccountSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast5]");
+      }
+      _getAccountWrongSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast6]");
+      }
+      _getTransmissionToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast7]");
       }
       _getUpdateInput(){
         return Polymer.dom(this.root).querySelector("input[name=updateUnit]");
