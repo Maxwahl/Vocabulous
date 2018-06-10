@@ -85,7 +85,7 @@ function loadResultTable(){
         if(wrongPractice.value == "0"){
             wrongVocabelsButton.setAttribute("hidden",true);
             timer.style.marginTop = '0px';
-            timer.style.marginLeft = '0%';
+            timer.style.marginLeft = '15%';
         }
     }
     else if(unitresultPage.value == "parcticeunit-page-selectionmode"){

@@ -58,13 +58,67 @@ public class UnitResources {
     @GET
     public JsonArray getVocab(@PathParam("uName") String unit){
        Chapter c = Repository.getInstance().getChapter(unit);
-       return c.jsonifyVocab();
-
+       if(c!=null){
+                  return c.jsonifyVocab();
+       }
+       return Json.createArrayBuilder().build();
     }
     @Path("deleteUnit")
     @GET
     public JsonObject deleteUnit(@QueryParam("uID") int uID){
         int val = Repository.getInstance().deleteUnit(uID);
+        return Json.createObjectBuilder()
+                .add("retVal", val)               
+                .build();   
+    }
+    @Path("allUnits")
+    @GET
+    public JsonArray getAllUnits(){
+        JsonArrayBuilder ret = Json.createArrayBuilder();
+        for(Chapter c:Repository.getInstance().getChapters()){
+            ret.add(c.jsonifyUnit());
+        }
+        return ret.build();
+    }
+    
+    @Path("deleteWord")
+    @GET
+    public JsonObject deleteWord(@QueryParam("uID") int uID,@QueryParam("wE")String wE){
+        int val = Repository.getInstance().deleteWord(uID,wE);
+        return Json.createObjectBuilder()
+                .add("retVal", val)               
+                .build();   
+    }
+    @Path("otherUnits")
+    @GET
+    public JsonArray getOtherUnits(@QueryParam("uID")int uID){
+        JsonArrayBuilder ret = Json.createArrayBuilder();
+        for(Chapter c:Repository.getInstance().getOtherUnits(uID)){
+            ret.add(c.jsonifyUnit());
+        }
+        return ret.build();
+    }
+    @Path("changeName")
+    @GET
+    public JsonObject changeName(@QueryParam("uID") int uID,@QueryParam("nn")String nn){
+        int val = Repository.getInstance().changeName(uID,nn);
+        return Json.createObjectBuilder()
+                .add("retVal", val)               
+                .build();   
+    }
+    @Path("byUser")
+    @GET
+    public JsonArray getAllUnits(@QueryParam("username")String username){
+        JsonArrayBuilder ret = Json.createArrayBuilder();
+        for(Chapter c:Repository.getInstance().getUnitsByUser(username)){
+            ret.add(c.jsonifyUnit());
+        }
+        return ret.build();
+    }
+    @Path("addUnit")
+    @GET
+    public JsonObject addUnit(@QueryParam("uID") int uID,@QueryParam("cID")int cID){
+        int val = Repository.getInstance().copyUnit(uID,cID);
         return Json.createObjectBuilder()
                 .add("retVal", val)               
                 .build();   
