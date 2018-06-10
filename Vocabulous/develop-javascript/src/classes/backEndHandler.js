@@ -154,4 +154,16 @@ export default class BackEndHandler{
         const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addUnit?uID="+uID+"&cID="+cID);
         return retVal; 
     }
+    static async getUnitByID(uId){
+        const {id,name} = await this.answer("http://localhost:8080/dataserver/webresources/units/getUnitByID?uID="+uID);
+        if(id!=-1){
+            let u = new Unit(id,name);
+            return u;
+        }
+        return null;
+    }
+    static async getUnitName(uId){
+        const {name} = await this.answer("http://localhost:8080/dataserver/webresources/units/getUnitName?uID="+uID);
+        return name;
+    }
 }
