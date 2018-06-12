@@ -93,20 +93,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <h1>Unit 1</h1> <!--Name der Unit-->
       <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
-      <d2l-dropdown>
-              <paper-icon-button style="width: 45px;height: 45px;"class="d2l-dropdown-opener" name="menu" icon="icons:more-vert" noink></paper-icon-button>
-              <d2l-dropdown-menu>
-                  <d2l-menu label="Menu">
-                    <d2l-menu-item text="Practice Variants">
-                        <d2l-menu>
-                            <d2l-menu-item name="practiceUnit" text="Answer"></d2l-menu-item>
-                            <d2l-menu-item name="practiceUnitSelectionmode" text="Memory"></d2l-menu-item>
-                        </d2l-menu>
-                    </d2l-menu-item>
-                    <d2l-menu-item name="selfCheck" text="Self-check"></d2l-menu-item>
-                  </d2l-menu>
-              </d2l-dropdown-menu>
-      </d2l-dropdown>
       <paper-icon-button class="edit" name="edit" icon="editor:mode-edit"></paper-icon-button>
       <table id="vocabulary">
         
@@ -125,15 +111,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getReturnButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
-      }
-      _getPracticeButton(){
-        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=practiceUnit]");
-      }
-      _getPracticeButtonSelectionmode(){
-        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=practiceUnitSelectionmode]");
-      }
-      _getExamButton(){
-        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=selfCheck]");
       }
       _getEditButton(){
         return Polymer.dom(this.root).querySelector("paper-icon-button[name=edit]");

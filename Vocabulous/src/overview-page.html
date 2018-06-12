@@ -48,6 +48,7 @@
 <link rel="lazy-import" href="browse-unit.html">
 <link rel="lazy-import" href="upload-unit.html">
 <link rel="lazy-import" href="practiceunit-page-selectionmode.html">
+<link rel="lazy-import" href="unit-overview-for-sessions.html">
 <link rel="lazy-import" href="my-app.html">
 
 <dom-module id="overview-page">
@@ -183,6 +184,7 @@
               <a name="home-view"><iron-icon id="homeview" icon="icons:home"></iron-icon><span>Home</span></a>
               <a name="statistics-view"><iron-icon id="statisticsview" icon="editor:show-chart"></iron-icon><span>Statistics</span></a>
               <a name="overviewWords"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
+              <a name="browseUnits"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Browse Units</span></a>
               <a name="practiceOverview"><iron-icon id="practiceAnswer" icon="editor:show-chart"></iron-icon><span>Practice</span></a>
               <a name="selfcheck"><iron-icon id="selfcheck" icon="editor:show-chart"></iron-icon><span>Selfcheck</span></a>
               <a name="settings-view"><iron-icon id="settingsview" icon="icons:settings"></iron-icon><span>Settings</span></a>
@@ -222,6 +224,7 @@
           <upload-unit name="upload-unit"></upload-unit>
           <practice-overview name="practice-overview"></practice-overview>
           <practiceunit-page-selectionmode name="practiceunit-page-selectionmode"></practiceunit-page-selectionmode>
+          <unit-overview-for-sessions name="unit-overview-for-sessions"></unit-overview-for-sessions>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -282,6 +285,9 @@
       _getSelfcheckview(){
         return Polymer.dom(this.root).querySelector("a[name=selfcheck]");
       }
+      _getBrowseUnitview(){
+        return Polymer.dom(this.root).querySelector("a[name=browseUnits]");
+      }
       /*_getPracticeMemoryview(){
         return Polymer.dom(this.root).querySelector("a[name=practiceMemory]");
       }*/
@@ -296,6 +302,9 @@
       }
       _getUnitoverviewPage(){
         return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
+      }
+      _getUnitoverviewForSessionsPage(){
+        return Polymer.dom(this.root).querySelector("unit-overview-for-sessions[name=unit-overview-for-sessions]");
       }
       _getStatisticview(){
         return Polymer.dom(this.root).querySelector("a[name=statistics-view]");

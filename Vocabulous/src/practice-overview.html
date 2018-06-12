@@ -59,8 +59,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         left: 0px;
         width: 100%;
         height: 0px;
-        background: var(--hover-color);
-        opacity: 0.4;
+        background: var(--modeCheckColor);
+        opacity: 0.1;
         border-radius: 4px;
         transition: all 0.5s ease;
       }
@@ -82,8 +82,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         left: 0px;
         width: 100%;
         height: 0px;
-        background: var(--hover-color);
-        opacity: 0.4;
+        background: var(--modeCheckColor);
+        opacity: 0.1;
         border-radius: 4px;
         transition: all 0.5s ease;
       }
@@ -113,8 +113,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class PracticeOverview extends Polymer.Element {
       static get is() { return 'practice-overview'; }
+      _getAnswerPracticeButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=answer]");
+      }
+      _getMemoryPracticeButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=memory]");
+      }
     }
 
     window.customElements.define( PracticeOverview.is,  PracticeOverview);
   </script>
+  <script src="../develop-javascript/src/practiceOverview.js" type="module"></script>
 </dom-module>

@@ -5,49 +5,27 @@ import Stopwatch from './classes/stopwatch.js';
 console.log("Javascript: selfcheckpage loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
-console.dir(overview);
 var selfcheckPage = overview._getSelfCheckPage();
-console.dir(selfcheckPage);
 var unitName = selfcheckPage._getUnitName();
-console.dir(unitName);
-var unitView = overview._getUnitView();
-console.dir(unitView);
+var unitView = overview._getUnitoverviewForSessionsPage();
 var checked = unitView._getChecked();
-console.dir(checked);
 var ironPages = overview._getIronPages();
-console.dir(ironPages);
 var cancelButton = selfcheckPage._getCancelButton();
-console.dir(cancelButton);
 var skipButton = selfcheckPage._getSkipButton();
-console.dir(skipButton);
 var timerCounter = selfcheckPage._getTimeCounter();
-console.dir(timerCounter);
 var toggleButton = selfcheckPage._getToggleButton();
-console.dir(toggleButton);
 var learnProgressBar = selfcheckPage._getLearnProgressBar();
-console.dir(learnProgressBar);
 var unitProgressBar = selfcheckPage._getUnitProgressBar();
-console.dir(unitProgressBar);
 var input = selfcheckPage._getInput();
-console.dir(input);
 var wordPrint = selfcheckPage._getWordPrint();
-console.dir(wordPrint);
 var nextButton = selfcheckPage._getNextButton();
-console.dir(nextButton);
 var startButton = selfcheckPage._getStartButton();
-console.dir(startButton);
 var returnButton = selfcheckPage._getReturnButton();
-console.dir(returnButton);
 var languageInfo = selfcheckPage._getLanguageInfo();
-console.dir(languageInfo);
 var languagePopup = selfcheckPage._getLanguagePupup();
-console.dir(languagePopup);
 var unitresultPage = overview._getUnitResultPage();
-console.dir(unitresultPage);
 var wordCount = selfcheckPage._getWordCount();
-console.dir(wordCount);
 var wrongCounter = selfcheckPage._getWrong();
-console.dir(wrongCounter);
 var words;
 var english = true;
 var position = 0;
@@ -102,7 +80,7 @@ async function changedUnit(){
     wordPrint.innerHTML = words[0].getWordEnglish();
 }
 changedUnit();
-cancelButton.onclick = function(){overview._routePageChanged("unit-overview")}
+cancelButton.onclick = function(){overview._routePageChanged("unit-overview-for-sessions")}
 toggleButton.onclick = function(){
     input.value = "";
     if(english){
@@ -167,7 +145,7 @@ input.onkeypress = function(e){
         nextCheck();
     }
 }
-returnButton.onclick = function(){overview._routePageChanged("unit-overview");}
+returnButton.onclick = function(){overview._routePageChanged("unit-overview-for-sessions");}
 startButton.onclick = function(){
     input.removeAttribute("hidden");
     nextButton.removeAttribute("hidden");

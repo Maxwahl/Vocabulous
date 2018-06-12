@@ -20,7 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="unit-overview">
+<dom-module id="unit-overview-for-sessions">
   <template>
     <style include="shared-styles">
       :host {
@@ -124,7 +124,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-button class="confirmButtons"name="yes">Yes</paper-button>
         </div>
       </paper-dialog>
-      <paper-button name="newUnit" class="newUnit"raised noink>create new unit</paper-button>
       </d2l-dropdown>
       <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
       <!--<paper-icon-button class="trash" name="trash" icon="vaadin:trash"></paper-icon-button>-->
@@ -139,8 +138,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class UnitOverview extends Polymer.Element {
-      static get is() { return 'unit-overview'; }
+    class UnitOverviewForSessions extends Polymer.Element {
+      static get is() { return 'unit-overview-for-sessions'; }
       _getUnitTable(){
         return Polymer.dom(this.root).querySelector("table[id=units]");
       }
@@ -149,9 +148,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getChecked(){
         return Polymer.dom(this.root).querySelector("input[name=forUnit]");
-      }
-      _getNewUnitButton(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=newUnit]");
       }
       _getPaperDialog(){
         return Polymer.dom(this.root).querySelector("paper-dialog[id=confirm]");
@@ -166,7 +162,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return Polymer.dom(this.root).querySelector("input[name=uId]");
       }
     }
-    window.customElements.define(UnitOverview.is, UnitOverview);
+    window.customElements.define(UnitOverviewForSessions.is, UnitOverviewForSessions);
   </script>
-  <script src="../develop-javascript/src/unitsoverview.js" type="module"></script>
+  <script src="../develop-javascript/src/unitsoverviewForSessions.js" type="module"></script>
 </dom-module>

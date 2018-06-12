@@ -4,34 +4,22 @@ import Word from './classes/word.js';
 console.log("Javascript: createunit loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
-
 var user;
 var register = myapp._getRegisterLogin();
 var username = register._getUsername();
 var password = register._getPassword();
-
-console.dir(overview);
 var createunit = overview._getCreateUnit();
-console.dir(createunit);
 var returnButton = createunit._getReturnButton();
-console.dir(returnButton);
 /*var removeIcon = createunit._getRemoveIcon();
 console.dir(removeIcon);*/
 var removeIndex = 0;
 var plusIcon = createunit._getPlusIcon();
-console.dir(plusIcon);
 var saveButton = createunit._getSaveButton();
-console.dir(saveButton);
 var wordTable = createunit._getWordTable();
-console.dir(wordTable);
 var unitNameInput = createunit._getUnitNameInput();
-console.dir(unitNameInput);
 var browseUnitButton = createunit. _getBrowseUnitButton();
-console.dir(browseUnitButton);
 var uploadUnitButton = createunit._getUploadUnitButton();
-console.dir(uploadUnitButton);
 var ironPages = overview._getIronPages();
-console.dir(ironPages);
 var toast = overview._getSettingsToast();
 var toast2 = overview._getNoWordToast();
 var updateInput = overview._getUpdateInput();
@@ -141,7 +129,7 @@ function reset(){
 
 async function save(){
     if(updateInput.value != -1){
-        var unitoverview = overview._getUnitView();
+        var unitoverview = overview._getUnitoverviewPage();
         var uId = unitoverview._getUnitId();
         var words = await BackEndHandler.getVocabByID(updateInput.value); 
         while(words.length != 0){
@@ -167,11 +155,10 @@ async function save(){
     var unitId;
     if(updateInput.value == -1){
         user = await BackEndHandler.login(username.value, password.value);
-        console.log(user.id);
         var unitId = await BackEndHandler.createUnit(user, unitNameInput.value);
     }
     else{
-        var unitoverview = overview._getUnitView();
+        var unitoverview = overview._getUnitoverviewPage();
         var uId = unitoverview._getUnitId();
         unitId = uId.value;
     }

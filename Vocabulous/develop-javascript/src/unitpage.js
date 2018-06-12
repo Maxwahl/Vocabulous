@@ -4,28 +4,14 @@ import Word from './classes/word.js';
 console.log("Javascript: unitpage loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
-console.dir(overview);
 var unitpage = overview._getUnitPage();
-console.dir(unitpage);
 var unitName = unitpage._getUnitName();
-console.dir(unitName);
-var unitView = overview._getUnitView();
-console.dir(unitView);
+var unitView = overview._getUnitoverviewPage();
 var checked = unitView._getChecked();
-console.dir(checked);
 var ironPages = overview._getIronPages();
-console.dir(ironPages);
 var wordTable = unitpage._getWordTable();
-console.dir(wordTable);
 var returnButton = unitpage._getReturnButton();
-console.dir(returnButton);
-var practiceButton = unitpage._getPracticeButton();
-console.dir(practiceButton);
-var practiceButtonSelectionmode = unitpage._getPracticeButtonSelectionmode();
-console.dir(practiceButtonSelectionmode);
-var examButton = unitpage._getExamButton();
 var updateInput = overview._getUpdateInput();
-console.dir(examButton);
 var words;
 var editButton = unitpage._getEditButton();
 editButton.onclick = function(){
@@ -71,6 +57,3 @@ async function changedUnit(){
 }
 changedUnit();
 returnButton.onclick = function(){overview._routePageChanged("unit-overview")}
-practiceButton.onclick = function(){overview._routePageChanged("practiceunit-page")};
-practiceButtonSelectionmode.onclick = function(){overview._routePageChanged("practiceunit-page-selectionmode")};
-examButton.onclick = function(){overview._routePageChanged("selfcheck-page")};

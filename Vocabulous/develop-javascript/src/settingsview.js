@@ -8,7 +8,6 @@ import BackEndHandler from './classes/backEndHandler.js';
 console.log("Javascript: settingsview loaded");
 var myapp = document.querySelector("my-app");
 var sharedStyle = myapp._getSharedStyle();
-console.dir(sharedStyle);
 var overview = myapp._getOverviewpage();
 var settings = overview._getSettingsviewTag();
 var defaultswitch = settings._getDefaultswitch();
@@ -17,52 +16,31 @@ var themeName = settings._getThemeName();
 var data = [];                                   //Wird später durch DB erstetzt
 var darkTheme = new Theme(0, "Dark Theme","#2E2E2E","#FFFFFF","#FFFFFF","#585858","#6E6E6E","#424242","#FFFFFF", "#424242","#ffffff","#E0ECF8");
 var defaultTheme = new Theme(1, "Default Theme","#1E88E5","#000000","#FFFFFF","#eeeeee","#f2f2f2","#ffffff","#000000","#FFFFFF","#212121","#777777");
-console.log(themeName);
 var headerBackgroundColour = settings._getHeaderBackgroundColour();
-console.log(headerBackgroundColour);
 var headerFontColour = settings._getHeaderFontColour();
-console.log(headerFontColour);
 var menuBackgroundColour = settings._getMenuBackgroundColour();
-console.log(menuBackgroundColour);
 var menuFontColour = settings._getMenuFontColour();
-console.log(menuFontColour);
 var menuNavigationColour = settings._getMenuNavigationColour();
-console.log(menuNavigationColour);
 var menuNavigationFontColour = settings._getMenuNavigationFontColour();
-console.log(menuNavigationFontColour);
 var cardAreaBackgroundColour = settings._getCardAreaBackgroundColour();
-console.log(cardAreaBackgroundColour);
 var cardBackgroundColour = settings._getCardBackgroundColour();
-console.log(cardBackgroundColour);
 var cardHeadlineColour = settings._getCardHeadlineColour();
-console.log(cardHeadlineColour);
 var cardFontColour = settings._getCardFontColour();
-console.log(cardFontColour);
 var user;
 var register = myapp._getRegisterLogin();
 var username = register._getUsername();
 var password = register._getPassword();
 var ironPages = overview._getIronPages();
 var headerBackgroundColourview = settings._getHeaderBackgroundColourView();
-console.log(headerBackgroundColourview);
 var headerFontColourview = settings._getHeaderFontColourView();
-console.log(headerFontColourview);
 var menuBackgroundColourview = settings._getMenuBackgroundColourView();
-console.log(menuBackgroundColourview);
 var menuFontColourview = settings._getMenuFontColourView();
-console.log(menuFontColourview);
 var menuNavigationColourview = settings._getMenuNavigationColourView();
-console.log(menuNavigationColourview);
 var menuNavigationFontColourview = settings._getMenuNavigationFontColourView();
-console.log(menuNavigationFontColourview);
 var cardAreaBackgroundColourview = settings._getCardAreaBackgroundColourView();
-console.log(cardAreaBackgroundColourview);
 var cardBackgroundColourview = settings._getCardBackgroundColourView();
-console.log(cardBackgroundColourview);
 var cardHeadlineColourview = settings._getCardHeadlineColourView();
-console.log(cardHeadlineColourview);
 var cardFontColourview = settings._getCardFontColourView();
-console.log(cardFontColourview);
 
 var createTheme = settings._getCreateThemeDiv();
 var createButton = settings._getCreateNewThemeButton();
@@ -77,10 +55,6 @@ var appdrawer = overview._getAppdrawerForTheme();
 var paperListBox = settings._getPaperListBox();
 var toast0 = overview._getSettingsToast();
 var isDefault = true;
-console.log(settings);
-console.log(defaultswitch);
-console.log(darkswitch);
-console.log(createTheme);
 createTheme.style.display="none";
 saveButton.style.display="none";
 cancelButton.style.display="none";
@@ -95,7 +69,6 @@ defaultswitch.onclick = function(){
     saveButton.style.display="none";
     editButon.style.display="none";
     cancelButton.style.display="none";
-    console.log(headerBackgroundColour.color);
     clear();
     if(!defaultswitch.hasAttribute("checked")){
         changeTheme(darkTheme);
@@ -118,7 +91,6 @@ darkswitch.onclick = function(){
     saveButton.style.display="none";
     editButon.style.display="none";
     cancelButton.style.display="none";
-    console.log(headerBackgroundColour.color);
     clear();
     if(!darkswitch.hasAttribute("checked")){
         changeTheme(defaultTheme);
@@ -159,7 +131,6 @@ function toggle(){
     isDefault = true;
 }*/
 ironPages.addEventListener("iron-select", function(){
-    console.log(ironPages.selected);
     if(ironPages.selected != "settings-view"){
         boolForIron = false;
     }
@@ -245,7 +216,7 @@ function changeTheme(theme){
     var amt = -10;
     var color = LightenDarkenColor(theme.getCardBackgroundColor(), amt);
     myapp.updateStyles({"--hover-color":color});
-    console.log(appdrawer);
+    myapp.updateStyles({"--modeCheckColor":theme.getCardHeadLineColor()});
 }
 function LightenDarkenColor(col, amt) {
   
@@ -409,14 +380,13 @@ cardFontColour.onclick = function(){
     }
 }
 
-console.dir(paperListBox);
 async function save(){
     //DB save data
     paperListBox.style.display = "inline";
     var newTheme = new Theme(5, themeName.value, headerBackgroundColour.color,menuFontColour.color,headerFontColour.color,cardAreaBackgroundColour.color,menuNavigationColour.color,menuBackgroundColour.color, menuNavigationFontColour.color,cardBackgroundColour.color, cardHeadlineColour.color, cardFontColour.color);
     var themesId = await BackEndHandler.insertTheme(user.getId(), newTheme);
     await BackEndHandler.changeStartingTheme(user.getId(), themesId);
-    console.log(newTheme);/*
+    /*
     var newElement = document.createElement("paper-item");
     newElement.innerHTML=newTheme.getName();
     newElement.onclick = function(){check(newTheme.getName())};
@@ -424,7 +394,6 @@ async function save(){
     paperListBox.appendChild(newElement);
     paperListBox.selectIndex(data.length);*/
     await loadThemes();
-    console.dir(paperListBox.children[0].innerHTML);
     for(var i = 0; i<paperListBox.children.length;i++){
         if(paperListBox.children[i].innerHTML == newTheme.getName()){
             paperListBox.selectIndex(i);
@@ -437,7 +406,6 @@ async function save(){
 }
 function clearThemes(){
     while(paperListBox.firstChild){
-        console.dir(paperListBox.firstChild);
         paperListBox.removeChild(paperListBox.firstChild);
     }
 }
@@ -448,9 +416,7 @@ async function loadThemes(){
     paperListBox.appendChild(newElement);
     newElement.onclick = function(){check("no custom theme selected",1)};
     paperListBox.selectIndex(0);
-    console.log(user.getId());
     data = await BackEndHandler.userThemes(user.getId());
-    console.dir(data);
     for(var i = 0; i<data.length;i++){
         var newElement = document.createElement("paper-item");
         newElement.innerHTML=data[i].getName();
@@ -489,7 +455,6 @@ async function check(name, id){
         saveButton.style.display="none";
         editButon.style.display="none";
         cancelButton.style.display="none";
-        console.log(headerBackgroundColour.color);
         clear();
         if(id==1){
             changeTheme(defaultTheme);
@@ -558,9 +523,7 @@ editButon.onclick = async function(){
             break;
         }
     }
-    console.log(data);
     var element = paperListBox.selectedItem;
-    console.log(element);
     paperListBox.removeChild(element);
 }
 deleteButton.onclick = function(){
