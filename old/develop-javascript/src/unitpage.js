@@ -29,7 +29,7 @@ console.dir(examButton);
 var words;
 var editButton = unitpage._getEditButton();
 editButton.onclick = function(){
-    updateInput.value = unitName.innerHTML;
+    updateInput.value = checked.value;
     overview._routePageChanged("create-unit");
 }
 ironPages.addEventListener("iron-select",function(){
@@ -38,12 +38,26 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 async function changedUnit(){
-    unitName.innerHTML = checked.value;
-    if(updateInput.value !=""){
-        unitName.innerHTML = updateInput.value;
-        updateInput.value = "";
+    var stockUnits = await BackEndHandler.getUnits(0);
+    unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
+    if(updateInput.value !=-1){
+        unitName.innerHTML = await BackEndHandler.getUnitName(updateInput.value);
+        updateInput.value = -1;
     }
-    words = await BackEndHandler.getWords(unitName.innerHTML); 
+    var hideOrNot = false;
+    words = await BackEndHandler.getVocabByID(checked.value); 
+    for(var i = 0; i < stockUnits.length; i++){
+        if(stockUnits[i].getName() == unitName.innerHTML){
+            hideOrNot = true;
+        }
+    }
+    if(hideOrNot){
+        hideOrNot = false;
+        editButton.style.display = "none";
+    }
+    else{
+        editButton.style.display = "inline";
+    }
     while(wordTable.rows.length != 0){
         wordTable.deleteRow(0);
     }

@@ -34,6 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="../bower_components/iron-icons/communication-icons.html">
 <link rel="import" href="my-icons.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 
 <link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
 <link rel="import" href="shared-styles.html">
@@ -137,6 +138,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       paper-input.username{
+        padding-bottom: 30px;
         width: 300px;
         margin-left: 40px;
         margin-top: 30px;
@@ -163,7 +165,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
       }
       iron-icon.user{
-        
         width: 150px;
         height: 150px;
         margin-top: 20px;
@@ -172,14 +173,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .buttons{
         font-size: 0.65em;
         margin-left: 40px;
+        margin-top: -60px;
+        padding-bottom: 60px;
       }
       paper-input{
         color:var(--secondaryFontColorCard);
         --paper-input-container-color: var(--secondaryFontColorCard);
         --paper-input-container-focus-color: var(--secondaryFontColorCard);
-        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
+        --paper-input-container-invalid-color: red;
         --paper-input-container-input-color: var(--secondaryFontColorCard);
       }
+      #confirmPassword{
+        width: 400px;
+        border-radius: 5px;
+        border-color: var(--secondaryFontColorCard);
+        background-color: var(--hover-color);
+        color: var(--secondaryFontColorCard);
+      }
+
     </style>
       <div class="card">
           <h1>Account</h1>
@@ -206,16 +217,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </tr>
             <tr>
               <td><paper-input class="username" label="Username"></paper-input></td>
-              <td><paper-input class="password" label="Password" char-counter minlength="5" char-counter maxlength="16" required auto-validate error-message="this field must be filled [min. 5 characters]"></paper-input></td>  
+              <td><paper-input class="password" label="Password" char-counter minlength="5" char-counter maxlength="16" required auto-validate error-message="this field must be filled [min. 5 characters]" type="password"></paper-input></td>  
             </tr>
           </table>
-                  <div class="buttons">
-                      <paper-button name="edit" raised noink>Edit</paper-button>
-                      <paper-button name="save" raised noink>Save</paper-button>
-                  </div>
-          
       </div>
-         
+      <div class="buttons">
+          <paper-button style="margin-left: 40px;" name="edit" raised noink>Edit</paper-button>
+          <paper-button name="save" raised noink>Save</paper-button>
+      </div>
+      <paper-dialog id="confirmPassword">
+        <h2>Password</h2>
+        <div>
+            <paper-input class="input" name="newPassword" label="Enter new Password again" error-message="Wrong input! Please try again" type="password"></paper-input>
+            <paper-button id="save" name="changePassword" raised noink>Change Password</paper-button>
+        </div>
+      </paper-dialog>
   </template>
   <script>
     class AccountView extends Polymer.Element {
@@ -249,6 +265,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getSavebutton(){
         return Polymer.dom(this.root).querySelector("paper-button[name=save]");
+      }
+      _getPaperDialogConfirm(){
+        return Polymer.dom(this.root).querySelector("paper-dialog[id=confirmPassword]");
+      }
+      _getPaperDialogPassword(){
+        return Polymer.dom(this.root).querySelector("paper-input[name=newPassword]");
+      }
+      _getPaperDialogFiltersSave(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=changePassword]");
       }
     }
 

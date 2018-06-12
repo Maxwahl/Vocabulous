@@ -5,7 +5,7 @@ console.log("Javascript: unitsoverview loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
 console.dir(overview);
-var unitView = overview._getUnitView();
+var unitView = overview._getUnitoverviewPage();
 console.dir(unitView);
 var unitTable = unitView._getUnitTable();
 console.dir(unitTable);

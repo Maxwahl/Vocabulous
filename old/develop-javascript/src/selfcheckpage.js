@@ -87,8 +87,8 @@ ironPages.addEventListener("iron-select",function(){
 });
 async function changedUnit(){
     unitresultPage.value = "selfcheck-page";
-    unitName.innerHTML = checked.value;
-    words = await BackEndHandler.getWords(unitName.innerHTML); 
+    unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
+    words = await BackEndHandler.getVocabByID(checked.value); 
     wordCount.value = words.length;
     shuffle(words);
     mistakes = 0;
@@ -102,7 +102,7 @@ async function changedUnit(){
     wordPrint.innerHTML = words[0].getWordEnglish();
 }
 changedUnit();
-cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
+cancelButton.onclick = function(){overview._routePageChanged("unit-overview")}
 toggleButton.onclick = function(){
     input.value = "";
     if(english){
@@ -167,7 +167,7 @@ input.onkeypress = function(e){
         nextCheck();
     }
 }
-returnButton.onclick = function(){overview._routePageChanged("unit-page");}
+returnButton.onclick = function(){overview._routePageChanged("unit-overview");}
 startButton.onclick = function(){
     input.removeAttribute("hidden");
     nextButton.removeAttribute("hidden");

@@ -1,0 +1,120 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/google-chart/google-chart.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="practice-overview">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 10px;
+      }
+
+      h1{
+        color:  var(--headlineCard);
+        margin-left: 40px;
+      }
+      table{
+        margin-top: 100px;
+        width: 99%;
+        align-self: auto;
+        margin-left: 40px;
+        padding-bottom: 300px;
+      }
+      tr{
+        padding: 0px;
+        height: 100%;
+      }
+      td{
+        padding: 0px;
+        height: 80%;
+        width: 50%;
+      }
+      paper-button{
+        width: 90%;    
+        padding: 50px;
+        border-radius: 4px;
+      }
+      
+      .sweep-to-bottom-answer:before{
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 0px;
+        background: var(--hover-color);
+        opacity: 0.4;
+        border-radius: 4px;
+        transition: all 0.5s ease;
+      }
+      .sweep-to-bottom-answer:after{
+        content: 'Answer';
+        text-align: center;
+      }
+      .sweep-to-bottom-answer:hover:before{
+        height: 125px;
+      }
+      .sweep-to-bottom-answer:hover:after{
+        content:'Dieser Lernmodus ist für asidjasdoaskdok';
+      }
+
+      .sweep-to-bottom-memory:before{
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 0px;
+        background: var(--hover-color);
+        opacity: 0.4;
+        border-radius: 4px;
+        transition: all 0.5s ease;
+      }
+      .sweep-to-bottom-memory:after{
+        content: 'Memory';
+        text-align: center;
+      }
+      .sweep-to-bottom-memory:hover:before{
+        height: 100%;
+      }
+      .sweep-to-bottom-memory:hover:after{
+        content:'Dieser Lernmodus ist für asidjasdoaskdok';
+      }
+    </style>
+
+    <div class="card">
+      <h1>Practice Modes</h1>
+      <table name="paracticemodes">
+        <tr>
+          <td><paper-button class="sweep-to-bottom-answer" name="answer" toggles noink raised></paper-button></td>
+          <td><paper-button class="sweep-to-bottom-memory" name="memory" toggles noink raised></paper-button></td>
+        </tr>
+      </table>
+    </div>
+  </template>
+
+  <script>
+    class PracticeOverview extends Polymer.Element {
+      static get is() { return 'practice-overview'; }
+    }
+
+    window.customElements.define( PracticeOverview.is,  PracticeOverview);
+  </script>
+</dom-module>

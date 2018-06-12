@@ -181,11 +181,9 @@
             <app-toolbar class="learnprogress">Learn Progress</app-toolbar>
             <iron-selector name="menu" selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
               <a name="home-view"><iron-icon id="homeview" icon="icons:home"></iron-icon><span>Home</span></a>
-              <a name="unit-overview"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
               <a name="statistics-view"><iron-icon id="statisticsview" icon="editor:show-chart"></iron-icon><span>Statistics</span></a>
-              <a name="overviewWords"><iron-icon id="overviewWords" icon="editor:show-chart"></iron-icon><span>Word-Overview</span></a>
-              <a name="practiceAnswer"><iron-icon id="practiceAnswer" icon="editor:show-chart"></iron-icon><span>Practice-Answer</span></a>
-              <a name="practiceMemory"><iron-icon id="practiceMemory" icon="editor:show-chart"></iron-icon><span>Practice-Memory</span></a>
+              <a name="overviewWords"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
+              <a name="practiceOverview"><iron-icon id="practiceAnswer" icon="editor:show-chart"></iron-icon><span>Practice</span></a>
               <a name="selfcheck"><iron-icon id="selfcheck" icon="editor:show-chart"></iron-icon><span>Selfcheck</span></a>
               <a name="settings-view"><iron-icon id="settingsview" icon="icons:settings"></iron-icon><span>Settings</span></a>
             </iron-selector>
@@ -222,6 +220,7 @@
           <translate-page name="translate-page"></translate-page>
           <browse-unit name="browse-unit"></browse-unit>
           <upload-unit name="upload-unit"></upload-unit>
+          <practice-overview name="practice-overview"></practice-overview>
           <practiceunit-page-selectionmode name="practiceunit-page-selectionmode"></practiceunit-page-selectionmode>
         </iron-pages>
       </app-header-layout>
@@ -277,17 +276,20 @@
       _getWordview(){
         return Polymer.dom(this.root).querySelector("a[name=overviewWords]");
       }
-      _getPracticeAnswerview(){
-        return Polymer.dom(this.root).querySelector("a[name=practiceAnswer]");
+      _getPracticeOverviewView(){
+        return Polymer.dom(this.root).querySelector("a[name=practiceOverview]");
       }
       _getSelfcheckview(){
         return Polymer.dom(this.root).querySelector("a[name=selfcheck]");
       }
-      _getPracticeMemoryview(){
+      /*_getPracticeMemoryview(){
         return Polymer.dom(this.root).querySelector("a[name=practiceMemory]");
-      }
+      }*/
       _getHomeviewPage(){
         return Polymer.dom(this.root).querySelector("home-view[name=home-view]");
+      }
+      _getPracticeOverview(){
+        return Polymer.dom(this.root).querySelector("practice-overview[name=practice-overview]");
       }
       _getUnitoverview(){
         return Polymer.dom(this.root).querySelector("a[name=unit-overview]");
@@ -331,9 +333,9 @@
       _getSettingsviewTag(){
         return Polymer.dom(this.root).querySelector("settings-view[name=settings-view]");
       }
-      _getUnitView(){
+      /*_getUnitView(){
         return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
-      }
+      }*/
       _getCreateUnit(){
         return Polymer.dom(this.root).querySelector("create-unit[name=create-unit]");
       }

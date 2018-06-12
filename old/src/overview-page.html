@@ -152,6 +152,14 @@
       #homeview,#unitoverview,#statisticsview,#settingsview{
         margin-top: 8px;
       }
+      #toast5{
+        background-color: green;
+        color: white;
+      }
+      #toast7{
+        background-color: green;
+        color: white;
+      }
     </style>
 
     <app-location
@@ -171,10 +179,14 @@
             <app-toolbar style="font-weight:300">Menu</app-toolbar>
             <app-toolbar><paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress></app-toolbar>
             <app-toolbar class="learnprogress">Learn Progress</app-toolbar>
-            <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+            <iron-selector name="menu" selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
               <a name="home-view"><iron-icon id="homeview" icon="icons:home"></iron-icon><span>Home</span></a>
               <a name="unit-overview"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
               <a name="statistics-view"><iron-icon id="statisticsview" icon="editor:show-chart"></iron-icon><span>Statistics</span></a>
+              <a name="overviewWords"><iron-icon id="overviewWords" icon="editor:show-chart"></iron-icon><span>Word-Overview</span></a>
+              <a name="practiceAnswer"><iron-icon id="practiceAnswer" icon="editor:show-chart"></iron-icon><span>Practice-Answer</span></a>
+              <a name="practiceMemory"><iron-icon id="practiceMemory" icon="editor:show-chart"></iron-icon><span>Practice-Memory</span></a>
+              <a name="selfcheck"><iron-icon id="selfcheck" icon="editor:show-chart"></iron-icon><span>Selfcheck</span></a>
               <a name="settings-view"><iron-icon id="settingsview" icon="icons:settings"></iron-icon><span>Settings</span></a>
             </iron-selector>
         </app-drawer>
@@ -214,11 +226,15 @@
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
+    <input style="display:none;" name="mode">
     <paper-toast id="toast0" text="Insert all required fields to save!"></paper-toast>
     <paper-toast id="toast1" duration=1000 text="This vocab is correct!"></paper-toast>
     <paper-toast id="toast2" duration=2000 text="This vocab is wrong! Second Try"></paper-toast>
     <paper-toast id="toast3" duration=2500 text="This vocab is wrong again!"></paper-toast>
     <paper-toast id="toast4" duration=2500 text="No vocabulary inserted!"></paper-toast>
+    <paper-toast id="toast5" duration=2500 text="All settings have been saved!"></paper-toast>
+    <paper-toast id="toast6" text="Insert all required fields to save correctly!"></paper-toast>
+    <paper-toast id="toast7" duration=2500 text="Transmission completed successfully!"></paper-toast>
     <input name="updateUnit" style="display:none;"><!--Für Update Unit benötigt-->
   </template>
 
@@ -258,6 +274,18 @@
       _getHomeview(){
         return Polymer.dom(this.root).querySelector("a[name=home-view]");
       }
+      _getWordview(){
+        return Polymer.dom(this.root).querySelector("a[name=overviewWords]");
+      }
+      _getPracticeAnswerview(){
+        return Polymer.dom(this.root).querySelector("a[name=practiceAnswer]");
+      }
+      _getSelfcheckview(){
+        return Polymer.dom(this.root).querySelector("a[name=selfcheck]");
+      }
+      _getPracticeMemoryview(){
+        return Polymer.dom(this.root).querySelector("a[name=practiceMemory]");
+      }
       _getHomeviewPage(){
         return Polymer.dom(this.root).querySelector("home-view[name=home-view]");
       }
@@ -296,6 +324,9 @@
       }
       _getAppdrawer(){
         return Polymer.dom(this.root).querySelector("app-drawer-layout");
+      }
+      _getMenubar(){
+        return Polymer.dom(this.root).querySelector("iron-selector[name=menu]");
       }
       _getSettingsviewTag(){
         return Polymer.dom(this.root).querySelector("settings-view[name=settings-view]");
@@ -370,8 +401,20 @@
       _getNoWordToast(){
         return Polymer.dom(this.root).querySelector("paper-toast[id=toast4]");
       }
+      _getAccountSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast5]");
+      }
+      _getAccountWrongSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast6]");
+      }
+      _getTransmissionToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast7]");
+      }
       _getUpdateInput(){
         return Polymer.dom(this.root).querySelector("input[name=updateUnit]");
+      }
+      _getModeInput(){
+        return Polymer.dom(this.root).querySelector("input[name=mode]");
       }
     }
 

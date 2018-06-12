@@ -15,8 +15,8 @@ var overview = myapp._getOverviewpage();
 console.dir(overview);
 var homeview = overview._getHomeview();
 console.dir(homeview);
-var unitoverview = overview._getUnitoverview();
-console.dir(unitoverview);
+/*var unitoverview = overview._getUnitoverview();
+console.dir(unitoverview);*/
 var statisticview = overview._getStatisticview();
 console.dir(statisticview);
 var logoutbutton = overview._getLogoutbutton();
@@ -33,9 +33,9 @@ var appdrawer = overview._getAppdrawer();
 var mode = overview._getModeInput();
 console.dir(appdrawer);
 var wordView = overview._getWordview();
-var practiceAnswerView = overview._getPracticeAnswerview();
+var practiceOverviewView = overview._getPracticeOverviewView();
 var selfcheckView = overview._getSelfcheckview();
-var practiceMemoryView = overview._getPracticeMemoryview();
+//var practiceMemoryView = overview._getPracticeMemoryview();
 (async function start(){
   user = await BackEndHandler.login(username.value, password.value);
   userbutton.textContent = user.getUsername();
@@ -43,9 +43,11 @@ var practiceMemoryView = overview._getPracticeMemoryview();
   var theme = await BackEndHandler.startingTheme(user.getId());
   ChangeThemes.changeTheme(theme);
 })();
+//var practiceOverview = overview._getPracticeOverview();
+//console.log(practiceOverview);
 userbutton.onclick = function(){overview._routePageChanged("account-view")}
 homeview.onclick = function(){overview._routePageChanged("home-view")}
-unitoverview.onclick = function(){overview._routePageChanged("unit-overview")}
+//unitoverview.onclick = function(){overview._routePageChanged("unit-overview")}
 statisticview.onclick = function(){overview._routePageChanged("statistics-view")}
 settingsview.onclick = function(){overview._routePageChanged("settings-view")}
 logoutbutton.onclick = function(){location.reload();}
@@ -55,18 +57,18 @@ wordView.onclick = function(){
   mode.value = "0";
   overview._routePageChanged("unit-overview");
 }
-practiceAnswerView.onclick = function(){
+practiceOverviewView.onclick = function(){
   mode.value = "1";
-  overview._routePageChanged("unit-overview");
+  overview._routePageChanged("practice-overview");
 }
 selfcheckView.onclick = function(){
   mode.value = "2";
   overview._routePageChanged("unit-overview");
 }
-practiceMemoryView.onclick = function(){
+/*practiceMemoryView.onclick = function(){
   mode.value = "3";
   overview._routePageChanged("unit-overview");
-}
+}*/
 console.log(appdrawer);
 menuicon.onclick = function(){
     if(menuopen){

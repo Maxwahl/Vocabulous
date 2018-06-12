@@ -134,8 +134,8 @@ function load(){
 }
 async function changedUnit(check){
     unitresultPage.value = "parcticeunit-page";
-    unitName.innerHTML = checked.value;
-    words = await BackEndHandler.getWords(unitName.innerHTML); 
+    unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
+    words = await BackEndHandler.getVocabByID(checked.value); 
     if(check){
         loadWrongVocs();
     }
@@ -181,7 +181,7 @@ function loadWrongVocs(){
     }
 }
 changedUnit(false);
-cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
+cancelButton.onclick = function(){overview._routePageChanged("unit-overview")}
 toggleButton.onclick = function(){
     input.value = "";
     if(english){
@@ -273,6 +273,7 @@ function changeLineColor(color){
     input.updateStyles({"--paper-input-container-color":color});
     input.updateStyles({"--paper-input-container-focus-color":color});
     input.updateStyles({"--paper-input-container-invalid-color":color});
+    input.updateStyles({"--paper-input-container-input-color":color})
 }
 async function wrong(){
     if(english){
@@ -339,7 +340,7 @@ pauseButton.onclick = function(){
     pauseButton.updateStyles({"color":"var(--headlineCard)"});
     timer.start();
 }
-returnButton.onclick = function(){overview._routePageChanged("unit-page");}
+returnButton.onclick = function(){overview._routePageChanged("unit-overview");}
 startButton.onclick = function(){
     input.removeAttribute("hidden");
     nextButton.removeAttribute("hidden");
