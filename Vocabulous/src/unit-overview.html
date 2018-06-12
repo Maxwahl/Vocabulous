@@ -156,6 +156,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getNewUnitButton(){
         return Polymer.dom(this.root).querySelector("d2l-menu-item[name=newUnit]");
       }
+      _getMenu(){
+        return Polymer.dom(this.root).querySelector("d2l-dropdown");
+      }
       _getTranslateButton(){
         return Polymer.dom(this.root).querySelector("d2l-menu-item[name=translate]");
       }

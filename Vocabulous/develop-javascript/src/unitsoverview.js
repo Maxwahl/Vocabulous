@@ -26,6 +26,9 @@ console.dir(confirmAlertYes);
 var confirmAlert = unitView._getPaperDialog();
 console.dir(confirmAlert);
 var ironPages = overview._getIronPages();
+var mode = overview._getModeInput();
+console.log("mode: "+mode)
+var menu = unitView._getMenu();
 console.dir(ironPages);
 var units = [];
 var user;
@@ -42,6 +45,8 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 load();
+
+mode.addEventListener("change", modeLoader());
 confirmAlertNo.onclick = function(){
     confirmAlert.close();
 }
@@ -49,6 +54,22 @@ confirmAlertYes.onclick = async function(){
     await BackEndHandler.deleteUnit(unitId);
     confirmAlert.close();
     load();
+}
+
+function modeLoader(){
+    alert("message");
+    if(mode.value == "0"){
+        menu.style.display = "inline";
+    }
+    if(mode.value == "1"){
+        menu.style.display = "none";
+    }
+    if(mode.value == "2"){
+        menu.style.display = "none";
+    }
+    if(mode.value == "3"){
+        menu.style.display = "none";
+    }
 }
 async function load(){
     updateInput.value = -1;
@@ -91,16 +112,33 @@ async function load(){
         newData.appendChild(trash);
         newData.onclick=function(){
             if(!trashHover){
-                checked.value = this.value;
-                uid.value = this.getAttribute("name");
-                overview._routePageChanged("unit-page");
+                if(mode.value == "0"){
+                    checked.value = this.value;
+                    uid.value = this.getAttribute("name");
+                    overview._routePageChanged("unit-page");
+                }
+                if(mode.value == "1"){
+                    checked.value = this.value;
+                    uid.value = this.getAttribute("name");
+                    overview._routePageChanged("practiceunit-page");
+                }
+                if(mode.value == "2"){
+                    checked.value = this.value;
+                    uid.value = this.getAttribute("name");
+                    overview._routePageChanged("selfcheck-page");
+                }
+                if(mode.value == "3"){
+                    checked.value = this.value;
+                    uid.value = this.getAttribute("name");
+                    overview._routePageChanged("practiceunit-page-selectionmode");
+                }
             }
             else{
                 load();
             }
-        }
         console.dir(newData);
     }
+}
 }
 searchBar.addEventListener("paper-search-clear",e=>clearFilter());
 searchBar.onkeyup = function(){
@@ -124,4 +162,4 @@ function clearFilter(){
     }
 }
 newUnitButton.onclick = function(){overview._routePageChanged("create-unit")}
-translateButton.onclick = function(){overview._routePageChanged("translate-page")};
+translateButton.onclick = function(){overview._routePageChanged("translate-page")}

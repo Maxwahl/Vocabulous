@@ -48,7 +48,7 @@ returnButton.onclick = function(){
             console.dir("wrongVocs gelöscht");
         }
     }
-    overview._routePageChanged("unit-page");
+    overview._routePageChanged("unit-overview");
 }
 
 var words;

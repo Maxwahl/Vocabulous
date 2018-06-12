@@ -43,6 +43,7 @@ async function load(){
     while(table.rows.length != 0){
         table.deleteRow(0);
     }
+    transUnits = [];
     user = await BackEndHandler.login(username.value, password.value);
     units = await BackEndHandler.getOtherUnits(user.getId());
     for(var i = 0; i < units.length; i++){

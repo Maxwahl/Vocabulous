@@ -102,7 +102,7 @@ async function changedUnit(){
     wordPrint.innerHTML = words[0].getWordEnglish();
 }
 changedUnit();
-cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
+cancelButton.onclick = function(){overview._routePageChanged("unit-overview")}
 toggleButton.onclick = function(){
     input.value = "";
     if(english){
@@ -167,7 +167,7 @@ input.onkeypress = function(e){
         nextCheck();
     }
 }
-returnButton.onclick = function(){overview._routePageChanged("unit-page");}
+returnButton.onclick = function(){overview._routePageChanged("unit-overview");}
 startButton.onclick = function(){
     input.removeAttribute("hidden");
     nextButton.removeAttribute("hidden");

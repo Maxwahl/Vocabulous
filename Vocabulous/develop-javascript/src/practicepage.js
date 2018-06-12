@@ -181,7 +181,7 @@ function loadWrongVocs(){
     }
 }
 changedUnit(false);
-cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
+cancelButton.onclick = function(){overview._routePageChanged("unit-overview")}
 toggleButton.onclick = function(){
     input.value = "";
     if(english){
@@ -340,7 +340,7 @@ pauseButton.onclick = function(){
     pauseButton.updateStyles({"color":"var(--headlineCard)"});
     timer.start();
 }
-returnButton.onclick = function(){overview._routePageChanged("unit-page");}
+returnButton.onclick = function(){overview._routePageChanged("unit-overview");}
 startButton.onclick = function(){
     input.removeAttribute("hidden");
     nextButton.removeAttribute("hidden");
