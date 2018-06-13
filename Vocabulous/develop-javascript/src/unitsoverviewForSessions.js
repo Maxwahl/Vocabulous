@@ -8,11 +8,8 @@ var unitView = overview._getUnitoverviewForSessionsPage();
 var unitTable = unitView._getUnitTable();
 var searchBar = unitView._getSearchBar();
 var checked = unitView._getChecked();
+var returnButton = unitView._getReturnButton();
 var uid = unitView._getUnitId();
-var updateInput = overview._getUpdateInput();
-var confirmAlertNo = unitView._getPaperDialogNo();
-var confirmAlertYes = unitView._getPaperDialogYes();
-var confirmAlert = unitView._getPaperDialog();
 var ironPages = overview._getIronPages();
 var mode = overview._getModeInput();
 var units = [];
@@ -22,6 +19,12 @@ var username = register._getUsername();
 var password = register._getPassword();
 var trashHover = false;
 var unitId;
+var updateInput = overview._getUpdateInput();
+returnButton.onclick = function(){
+    overview._routePageChanged("practice-overview");
+    updateInput.value = -1;
+    reset();
+}
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="unit-overview"){
         searchBar.query = "";
@@ -30,14 +33,8 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 load();
-confirmAlertYes.onclick = async function(){
-    await BackEndHandler.deleteUnit(unitId);
-    confirmAlert.close();
-    load();
-}
 
 async function load(){
-    updateInput.value = -1;
     user = await BackEndHandler.login(username.value, password.value);
     units = await BackEndHandler.getUnits(user.getId());
     var rowCount = 0;

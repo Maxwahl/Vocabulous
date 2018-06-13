@@ -17,8 +17,6 @@ var plusIcon = createunit._getPlusIcon();
 var saveButton = createunit._getSaveButton();
 var wordTable = createunit._getWordTable();
 var unitNameInput = createunit._getUnitNameInput();
-var browseUnitButton = createunit. _getBrowseUnitButton();
-var uploadUnitButton = createunit._getUploadUnitButton();
 var ironPages = overview._getIronPages();
 var toast = overview._getSettingsToast();
 var toast2 = overview._getNoWordToast();
@@ -178,5 +176,3 @@ async function save(){
     reset();
 }
 saveButton.onclick = function(){save()};
-browseUnitButton.onclick = function(){overview._routePageChanged("browse-unit")}
-uploadUnitButton.onclick = function(){overview._routePageChanged("upload-unit")};

@@ -42,11 +42,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--hover-color);
       }
       td{
-        border: 0.75px solid var(--secondaryFontColorCard);
+        border: 1px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
-        font-weight: 200;
+        font-weight: 400;
         margin-left: 40px;
         color:var(--secondaryFontColorCard);
         border-radius: 5px;
@@ -116,10 +116,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-checkbox-checked-ink-color: green;
       }
       #transfer{
-        font-size: 0.65em;
+        font-size: 0.75em;
         margin-left: 40px;
         margin-top: 20px;
-        width: 11%;
+        width: 13%;
+        height: 30px;
+        color: var(--secondaryFontColorCard);
+      }
+      #transfericon{
+        padding-right: 5px;
       }
       
       #confirm{
@@ -146,7 +151,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <table id="units">
           
       </table>
-      <paper-button id="transfer" name="transfer" raised noink><iron-icon icon="icons:file-download"></iron-icon>Transfer Units</paper-button>
+      <paper-button id="transfer" name="transfer" raised noink><iron-icon id="transfericon" icon="icons:file-download"></iron-icon>Transfer Units</paper-button>
       
       <paper-dialog id="confirm">
         <h2>Confirm</h2>

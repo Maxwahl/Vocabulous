@@ -216,7 +216,7 @@ function changeTheme(theme){
     var amt = -10;
     var color = LightenDarkenColor(theme.getCardBackgroundColor(), amt);
     myapp.updateStyles({"--hover-color":color});
-    myapp.updateStyles({"--modeCheckColor":theme.getCardHeadLineColor()});
+    myapp.updateStyles({"--modeCheckColor":theme.getParagraphFontColor()});
 }
 function LightenDarkenColor(col, amt) {
   

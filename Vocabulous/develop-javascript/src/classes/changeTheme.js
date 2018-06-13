@@ -64,5 +64,6 @@ export default class ChangeTheme{
         var amt = -10;
         var color = ChangeTheme.LightenDarkenColor(theme.getCardBackgroundColor(), amt);
         myapp.updateStyles({"--hover-color":color});
+        myapp.updateStyles({"--modeCheckColor":theme.getParagraphFontColor()});
     }
 }

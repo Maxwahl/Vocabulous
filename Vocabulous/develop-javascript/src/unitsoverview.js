@@ -23,6 +23,9 @@ var username = register._getUsername();
 var password = register._getPassword();
 var trashHover = false;
 var unitId;
+confirmAlertNo.onclick = function(){
+    confirmAlert.close();
+}
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="unit-overview"){
         searchBar.query = "";

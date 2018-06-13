@@ -56,11 +56,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--hover-color);
       }
       td{
-        border: 0.75px solid var(--secondaryFontColorCard);
+        border: 1px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
-        font-weight: 200;
+        font-weight: 400;
         margin-left: 40px;
         color:var(--secondaryFontColorCard);
         border-radius: 5px;
@@ -88,20 +88,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: red;
       }
       paper-button.confirmButtons{
-        color:var(--secondaryFontColorCard);
+        color: var(--headlineCard);
       }
       
       paper-button.newUnit{
-        
-        font-size: 0.65em;
+        font-size: 0.75em;
         margin-bottom: -200px;
-        width: 12%;
+        width: 13%;
         height: 30px;
         margin-left: 85%;
         color:var(--secondaryFontColorCard);
       }
       #confirm{
-        /*border: 2px solid;*/
         border-radius: 5px;
         border-color: var(--secondaryFontColorCard);
         background-color: var(--hover-color);
@@ -111,6 +109,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 45px;
         height: 45px;
         float:right;
+      }
+      #createnewunit{
+        padding-right: 5px;
       }
     </style>
     	
@@ -124,7 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-button class="confirmButtons"name="yes">Yes</paper-button>
         </div>
       </paper-dialog>
-      <paper-button name="newUnit" class="newUnit"raised noink>create new unit</paper-button>
+      <paper-button name="newUnit" class="newUnit"raised noink><iron-icon id="createnewunit" icon="icons:note-add"></iron-icon>Create New Unit</paper-button>
       </d2l-dropdown>
       <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
       <!--<paper-icon-button class="trash" name="trash" icon="vaadin:trash"></paper-icon-button>-->

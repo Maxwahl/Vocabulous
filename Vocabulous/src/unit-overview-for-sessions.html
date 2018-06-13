@@ -11,13 +11,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
-<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown.html">
-<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
-<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
-<link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="unit-overview-for-sessions">
@@ -56,79 +51,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--hover-color);
       }
       td{
-        border: 0.75px solid var(--secondaryFontColorCard);
+        border: 1px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
-        font-weight: 200;
+        font-weight: 400;
         margin-left: 40px;
         color:var(--secondaryFontColorCard);
         border-radius: 5px;
         margin-bottom: 3px;
         display: block;
       }
-      paper-button.translate{
+      paper-icon-button.back{
         font-size: 0.65em;
-        width: 10%;
-        height: 30px;
-        margin-bottom: 20px;
-      }
-      d2l-dropdown{
-        float:right;
-      }
-      
-      paper-icon-button.trash{
-        color:grey;
-        --iron-icon-width: 25px;
-        --iron-icon-height: 25px;
-        float:right;
-        margin-top: -5px;
-      }
-      paper-icon-button.trash:hover{
-        color: red;
-      }
-      paper-button.confirmButtons{
-        color:var(--secondaryFontColorCard);
-      }
-      
-      paper-button.newUnit{
-        
-        font-size: 0.65em;
-        margin-bottom: -200px;
-        width: 12%;
-        height: 30px;
-        margin-left: 85%;
-        color:var(--secondaryFontColorCard);
-      }
-      #confirm{
-        /*border: 2px solid;*/
-        border-radius: 5px;
-        border-color: var(--secondaryFontColorCard);
-        background-color: var(--hover-color);
-        color: var(--secondaryFontColorCard);
-      }
-      #menu{
         width: 45px;
         height: 45px;
-        float:right;
+        margin-left: -10px;
+        margin-top: -55px;
+        position:absolute;
       }
     </style>
     	
     <div class="card">
-      <h1>Units</h1>      
-      <paper-dialog id="confirm">
-        <h2>Confirm</h2>
-        <p>Do you really want to delete this Unit?</p>
-        <div class="buttons">
-          <paper-button class="confirmButtons"name="no">No</paper-button>
-          <paper-button class="confirmButtons"name="yes">Yes</paper-button>
-        </div>
-      </paper-dialog>
-      </d2l-dropdown>
+      <h1>Select a Unit</h1>      
+      <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
       <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
-      <!--<paper-icon-button class="trash" name="trash" icon="vaadin:trash"></paper-icon-button>-->
-
-      
       <table id="units">
        
       </table>
@@ -140,6 +87,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class UnitOverviewForSessions extends Polymer.Element {
       static get is() { return 'unit-overview-for-sessions'; }
+      _getReturnButton(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
+      }
       _getUnitTable(){
         return Polymer.dom(this.root).querySelector("table[id=units]");
       }
@@ -148,15 +98,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getChecked(){
         return Polymer.dom(this.root).querySelector("input[name=forUnit]");
-      }
-      _getPaperDialog(){
-        return Polymer.dom(this.root).querySelector("paper-dialog[id=confirm]");
-      }
-      _getPaperDialogNo(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=no]");
-      }
-      _getPaperDialogYes(){
-        return Polymer.dom(this.root).querySelector("paper-button[name=yes]");
       }
       _getUnitId(){
         return Polymer.dom(this.root).querySelector("input[name=uId]");

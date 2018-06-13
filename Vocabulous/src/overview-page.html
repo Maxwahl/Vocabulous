@@ -150,7 +150,7 @@
         background-color: red;
         color: white;
       }
-      #homeview,#unitoverview,#statisticsview,#settingsview{
+      #homeview,#unitoverview,#statisticsview,#settingsview, #browseunits, #practiceAnswer, #selfcheck{
         margin-top: 8px;
       }
       #toast5{
@@ -182,11 +182,11 @@
             <app-toolbar class="learnprogress">Learn Progress</app-toolbar>
             <iron-selector name="menu" selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
               <a name="home-view"><iron-icon id="homeview" icon="icons:home"></iron-icon><span>Home</span></a>
-              <a name="statistics-view"><iron-icon id="statisticsview" icon="editor:show-chart"></iron-icon><span>Statistics</span></a>
               <a name="overviewWords"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
-              <a name="browseUnits"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Browse Units</span></a>
-              <a name="practiceOverview"><iron-icon id="practiceAnswer" icon="editor:show-chart"></iron-icon><span>Practice</span></a>
-              <a name="selfcheck"><iron-icon id="selfcheck" icon="editor:show-chart"></iron-icon><span>Selfcheck</span></a>
+              <a name="browseUnits"><iron-icon id="browseunits" icon="icons:file-download"></iron-icon><span>Browse Units</span></a>
+              <a name="practiceOverview"><iron-icon id="practiceAnswer" icon="icons:book"></iron-icon><span>Practice</span></a>
+              <a name="selfcheck"><iron-icon id="selfcheck" icon="icons:assignment-turned-in"></iron-icon><span>Selfcheck</span></a>
+              <a name="statistics-view"><iron-icon id="statisticsview" icon="editor:show-chart"></iron-icon><span>Statistics</span></a>
               <a name="settings-view"><iron-icon id="settingsview" icon="icons:settings"></iron-icon><span>Settings</span></a>
             </iron-selector>
         </app-drawer>
