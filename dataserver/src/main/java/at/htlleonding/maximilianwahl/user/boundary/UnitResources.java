@@ -16,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import lib.Model.Chapter;
 import lib.Model.Repository;
+import lib.Model.User;
 
 /**
  *
@@ -142,5 +143,23 @@ public class UnitResources {
             .add("name",name)             
             .build();
         
+    }
+    @Path("unitOwner")
+    @GET
+    public JsonObject getUnitOwner(@QueryParam("uID")int uID){
+        User user = Repository.getInstance().getUnitOwner(uID);
+        if(user != null){
+            return user.jsonify();
+        }
+        return Json.createObjectBuilder()
+                .add("id", -1)
+                .add("Firstname", "")
+                .add("Lastname","")
+                .add("Email", "")
+                .add("Birthdate", "")
+                .add("Username","")
+                .add("Password", "")
+                .add("Institution", "")
+                .build();  
     }
 }
