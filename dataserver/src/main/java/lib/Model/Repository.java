@@ -246,4 +246,13 @@ public class Repository {
     public Theme getDarkTheme() {
         return themes.stream().filter((it)-> it.getName().equals("Dark")).findFirst().get();
     }
+
+    public User getUnitOwner(int uID) {
+        Chapter c = chapters.stream().filter(it->it.getId()==uID).findFirst().orElse(null);
+        if(c!= null){
+            User u = users.stream().filter(it->it.getId()==c.getOwner()).findFirst().orElse(null);
+            return u;
+        }
+        return null;
+    }
 }

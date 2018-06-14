@@ -194,4 +194,18 @@ export default class BackEndHandler{
         let theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardBackgroundColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
         return theme;      
     }
+    static async getUnitOwner(uID){
+        const {id,Firstname,Lastname,Email,Birthdate,Username,Password,Institution} = await this.answer("http://localhost:8080/dataserver/webresources/units/unitOwner?cID="+uID);
+        if(id ==-1){
+            return null;
+        }
+        let user = new User(Username,Password);
+        user.setId(id);
+        user.setFirstname(Firstname);
+        user.setLastname(Lastname);
+        user.setEmail(Email);
+        user.setBirthdate(Birthdate);
+        user.setInstitution(Institution);
+        return user;
+    }
 }
