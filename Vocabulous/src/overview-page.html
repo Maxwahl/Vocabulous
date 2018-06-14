@@ -177,11 +177,10 @@
     <app-drawer-layout fullbleed force-narrow>
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-            <app-toolbar style="font-weight:300">Menu</app-toolbar>
+            <app-toolbar style="font-weight:300"><a name="startpage"><span>Home</span></a></app-toolbar>
             <app-toolbar><paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress></app-toolbar>
             <app-toolbar class="learnprogress">Learn Progress</app-toolbar>
             <iron-selector name="menu" selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-              <a name="home-view"><iron-icon id="homeview" icon="icons:home"></iron-icon><span>Home</span></a>
               <a name="overviewWords"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
               <a name="browseUnits"><iron-icon id="browseunits" icon="icons:file-download"></iron-icon><span>Browse Units</span></a>
               <a name="practiceOverview"><iron-icon id="practiceAnswer" icon="icons:book"></iron-icon><span>Practice</span></a>
@@ -274,7 +273,7 @@
         }
       }
       _getHomeview(){
-        return Polymer.dom(this.root).querySelector("a[name=home-view]");
+        return Polymer.dom(this.root).querySelector("a[name=startpage]");
       }
       _getWordview(){
         return Polymer.dom(this.root).querySelector("a[name=overviewWords]");

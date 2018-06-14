@@ -4,16 +4,12 @@ import Word from './classes/word.js';
 console.log("Javascript: unitsoverview loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
-var unitView = overview._getUnitoverviewPage();
+var unitView = overview._getUnitoverviewForSessionsPage();
 var unitTable = unitView._getUnitTable();
 var searchBar = unitView._getSearchBar();
 var checked = unitView._getChecked();
+var returnButton = unitView._getReturnButton();
 var uid = unitView._getUnitId();
-var newUnitButton = unitView._getNewUnitButton();
-var updateInput = overview._getUpdateInput();
-var confirmAlertNo = unitView._getPaperDialogNo();
-var confirmAlertYes = unitView._getPaperDialogYes();
-var confirmAlert = unitView._getPaperDialog();
 var ironPages = overview._getIronPages();
 var mode = overview._getModeInput();
 var units = [];
@@ -23,8 +19,11 @@ var username = register._getUsername();
 var password = register._getPassword();
 var trashHover = false;
 var unitId;
-confirmAlertNo.onclick = function(){
-    confirmAlert.close();
+var updateInput = overview._getUpdateInput();
+returnButton.onclick = function(){
+    overview._routePageChanged("practice-overview");
+    updateInput.value = -1;
+    reset();
 }
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="unit-overview"){
@@ -34,14 +33,8 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 load();
-confirmAlertYes.onclick = async function(){
-    await BackEndHandler.deleteUnit(unitId);
-    confirmAlert.close();
-    load();
-}
 
 async function load(){
-    updateInput.value = -1;
     user = await BackEndHandler.login(username.value, password.value);
     units = await BackEndHandler.getUnits(user.getId());
     var rowCount = 0;
@@ -56,27 +49,6 @@ async function load(){
         //var text = units[i].getName();
         newData.value = units[i].getId();
         newData.setAttribute("name", units[i].getId());
-        var trash = document.createElement("paper-icon-button");
-        trash.setAttribute("class", "trash");
-        trash.setAttribute("noink", "");
-        trash.setAttribute("name", "trash"+i);
-        trash.setAttribute("icon", "icons:delete");
-        trash.value=units[i].getId();
-        trash.onclick = async function(){
-            unitId=this.value;
-            confirmAlert.open();
-            /*var result = confirm("Want to delete?");
-            if (result) {
-                await BackEndHandler.deleteUnit(this.value);
-            }*/
-        }
-        trash.onmouseover = function(){
-            trashHover = true;
-        }
-        trash.onmouseout = function(){
-            trashHover = false;
-        }
-        newData.appendChild(trash);
         newData.onclick=function(){
             if(!trashHover){
                 if(mode.value == "0"){
@@ -126,4 +98,3 @@ function clearFilter(){
         unitTable.rows[i].style.display = "block";
     }
 }
-newUnitButton.onclick = function(){overview._routePageChanged("create-unit")}

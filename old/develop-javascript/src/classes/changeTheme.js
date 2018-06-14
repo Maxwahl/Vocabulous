@@ -34,7 +34,6 @@ export default class ChangeTheme{
     static changeTheme(theme){
         var myapp = document.querySelector("my-app");
         var sharedStyle = myapp._getSharedStyle();
-        console.dir(sharedStyle);
         var overview = myapp._getOverviewpage();
         var darkTheme = new Theme(0, "Dark Theme","#2E2E2E","#FFFFFF","#FFFFFF","#585858","#6E6E6E","#424242","#FFFFFF", "#424242","#ffffff","#E0ECF8");
         var defaultTheme = new Theme(1, "Default Theme","#1E88E5","#000000","#FFFFFF","#eeeeee","#f2f2f2","#ffffff","#000000","#FFFFFF","#212121","#A4A4A4");
@@ -65,6 +64,6 @@ export default class ChangeTheme{
         var amt = -10;
         var color = ChangeTheme.LightenDarkenColor(theme.getCardBackgroundColor(), amt);
         myapp.updateStyles({"--hover-color":color});
-        console.log(appdrawer);
+        myapp.updateStyles({"--modeCheckColor":theme.getParagraphFontColor()});
     }
 }

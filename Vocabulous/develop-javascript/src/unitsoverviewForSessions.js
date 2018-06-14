@@ -19,14 +19,22 @@ var username = register._getUsername();
 var password = register._getPassword();
 var trashHover = false;
 var unitId;
+var menu = overview._getMenubar();
 var updateInput = overview._getUpdateInput();
+menu.addEventListener("selected-changed",function(){
+    if(mode.value == "2"){
+        returnButton.style.display = "none";
+    }
+    else{
+        returnButton.style.display = "inline";
+    }
+})
 returnButton.onclick = function(){
     overview._routePageChanged("practice-overview");
     updateInput.value = -1;
-    reset();
 }
 ironPages.addEventListener("iron-select",function(){
-    if(ironPages.selected=="unit-overview"){
+    if(ironPages.selected=="unit-overview-for-sessions"){
         searchBar.query = "";
         clearFilter();
         load();
@@ -37,6 +45,12 @@ load();
 async function load(){
     user = await BackEndHandler.login(username.value, password.value);
     units = await BackEndHandler.getUnits(user.getId());
+    if(mode.value == "2"){
+        returnButton.style.display = "none";
+    }
+    else{
+        returnButton.style.display = "inline";
+    }
     var rowCount = 0;
     while ( unitTable.rows.length > 0 ){
         unitTable.deleteRow(0);

@@ -7,7 +7,11 @@ var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
 var unitView = overview._getUnitoverviewForSessionsPage();
 var checked = unitView._getChecked();
+var register = myapp._getRegisterLogin();
 var ironPages = overview._getIronPages();
+var username = register._getUsername();
+var password = register._getPassword();
+var user;
 var unitresultPage = overview._getUnitResultPage();
 var unitName = unitresultPage._getUnitName();
 var piechart = unitresultPage._getPieChart();
@@ -46,10 +50,19 @@ ironPages.addEventListener("iron-select",function(){
 async function loadResultTable(){
     unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
     var rows;
+    user = await BackEndHandler.login(username.value, password.value);
+    var theme = await BackEndHandler.startingTheme(user.getId());
     piechart.options = {
         "title":"Word-statistic",
         "backgroundColor": getComputedStyle(myapp).getPropertyValue("--cardBackgroundcolor"),
-        "colors": ["#019F1F", "#DD0101", "#ff8000"]
+        "colors": ["#019F1F", "#DD0101", "#ff8000"],
+        "legend": {
+            "textStyle": { "color": theme.getParagraphFontColor(),"fontSize": "15" },
+       },
+       "titleTextStyle": {
+        "fontSize": "18",
+        "color": theme.getParagraphFontColor()
+        }
     }
     if(unitresultPage.value == "parcticeunit-page"){
         wrongVocabelsButton.removeAttribute("hidden");

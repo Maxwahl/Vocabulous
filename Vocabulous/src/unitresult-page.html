@@ -39,6 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       google-chart {
         height: 300px;
         width: 50em;
+        color: var(--secondaryFontColorCard);
       }
       paper-icon-button.back{
         font-size: 0.65em;
@@ -62,7 +63,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
       <google-chart
         type='pie'
-        cols='[{"label":"Name", "type":"string"}, {"label":"Amount", "type":"number"}]'>
+        cols='[{"label":"Name", "type":"string"}, {"label":"Amount", "type":"number"}]'
+        >
       </google-chart>
       <paper-button class="wrongVocabels" name="wrongVocabels" noink raised>Try wrong Words again</paper-button>
       <h2 class="timer">Attended Time: </h2> <!-- benötigte Zeit ausgeben -->

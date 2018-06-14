@@ -11,6 +11,7 @@ var password = register._getPassword();
 console.log("Javascript: overviewpage loaded");
 var overview = myapp._getOverviewpage();
 var homeview = overview._getHomeview();
+console.log(homeview);
 /*var unitoverview = overview._getUnitoverview();
 console.dir(unitoverview);*/
 var statisticview = overview._getStatisticview();
@@ -47,6 +48,7 @@ wordView.onclick = function(){
   overview._routePageChanged("unit-overview");
 }
 practiceOverviewView.onclick = function(){
+  mode.value = "1";
   overview._routePageChanged("practice-overview");
 }
 selfcheckView.onclick = function(){

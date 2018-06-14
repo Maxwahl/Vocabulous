@@ -14,8 +14,8 @@ var defaultswitch = settings._getDefaultswitch();
 var darkswitch = settings._getDarkswitch();
 var themeName = settings._getThemeName();
 var data = [];                                   //Wird später durch DB erstetzt
-var darkTheme = new Theme(0, "Dark Theme","#2E2E2E","#FFFFFF","#FFFFFF","#585858","#6E6E6E","#424242","#FFFFFF", "#424242","#ffffff","#E0ECF8");
-var defaultTheme = new Theme(1, "Default Theme","#1E88E5","#000000","#FFFFFF","#eeeeee","#f2f2f2","#ffffff","#000000","#FFFFFF","#212121","#777777");
+var darkTheme; //= new Theme(0, "Dark Theme","#2E2E2E","#FFFFFF","#FFFFFF","#585858","#6E6E6E","#424242","#FFFFFF", "#424242","#ffffff","#E0ECF8");
+var defaultTheme;// = new Theme(1, "Default Theme","#1E88E5","#000000","#FFFFFF","#eeeeee","#f2f2f2","#ffffff","#000000","#FFFFFF","#212121","#777777");
 var headerBackgroundColour = settings._getHeaderBackgroundColour();
 var headerFontColour = settings._getHeaderFontColour();
 var menuBackgroundColour = settings._getMenuBackgroundColour();
@@ -144,6 +144,8 @@ ironPages.addEventListener("iron-select", function(){
   })();
 async function load(){
     user = await BackEndHandler.login(username.value, password.value);
+    defaultTheme = await BackEndHandler.getDefaultTheme();
+    darkTheme = await BackEndHandler.getDarkTheme();
     var theme = await BackEndHandler.startingTheme(user.getId());
     await loadThemes();
     if(theme.getId()==0){//dark
