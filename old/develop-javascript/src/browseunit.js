@@ -30,7 +30,6 @@ var confirmAlertYes = browseunit._getPaperDialogYes();
 console.dir(confirmAlertYes);
 var confirmAlert = browseunit._getPaperDialog();
 console.dir(confirmAlert);
-var transmissionToast = overview._getTransmissionToast();
 var user;
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="browse-unit"){
@@ -43,7 +42,6 @@ async function load(){
     while(table.rows.length != 0){
         table.deleteRow(0);
     }
-    transUnits = [];
     user = await BackEndHandler.login(username.value, password.value);
     units = await BackEndHandler.getOtherUnits(user.getId());
     for(var i = 0; i < units.length; i++){
@@ -115,7 +113,6 @@ confirmAlertYes.onclick = async function(){
         await BackEndHandler.addUnit(user.getId(), transUnits[i]);
     }
     confirmAlert.close();
-    transmissionToast.open();
 }
 confirmAlertNo.onclick = function(){
     confirmAlert.close();

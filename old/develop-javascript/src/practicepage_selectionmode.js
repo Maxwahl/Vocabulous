@@ -101,8 +101,8 @@ function load(){
 }
 async function changedUnit(){
     unitresultPage.value = "parcticeunit-page-selectionmode";
-    unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
-    words = await BackEndHandler.getVocabByID(checked.value); 
+    unitName.innerHTML = checked.value;
+    words = await BackEndHandler.getWords(unitName.innerHTML); 
     wordCount.value = words.length;
     rightWords = 0;
     shuffle(words);
@@ -128,7 +128,7 @@ function loadWrongVocs(){
     }
 }
 changedUnit();
-cancelButton.onclick = function(){overview._routePageChanged("unit-overview")}
+cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -149,7 +149,7 @@ pauseButton.onclick = function(){
     pauseButton.updateStyles({"color":"var(--headlineCard)"});
     timer.start();
 }
-returnButton.onclick = function(){overview._routePageChanged("unit-overview");}
+returnButton.onclick = function(){overview._routePageChanged("unit-page");}
 startButton.onclick = function(){
     wordTable.removeAttribute("hidden");
     cancelButton.removeAttribute("hidden");

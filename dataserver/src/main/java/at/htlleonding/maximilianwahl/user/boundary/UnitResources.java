@@ -123,4 +123,24 @@ public class UnitResources {
                 .add("retVal", val)               
                 .build();   
     }
+    @Path("getVocabByID")
+    @GET
+    public JsonArray getVocabByID(@QueryParam("uID") int uID){
+        Chapter c = Repository.getInstance().getChapterByID(uID);
+        if(c!= null){
+            return c.jsonifyVocab();
+        }
+        else{
+            return Json.createArrayBuilder().build();
+        }
+    }
+    @Path("getUnitName")
+    @GET
+    public JsonObject getUnitName(@QueryParam("uID") int uID){
+        String name = Repository.getInstance().getUnitName(uID);
+        return Json.createObjectBuilder()        
+            .add("name",name)             
+            .build();
+        
+    }
 }

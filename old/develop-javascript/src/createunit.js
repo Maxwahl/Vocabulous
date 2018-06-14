@@ -37,7 +37,7 @@ var toast2 = overview._getNoWordToast();
 var updateInput = overview._getUpdateInput();
 returnButton.onclick = function(){
     overview._routePageChanged("unit-overview");
-    updateInput.value = -1;
+    updateInput.value = "";
     reset();
 }
 loadCreateUnit();
@@ -47,8 +47,8 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 async function loadWords(){
-    unitNameInput.value = await BackEndHandler.getUnitName(updateInput.value);
-    var words = await BackEndHandler.getVocabByID(updateInput.value); 
+    unitNameInput.value = updateInput.value;
+    var words = await BackEndHandler.getWords(updateInput.value); 
     wordTable.deleteRow(0);
     for(var i = 0; i < words.length; i++){
         var row = wordTable.insertRow(wordTable.rows.length);
@@ -67,7 +67,7 @@ async function loadWords(){
 }
 function loadCreateUnit(){
     reset();
-    if(updateInput.value != -1){
+    if(updateInput.value != ""){
         loadWords();
     }
 }
@@ -140,10 +140,10 @@ function reset(){
 
 
 async function save(){
-    if(updateInput.value != -1){
+    if(updateInput.value != ""){
         var unitoverview = overview._getUnitView();
         var uId = unitoverview._getUnitId();
-        var words = await BackEndHandler.getVocabByID(updateInput.value); 
+        var words = await BackEndHandler.getWords(updateInput.value); 
         while(words.length != 0){
             BackEndHandler.deleteWordFromUnit(uId.value, words[0]);
             words.shift();
@@ -165,7 +165,7 @@ async function save(){
         }
     }
     var unitId;
-    if(updateInput.value == -1){
+    if(updateInput.value == ""){
         user = await BackEndHandler.login(username.value, password.value);
         console.log(user.id);
         var unitId = await BackEndHandler.createUnit(user, unitNameInput.value);
@@ -179,14 +179,14 @@ async function save(){
         var word = new Word(wordTable.rows[i].cells[0].childNodes[0].value, wordTable.rows[i].cells[0].childNodes[1].value);
         await BackEndHandler.addWordToUnit(unitId, word);
     }
-    if(updateInput.value != -1){
-        //updateInput.value = unitNameInput.value;
+    if(updateInput.value != ""){
+        updateInput.value = unitNameInput.value;
         await BackEndHandler.changeUnitName(unitId, unitNameInput.value);
         overview._routePageChanged("unit-page");
         reset();
         return;
     }
-    updateInput.value = -1;
+    updateInput.value = "";
     overview._routePageChanged("unit-overview");
     reset();
 }

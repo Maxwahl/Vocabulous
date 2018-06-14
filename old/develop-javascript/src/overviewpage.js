@@ -30,12 +30,7 @@ console.dir(accounticon);
 var menuicon = overview._getMenuicon();
 console.dir(menuicon);
 var appdrawer = overview._getAppdrawer();
-var mode = overview._getModeInput();
 console.dir(appdrawer);
-var wordView = overview._getWordview();
-var practiceAnswerView = overview._getPracticeAnswerview();
-var selfcheckView = overview._getSelfcheckview();
-var practiceMemoryView = overview._getPracticeMemoryview();
 (async function start(){
   user = await BackEndHandler.login(username.value, password.value);
   userbutton.textContent = user.getUsername();
@@ -50,23 +45,6 @@ statisticview.onclick = function(){overview._routePageChanged("statistics-view")
 settingsview.onclick = function(){overview._routePageChanged("settings-view")}
 logoutbutton.onclick = function(){location.reload();}
 accounticon.onclick = function(){overview._routePageChanged("account-view")}
-
-wordView.onclick = function(){
-  mode.value = "0";
-  overview._routePageChanged("unit-overview");
-}
-practiceAnswerView.onclick = function(){
-  mode.value = "1";
-  overview._routePageChanged("unit-overview");
-}
-selfcheckView.onclick = function(){
-  mode.value = "2";
-  overview._routePageChanged("unit-overview");
-}
-practiceMemoryView.onclick = function(){
-  mode.value = "3";
-  overview._routePageChanged("unit-overview");
-}
 console.log(appdrawer);
 menuicon.onclick = function(){
     if(menuopen){
