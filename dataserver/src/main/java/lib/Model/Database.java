@@ -270,4 +270,23 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
         }
     }
+
+    int addWord(String wE, String wG,int id) {
+        try(PreparedStatement stmt = connection
+                .prepareStatement("insert into vocab (wE,wG,chapter) values (?,?,?)",Statement.RETURN_GENERATED_KEYS)){
+        stmt.setString(1,wE);
+        stmt.setString(2,wG);
+        stmt.setInt(3, id);
+        int ok = stmt.executeUpdate();
+        if(ok>0){
+            ResultSet res = stmt.getGeneratedKeys();
+            if(res.next()){
+                return res.getInt(1);
+            }
+        }
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return -1;
+    }
 }

@@ -168,4 +168,20 @@ export default class BackEndHandler{
         const {name} = await this.answer("http://localhost:8080/dataserver/webresources/units/getUnitName?uID="+uID);
         return name;
     }
+    static async getUsers(){
+        const jsonText = await this.answer("http://localhost:8080/dataserver/webresources/users/users");
+        let users = [];
+        while(jsonText.length>0){
+            const {id,Firstname,Lastname,Email,Birthdate,Username,Password,Institution} = jsonText.pop();
+            let user = new User(Username,Password);
+            user.setId(id);
+            user.setFirstname(Firstname);
+            user.setLastname(Lastname);
+            user.setEmail(Email);
+            user.setBirthdate(Birthdate);
+            user.setInstitution(Institution);
+            users.push(user);
+        }
+        return users;
+    }
 }
