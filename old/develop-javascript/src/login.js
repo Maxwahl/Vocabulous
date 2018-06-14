@@ -18,7 +18,7 @@ async function checkLogin(){
     user = await BackEndHandler.login(username.value, password.value);
     console.log(user.getUsername());
     console.log(user.getPassword());
-    if(user == null){
+    if(user == null || user == undefined){
         toast.open();
         return false;
     }

@@ -13,6 +13,7 @@
     "test:integration": "polymer build # test that psk builds without error with the CLI"
   },
   "dependencies": {
-    "google-translate-api": "^2.3.0"
+    "google-translate-api": "^2.3.0",
+    "jquery": "^3.3.1"
   }
 }

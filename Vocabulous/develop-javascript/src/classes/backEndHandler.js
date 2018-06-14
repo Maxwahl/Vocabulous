@@ -154,7 +154,7 @@ export default class BackEndHandler{
         const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addUnit?uID="+uID+"&cID="+cID);
         return retVal; 
     }
-    static async getVocabByID(uId){
+    static async getVocabByID(uID){
         let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/getVocabByID?uID="+uID);
         let words = [];
         while(jsonText.length>0){
@@ -164,7 +164,7 @@ export default class BackEndHandler{
         }
         return words;
     }
-    static async getUnitName(uId){
+    static async getUnitName(uID){
         const {name} = await this.answer("http://localhost:8080/dataserver/webresources/units/getUnitName?uID="+uID);
         return name;
     }
@@ -195,7 +195,7 @@ export default class BackEndHandler{
         return theme;      
     }
     static async getUnitOwner(uID){
-        const {id,Firstname,Lastname,Email,Birthdate,Username,Password,Institution} = await this.answer("http://localhost:8080/dataserver/webresources/units/unitOwner?cID="+uID);
+        const {id,Firstname,Lastname,Email,Birthdate,Username,Password,Institution} = await this.answer("http://localhost:8080/dataserver/webresources/units/unitOwner?uID="+uID);
         if(id ==-1){
             return null;
         }

@@ -154,4 +154,58 @@ export default class BackEndHandler{
         const {retVal}= await this.answer("http://localhost:8080/dataserver/webresources/units/addUnit?uID="+uID+"&cID="+cID);
         return retVal; 
     }
+    static async getVocabByID(uId){
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/units/getVocabByID?uID="+uID);
+        let words = [];
+        while(jsonText.length>0){
+            const {wordGerman,wordEnglisch} = jsonText.pop();
+            let word = new Word(wordGerman,wordEnglisch);
+            words.push(word);
+        }
+        return words;
+    }
+    static async getUnitName(uId){
+        const {name} = await this.answer("http://localhost:8080/dataserver/webresources/units/getUnitName?uID="+uID);
+        return name;
+    }
+    static async getUsers(){
+        const jsonText = await this.answer("http://localhost:8080/dataserver/webresources/users/users");
+        let users = [];
+        while(jsonText.length>0){
+            const {id,Firstname,Lastname,Email,Birthdate,Username,Password,Institution} = jsonText.pop();
+            let user = new User(Username,Password);
+            user.setId(id);
+            user.setFirstname(Firstname);
+            user.setLastname(Lastname);
+            user.setEmail(Email);
+            user.setBirthdate(Birthdate);
+            user.setInstitution(Institution);
+            users.push(user);
+        }
+        return users;
+    }
+    static async getDefaultTheme(){
+        const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardBackgroundColor,cardHeadLineColor,paragraphFontColor} = await this.answer("http://localhost:8080/dataserver/webresources/themes/defaultTheme");
+        let theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardBackgroundColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
+        return theme;      
+    }
+    static async getDarkTheme(){
+        const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardBackgroundColor,cardHeadLineColor,paragraphFontColor} = await this.answer("http://localhost:8080/dataserver/webresources/themes/darkTheme");
+        let theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardBackgroundColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
+        return theme;      
+    }
+    static async getUnitOwner(uID){
+        const {id,Firstname,Lastname,Email,Birthdate,Username,Password,Institution} = await this.answer("http://localhost:8080/dataserver/webresources/units/unitOwner?cID="+uID);
+        if(id ==-1){
+            return null;
+        }
+        let user = new User(Username,Password);
+        user.setId(id);
+        user.setFirstname(Firstname);
+        user.setLastname(Lastname);
+        user.setEmail(Email);
+        user.setBirthdate(Birthdate);
+        user.setInstitution(Institution);
+        return user;
+    }
 }

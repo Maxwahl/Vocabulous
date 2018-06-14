@@ -5,24 +5,41 @@ import Stopwatch from './classes/stopwatch.js';
 console.log("Javascript: practicePageSelectionmode loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
+console.dir(overview);
 var practicePageSelectionmode = overview._getPracticeUnitPageSelectionmode();
 console.dir(practicePageSelectionmode);
 var unitName = practicePageSelectionmode._getUnitName();
-var unitView = overview._getUnitoverviewForSessionsPage();
+console.dir(unitName);
+var unitView = overview._getUnitView();
+console.dir(unitView);
 var checked = unitView._getChecked();
+console.dir(checked);
 var ironPages = overview._getIronPages();
+console.dir(ironPages);
 var cancelButton = practicePageSelectionmode._getCancelButton();
+console.dir(cancelButton);
 var pauseButton = practicePageSelectionmode._getPauseButton();
+console.dir(pauseButton);
 var timerCounter = practicePageSelectionmode._getTimeCounter();
+console.dir(timerCounter);
 var learnProgressBar = practicePageSelectionmode._getLearnProgressBar();
+console.dir(learnProgressBar);
 var unitProgressBar = practicePageSelectionmode._getUnitProgressBar();
+console.dir(unitProgressBar);
 var startButton = practicePageSelectionmode._getStartButton();
+console.dir(startButton);
 var returnButton = practicePageSelectionmode._getReturnButton();
+console.dir(returnButton);
 var languagePopup = practicePageSelectionmode._getLanguagePupup();
+console.dir(languagePopup);
 var unitresultPage = overview._getUnitResultPage();
+console.dir(unitresultPage);
 var wordCount = practicePageSelectionmode._getWordCount();
+console.dir(wordCount);
 var wrongCounter = practicePageSelectionmode._getWrong();
+console.dir(wrongCounter);
 var correctVocs = practicePageSelectionmode._getCorrectVocs();
+console.dir(correctVocs);
 var words;
 var english = true;
 var position = 0;
@@ -84,8 +101,8 @@ function load(){
 }
 async function changedUnit(){
     unitresultPage.value = "parcticeunit-page-selectionmode";
-    unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
-    words = await BackEndHandler.getVocabByID(checked.value); 
+    unitName.innerHTML = checked.value;
+    words = await BackEndHandler.getWords(unitName.innerHTML); 
     wordCount.value = words.length;
     rightWords = 0;
     shuffle(words);
@@ -98,6 +115,7 @@ async function changedUnit(){
     }
 }
 function loadWrongVocs(){
+    console.dir(wrongVocs.value);
     if(wrongVocs.length == 0){
         return;
     }
@@ -110,7 +128,7 @@ function loadWrongVocs(){
     }
 }
 changedUnit();
-cancelButton.onclick = function(){overview._routePageChanged("unit-overview-for-sessions")}
+cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -118,30 +136,20 @@ pauseButton.onclick = function(){
     if(pauseButton.textContent == "Pause"){
         pauseButton.updateStyles({"background":"red"});
         pauseButton.updateStyles({"color":"white"});
-        wordButtonOne.setAttribute("disabled",true);
-        wordButtonTwo.setAttribute("disabled",true);
-        wordButtonThree.setAttribute("disabled",true);
-        wordButtonFour.setAttribute("disabled",true);
-        wordButtonFive.setAttribute("disabled",true);
-        wordButtonSix.setAttribute("disabled",true);
+        
         cancelButton.setAttribute("disabled",true);
         pauseButton.textContent = "Continue";
         timer.pause();
         return;
     }
-    wordButtonOne.removeAttribute("disabled");
-    wordButtonTwo.removeAttribute("disabled");
-    wordButtonThree.removeAttribute("disabled");
-    wordButtonFour.removeAttribute("disabled");
-    wordButtonFive.removeAttribute("disabled");
-    wordButtonSix.removeAttribute("disabled");
+    
     cancelButton.removeAttribute("disabled");
     pauseButton.textContent = "Pause";
     pauseButton.updateStyles({"background":"initial"});
     pauseButton.updateStyles({"color":"var(--headlineCard)"});
     timer.start();
 }
-returnButton.onclick = function(){overview._routePageChanged("unit-overview");}
+returnButton.onclick = function(){overview._routePageChanged("unit-page");}
 startButton.onclick = function(){
     wordTable.removeAttribute("hidden");
     cancelButton.removeAttribute("hidden");
