@@ -77,7 +77,8 @@ public class Chapter implements Serializable{
     }
     
     public void addWord(String wE,String wG){
-        vocab.add(new Vocab(0,wE,wG,this.id));
+        int wordID = Database.getInstance().addWord(wE,wG,this.id);
+        vocab.add(new Vocab(wordID,wE,wG,this.id));
     }
     public void addList(List<Vocab> vocab){
         this.vocab.addAll(vocab);
