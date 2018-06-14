@@ -6,6 +6,8 @@
 package at.htlleonding.maximilianwahl.user.boundary;
 
 import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -82,6 +84,14 @@ public class UsersResource {
         return Json.createObjectBuilder()
                 .add("retVal", val)               
                 .build();
+    }
+    @Path("users")
+    
+    @GET
+    public JsonArray users(){
+        JsonArrayBuilder ret = Json.createArrayBuilder();
+        Repository.getInstance().getUsers().forEach(it->ret.add(it.jsonify()));
+        return ret.build();
     }
 }
     

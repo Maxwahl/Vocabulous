@@ -68,4 +68,15 @@ public class ThemesResource {
                 .add("retVal", val)               
                 .build();
     }
+    @Path("defaultTheme")
+    @GET
+    public JsonObject getDefaultTheme(){
+        return Repository.getInstance().getDefaultTheme().jsonify();
+    }
+    
+    @Path("darkTheme")
+    @GET
+    public JsonObject getDarkTheme(){
+        return Repository.getInstance().getDarkTheme().jsonify();
+    }
 }

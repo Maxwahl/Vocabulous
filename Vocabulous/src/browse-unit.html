@@ -76,13 +76,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --background-color:var(--cardBackgroundcolor);
         --disabled-text-color:var(--secondaryFontColorCard);
       }
-      #filters{
-        width: 400px;
-        border-radius: 5px;
-        border-color: var(--secondaryFontColorCard);
-        background-color: var(--hover-color);
-        color: var(--secondaryFontColorCard);
-      }
       #tune{
         margin-top: -50px;
         float:right;
@@ -91,15 +84,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-input.input{
         width: 100%;
         color:var(--secondaryFontColorCard);
-        --paper-input-container-color: var(--secondaryFontColorCard);
-        --paper-input-container-focus-color: var(--secondaryFontColorCard);
-        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
-        --paper-input-container-input-color: var(--secondaryFontColorCard);
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
       }
       #save{
-        font-size: 0.85em;
         margin-left: 0px;
-        margin-top: 20px;
+        margin-top: 10px;
+        color: var(--headlineCard);
       }
       iron-icon.socialIcon{
         width: 30px;
@@ -127,12 +125,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding-right: 5px;
       }
       
-      #confirm{
-        /*border: 2px solid;*/
+      #filters{
+        width: 350px;
         border-radius: 5px;
         border-color: var(--secondaryFontColorCard);
         background-color: var(--hover-color);
         color: var(--secondaryFontColorCard);
+        padding-bottom: 0px;
       }
     </style>
 
@@ -144,7 +143,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h2>Filter</h2>
         <div>
             <paper-input class="input" name="unfilter" label="Enter username of your friend"><iron-icon class="socialIcon" icon="social:people" slot="prefix"></iron-icon></paper-input>
-            <paper-button id="save" name="save" raised noink>Apply</paper-button>
+            <paper-button id="save" name="save">Apply</paper-button>
         </div>
       </paper-dialog>
 
