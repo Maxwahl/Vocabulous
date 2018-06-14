@@ -242,4 +242,8 @@ public class Repository {
         }
         return "";
     }
+
+    public Theme getDarkTheme() {
+        return themes.stream().filter((it)-> it.getName().equals("Dark")).findFirst().get();
+    }
 }

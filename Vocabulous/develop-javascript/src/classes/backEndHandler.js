@@ -184,4 +184,14 @@ export default class BackEndHandler{
         }
         return users;
     }
+    static async getDefaultTheme(){
+        const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardBackgroundColor,cardHeadLineColor,paragraphFontColor} = await this.answer("http://localhost:8080/dataserver/webresources/themes/defaultTheme");
+        let theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardBackgroundColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
+        return theme;      
+    }
+    static async getDarkTheme(){
+        const {id,name,headerBackgroundColor,headerFontColor,menuBackgroundColor,menuFontColor,menuNavigationFontColor,cardAreaBackgroundColor,menuNavigationColor,cardBackgroundColor,cardHeadLineColor,paragraphFontColor} = await this.answer("http://localhost:8080/dataserver/webresources/themes/darkTheme");
+        let theme = new Theme(id,name,'#'+headerBackgroundColor,'#'+menuFontColor,'#'+headerFontColor,'#'+cardAreaBackgroundColor,'#'+menuNavigationColor,'#'+menuBackgroundColor,'#'+menuNavigationFontColor,'#'+cardBackgroundColor,'#'+cardHeadLineColor,'#'+paragraphFontColor);
+        return theme;      
+    }
 }
