@@ -5,63 +5,34 @@ import Stopwatch from './classes/stopwatch.js';
 console.log("Javascript: practicePage loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
-console.dir(overview);
 var practicePage = overview._getPracticeUnitPage();
-console.dir(practicePage);
 var unitName = practicePage._getUnitName();
-console.dir(unitName);
-var unitView = overview._getUnitView();
-console.dir(unitView);
+var unitView = overview._getUnitoverviewForSessionsPage();
 var checked = unitView._getChecked();
-console.dir(checked);
 var ironPages = overview._getIronPages();
-console.dir(ironPages);
 var cancelButton = practicePage._getCancelButton();
-console.dir(cancelButton);
 var pauseButton = practicePage._getPauseButton();
-console.dir(pauseButton);
 var skipButton = practicePage._getSkipButton();
-console.dir(skipButton);
 var timerCounter = practicePage._getTimeCounter();
-console.dir(timerCounter);
 var toggleButton = practicePage._getToggleButton();
-console.dir(toggleButton);
 var learnProgressBar = practicePage._getLearnProgressBar();
-console.dir(learnProgressBar);
 var unitProgressBar = practicePage._getUnitProgressBar();
-console.dir(unitProgressBar);
 var input = practicePage._getInput();
-console.dir(input);
 var wordPrint = practicePage._getWordPrint();
-console.dir(wordPrint);
 var nextButton = practicePage._getNextButton();
-console.dir(nextButton);
 var startButton = practicePage._getStartButton();
-console.dir(startButton);
 var returnButton = practicePage._getReturnButton();
-console.dir(returnButton);
 var languageInfo = practicePage._getLanguageInfo();
-console.dir(languageInfo);
 var nextInfo = practicePage._getNextInfo();
-console.dir(nextInfo);
 var languagePopup = practicePage._getLanguagePupup();
-console.dir(languagePopup);
 var nextPopup = practicePage._getNextPupup();
-console.dir(nextPopup);
 var unitresultPage = overview._getUnitResultPage();
-console.dir(unitresultPage);
 var wordCount = practicePage._getWordCount();
-console.dir(wordCount);
 var wrongCounter = practicePage._getWrong();
-console.dir(wrongCounter);
 var secondTry = practicePage._getSecondTry();
-console.dir(secondTry);
 var wrongVocs = practicePage._getWrongVocs();
-console.dir(wrongVocs);
 var infoLanguageAlert = practicePage._getPaperDialogLanguage();
-console.dir(infoLanguageAlert);
 var infoNextAlert = practicePage._getPaperDialogNext();
-console.dir(infoLanguageAlert);
 var toast1 = overview._getCorrectWordToast();
 var toast2 = overview._getSecondTryToast();
 var toast3 = overview._getWrongWordToast();
@@ -134,8 +105,8 @@ function load(){
 }
 async function changedUnit(check){
     unitresultPage.value = "parcticeunit-page";
-    unitName.innerHTML = checked.value;
-    words = await BackEndHandler.getWords(unitName.innerHTML); 
+    unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
+    words = await BackEndHandler.getVocabByID(checked.value); 
     if(check){
         loadWrongVocs();
     }
@@ -164,11 +135,9 @@ function saveWrongVocs(){
         text +=(mistakeVocs[i].getWordGerman());
     }
     wrongVocs.value = text;
-    console.dir(wrongVocs.value);
     mistakeVocs = [];
 }
 function loadWrongVocs(){
-    console.dir(wrongVocs.value);
     if(wrongVocs.length == 0){
         return;
     }
@@ -181,7 +150,7 @@ function loadWrongVocs(){
     }
 }
 changedUnit(false);
-cancelButton.onclick = function(){overview._routePageChanged("unit-page")}
+cancelButton.onclick = function(){overview._routePageChanged("unit-overview-for-sessions")}
 toggleButton.onclick = function(){
     input.value = "";
     if(english){
@@ -273,6 +242,7 @@ function changeLineColor(color){
     input.updateStyles({"--paper-input-container-color":color});
     input.updateStyles({"--paper-input-container-focus-color":color});
     input.updateStyles({"--paper-input-container-invalid-color":color});
+    input.updateStyles({"--paper-input-container-input-color":color})
 }
 async function wrong(){
     if(english){
@@ -339,7 +309,7 @@ pauseButton.onclick = function(){
     pauseButton.updateStyles({"color":"var(--headlineCard)"});
     timer.start();
 }
-returnButton.onclick = function(){overview._routePageChanged("unit-page");}
+returnButton.onclick = function(){overview._routePageChanged("unit-overview-for-sessions");}
 startButton.onclick = function(){
     input.removeAttribute("hidden");
     nextButton.removeAttribute("hidden");

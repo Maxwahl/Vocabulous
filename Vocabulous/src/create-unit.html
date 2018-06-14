@@ -13,10 +13,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown.html">
-<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
-<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
-<link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
@@ -54,11 +50,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--hover-color);
       }
       td{
-        border: 0.75px solid var(--secondaryFontColorCard);
+        border: 1px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
-        font-weight: 200;
+        font-weight: 400;
         margin-left: 40px;
         border-radius: 5px;
         margin-bottom: 3px;
@@ -155,12 +151,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-bottom: 20px;
       }
       paper-button.save{
-        font-size: 0.65em;
+        font-size: 0.75em;
         margin-left: 40px;
-      }
-  
-      d2l-dropdown{
-        float:right;
+        height: 30px;
       }
       paper-icon-button.remove{
         color:grey;
@@ -177,15 +170,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <h1>Create Unit</h1>
       <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
-      <d2l-dropdown>
-          <paper-icon-button style="width: 45px;height: 45px;"class="d2l-dropdown-opener" name="menu" icon="icons:more-vert" noink></paper-icon-button>
-          <d2l-dropdown-menu>
-              <d2l-menu label="Menu">
-                <d2l-menu-item name="browseUnit" text="Browse Unit"></d2l-menu-item>
-                <d2l-menu-item name="uploadUnit" text="Upload Unit"></d2l-menu-item>
-              </d2l-menu>
-          </d2l-dropdown-menu>
-      </d2l-dropdown>
 
       <paper-input class="unitName" label="Unit name" no-label-float></paper-input>
       <table id="vocabs">
@@ -217,12 +201,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getUnitNameInput(){
         return Polymer.dom(this.root).querySelector("paper-input[class=unitName]");
-      }
-      _getBrowseUnitButton(){
-        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=browseUnit]");
-      }
-      _getUploadUnitButton(){
-        return Polymer.dom(this.root).querySelector("d2l-menu-item[name=uploadUnit]");
       }
     }
 
