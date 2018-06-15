@@ -248,9 +248,14 @@ public class Repository {
     }
 
     public User getUnitOwner(int uID) {
+        System.out.println(uID);
         Chapter c = chapters.stream().filter(it->it.getId()==uID).findFirst().orElse(null);
+        System.out.println(c.getId());
         if(c!= null){
             User u = users.stream().filter(it->it.getId()==c.getOwner()).findFirst().orElse(null);
+            if (u != null) {
+                System.out.println(u.getId());
+            }
             return u;
         }
         return null;
