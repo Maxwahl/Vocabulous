@@ -245,8 +245,8 @@ public class Database {
             try(PreparedStatement stmt = connection
                 .prepareStatement("insert into vocab (wE,wG,chapter) values(?,?,?)",Statement.RETURN_GENERATED_KEYS)){
                 stmt.setString(1,v.getWordEnglisch());
-                stmt.setString(0,v.getWordGerman());
-                stmt.setInt(2,copied.getId());
+                stmt.setString(2,v.getWordGerman());
+                stmt.setInt(3,copied.getId());
                 int ok = stmt.executeUpdate();
                 if(ok>0){
                 ResultSet res = stmt.getGeneratedKeys();
