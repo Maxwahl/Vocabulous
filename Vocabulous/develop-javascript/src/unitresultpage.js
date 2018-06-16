@@ -124,6 +124,6 @@ wrongVocabelsButton.onclick = function(){
     overview._routePageChanged("practiceunit-page");
 }
 
-function saveResultInDb(result){
-    console.log(result);
+async function saveResultInDb(result){
+    await BackEndHandler.saveResult(user.getId(), result);
 }

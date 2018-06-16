@@ -1,4 +1,5 @@
-create table Accoun(
+drop table account;
+create table Account(
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     username varchar(50) not null,
     password varchar(50) not null,
