@@ -289,4 +289,42 @@ public class Database {
         }
         return -1;
     }
+
+    Collection<Result> getResults() {
+        List<Result> results = new ArrayList<>();
+        try(PreparedStatement stmt = connection
+                .prepareStatement("select id,unitID,account,correct,secondTry,wrong,time,date,mode from Result order by id")){
+        ResultSet res =stmt.executeQuery();
+        while (res.next()){
+            results.add(new Result(res.getInt(1),res.getInt(2),res.getInt(3),res.getInt(9),res.getInt(4),res.getInt(5),res.getInt(6),res.getDouble(7),res.getString(8)));
+        }
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return results;  
+    }
+
+    int addResult(Result r) {
+        try(PreparedStatement stmt = connection
+                .prepareStatement("insert into result (unitID,account,correct,secondTry,wrong,time,date,mode) values (?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS)){
+        stmt.setInt(1,r.getUnit());
+        stmt.setInt(2,r.getUser());
+        stmt.setInt(3,r.getRight());
+        stmt.setInt(4,r.getSecondTry());
+        stmt.setInt(5, r.getWrong());
+        stmt.setDouble(6, r.getTimeNeeded());
+        stmt.setString(7,r.getDate());
+        stmt.setInt(8,r.getMode());
+        int ok = stmt.executeUpdate();
+        if(ok>0){
+            ResultSet res = stmt.getGeneratedKeys();
+            if(res.next()){
+                return res.getInt(1);
+            }
+        }
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return -1;
+    }
 }

@@ -5,8 +5,7 @@
  */
 package lib.Model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.math.BigDecimal;
 import javax.json.Json;
 import javax.json.JsonObject;
 
@@ -14,13 +13,16 @@ import javax.json.JsonObject;
  *
  * @author mexxw
  */
-public class Test {
+public class Result {
     private int id;
     private int unit;
-    private int right;
-    private int wrong;
     private int user;
-    private Date date;
+    private int mode;
+    private int right;
+    private int secondTry;
+    private int wrong;
+    private double timeNeeded;
+    private String date;
 
     public int getId() {
         return id;
@@ -38,12 +40,36 @@ public class Test {
         this.unit = unit;
     }
 
+    public int getUser() {
+        return user;
+    }
+
+    public void setUser(int user) {
+        this.user = user;
+    }
+
+    public int getMode() {
+        return mode;
+    }
+
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
+
     public int getRight() {
         return right;
     }
 
     public void setRight(int right) {
         this.right = right;
+    }
+
+    public int getSecondTry() {
+        return secondTry;
+    }
+
+    public void setSecondTry(int secondTry) {
+        this.secondTry = secondTry;
     }
 
     public int getWrong() {
@@ -54,40 +80,45 @@ public class Test {
         this.wrong = wrong;
     }
 
-    public int getUser() {
-        return user;
+    public double getTimeNeeded() {
+        return timeNeeded;
     }
 
-    public void setUser(int user) {
-        this.user = user;
+    public void setTimeNeeded(double timeNeeded) {
+        this.timeNeeded = timeNeeded;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Test(int id, int unit, int right, int wrong, int user, Date date) {
+    public Result(int id, int unit, int user, int mode, int right, int secondTry, int wrong, double timeNeeded, String date) {
         this.id = id;
         this.unit = unit;
-        this.right = right;
-        this.wrong = wrong;
         this.user = user;
+        this.mode = mode;
+        this.right = right;
+        this.secondTry = secondTry;
+        this.wrong = wrong;
+        this.timeNeeded = timeNeeded;
         this.date = date;
     }
+
     
-     public JsonObject jsonify(){
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy");
+    public JsonObject jsonify(){
         return Json.createObjectBuilder()
                 .add("id", this.getId())
-                .add("user", this.getUser())
                 .add("unit",this.getUnit())
-                .add("date",f.format(this.getDate()))
                 .add("correct",this.getRight())
+                .add("second",this.getSecondTry())
                 .add("wrong",this.getWrong())
+                .add("time", this.getTimeNeeded())
+                .add("mode",this.getMode())
+                .add("date",this.getDate())
                 .build();
     }
 }
