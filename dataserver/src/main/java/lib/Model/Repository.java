@@ -271,7 +271,7 @@ public class Repository {
     public int addResult(int user, int unit, int correct, int second, int wrong, double time, int mode, String date) {
         Result r = new Result(0,unit,user,mode,correct,second,wrong,time,date);
         int val = Database.getInstance().addResult(r);
-        if(val==-1){
+        if(val!=-1){
             r.setId(val);
             results.add(r);
             return 0;
