@@ -1,5 +1,5 @@
 export default class Result{
-    constructor(id, correct, secondTry, wrong, timeNeeded, mode)
+    constructor(id, unitid,correct, secondTry, wrong, timeNeeded, mode)
     {
         this.mode = mode; //0 = practice_write 1 = memory 2 = selfchek
         this.correct = correct;
@@ -7,6 +7,7 @@ export default class Result{
         this.wrong = wrong;
         this.timeNeeded = timeNeeded;
         this.id=id;
+        this.unitid=unitid;
         var currentdate = new Date(); 
         this.datetime = currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/" 
@@ -17,6 +18,9 @@ export default class Result{
     }
     getId(){
         return this.id;
+    }
+    getUnitId(){
+        return this.unitid;
     }
     getCorrect(){
         return this.correct;
