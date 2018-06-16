@@ -1,3 +1,4 @@
+drop table Vocab;
 create table Vocab (
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     wE varchar(50) not null,

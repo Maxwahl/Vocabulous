@@ -20,7 +20,17 @@ public class Repository {
     private List<Theme> themes;
     private List<Chapter> chapters;
     private List<Vocab> allVocab;
+    private List<Result> results;
 
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
+    
+    
     public List<User> getUsers() {
         return users;
     }
@@ -38,6 +48,7 @@ public class Repository {
         themes = new ArrayList<>();
         chapters = new ArrayList<>();
         allVocab = new ArrayList<>();
+        results = new ArrayList<>();
         users.addAll(Database.getInstance().getUsers());
         themes.addAll(Database.getInstance().getThemes());
         chapters.addAll(Database.getInstance().getChapters());
@@ -46,6 +57,7 @@ public class Repository {
             List<Vocab> curr = new ArrayList<>();
             c.addList(allVocab.stream().filter(it->it.getUnit()==c.getId()).collect(Collectors.toList()));
         }
+        results.addAll(Database.getInstance().getResults());
     }
     public static Repository getInstance(){
         if(instance == null){
@@ -248,16 +260,26 @@ public class Repository {
     }
 
     public User getUnitOwner(int uID) {
-        System.out.println(uID);
         Chapter c = chapters.stream().filter(it->it.getId()==uID).findFirst().orElse(null);
-        System.out.println(c.getId());
         if(c!= null){
             User u = users.stream().filter(it->it.getId()==c.getOwner()).findFirst().orElse(null);
-            if (u != null) {
-                System.out.println(u.getId());
-            }
             return u;
         }
         return null;
+    }
+
+    public int addResult(int user, int unit, int correct, int second, int wrong, double time, int mode, String date) {
+        Result r = new Result(0,unit,user,mode,correct,second,wrong,time,date);
+        int val = Database.getInstance().addResult(r);
+        if(val==-1){
+            r.setId(val);
+            results.add(r);
+            return 0;
+        }
+        return 1;
+    }
+
+    public List<Result> getResults(int user) {
+        return results.stream().filter(it->it.getUser()==user).collect(Collectors.toList());
     }
 }

@@ -29,10 +29,10 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(at.htlleonding.maximilianwahl.user.boundary.ResultResource.class);
         resources.add(at.htlleonding.maximilianwahl.user.boundary.ThemesResource.class);
         resources.add(at.htlleonding.maximilianwahl.user.boundary.UnitResources.class);
         resources.add(at.htlleonding.maximilianwahl.user.boundary.UsersResource.class);
-        resources.add(com.airhacks.cors.CorsResponseFilter.class);
     }
     
 }

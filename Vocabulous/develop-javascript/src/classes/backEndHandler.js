@@ -2,6 +2,7 @@ import User from "./user.js";
 import Theme from "./theme.js";
 import Unit from "./unit.js";
 import Word from "./word.js";
+import Result from "./result.js";
 
 export default class BackEndHandler{
 
@@ -207,5 +208,20 @@ export default class BackEndHandler{
         user.setBirthdate(Birthdate);
         user.setInstitution(Institution);
         return user;
+    }
+    static async saveResult(userID,result){
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/results/addResult?user="+userID+"&unit="+result.getUnitId()+"&correct="+result.getCorrect()+"&second="+result.getSecondTry()+"&wrong="+result.getWrong()+"&time="+result.getTimeNeeded()+"&mode="+result.getMode()+"&date="+result.getDateTime());
+        return retVal;
+    }
+    static async getResults(userID){
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/results/getResults&user="+userID);
+        let results = [];
+        while(jsonText.length>0){
+            const {id,unit,correct,second,wrong,time,mode,date} = jsonText.pop();
+            let result = new Result(id,unit,correct,second,wrong,time,mode);
+            result.setDateTime(date);
+            results.push(result);
+        }
+        return results;
     }
 }

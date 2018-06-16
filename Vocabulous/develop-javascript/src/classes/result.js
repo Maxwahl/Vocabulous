@@ -40,4 +40,7 @@ export default class Result{
     getMode(){
         return this.mode;
     }
+    setCurrentDate(currentdate){
+        this.currentdate = currentdate;
+    }
 }

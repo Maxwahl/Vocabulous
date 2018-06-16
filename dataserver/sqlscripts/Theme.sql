@@ -1,3 +1,4 @@
+drop table Theme;
 create table Theme(
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
     owner int not null,
