@@ -259,15 +259,15 @@ async function handleWordButton(button){
             updateButtonStyle(selectedButton2,"green","white",false,true);
             unitProgressBar.value++;
             await sleep(1000);
-            updateButtonStyle(selectedButton1,"initial","var(--headlineCard)", true, getPointChecker(selectedButton1));
-            updateButtonStyle(selectedButton2,"initial","var(--headlineCard)", true,true);
+            updateButtonStyle(selectedButton1,"initial","var(--secondaryFontColorCard)", true, getPointChecker(selectedButton1));
+            updateButtonStyle(selectedButton2,"initial","var(--secondaryFontColorCard)", true,true);
         }
         else{
             updateButtonStyle(selectedButton1,"red","white", false, getPointChecker(selectedButton1));
             updateButtonStyle(selectedButton2,"red","white", false,true);
             await sleep(1000);
-            updateButtonStyle(selectedButton1,"initial","var(--headlineCard)", false, getPointChecker(selectedButton1));
-            updateButtonStyle(selectedButton2,"initial","var(--headlineCard)", false,true);
+            updateButtonStyle(selectedButton1,"initial","var(--secondaryFontColorCard)", false, getPointChecker(selectedButton1));
+            updateButtonStyle(selectedButton2,"initial","var(--secondaryFontColorCard)", false,true);
         }
         selectedButton1 = null;
         selectedButton2 = null;

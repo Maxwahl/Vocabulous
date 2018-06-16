@@ -56,7 +56,7 @@ async function load(){
             }
         };
         var unitOwner = await BackEndHandler.getUnitOwner(units[i].getId());
-        cell.innerHTML = units[i].getName()+" <p>"+unitOwner.getUsername()+"</p>"/*+"<paper-checkbox noink value='"+units[i].getId()+"'></paper-checkbox>"*/;
+        cell.innerHTML = "<p id='unitname'>" + units[i].getName() +" </p>"+" <p id='username'>creator: "+unitOwner.getUsername()+"</p>"/*+"<paper-checkbox noink value='"+units[i].getId()+"'></paper-checkbox>"*/;
         cell.appendChild(checkbox);
     }
 }

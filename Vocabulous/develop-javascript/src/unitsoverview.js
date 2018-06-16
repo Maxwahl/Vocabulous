@@ -52,7 +52,7 @@ async function load(){
         var newRow = unitTable.insertRow(rowCount);
         rowCount++;
         var newData = newRow.insertCell(0);
-        newData.innerHTML = units[i].getName();
+        newData.innerHTML ="<p>" + units[i].getName() + "</p>";
         //var text = units[i].getName();
         newData.value = units[i].getId();
         newData.setAttribute("name", units[i].getId());
