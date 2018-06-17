@@ -55,7 +55,8 @@ async function load(){
                 transUnits.splice(index, 1);
             }
         };
-        cell.innerHTML = units[i].getName()/*+"<paper-checkbox noink value='"+units[i].getId()+"'></paper-checkbox>"*/;
+        var unitOwner = await BackEndHandler.getUnitOwner(units[i].getId());
+        cell.innerHTML = "<p id='unitname'>" + units[i].getName() +" </p>"+" <p id='username'>creator: "+unitOwner.getUsername()+"</p>"/*+"<paper-checkbox noink value='"+units[i].getId()+"'></paper-checkbox>"*/;
         cell.appendChild(checkbox);
     }
 }

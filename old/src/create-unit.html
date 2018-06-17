@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-input-container.html">
 <link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
@@ -65,43 +66,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 50px;
         width: 300px;
         margin-top: 20px;
-        --paper-input-container-underline:{
-          border: var(--app-secondary-color);
-        }
-        --paper-input-container-underline-focus:{
-          border: var(--app-secondary-color);
-        }
+        /*--paper-input-container-color: var(--secondaryFontColorCard); Label-COlor*/
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
+        color: var(--secondaryFontColorCard);
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
       }
       paper-input.germanVocab{
         margin-left: 0px;
         width: 300px;
         color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
         margin-top: -5px;
-        --paper-input-container-underline:{
-          border: var(--app-secondary-color);
-        }
-        --paper-input-container-underline-focus:{
-          border: var(--app-secondary-color);
-        }
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
       }
       paper-input.englishVocab{
         margin-left: 50%;
         width: 300px;
         color: var(--secondaryFontColorCard);
-        margin-top: -40px;
-        --paper-input-container-underline:{
-          border: var(--app-secondary-color);
-        }
-        --paper-input-container-underline-focus:{
-          border: var(--app-secondary-color);
-        }
-      }
-      paper-input{
-        color:var(--secondaryFontColorCard);
-        --paper-input-container-color: var(--secondaryFontColorCard);
-        --paper-input-container-focus-color: var(--secondaryFontColorCard);
-        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
         --paper-input-container-input-color: var(--secondaryFontColorCard);
+        margin-top: -40px;
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
       }
       paper-button.plus{
         width: 25px;
@@ -170,7 +178,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <h1>Create Unit</h1>
       <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
-
+      
       <paper-input class="unitName" label="Unit name" no-label-float></paper-input>
       <table id="vocabs">
         <tr><td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input><paper-icon-button class="remove" name="remove" icon="icons:clear" noink></paper-icon-button></td></tr>

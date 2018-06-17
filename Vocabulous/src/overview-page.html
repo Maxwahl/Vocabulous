@@ -55,12 +55,12 @@
   <template>
     <style>
       :host {
-        --app-primary-color: #1E88E5;
-        --app-secondary-color: black;
+        --app-primary-color: #fff;
+        --app-secondary-color: #fff;
         --containercolor: #ffffff;
-        --navigationcolorbackground:#f2f2f2;
-        --itemcolor: black;
-        color:black;
+        --navigationcolorbackground:#fff;
+        --itemcolor: #fff;
+        color:#fff;
         display: block;
       }
 
@@ -161,6 +161,12 @@
         background-color: green;
         color: white;
       }
+      a{
+        cursor: pointer;
+      }
+      #home{
+        color: var(--headlineCard);
+      }
     </style>
 
     <app-location
@@ -176,8 +182,8 @@
     </app-route>
     <app-drawer-layout fullbleed force-narrow>
       <!-- Drawer content -->
-      <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-            <app-toolbar style="font-weight:300"><a name="startpage"><span>Home</span></a></app-toolbar>
+      <app-drawer id="drawer" slot="drawer" force-narrow="true" swipe-open="[[narrow]]">
+            <app-toolbar id="home" style="font-weight:300"><a name="startpage"><span>Vocabulous</span></a></app-toolbar>
             <app-toolbar><paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress></app-toolbar>
             <app-toolbar class="learnprogress">Learn Progress</app-toolbar>
             <iron-selector name="menu" selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
@@ -382,6 +388,9 @@
       }
       _getUnitResultPage(){
         return Polymer.dom(this.root).querySelector("unitresult-page[name=unitresult-page]");
+      }
+      _getMainTitle(){
+        return Polymer.dom(this.root).querySelector("div[class=maintitle]");
       }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails

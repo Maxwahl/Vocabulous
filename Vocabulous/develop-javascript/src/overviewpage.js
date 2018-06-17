@@ -25,6 +25,7 @@ var mode = overview._getModeInput();
 var wordView = overview._getWordview();
 var practiceOverviewView = overview._getPracticeOverviewView();
 var selfcheckView = overview._getSelfcheckview();
+var mainTitle = overview._getMainTitle();
 //var practiceMemoryView = overview._getPracticeMemoryview();
 (async function start(){
   user = await BackEndHandler.login(username.value, password.value);
@@ -64,10 +65,12 @@ browseUnitview.onclick = function(){
 }*/
 menuicon.onclick = function(){
     if(menuopen){
+      mainTitle.innerHTML = "Vocabulous";
       appdrawer.setAttribute("force-narrow",true);
       menuopen = false;
       return;
     }
+    mainTitle.innerHTML = "";
     appdrawer.removeAttribute("force-narrow");
     menuopen = true;
   }

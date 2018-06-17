@@ -31,10 +31,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       paper-tabs{
+        display: "none";
         width: 95%;
         margin-left: 40px;
         margin-top: 60px;
-        --paper-tabs-selection-bar-color: var(--app-primary-color);
+        --paper-tabs-selection-bar-color: var(--secondaryFontColorCard);
         background-color:rgba(181, 181, 181, 0.1);
         
       }
@@ -42,7 +43,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-tab-ink:  darkgray;
         
       }
-
+      paper-item{
+        color:var(--secondaryFontColorCard);
+        background-color:var(--cardBackgroundcolor);
+      }
       paper-dropdown-menu{
         margin-left: 40px;
         --disabled-text-color:var(--secondaryFontColorCard);
@@ -60,6 +64,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           display: none;
         };
       }
+      google-chart {
+        height: 300px;
+        width: 60em;
+        color: var(--secondaryFontColorCard);
+      }
+      .column{
+        padding-right: 60em;
+      }
+      .line{
+        padding-right: 60em;
+      }
+      .pie{
+        padding-right: 60em;
+      }
     </style>
 
     <div class="card">
@@ -70,35 +88,70 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-listbox>
       </paper-dropdown-menu>
       <paper-tabs selected="0" sticky>
-        <paper-tab>Practice</paper-tab>
+        <paper-tab>Practice-Answer</paper-tab>
+        <paper-tab>Practice-Memory</paper-tab>
         <paper-tab>Self-Check</paper-tab>
       </paper-tabs>
-      <google-chart
-        type='column'
-        options='{"title": "Distribution of days in 2001Q1"}'
-        cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
-        rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
-      </google-chart>
-      <google-chart
-        type='line'
-        options='{"title": "Distribution of days in 2001Q1"}'
-        cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
-        rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
-      </google-chart>
-      <google-chart
-        type='pie'
-        options='{"title": "Distribution of days in 2001Q1"}'
-        cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
-        rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
-      </google-chart>
+      <div class="column" name="column" hidden="true">
+        <google-chart
+          name="column"
+          type='column'
+          options='{"title": "Distribution of days in 2001Q1"}'
+          cols='[{"label":"Days", "type":"string"},{"label":"Sessions", "type":"number"}]'
+          rows='[["Mo",4],["Tu",5],["We",6],["Th",7],["Fr",8],["Sa",9],["So",6]]'>
+        </google-chart>
+      </div>
+      <div class="line" name="line" hidden="true">
+        <google-chart
+          name="line"
+          type='line'
+          options='{"title": "Distribution of days in 2001Q1"}'
+          cols='[{"label":"Day", "type":"string"},{"label":"Time\n needed\n in minutes", "type":"number"}]'
+          rows='[["Mo",4],["Tu",5],["We",6],["Th",7],["Fr",8],["Sa",9],["So",6]]'>
+        </google-chart>
+      </div>
+      <div class="pie" name="pie" hidden="true">
+        <google-chart
+          name="pie"
+          type='pie'
+          options='{"title": "Distribution of days in 2001Q1"}'
+          cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
+          rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
+        </google-chart>
+      </div>
     </div>
   </template>
 
   <script>
     class StatisticsView extends Polymer.Element {
       static get is() { return 'statistics-view'; }
+      _getDropDownMenu(){
+        return Polymer.dom(this.root).querySelector("paper-listbox");
+      }
+      _getPieChart(){
+        return Polymer.dom(this.root).querySelector("google-chart[name=pie]");
+      }
+      _getLineChart(){
+        return Polymer.dom(this.root).querySelector("google-chart[name=line]");
+      }
+      _getColumnChart(){
+        return Polymer.dom(this.root).querySelector("google-chart[name=column]");
+      }
+      _getSelector(){
+        return Polymer.dom(this.root).querySelector("paper-tabs");
+      }
+      _getPieChartDiv(){
+        return Polymer.dom(this.root).querySelector("div[name=pie]");
+      }
+      _getLineChartDiv(){
+        return Polymer.dom(this.root).querySelector("div[name=line]");
+      }
+      _getColumnChartDiv(){
+        return Polymer.dom(this.root).querySelector("div[name=column]");
+      }
     }
 
     window.customElements.define(StatisticsView.is, StatisticsView);
   </script>
+  <script src="../develop-javascript/src/statistics.js" type="module"></script>
 </dom-module>

@@ -1,7 +1,7 @@
 export default class Result{
     constructor(id, unitid,correct, secondTry, wrong, timeNeeded, mode)
     {
-        this.mode = mode; //0 = practice_write 1 = memory 2 = selfchek
+        this.mode = mode; //0 = practice_write 1 = memory 2 = selfcheck
         this.correct = correct;
         this.secondTry = secondTry;
         this.wrong = wrong;
@@ -14,7 +14,8 @@ export default class Result{
                 + currentdate.getFullYear() + " @ "  
                 + currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
+                + currentdate.getSeconds() + ";" 
+                + currentdate.getDay();
     }
     getId(){
         return this.id;
@@ -40,7 +41,7 @@ export default class Result{
     getMode(){
         return this.mode;
     }
-    setCurrentDate(currentdate){
-        this.currentdate = currentdate;
+    setDateTime(currentdate){
+        this.datetime = currentdate;
     }
 }

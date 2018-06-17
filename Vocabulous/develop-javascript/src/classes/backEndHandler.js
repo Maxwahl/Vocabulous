@@ -214,7 +214,7 @@ export default class BackEndHandler{
         return retVal;
     }
     static async getResults(userID){
-        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/results/getResults&user="+userID);
+        let jsonText = await this.answer("http://localhost:8080/dataserver/webresources/results/getResults?user="+userID);
         let results = [];
         while(jsonText.length>0){
             const {id,unit,correct,second,wrong,time,mode,date} = jsonText.pop();
