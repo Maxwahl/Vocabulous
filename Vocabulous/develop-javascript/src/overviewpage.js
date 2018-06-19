@@ -18,6 +18,7 @@ var statisticview = overview._getStatisticview();
 var logoutbutton = overview._getLogoutbutton();
 var userbutton = overview._getUserbutton();
 var settingsview = overview._getSettingsview();
+var aboutview = overview._getAboutView();
 var accounticon = overview._getAccounticon();
 var menuicon = overview._getMenuicon();
 var appdrawer = overview._getAppdrawer();
@@ -41,6 +42,7 @@ var browseUnitview = overview._getBrowseUnitview();
 //unitoverview.onclick = function(){overview._routePageChanged("unit-overview")}
 statisticview.onclick = function(){overview._routePageChanged("statistics-view")}
 settingsview.onclick = function(){overview._routePageChanged("settings-view")}
+aboutview.onclick = function(){overview._routePageChanged("about-view")}
 logoutbutton.onclick = function(){location.reload();}
 accounticon.onclick = function(){overview._routePageChanged("account-view")}
 

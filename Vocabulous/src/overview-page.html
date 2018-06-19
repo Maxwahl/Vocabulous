@@ -150,8 +150,8 @@
         background-color: red;
         color: white;
       }
-      #homeview,#unitoverview,#statisticsview,#settingsview, #browseunits, #practiceAnswer, #selfcheck{
-        margin-top: 8px;
+      #homeview,#unitoverview,#statisticsview,#settingsview, #browseunits, #practiceAnswer, #selfcheck, #aboutview{
+        margin-top: 10px;
       }
       #toast5{
         background-color: green;
@@ -193,6 +193,7 @@
               <a name="selfcheck"><iron-icon id="selfcheck" icon="icons:assignment-turned-in"></iron-icon><span>Selfcheck</span></a>
               <a name="statistics-view"><iron-icon id="statisticsview" icon="editor:show-chart"></iron-icon><span>Statistics</span></a>
               <a name="settings-view"><iron-icon id="settingsview" icon="icons:settings"></iron-icon><span>Settings</span></a>
+              <a name="about-view"><iron-icon id="aboutview" icon="icons:info-outline"></iron-icon><span>About</span></a>
             </iron-selector>
         </app-drawer>
 
@@ -230,6 +231,7 @@
           <practice-overview name="practice-overview"></practice-overview>
           <practiceunit-page-selectionmode name="practiceunit-page-selectionmode"></practiceunit-page-selectionmode>
           <unit-overview-for-sessions name="unit-overview-for-sessions"></unit-overview-for-sessions>
+          <about-view name="about-view"></about-view>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -292,6 +294,9 @@
       }
       _getBrowseUnitview(){
         return Polymer.dom(this.root).querySelector("a[name=browseUnits]");
+      }
+      _getAboutView(){
+        return Polymer.dom(this.root).querySelector("a[name=about-view]");
       }
       /*_getPracticeMemoryview(){
         return Polymer.dom(this.root).querySelector("a[name=practiceMemory]");

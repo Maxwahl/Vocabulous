@@ -75,12 +75,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           outline: inherit;
           outline-color:  var(--secondaryFontColorCard);
         color:var(--secondaryFontColorCard);
-        /*--paper-input-container-color: var(--secondaryFontColorCard);*/
-         /*--paper-input-container-invalid-color: var(--secondaryFontColorCard);*/
         --paper-input-container-focus-color: var(--secondaryFontColorCard);
         --paper-input-container-input-color: var(--secondaryFontColorCard);
-        /*--paper-input-container-underline: var(--secondaryFontColorCard);*/
         --paper-input-container-underline-focus: var(--secondaryFontColorCard);
+        --paper-input-container-underline: {
+          border: 1px solid var(--secondaryFontColorCard);
+        }
       }
       paper-toggle-button.language{
         margin-left: 15px;
@@ -113,7 +113,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 30px;
         margin-left: 0%;
         margin-top: 80px;
-        /*color: var(--modeCheckColor);*/
       }
       paper-button.skipbutton{
         font-size: 0.75em;
@@ -143,7 +142,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 0.9em;
         width: 200px;
         height: 30px;
-        /*margin-left: 83%;*/
         margin-top: 0px;
       }
       h3.unitprogress{
@@ -151,12 +149,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 0.9em;
         width: 200px;
         height: 30px;
-        /*margin-left: 83%;*/
         margin-top: 0px;
       }
       h2.timer{
-        margin-top: 100px;
+        margin-top: 95px;
         margin-left: 20%;
+
       }
       div.progressbars{
         float: right;
@@ -204,12 +202,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <td><iron-icon icon="icons:info-outline" class="language"></iron-icon></td>
           <paper-dialog id="infoLanguage">
             <p>When you select "German" you will have to
-              write German words and when you select "English" you will have to write
-              English words.</p>
+              write English words and vice versa.</p>
           </paper-dialog>
-          <div id="popuplanguage" name="languagePopup" style="display: none">When you select "German" you will have to
-              write German words and when you select "English" you will have to write
-              English words.</div>
         </tr>
       </table>
       <div class="progressbars">
@@ -226,16 +220,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-icon hidden="true" icon="icons:info-outline" class="next"></iron-icon>
           <paper-dialog id="infoNext">
             <p>When you press "NEXT" Vocabulous
-              will check your answer. If it is correct the line will turn green,
-              else the line will turn red. You have two tries.
-              When the line turns orange, the correct answer is shown.
+              will check your answer. If it's correct the line will turn green,
+              else the line will turn orange. You have two tries.
+              When the line turns red, the correct answer is shown.
               After a short amount of time you will get the next word.</p>
           </paper-dialog>
-          <div id="popupnext" name="nextPopup" style="display: none">When you press "NEXT" Vocabulous
-              will check your answer. If it is correct the line will turn green,
-              else the line will turn red. You have two tries.
-              When the line turns orange, the correct answer is shown.
-              After a short amount of time you will get the next word.</div>
       </div>
       
       <table>

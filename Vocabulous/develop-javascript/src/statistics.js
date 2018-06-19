@@ -24,6 +24,7 @@ var linediv = statisticView._getLineChartDiv();
 var columndiv = statisticView._getColumnChartDiv();
 var current;
 var now = true;
+var paperslide = statisticView._getPaperSlide();
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="statistics-view" && !intoit){
         intoit = true;
