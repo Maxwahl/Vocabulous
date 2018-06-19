@@ -9,6 +9,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/google-chart/google-chart.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="statistics-view">
@@ -16,18 +22,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
       }
 
       h1{
         color:  var(--headlineCard);
+        margin-left: 40px;
+      }
+
+      paper-tabs{
+        width: 95%;
+        margin-left: 40px;
+        margin-top: 60px;
+        --paper-tabs-selection-bar-color: var(--app-primary-color);
+        background-color:rgba(181, 181, 181, 0.1);
+        
+      }
+      paper-tab{
+        --paper-tab-ink:  darkgray;
+        
+      }
+
+      paper-dropdown-menu{
+        margin-left: 40px;
+        --disabled-text-color:var(--secondaryFontColorCard);
+        -webkit-tap-highlight-color:var(--cardBackgroundcolor);
+        --paper-dropdown-menu-color:var(--cardBackgroundcolor);
+        --secondary-text-color:var(--secondaryFontColorCard);
+        --primary-text-color:var(--secondaryFontColorCard);
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
       }
     </style>
 
     <div class="card">
       <h1>Statistics View</h1>
-      <p>Hier werden die Daten übersichtlich für den Schüler/Studenten dargestellt.</p>
+      <paper-dropdown-menu>
+        <paper-listbox slot="dropdown-content" selected="0">
+          <paper-item>Units</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+      <paper-tabs selected="0" sticky>
+        <paper-tab>Practice</paper-tab>
+        <paper-tab>Self-Check</paper-tab>
+      </paper-tabs>
+      <google-chart
+        type='column'
+        options='{"title": "Distribution of days in 2001Q1"}'
+        cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
+        rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
+      </google-chart>
+      <google-chart
+        type='line'
+        options='{"title": "Distribution of days in 2001Q1"}'
+        cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
+        rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
+      </google-chart>
+      <google-chart
+        type='pie'
+        options='{"title": "Distribution of days in 2001Q1"}'
+        cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
+        rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
+      </google-chart>
     </div>
   </template>
 

@@ -4,18 +4,12 @@ import Word from './classes/word.js';
 console.log("Javascript: createunit loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
-console.dir(overview);
 var register = myapp._getRegisterLogin();
 var username = register._getUsername();
 var password = register._getPassword();
 var browseunit = overview._getBrowseUnit();
-console.dir(browseunit);
-var returnButton = browseunit._getReturnButton();
-console.dir(returnButton);
 var searchbar = browseunit._getSearchBar();
-console.dir(searchbar);
 var transferButton = browseunit._getTransferButton();
-console.log(transUnits);
 var ironPages = overview._getIronPages();
 var filterDialog = browseunit._getPaperDialogFilters();
 var filterUn = browseunit._getPaperDialogFiltersName();
@@ -25,11 +19,9 @@ var units;
 var table = browseunit._getTable();
 var transUnits = [];
 var confirmAlertNo = browseunit._getPaperDialogNo();
-console.dir(confirmAlertNo);
 var confirmAlertYes = browseunit._getPaperDialogYes();
-console.dir(confirmAlertYes);
 var confirmAlert = browseunit._getPaperDialog();
-console.dir(confirmAlert);
+var transmissionToast = overview._getTransmissionToast();
 var user;
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="browse-unit"){
@@ -42,6 +34,7 @@ async function load(){
     while(table.rows.length != 0){
         table.deleteRow(0);
     }
+    transUnits = [];
     user = await BackEndHandler.login(username.value, password.value);
     units = await BackEndHandler.getOtherUnits(user.getId());
     for(var i = 0; i < units.length; i++){
@@ -62,12 +55,10 @@ async function load(){
                 transUnits.splice(index, 1);
             }
         };
-        cell.innerHTML = units[i].getName()/*+"<paper-checkbox noink value='"+units[i].getId()+"'></paper-checkbox>"*/;
+        var unitOwner = await BackEndHandler.getUnitOwner(units[i].getId());
+        cell.innerHTML = "<p id='unitname'>" + units[i].getName() +" </p>"+" <p id='username'>creator: "+unitOwner.getUsername()+"</p>"/*+"<paper-checkbox noink value='"+units[i].getId()+"'></paper-checkbox>"*/;
         cell.appendChild(checkbox);
     }
-}
-returnButton.onclick = function(){
-    overview._routePageChanged("create-unit");
 }
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="browse-unit"){
@@ -83,7 +74,6 @@ function clearFilter(){
     }
 }
 searchbar.onkeyup = function(){
-    console.dir(searchbar.query);
     if(searchbar.query == ""){
         clearFilter();
         return;
@@ -100,19 +90,19 @@ searchbar.onkeyup = function(){
 transferButton.onclick = function(){
     confirmAlert.open();
 }
-confirmAlertYes.onclick = function(){
+confirmAlertYes.onclick = async function(){
     for(var i = 0; i < table.rows.length; i++){
         for(var a = 0; a < transUnits.length; a++){
-            console.log(table.rows[i].getAttribute("name"));
             if(table.rows[i].getAttribute("name") == transUnits[a]){
                 table.rows[i].parentNode.removeChild(table.rows[i]);
             }
         }    
     }
     for(var i = 0; i < transUnits.length; i++){
-        BackEndHandler.addUnit(user.getId(), transUnits[i]);
+        await BackEndHandler.addUnit(user.getId(), transUnits[i]);
     }
     confirmAlert.close();
+    transmissionToast.open();
 }
 confirmAlertNo.onclick = function(){
     confirmAlert.close();

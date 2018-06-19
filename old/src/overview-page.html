@@ -48,6 +48,7 @@
 <link rel="lazy-import" href="browse-unit.html">
 <link rel="lazy-import" href="upload-unit.html">
 <link rel="lazy-import" href="practiceunit-page-selectionmode.html">
+<link rel="lazy-import" href="unit-overview-for-sessions.html">
 <link rel="lazy-import" href="my-app.html">
 
 <dom-module id="overview-page">
@@ -149,8 +150,16 @@
         background-color: red;
         color: white;
       }
-      #homeview,#unitoverview,#statisticsview,#settingsview{
+      #homeview,#unitoverview,#statisticsview,#settingsview, #browseunits, #practiceAnswer, #selfcheck{
         margin-top: 8px;
+      }
+      #toast5{
+        background-color: green;
+        color: white;
+      }
+      #toast7{
+        background-color: green;
+        color: white;
       }
     </style>
 
@@ -168,12 +177,14 @@
     <app-drawer-layout fullbleed force-narrow>
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-            <app-toolbar style="font-weight:300">Menu</app-toolbar>
+            <app-toolbar style="font-weight:300"><a name="startpage"><span>Home</span></a></app-toolbar>
             <app-toolbar><paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress></app-toolbar>
             <app-toolbar class="learnprogress">Learn Progress</app-toolbar>
-            <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-              <a name="home-view"><iron-icon id="homeview" icon="icons:home"></iron-icon><span>Home</span></a>
-              <a name="unit-overview"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
+            <iron-selector name="menu" selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+              <a name="overviewWords"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
+              <a name="browseUnits"><iron-icon id="browseunits" icon="icons:file-download"></iron-icon><span>Browse Units</span></a>
+              <a name="practiceOverview"><iron-icon id="practiceAnswer" icon="icons:book"></iron-icon><span>Practice</span></a>
+              <a name="selfcheck"><iron-icon id="selfcheck" icon="icons:assignment-turned-in"></iron-icon><span>Selfcheck</span></a>
               <a name="statistics-view"><iron-icon id="statisticsview" icon="editor:show-chart"></iron-icon><span>Statistics</span></a>
               <a name="settings-view"><iron-icon id="settingsview" icon="icons:settings"></iron-icon><span>Settings</span></a>
             </iron-selector>
@@ -210,15 +221,21 @@
           <translate-page name="translate-page"></translate-page>
           <browse-unit name="browse-unit"></browse-unit>
           <upload-unit name="upload-unit"></upload-unit>
+          <practice-overview name="practice-overview"></practice-overview>
           <practiceunit-page-selectionmode name="practiceunit-page-selectionmode"></practiceunit-page-selectionmode>
+          <unit-overview-for-sessions name="unit-overview-for-sessions"></unit-overview-for-sessions>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
+    <input style="display:none;" name="mode">
     <paper-toast id="toast0" text="Insert all required fields to save!"></paper-toast>
     <paper-toast id="toast1" duration=1000 text="This vocab is correct!"></paper-toast>
     <paper-toast id="toast2" duration=2000 text="This vocab is wrong! Second Try"></paper-toast>
     <paper-toast id="toast3" duration=2500 text="This vocab is wrong again!"></paper-toast>
     <paper-toast id="toast4" duration=2500 text="No vocabulary inserted!"></paper-toast>
+    <paper-toast id="toast5" duration=2500 text="All settings have been saved!"></paper-toast>
+    <paper-toast id="toast6" text="Insert all required fields to save correctly!"></paper-toast>
+    <paper-toast id="toast7" duration=2500 text="Transmission completed successfully!"></paper-toast>
     <input name="updateUnit" style="display:none;"><!--Für Update Unit benötigt-->
   </template>
 
@@ -256,16 +273,37 @@
         }
       }
       _getHomeview(){
-        return Polymer.dom(this.root).querySelector("a[name=home-view]");
+        return Polymer.dom(this.root).querySelector("a[name=startpage]");
       }
+      _getWordview(){
+        return Polymer.dom(this.root).querySelector("a[name=overviewWords]");
+      }
+      _getPracticeOverviewView(){
+        return Polymer.dom(this.root).querySelector("a[name=practiceOverview]");
+      }
+      _getSelfcheckview(){
+        return Polymer.dom(this.root).querySelector("a[name=selfcheck]");
+      }
+      _getBrowseUnitview(){
+        return Polymer.dom(this.root).querySelector("a[name=browseUnits]");
+      }
+      /*_getPracticeMemoryview(){
+        return Polymer.dom(this.root).querySelector("a[name=practiceMemory]");
+      }*/
       _getHomeviewPage(){
         return Polymer.dom(this.root).querySelector("home-view[name=home-view]");
+      }
+      _getPracticeOverview(){
+        return Polymer.dom(this.root).querySelector("practice-overview[name=practice-overview]");
       }
       _getUnitoverview(){
         return Polymer.dom(this.root).querySelector("a[name=unit-overview]");
       }
       _getUnitoverviewPage(){
         return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
+      }
+      _getUnitoverviewForSessionsPage(){
+        return Polymer.dom(this.root).querySelector("unit-overview-for-sessions[name=unit-overview-for-sessions]");
       }
       _getStatisticview(){
         return Polymer.dom(this.root).querySelector("a[name=statistics-view]");
@@ -297,12 +335,15 @@
       _getAppdrawer(){
         return Polymer.dom(this.root).querySelector("app-drawer-layout");
       }
+      _getMenubar(){
+        return Polymer.dom(this.root).querySelector("iron-selector[name=menu]");
+      }
       _getSettingsviewTag(){
         return Polymer.dom(this.root).querySelector("settings-view[name=settings-view]");
       }
-      _getUnitView(){
+      /*_getUnitView(){
         return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
-      }
+      }*/
       _getCreateUnit(){
         return Polymer.dom(this.root).querySelector("create-unit[name=create-unit]");
       }
@@ -370,8 +411,20 @@
       _getNoWordToast(){
         return Polymer.dom(this.root).querySelector("paper-toast[id=toast4]");
       }
+      _getAccountSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast5]");
+      }
+      _getAccountWrongSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast6]");
+      }
+      _getTransmissionToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast7]");
+      }
       _getUpdateInput(){
         return Polymer.dom(this.root).querySelector("input[name=updateUnit]");
+      }
+      _getModeInput(){
+        return Polymer.dom(this.root).querySelector("input[name=mode]");
       }
     }
 
