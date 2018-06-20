@@ -1,6 +1,7 @@
 import BackEndHandler from './classes/backEndHandler.js';
 import Unit from './classes/unit.js';
 import Word from './classes/word.js';
+import LearnProgress from './classes/learnProgress.js';
 import Stopwatch from './classes/stopwatch.js';
 console.log("Javascript: selfcheckpage loaded");
 var myapp = document.querySelector("my-app");
@@ -31,6 +32,9 @@ var words;
 var english = true;
 var position = 0;
 var mistakes = 0;
+var register = myapp._getRegisterLogin();
+var username = register._getUsername();
+var password = register._getPassword();
 languageInfo.onmouseover = function(){
     infoLanguageAlert.open();
 }
@@ -69,6 +73,10 @@ ironPages.addEventListener("iron-select",function(){
     unitProgressBar.value = 0;
 });
 async function changedUnit(){
+    var user = await BackEndHandler.login(username.value, password.value);
+    var progress = await LearnProgress.getProgress(user.getId());
+    learnProgressBar.max = progress[1];
+    learnProgressBar.value = progress[0];
     unitresultPage.value = "selfcheck-page";
     unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
     words = await BackEndHandler.getVocabByID(checked.value); 

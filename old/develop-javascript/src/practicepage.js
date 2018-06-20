@@ -43,6 +43,7 @@ var vocTries = 0;
 var mistakeVocs = [];
 var mistakes = 0;
 var secondTryCounter = 0;
+var stopChecking = false;
 var timer = new Stopwatch(timerCounter);
 languageInfo.onmouseover = function(){
     infoLanguageAlert.open();
@@ -118,6 +119,7 @@ async function changedUnit(check){
         english = true;
     }
     wordPrint.innerHTML = words[0].getWordEnglish();
+    stopChecking = false;
 }
 function saveWrongVocs(){
     var text = "";
@@ -153,17 +155,22 @@ toggleButton.onclick = function(){
         toggleButton.removeAttribute("checked");
         english = false;
         wordPrint.innerHTML = words[position].getWordGerman();
+        stopChecking = false;
         return;
     }
     toggleButton.setAttribute("checked",true);
     english = true;
     wordPrint.innerHTML = words[position].getWordEnglish();
+    stopChecking = false;
 }
 nextButton.onclick = async function(){await nextCheck()};
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 async function nextCheck(){
+    if(stopChecking){
+        return;
+    }
     if(english){
         if(input.value == words[position].getWordGerman()){
             if(vocTries == 1){
@@ -186,6 +193,7 @@ async function nextCheck(){
             position++;
             unitProgressBar.value = position;
             wordPrint.innerHTML = words[position].getWordEnglish();
+            stopChecking = false;
             return;
         }
         changeLineColor("orange");
@@ -196,6 +204,7 @@ async function nextCheck(){
             vocTries = 0;
             mistakes++;
             mistakeVocs.push(words[position]);
+            stopChecking = true;
             await wrong();
         }
         return;
@@ -221,6 +230,7 @@ async function nextCheck(){
         position++;
         unitProgressBar.value = position;
         wordPrint.innerHTML = words[position].getWordGerman();
+        stopChecking = false;
         return;
     }
     changeLineColor("orange");
@@ -230,6 +240,7 @@ async function nextCheck(){
     if(vocTries==2){
         vocTries = 0;
         mistakes++;
+        stopChecking = true;
         mistakeVocs.push(words[position]);
         await wrong();
     }
@@ -264,9 +275,11 @@ async function wrong(){
     unitProgressBar.value = position;
     if(english){
         wordPrint.innerHTML = words[position].getWordEnglish();
+        stopChecking = false;
         return;
     }
     wordPrint.innerHTML = words[position].getWordGerman();
+    stopChecking = false;
 }
 skipButton.onclick = function(){
     var skipWord = words[position];
