@@ -44,8 +44,6 @@ var mistakeVocs = [];
 var mistakes = 0;
 var secondTryCounter = 0;
 var timer = new Stopwatch(timerCounter);
-/*languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
-languageInfo.onmouseout = function(){languagePopup.style.display = "none";}*/
 languageInfo.onmouseover = function(){
     infoLanguageAlert.open();
 }
@@ -58,8 +56,6 @@ languageInfo.onmouseout = function(){
 nextInfo.onmouseout = function(){
     infoNextAlert.close();
 }
-/*nextInfo.onmouseover = function(){nextPopup.style.display = "block";}
-nextInfo.onmouseout = function(){nextPopup.style.display = "none";}*/
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {

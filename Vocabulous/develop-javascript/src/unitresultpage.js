@@ -27,6 +27,7 @@ var wrongSelfcheck;
 var returnButton = unitresultPage._getReturnButton();
 var wrongVocs;
 var timer = unitresultPage._getTimeCounter();
+var unit = unitView._getUnitId();
 var time;
 
 
@@ -77,7 +78,7 @@ async function loadResultTable(){
         parseInt(wordCountPractice.value - secondTryPractice.value - wrongPractice.value)],
         ["Wrong",parseInt(wrongPractice.value)], 
         ["Second Try",parseInt(secondTryPractice.value)]];
-        var result = new Result(-1, parseInt(wordCountPractice.value - secondTryPractice.value - wrongPractice.value),parseInt(secondTryPractice.value),parseInt(wrongPractice.value),time.innerHTML,0);
+        var result = new Result(-1,unit.value, parseInt(wordCountPractice.value - secondTryPractice.value - wrongPractice.value),parseInt(secondTryPractice.value),parseInt(wrongPractice.value),timerToDouble(),0);
         saveResultInDb(result);
         if(wrongPractice.value == "0"){
             wrongVocabelsButton.setAttribute("hidden",true);
@@ -96,7 +97,7 @@ async function loadResultTable(){
         piechart.rows = [["Correct",
         parseInt(correct.value)],
         ["Wrong",parseInt(wordCountPractice.value - correct.value)]];
-        var result = new Result(-1,parseInt(correct.value),0,parseInt(wordCountPractice.value - correct.value),time.innerHTML,1);
+        var result = new Result(-1,parseInt(correct.value),unit.value,parseInt(wordCountPractice.value - correct.value),timerToDouble(),1);
         saveResultInDb(result);
     }
     else{
@@ -116,7 +117,7 @@ async function loadResultTable(){
         piechart.rows = [["Correct",
         parseInt(wordCountSelfCheck.value - wrongSelfcheck.value)],
         ["Wrong",parseInt(wrongSelfcheck.value)]];
-        var result = new Result(-1,parseInt(wordCountSelfCheck.value - wrongSelfcheck.value),0,parseInt(wrongSelfcheck.value),time.innerHTML,2);
+        var result = new Result(-1,unit.value,parseInt(wordCountSelfCheck.value - wrongSelfcheck.value),0,parseInt(wrongSelfcheck.value),timerToDouble(),2);
         saveResultInDb(result);
     }
 }
@@ -125,5 +126,11 @@ wrongVocabelsButton.onclick = function(){
 }
 
 async function saveResultInDb(result){
+    console.log(result);
+    console.log(user);
     await BackEndHandler.saveResult(user.getId(), result);
+}
+function timerToDouble(){
+    var string = time.innerHTML;
+    return ((parseFloat(string.charAt(0))*10+parseFloat(string.charAt(1)))*60)+(parseFloat(string.charAt(3))*10+parseFloat(string.charAt(4)))+((parseFloat(string.charAt(6))*10+parseFloat(string.charAt(7)))/60);
 }

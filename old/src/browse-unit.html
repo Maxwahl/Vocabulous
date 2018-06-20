@@ -22,6 +22,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="browse-unit">
@@ -40,16 +42,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--hover-color);
       }
       td{
-        border: 0.75px solid var(--secondaryFontColorCard);
+        border: 1px solid var(--secondaryFontColorCard);
         height: 30px;
         padding: 10px;
         text-align: left;
-        font-weight: 200;
+        font-weight: 400;
         margin-left: 40px;
         color:var(--secondaryFontColorCard);
         border-radius: 5px;
         margin-bottom: 3px;
         display: block;
+      }
+      #unitname{
+        margin-top: 2.5px;
+        font-weight: 400;
+      }
+      #username{
+        margin-top: -40px;
+        margin-right: 100px;
+        text-align: right;
       }
       h1{
         color:  var(--headlineCard);
@@ -69,16 +80,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 40px;
         margin-top: 50px;
         width: 97%;
+        padding-bottom: 40px;
         color: var(--secondaryFontColorCard);
         --background-color:var(--cardBackgroundcolor);
         --disabled-text-color:var(--secondaryFontColorCard);
-      }
-      #filters{
-        width: 400px;
-        border-radius: 5px;
-        border-color: var(--secondaryFontColorCard);
-        background-color: var(--hover-color);
-        color: var(--secondaryFontColorCard);
       }
       #tune{
         margin-top: -50px;
@@ -88,15 +93,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-input.input{
         width: 100%;
         color:var(--secondaryFontColorCard);
-        --paper-input-container-color: var(--secondaryFontColorCard);
-        --paper-input-container-focus-color: var(--secondaryFontColorCard);
-        --paper-input-container-invalid-color: var(--secondaryFontColorCard);
-        --paper-input-container-input-color: var(--secondaryFontColorCard);
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
       }
       #save{
-        font-size: 0.85em;
         margin-left: 0px;
-        margin-top: 20px;
+        margin-top: 10px;
+        color: var(--headlineCard);
       }
       iron-icon.socialIcon{
         width: 30px;
@@ -107,44 +117,49 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --iron-icon-width: 25px;
         --iron-icon-height: 25px;
         float:right;
-        margin-top: 7.5px;
+        margin-top: -37.5px;
         --paper-checkbox-unchecked-color: var(--secondaryFontColorCard);
         --paper-checkbox-checked-color: green;
         --paper-checkbox-checked-ink-color: green;
       }
       #transfer{
-        font-size: 0.65em;
+        font-size: 0.75em;
         margin-left: 40px;
         margin-top: 20px;
-        width: 11%;
+        width: 13%;
+        height: 30px;
+        color: var(--secondaryFontColorCard);
+      }
+      #transfericon{
+        padding-right: 5px;
       }
       
-      #confirm{
-        /*border: 2px solid;*/
+      #filters{
+        width: 350px;
         border-radius: 5px;
         border-color: var(--secondaryFontColorCard);
         background-color: var(--hover-color);
         color: var(--secondaryFontColorCard);
+        padding-bottom: 0px;
       }
     </style>
 
     <div class="card">
       <h1>Browse Unit</h1>
-      <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
       <paper-search-bar search="{{search}}" loading="[[loading]]"></paper-search-bar>
       <!--<paper-icon-button id="tune" name="tune" icon="image:tune"></paper-icon-button>-->
       <paper-dialog id="filters">
         <h2>Filter</h2>
         <div>
             <paper-input class="input" name="unfilter" label="Enter username of your friend"><iron-icon class="socialIcon" icon="social:people" slot="prefix"></iron-icon></paper-input>
-            <paper-button id="save" name="save" raised noink>Apply</paper-button>
+            <paper-button id="save" name="save">Apply</paper-button>
         </div>
       </paper-dialog>
 
       <table id="units">
           
       </table>
-      <paper-button id="transfer" name="transfer" raised noink><iron-icon icon="icons:file-download"></iron-icon>Transfer Units</paper-button>
+      <paper-button id="transfer" name="transfer" raised noink><iron-icon id="transfericon" icon="icons:file-download"></iron-icon>Transfer Units</paper-button>
       
       <paper-dialog id="confirm">
         <h2>Confirm</h2>
@@ -162,9 +177,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /*<paper-icon-button id="transfer" name="transfer" raised noink></paper-icon-button>*/
     class BrowseUnit extends Polymer.Element {
       static get is() { return 'browse-unit'; }
-      _getReturnButton(){
-        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
-      }
       _getPaperDialogFilters(){
         return Polymer.dom(this.root).querySelector("paper-dialog[id=filters]");
       }
