@@ -282,4 +282,12 @@ public class Repository {
     public List<Result> getResults(int user) {
         return results.stream().filter(it->it.getUser()==user).collect(Collectors.toList());
     }
+
+    public User getThemeOwner(int themeID) {
+        Theme t = themes.stream().filter(it->it.getId()==themeID).findFirst().orElse(null);
+        if(t!= null){
+            return users.stream().filter(it->it.getId()==t.getOwner()).findFirst().orElse(null);
+        }
+        return null;
+    }
 }

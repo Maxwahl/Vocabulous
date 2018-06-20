@@ -224,4 +224,8 @@ export default class BackEndHandler{
         }
         return results;
     }
+    static async getThemeOwner(themeID){
+        const {owner} = await this.answer("http://localhost:8080/dataserver/webresources/themes/getThemeOwner?theme="+themeID);
+        return owner;
+    }
 }
