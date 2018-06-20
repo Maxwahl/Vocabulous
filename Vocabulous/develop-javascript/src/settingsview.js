@@ -171,7 +171,14 @@ async function load(){
         check(theme.getName(), theme.getId());
     }
 }
-function changeTheme(theme){
+async function changeTheme(theme){
+    var owner = await BackEndHandler.getThemeOwner(theme.getId());
+    if(owner == -1){
+        editButon.setAttribute("hidden",true);
+    }
+    else{
+        editButon.removeAttribute("hidden");
+    }
     overview.updateStyles({"--app-primary-color":theme.getHeaderBackgroundcolor()});
     overview.updateStyles({"--app-secondary-color":theme.getMenuFontColor()});
     overview.updateStyles({"color":theme.getMenuFontColor()});
@@ -310,7 +317,7 @@ cancelButton.onclick = async function(){
     console.log(headerBackgroundColour.color);*/
     clear();
 }
-saveButton.onclick = function(){
+saveButton.onclick = async function(){
     if(themeName.value == null || headerBackgroundColour.color == undefined 
     || headerFontColour.color == undefined || menuBackgroundColour.color == undefined
 || menuFontColour.color == undefined || menuNavigationColour.color == undefined
@@ -324,7 +331,8 @@ cardBackgroundColour == undefined || cardHeadlineColour ==undefined || cardFontC
     deleteButton.style.display="none";
     editButon.style.display="inline";
     cancelButton.style.display="none";
-    save();
+    await save();
+    editButon.removeAttribute("hidden");
 }
 headerBackgroundColour.onclick = function(){
     if(headerBackgroundColour.color != undefined && ((createButton.style.display == "none" && saveButton.style.display=="inline") || (editButon.style.display == "inline" && saveButton.style.display=="inline"))){
