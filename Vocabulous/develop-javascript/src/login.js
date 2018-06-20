@@ -4,10 +4,15 @@ console.log("Javascript: login loaded");
 var myapp = document.querySelector("my-app");
 var register = myapp._getRegisterLogin();
 var loginButton = register._getLoginButton();
+var forgotPasswordButton = register._getForgotPasswordButton();
+var confirmAlert = register._getPaperDialog();
 var user;
 var username = register._getUsername();
 var password = register._getPassword();
 var toast = register._getToast();
+forgotPasswordButton.onclick = async function(){
+    confirmAlert.open();
+}
 async function checkLogin(){
     if(username == undefined || password == undefined || username.value == "" || password.value == ""){
         toast.open();

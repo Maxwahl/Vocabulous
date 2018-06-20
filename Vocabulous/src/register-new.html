@@ -24,35 +24,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-password-input/paper-password-input.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/communication-icons.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="register-login">
+<dom-module id="register-new">
   <template>
     <style include="shared-styles">
        :host {
         --app-primary-color: var(--headlineCard);
         --app-secondary-color: var(--secondaryFontColorCard);
         display: block;
-        padding: 10px;
         background: unset;
-        min-height: 400px;
-      }
-      
-      .error-message {
-        color: red;
-      }
-      .header {
-        height: 36%;
-        font-weight: 200;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        justify-content: flex-end;
-        margin: 0 !important;
-        padding: 0 !important;
+        padding-top: 6%;
+        /*min-height: 400px;*/
       }
       
       h1 {
@@ -64,16 +50,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: auto;
         margin-right: auto;
         width: 250px;
+        
       }
       .login {
-        margin-top: 100px;
-        width: 250px;
-        height: 350px;
+        margin-top: -20px;
+        width: 300px;
+        height: 600px;
         text-align:  left;
-        background-color: white;
+        background: white;
+        padding-top: 5px;
         padding-left: 40px;
         padding-right: 40px;
-        padding-top: 5px;
         margin-left: auto;
         margin-right: auto;
         border-radius: 5px;
@@ -82,6 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       paper-input{
         text-align:  left;
+        width: 350px;
         --paper-input-container-underline: {
           display: none;
         };
@@ -94,6 +82,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-input-container-focus-color: #1976d2;
       }
       paper-password-input{
+        width: 20px;
+        
+        text-align:  left;
         --paper-input-container-underline: {
           display: none;
         };
@@ -105,85 +96,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
         --paper-input-container-focus-color: #1976d2;
       }
-      .login paper-input, paper-password-input{
-        width: 100%;
-        text-align:  left;
-      }
       #loginButton{
         color: white;
         background-color: #1976d2;
         height: 30px;
         font-size: 0.85em;
         margin-top: 20px;
-        width: 100%;
+        width: 150px;
         padding: 0;
       }
-      #registerButton{
-        margin-top: -40px;
-        font-size: 0.65em;
-        padding: 0;
-        margin-left: 100px;
+      #clearInput{
+        height: 20px;
+        width: 20px;
       }
-      #forgotButton{
-        margin-top: -60px;
-        font-size: 0.65em;
-        margin-left: 72px;
+      #lastname{
+        margin-top: -25px;
       }
-      #forgotpwdemail{
-        --paper-input-container-underline: {
-          display: none;
-        };
-        --paper-input-container-underline-focus: {
-          display: none;
-        };
-        --paper-input-container-underline-disabled: {
-          display: none;
-        };
-      }
-      paper-dialog{
-        width: 400px;
-        height: 190px;
-        border-radius: 5px;
-        border-color: var(--secondaryFontColorCard);
-        background-color: var(--hover-color);
-        color: #1976d2;
-      }
-      .confirmButtons{
-        color: #1976d2;
+      #email{
+        margin-top: -25px;
       }
       .emailIcon{
-        color: black;
         margin-right: 5px;
         margin-top: -5px;
         height: 20px;
         width: 20px;
       }
+      #institution{
+        margin-top: -25px;
+      }
+      #username{
+        margin-top: -25px;
+      }
+      #password{
+          padding: 0;
+      }
+      #passwordVerify{
+        margin-top: 0px;
+      }
+      paper-password-input{
+          padding: 0;
+      }
     </style>
     
     <div class="login">
-      <h1>Vocabulous</h1>
-      <paper-input label="Username" name="username" id="username"></paper-input>
-      <paper-password-input label="Password" name="password"></paper-password-input>
-      <paper-button id="loginButton">Login</paper-button>
-      
-      <paper-button id="registerButton" noink>Register</paper-button>
-      
-      <paper-button id="forgotButton" noink>Forgot Password</paper-button>
+      <h1>Sign Up</h1>
+      <paper-input label="Firstname" name="firstname" id="firstname">
+            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+      </paper-input>
+      <paper-input label="Lastname" name="lastname" id="lastname">
+            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+      </paper-input>
+      <paper-input label="Email" name="email" id="email">
+            <iron-icon class="emailIcon" icon="communication:mail-outline" slot="prefix"></iron-icon>
+            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+      </paper-input>
+      <paper-input label="Institution" name="institution" id="institution">
+            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+      </paper-input>
+      <paper-input label="Username" name="username" id="username">
+            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+      </paper-input>
+      <paper-password-input label="Password" name="password" id="password"></paper-password-input>
+      <paper-password-input label="Password" name="passwordVerify" id="passwordVerify"></paper-password-input>
+      <paper-button id="loginButton">Create account</paper-button>
     </div>
     <paper-toast id="toast0" text="Wrong username or password!"></paper-toast>
-    <paper-dialog id="confirm">
-        <h2>Forgot Password</h2>
-        <paper-input label="Email" name="forgotpwdemail" id="forgotpwdemail">
-          <iron-icon class="emailIcon" icon="communication:mail-outline" slot="prefix"></iron-icon>
-      </paper-input>
-        <div class="buttons">
-          <paper-button class="confirmButtons"name="no">Send Email</paper-button>
-        </div>
-      </paper-dialog>
   </template>
   <script>
-    class RegisterLogin extends Polymer.Element {
-      static get is() { return 'register-login'; }
+    class RegisterNew extends Polymer.Element {
+      static get is() { return 'register-new'; }
 
       static get properties() {
         return {
@@ -195,12 +176,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           errorMessage: String
         };
-      }
-      _getPaperDialog(){
-        return Polymer.dom(this.root).querySelector("paper-dialog");
-      }
-      _getForgotPasswordButton(){
-        return Polymer.dom(this.root).querySelector("paper-button[id=forgotButton]");
       }
       _getLoginButton(){
         return Polymer.dom(this.root).querySelector("paper-button");
@@ -216,7 +191,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
     
-   window.customElements.define(RegisterLogin.is, RegisterLogin);
+   window.customElements.define(RegisterNew.is, RegisterNew);
   </script>
-  <script src="../develop-javascript/src/login.js" type="module"></script>
+  <script src="../develop-javascript/src/register.js" type="module"></script>
 </dom-module>
