@@ -109,7 +109,7 @@ public class Repository {
     }
 
     public List<Theme> getUserThemes(int id) {
-        return themes.stream().filter((it)->it.getOwner()==id).collect(Collectors.toList());
+        return themes.stream().filter((it)->it.getOwner()==id || it.getName().equals("Red") || it.getName().equals("Turquoise")).collect(Collectors.toList());
     }
 
     public int deleteTheme(int themeID) {
