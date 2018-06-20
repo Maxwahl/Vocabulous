@@ -26,13 +26,18 @@ var languagePopup = selfcheckPage._getLanguagePupup();
 var unitresultPage = overview._getUnitResultPage();
 var wordCount = selfcheckPage._getWordCount();
 var wrongCounter = selfcheckPage._getWrong();
+var infoLanguageAlert = selfcheckPage._getPaperDialogLanguage();
 var words;
 var english = true;
 var position = 0;
 var mistakes = 0;
+languageInfo.onmouseover = function(){
+    infoLanguageAlert.open();
+}
+languageInfo.onmouseout = function(){
+    infoLanguageAlert.close();
+}
 var timer = new Stopwatch(timerCounter);
-languageInfo.onmouseover = function(){languagePopup.style.display = "block";}
-languageInfo.onmouseout = function(){languagePopup.style.display = "none";}
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {

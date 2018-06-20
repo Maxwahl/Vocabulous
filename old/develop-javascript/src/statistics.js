@@ -25,7 +25,6 @@ var columndiv = statisticView._getColumnChartDiv();
 var current;
 var now = true;
 var paperslide = statisticView._getPaperSlide();
-var slidediv = statisticView._getSlideDiv();
 ironPages.addEventListener("iron-select",function(){
     if(ironPages.selected=="statistics-view" && !intoit){
         intoit = true;
@@ -40,8 +39,6 @@ selector.addEventListener("selected-changed",function(){
     changeForThisUnit(current);
 });
 async function load(){
-    paperslide.value = 1;
-    slidediv.setAttribute("hidden",true);;
     selector.selected = 0;
     selector.style.display = "none";
     piediv.setAttribute("hidden",true);
@@ -60,7 +57,6 @@ async function load(){
         piediv.setAttribute("hidden",true);
         linediv.setAttribute("hidden",true);
         columndiv.setAttribute("hidden",true);
-        slidediv.setAttribute("hidden",true);
         now = true;
     };
     dropdown.appendChild(newElement);
@@ -70,7 +66,6 @@ async function load(){
         newElement.innerHTML=units[i].getName();
         newElement.value = units[i].getId();
         newElement.onclick = function(){
-            slidediv.removeAttribute("hidden");
             changeForThisUnit(this.value);
             current = this.value;
             now = false;
@@ -119,94 +114,53 @@ async function loadCharts(){
         }
     }
 }
-paperslide.addEventListener("value-changed", function(){
-    changeForThisUnit(current);
-})
 function changeForThisUnit(id){
     piediv.removeAttribute("hidden");
     linediv.removeAttribute("hidden");
     columndiv.removeAttribute("hidden");
+    selector.style.display = "inherit";
     if(now){
         selector.selected = 0;
         now = false;
     }
-    if(paperslide.value == 1){
-        selector.style.display = "inherit";
-        var wrongSum = 0;
-        var secondTrySum = 0;
-        var correctSum = 0;
-        var days = [0,0,0,0,0,0,0];
-        var time = [0,0,0,0,0,0,0];
-        var date = new Date();
-        var day = date.getDay();
-        if(day == 0){
-            var monday = date.getDate()-(6);
-            var sunday = date.getDate();
-        }
-        else{
-            var monday = date.getDate()-(day-1);
-            var sunday = date.getDate()+(7-day);
-        }
-        console.log(monday);
-        var actMonth = date.getMonth()+1;
-        console.log(sunday);
-        console.log(actMonth);
-        for(var i = 0; i < results.length; i++){
-            var dateDay = parseInt(results[i].getDateTime().split("/")[0]);
-            var month = parseInt(results[i].getDateTime().split("/")[1]);
-            if(results[i].getMode() == selector.selected && results[i].getUnitId()==id && actMonth==month
-                && (dateDay>=monday && dateDay <= sunday)){
-                wrongSum += results[i].getWrong();
-                secondTrySum += results[i].getSecondTry();
-                correctSum += results[i].getCorrect();
-                var day = results[i].getDateTime().split(";")[1];
-                if(day == 0){
-                    day = 7;
-                }
-                days[day-1]++;
-                time[day-1]+=results[i].getTimeNeeded();
-            }
-        }
-        loadPieChart(wrongSum,secondTrySum,correctSum);
-        var weekDays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-        loadColumnChart(days, weekDays);
-        loadLineChart(time, days, weekDays);
+    var wrongSum = 0;
+    var secondTrySum = 0;
+    var correctSum = 0;
+    var days = [0,0,0,0,0,0,0];
+    var time = [0,0,0,0,0,0,0];
+    var date = new Date();
+    var day = date.getDay();
+    if(day == 0){
+        var monday = date.getDate()-(6);
+        var sunday = date.getDate();
     }
-    if(paperslide.value == 0){
-        selector.style.display = "inherit";
-        var wrongSum = 0;
-        var secondTrySum = 0;
-        var correctSum = 0;
-        var hours = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        var time = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        var date = new Date();
-        var day = date.getDate();
-        var actMonth = date.getMonth()+1;
-        for(var i = 0; i < results.length; i++){
-            var dateDay = parseInt(results[i].getDateTime().split("/")[0]);
-            var month = parseInt(results[i].getDateTime().split("/")[1]);
-            if(results[i].getMode() == selector.selected && results[i].getUnitId()==id && actMonth==month
-                && (dateDay == day)){
-                wrongSum += results[i].getWrong();
-                secondTrySum += results[i].getSecondTry();
-                correctSum += results[i].getCorrect();
-                var timeResult = results[i].getDateTime().split(";")[0];
-                timeResult = timeResult.split("@")[1];
-                timeResult = timeResult.substr(1);
-                var hour = parseInt(timeResult.split(":")[0]);
-                hour--;
-                if(hour == -1){
-                    hour = 23;
-                }
-                hours[hour]++;
-                time[hour]+=results[i].getTimeNeeded();
-            }
-        }
-        loadPieChart(wrongSum,secondTrySum,correctSum);
-        var hoursPerDay = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"];
-        loadColumnChart(hours, hoursPerDay);
-        loadLineChart(time, hours, hoursPerDay);
+    else{
+        var monday = date.getDate()-(day-1);
+        var sunday = date.getDate()+(7-day);
     }
+    console.log(monday);
+    var actMonth = date.getMonth()+1;
+    console.log(sunday);
+    console.log(actMonth);
+    for(var i = 0; i < results.length; i++){
+        var dateDay = parseInt(results[i].getDateTime().split("/")[0]);
+        var month = parseInt(results[i].getDateTime().split("/")[1]);
+        if(results[i].getMode() == selector.selected && results[i].getUnitId()==id && actMonth==month
+            && (dateDay>=monday && dateDay <= sunday)){
+            wrongSum += results[i].getWrong();
+            secondTrySum += results[i].getSecondTry();
+            correctSum += results[i].getCorrect();
+            var day = results[i].getDateTime().split(";")[1];
+            if(day == 0){
+                day = 7;
+            }
+            days[day-1]++;
+            time[day-1]+=results[i].getTimeNeeded();
+        }
+    }
+    loadPieChart(wrongSum,secondTrySum,correctSum);
+    loadColumnChart(days);
+    loadLineChart(time, days);
 }
 function loadPieChart(wrongSum, secondTrySum, correctSum){
     if(wrongSum == 0 && secondTrySum == 0 && correctSum == 0){
@@ -231,15 +185,19 @@ function loadPieChart(wrongSum, secondTrySum, correctSum){
         ["Wrong",wrongSum]];
     }
 }
-function loadColumnChart(days, rows){
-    var rowarray = [];
-    for(var i = 0; i < days.length; i++){
-        rowarray.push([rows[i],days[i]]);
-    }
-    columnchart.rows = rowarray;
+function loadColumnChart(days){
+    columnchart.rows = [
+    ["Mo",days[0]],
+    ["Tu",days[1]], 
+    ["We",days[2]], 
+    ["Th",days[3]], 
+    ["Fr",days[4]], 
+    ["Sa",days[5]], 
+    ["So",days[6]]];
 }
-function loadLineChart(time, days, weekdays){
+function loadLineChart(time, days){
     var hideornot = false;
+    var weekdays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
     var rowarray = [];
     for(var i = 0; i < days.length; i++){
         if(days[i] != 0){

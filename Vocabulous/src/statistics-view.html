@@ -127,10 +127,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-item>Units</paper-item>
         </paper-listbox>
       </paper-dropdown-menu>
-      <paper-slider class="slide" id="ratings" snaps max="2" step="1" value="1"></paper-slider>
-      <p id="sliderDay">Day</p>
-      <p id="sliderWeek">Week</p>
-      <p id="sliderMonth">Month</p>
+      <div name="slidediv" hidden="true">
+        <paper-slider class="slide" id="ratings" snaps max="2" step="1" value="1"></paper-slider>
+        <p id="sliderDay">Day</p>
+        <p id="sliderWeek">Week</p>
+        <p id="sliderMonth">Month</p>
+      </div>
       <paper-tabs selected="0" sticky>
         <paper-tab>Practice-Answer</paper-tab>
         <paper-tab>Practice-Memory</paper-tab>
@@ -195,6 +197,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getPaperSlide(){
         return Polymer.dom(this.root).querySelector("paper-slider[class=slide]");
+      }
+      _getSlideDiv(){
+        return Polymer.dom(this.root).querySelector("div[name=slidediv]");
       }
     }
 
