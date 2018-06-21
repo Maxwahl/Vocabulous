@@ -115,7 +115,7 @@ public class Database {
 
     void changeUser(int uID, String user, String pw, String fN, String lN, String email, String birthDate, String inst) {
         try(PreparedStatement stmt = connection
-                .prepareStatement("update account set user = ?,password = ?,firstName = ?,lastName = ?,email = ?,birthdate = ?,institution = ? where id = ?")){
+                .prepareStatement("update account set username = ?,password = ?,firstName = ?,lastName = ?,email = ?,birthdate = ?,institution = ? where id = ?")){
         stmt.setString(1,user);
         stmt.setString(2,pw);
         stmt.setString(3,fN);
@@ -328,10 +328,27 @@ public class Database {
         return -1;
     }
 
-    int addUser(String username) {
+    void deleteChapterVocab(int id) {
         try(PreparedStatement stmt = connection
-                .prepareStatement("insert into account (user) values (?)",Statement.RETURN_GENERATED_KEYS)){
+                .prepareStatement("delete from Vocab where chapter = ?")){
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }    
+    }
+
+    int addUser(String username, String pw, String fN, String lN, String email, String birthDate, String inst) {
+        try(PreparedStatement stmt = connection
+                .prepareStatement("insert into account (username,password,firstName,lastName,email,institution,birthdate,startingTheme) values (?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS)){
         stmt.setString(1,username);
+        stmt.setString(2,pw);
+        stmt.setString(3, fN);
+        stmt.setString(4, lN);
+        stmt.setString(5, email);
+        stmt.setString(6, inst);
+        stmt.setString(7, birthDate);
+        stmt.setInt(8, 1);
         int ok = stmt.executeUpdate();
         if(ok>0){
             ResultSet res = stmt.getGeneratedKeys();
@@ -343,15 +360,5 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
         }
         return -1;
-    }
-
-    void deleteChapterVocab(int id) {
-        try(PreparedStatement stmt = connection
-                .prepareStatement("delete from Vocab where chapter = ?")){
-        stmt.setInt(1, id);
-        stmt.executeUpdate();
-        } catch(SQLException ex){
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
-        }    
     }
 }

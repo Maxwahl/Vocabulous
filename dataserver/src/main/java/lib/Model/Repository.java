@@ -297,15 +297,15 @@ public class Repository {
         return null;
     }
 
-    public int register(String username) {
+    public int register(String username, String pw, String fN, String lN, String email, String birthDate, String inst) {
         User u = users.stream().filter(it->it.getUsername().equals(username)).findFirst().orElse(null);
         if(u!=null){
             return 1;
         }
         else{
-            int id = Database.getInstance().addUser(username);
+            int id = Database.getInstance().addUser(username,pw,fN,lN,email,birthDate,inst);
             if(id!=-1){
-                users.add(new User(id,username));
+                users.add(new User(id,username,pw,fN,lN,email,inst,birthDate,1));
                 return 0;
             }
             return 1;

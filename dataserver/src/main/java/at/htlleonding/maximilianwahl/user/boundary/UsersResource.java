@@ -96,8 +96,8 @@ public class UsersResource {
     @Path("register")
     @GET
     
-    public JsonObject register(@QueryParam("user")String username){
-        int val = Repository.getInstance().register(username);
+    public JsonObject register(@QueryParam("user")String username,@QueryParam("pw") String pw,@QueryParam("fN") String fN,@QueryParam("lN") String lN,@QueryParam("Email") String email,@QueryParam("bD") String birthDate,@QueryParam("inst") String inst){
+        int val = Repository.getInstance().register(username,pw,fN,lN,email,birthDate,inst);
         return Json.createObjectBuilder()
                 .add("retVal", val)               
                 .build();
