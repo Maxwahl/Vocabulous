@@ -123,7 +123,7 @@ public class User {
                 .add("Birthdate", this.getBirthdate())
                 .add("Username",this.getUsername())
                 .add("Password",this.getPassword())
-                .add("institution", this.getInstitution())
+                .add("Institution", this.getInstitution())
                 .build();
     }
 }
