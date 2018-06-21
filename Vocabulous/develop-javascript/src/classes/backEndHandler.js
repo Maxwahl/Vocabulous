@@ -30,6 +30,10 @@ export default class BackEndHandler{
         user.setInstitution(Institution);
         return user;
     }
+    static async register(username){
+        const {owner} = await this.answer("http://localhost:8080/dataserver/webresources/users/register?user="+username);
+        return owner;
+    }
 
     static async user(username){
         const {id,Firstname,Lastname,Email,Birthdate,Username,Password,Institution} = await this.answer("http://localhost:8080/dataserver/webresources/users/user?user="+username);

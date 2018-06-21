@@ -327,4 +327,21 @@ public class Database {
         }
         return -1;
     }
+
+    int addUser(String username) {
+        try(PreparedStatement stmt = connection
+                .prepareStatement("insert into account (user) values (?)",Statement.RETURN_GENERATED_KEYS)){
+        stmt.setString(1,username);
+        int ok = stmt.executeUpdate();
+        if(ok>0){
+            ResultSet res = stmt.getGeneratedKeys();
+            if(res.next()){
+                return res.getInt(1);
+            }
+        }
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        return -1;
+    }
 }

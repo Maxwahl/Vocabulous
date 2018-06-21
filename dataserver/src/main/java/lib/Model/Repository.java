@@ -290,4 +290,19 @@ public class Repository {
         }
         return null;
     }
+
+    public int register(String username) {
+        User u = users.stream().filter(it->it.getUsername().equals(username)).findFirst().orElse(null);
+        if(u!=null){
+            return 1;
+        }
+        else{
+            int id = Database.getInstance().addUser(username);
+            if(id!=-1){
+                users.add(new User(id,username));
+                return 0;
+            }
+            return 1;
+        }
+    }
 }

@@ -93,5 +93,14 @@ public class UsersResource {
         Repository.getInstance().getUsers().forEach(it->ret.add(it.jsonify()));
         return ret.build();
     }
+    @Path("register")
+    @GET
+    
+    public JsonObject register(@QueryParam("user")String username){
+        int val = Repository.getInstance().register(username);
+        return Json.createObjectBuilder()
+                .add("retVal", val)               
+                .build();
+    }
 }
     
