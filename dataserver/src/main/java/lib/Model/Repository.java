@@ -121,6 +121,11 @@ public class Repository {
             }
         }
         if(index!=-1){
+            User u = users.stream().filter(it->it.getStartingTheme()==themeID).findFirst().orElse(null);
+            if(u!= null){
+                u.setStartingTheme(getDefaultTheme().getId());
+                Database.getInstance().updateStartingTheme(u.getId(), u.getStartingTheme());
+            }
             int id = themes.get(index).getId();
             themes.remove(index);
             Database.getInstance().deleteTheme(id);
@@ -188,6 +193,7 @@ public class Repository {
         if(index != -1){
             int id = chapters.get(index).getId();
             chapters.remove(index);
+            Database.getInstance().deleteChapterVocab(id);
             Database.getInstance().deleteChapter(id);
             return 0;
         }

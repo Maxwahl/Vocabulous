@@ -344,4 +344,14 @@ public class Database {
         }
         return -1;
     }
+
+    void deleteChapterVocab(int id) {
+        try(PreparedStatement stmt = connection
+                .prepareStatement("delete from Vocab where chapter = ?")){
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
+        } catch(SQLException ex){
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE,null,ex);
+        }    
+    }
 }
