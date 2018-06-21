@@ -5,11 +5,13 @@ var myapp = document.querySelector("my-app");
 var register = myapp._getRegisterLogin();
 var loginButton = register._getLoginButton();
 var forgotPasswordButton = register._getForgotPasswordButton();
+var registernew = register._getRegisterNew();
 var confirmAlert = register._getPaperDialog();
 var user;
 var username = register._getUsername();
 var password = register._getPassword();
 var toast = register._getToast();
+registernew.onclick = function(){overview._routePageChanged("register-new")}
 forgotPasswordButton.onclick = async function(){
     confirmAlert.open();
 }

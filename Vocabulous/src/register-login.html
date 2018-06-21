@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color:  #1976d2;
         font-size: 24px;
         font-family: 'Open sans';
-        font-weight: 400;
+        font-weight: 500;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
@@ -68,7 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .login {
         margin-top: 100px;
         width: 250px;
-        height: 350px;
+        height: 330px;
         text-align:  left;
         background-color: white;
         padding-left: 40px;
@@ -117,6 +117,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: 20px;
         width: 100%;
         padding: 0;
+        margin-left: -2px;
       }
       #registerButton{
         margin-top: -40px;
@@ -142,7 +143,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       paper-dialog{
         width: 400px;
-        height: 190px;
+        height: 170px;
         border-radius: 5px;
         border-color: var(--secondaryFontColorCard);
         background-color: var(--hover-color);
@@ -165,15 +166,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-input label="Username" name="username" id="username"></paper-input>
       <paper-password-input label="Password" name="password"></paper-password-input>
       <paper-button id="loginButton">Login</paper-button>
-      
       <paper-button id="registerButton" noink>Register</paper-button>
-      
       <paper-button id="forgotButton" noink>Forgot Password</paper-button>
     </div>
     <paper-toast id="toast0" text="Wrong username or password!"></paper-toast>
     <paper-dialog id="confirm">
         <h2>Forgot Password</h2>
-        <paper-input label="Email" name="forgotpwdemail" id="forgotpwdemail">
+        <paper-input label="Enter Email" name="forgotpwdemail" id="forgotpwdemail" no-label-float>
           <iron-icon class="emailIcon" icon="communication:mail-outline" slot="prefix"></iron-icon>
       </paper-input>
         <div class="buttons">
@@ -195,6 +194,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           errorMessage: String
         };
+      }
+      _getRegisterNew(){
+        return Polymer.dom(this.root).querySelector("paper-button[id=registerButton]");
       }
       _getPaperDialog(){
         return Polymer.dom(this.root).querySelector("paper-dialog");

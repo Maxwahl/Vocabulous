@@ -27,6 +27,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner-lite.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="register-new">
@@ -45,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color:  #1976d2;
         font-size: 24px;
         font-family: 'Open sans';
-        font-weight: 400;
+        font-weight: 500;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
@@ -55,7 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .login {
         margin-top: -20px;
         width: 300px;
-        height: 600px;
+        height: 590px;
         text-align:  left;
         background: white;
         padding-top: 5px;
@@ -102,8 +104,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 30px;
         font-size: 0.85em;
         margin-top: 20px;
-        width: 150px;
+        width: 100%;
         padding: 0;
+        margin-left: -2px;
       }
       #clearInput{
         height: 20px;
@@ -114,12 +117,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       #email{
         margin-top: -25px;
-      }
-      .emailIcon{
-        margin-right: 5px;
-        margin-top: -5px;
-        height: 20px;
-        width: 20px;
       }
       #institution{
         margin-top: -25px;
@@ -132,33 +129,70 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       #passwordVerify{
         margin-top: 0px;
+        padding: 0;
       }
       paper-password-input{
           padding: 0;
+      }
+      paper-spinner-lite{
+        --paper-spinner-color: orange;
+        --paper-spinner-stroke-width: 2.5px;
+        margin-right: 57.5px;
+        width: 20px;
+        height: 20px;
+      }
+      .checkTrue{
+        color: #4CAF50;
+        width: 25px;
+        height: 25px;
+        display: none;
+      }
+      .checkFalse{
+        color: red;
+        width: 25px;
+        height: 25px;
+        display: none;
+      }
+      iron-icon{
+        width: 20px;
+        height: 20px;
+      }
+      #registerButton{
+        margin-top: 0px;
+        font-size: 0.65em;
+        padding: 0;
+        
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-left: 120px;
       }
     </style>
     
     <div class="login">
       <h1>Sign Up</h1>
       <paper-input label="Firstname" name="firstname" id="firstname">
-            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+            <paper-button slot="suffix" noink><iron-icon id="clearInput1" icon="icons:clear"></iron-icon></paper-button>
       </paper-input>
       <paper-input label="Lastname" name="lastname" id="lastname">
-            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+            <paper-button slot="suffix" noink><iron-icon id="clearInput2" icon="icons:clear"></iron-icon></paper-button>
       </paper-input>
       <paper-input label="Email" name="email" id="email">
-            <iron-icon class="emailIcon" icon="communication:mail-outline" slot="prefix"></iron-icon>
-            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+            <paper-button slot="suffix" noink><iron-icon id="clearInput3" icon="icons:clear"></iron-icon></paper-button>
       </paper-input>
       <paper-input label="Institution" name="institution" id="institution">
-            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+            <paper-button slot="suffix" noink><iron-icon id="clearInput4" icon="icons:clear"></iron-icon></paper-button>
       </paper-input>
       <paper-input label="Username" name="username" id="username">
-            <paper-button slot="suffix" noink><iron-icon id="clearInput" icon="icons:clear"></iron-icon></paper-button>
+            <paper-spinner-lite slot="suffix" active></paper-spinner-lite>
+              <iron-icon class="checkTrue" icon="icons:check" slot="suffix"></iron-icon>
+              <iron-icon class="checkFalse" icon="icons:clear" slot="suffix"></iron-icon>
       </paper-input>
       <paper-password-input label="Password" name="password" id="password"></paper-password-input>
-      <paper-password-input label="Password" name="passwordVerify" id="passwordVerify"></paper-password-input>
+      <paper-password-input label="Verify Password" name="passwordVerify" id="passwordVerify"></paper-password-input>
       <paper-button id="loginButton">Create account</paper-button>
+      <br>
+      <paper-button id="registerButton" noink>Login</paper-button>
     </div>
     <paper-toast id="toast0" text="Wrong username or password!"></paper-toast>
   </template>
@@ -176,6 +210,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           errorMessage: String
         };
+      }
+      _getClearButton1(){
+        return Polymer.dom(this.root).querySelector("iron-icon[id=clearInput1]");
+      }
+      _getClearButton2(){
+        return Polymer.dom(this.root).querySelector("iron-icon[id=clearInput2]");
+      }
+      _getClearButton3(){
+        return Polymer.dom(this.root).querySelector("iron-icon[id=clearInput3]");
+      }
+      _getClearButton4(){
+        return Polymer.dom(this.root).querySelector("iron-icon[id=clearInput4]");
       }
       _getLoginButton(){
         return Polymer.dom(this.root).querySelector("paper-button");
