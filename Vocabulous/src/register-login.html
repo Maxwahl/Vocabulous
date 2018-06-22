@@ -63,12 +63,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
         margin-left: auto;
         margin-right: auto;
-        width: 250px;
+        width: 100%;
       }
       .login {
         margin-top: 100px;
-        width: 250px;
-        height: 330px;
+        width: 16%;
+        /*height: 400%;*/
         text-align:  left;
         background-color: white;
         padding-left: 40px;
@@ -82,6 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       paper-input{
         text-align:  left;
+        width: 100%;
         --paper-input-container-underline: {
           display: none;
         };
@@ -94,6 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-input-container-focus-color: #1976d2;
       }
       paper-password-input{
+        width: 100%;
         --paper-input-container-underline: {
           display: none;
         };
@@ -105,10 +107,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
         --paper-input-container-focus-color: #1976d2;
       }
-      .login paper-input, paper-password-input{
-        width: 100%;
-        text-align:  left;
-      }
       #loginButton{
         color: white;
         background-color: #1976d2;
@@ -117,20 +115,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-top: 20px;
         width: 100%;
         padding: 0;
-        margin-left: -2px;
+        margin-left: -1px;
       }
       #registerButton{
         margin-top: -40px;
         font-size: 0.65em;
         padding: 0;
-        margin-left: 100px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
       }
       #forgotButton{
         margin-top: -60px;
         font-size: 0.65em;
         margin-left: 72px;
+        padding: 0;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 8%;
       }
       #forgotpwdemail{
+        width: 90%;
         --paper-input-container-underline: {
           display: none;
         };
@@ -166,8 +172,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-input label="Username" name="username" id="username"></paper-input>
       <paper-password-input label="Password" name="password"></paper-password-input>
       <paper-button id="loginButton">Login</paper-button>
-      <paper-button id="registerButton" noink>Register</paper-button>
-      <paper-button id="forgotButton" noink>Forgot Password</paper-button>
+      <paper-button id="registerButton" noink>Don't have an account? Sign up</paper-button>
+      <paper-button id="forgotButton" noink>Forgot password</paper-button>
     </div>
     <paper-toast id="toast0" text="Wrong username or password!"></paper-toast>
     <paper-dialog id="confirm">

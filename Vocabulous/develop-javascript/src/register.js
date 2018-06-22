@@ -105,8 +105,8 @@ username.onkeyup = function(){
 async function checkUsername(){
     if(username.value == ""){
         spinner.removeAttribute("active");
-        iconOk.style.display = "none";
         iconWrong.style.display = "block";
+        iconOk.style.display = "none";
         return
     }
     var user = await BackEndHandler.user(username.value);

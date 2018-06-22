@@ -109,7 +109,7 @@ public class Repository {
     }
 
     public List<Theme> getUserThemes(int id) {
-        return themes.stream().filter((it)->it.getOwner()==id).collect(Collectors.toList());
+        return themes.stream().filter((it)->it.getOwner()==id || it.getName().equals("Red") || it.getName().equals("Turquoise")).collect(Collectors.toList());
     }
 
     public int deleteTheme(int themeID) {
@@ -121,6 +121,11 @@ public class Repository {
             }
         }
         if(index!=-1){
+            User u = users.stream().filter(it->it.getStartingTheme()==themeID).findFirst().orElse(null);
+            if(u!= null){
+                u.setStartingTheme(getDefaultTheme().getId());
+                Database.getInstance().updateStartingTheme(u.getId(), u.getStartingTheme());
+            }
             int id = themes.get(index).getId();
             themes.remove(index);
             Database.getInstance().deleteTheme(id);
@@ -188,6 +193,7 @@ public class Repository {
         if(index != -1){
             int id = chapters.get(index).getId();
             chapters.remove(index);
+            Database.getInstance().deleteChapterVocab(id);
             Database.getInstance().deleteChapter(id);
             return 0;
         }
@@ -271,7 +277,7 @@ public class Repository {
     public int addResult(int user, int unit, int correct, int second, int wrong, double time, int mode, String date) {
         Result r = new Result(0,unit,user,mode,correct,second,wrong,time,date);
         int val = Database.getInstance().addResult(r);
-        if(val==-1){
+        if(val!=-1){
             r.setId(val);
             results.add(r);
             return 0;
@@ -281,5 +287,28 @@ public class Repository {
 
     public List<Result> getResults(int user) {
         return results.stream().filter(it->it.getUser()==user).collect(Collectors.toList());
+    }
+
+    public User getThemeOwner(int themeID) {
+        Theme t = themes.stream().filter(it->it.getId()==themeID).findFirst().orElse(null);
+        if(t!= null){
+            return users.stream().filter(it->it.getId()==t.getOwner()).findFirst().orElse(null);
+        }
+        return null;
+    }
+
+    public int register(String username, String pw, String fN, String lN, String email, String birthDate, String inst) {
+        User u = users.stream().filter(it->it.getUsername().equals(username)).findFirst().orElse(null);
+        if(u!=null){
+            return 1;
+        }
+        else{
+            int id = Database.getInstance().addUser(username,pw,fN,lN,email,birthDate,inst);
+            if(id!=-1){
+                users.add(new User(id,username,pw,fN,lN,email,inst,birthDate,1));
+                return 0;
+            }
+            return 1;
+        }
     }
 }

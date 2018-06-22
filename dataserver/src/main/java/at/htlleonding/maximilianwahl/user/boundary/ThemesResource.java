@@ -16,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import lib.Model.Repository;
 import lib.Model.Theme;
+import lib.Model.User;
 
 /**
  *
@@ -79,4 +80,18 @@ public class ThemesResource {
     public JsonObject getDarkTheme(){
         return Repository.getInstance().getDarkTheme().jsonify();
     }
+    @Path("getThemeOwner")
+    @GET
+    public JsonObject getThemeOwner(@QueryParam("theme")int themeID){
+        User u = Repository.getInstance().getThemeOwner(themeID);
+        if(u != null){
+            return Json.createObjectBuilder()
+                .add("owner", u.getId())               
+                .build();
+        }
+        return Json.createObjectBuilder()
+                .add("owner", -1)               
+                .build();
+    }
+    
 }

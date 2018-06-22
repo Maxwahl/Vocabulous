@@ -78,12 +78,12 @@ async function load(){
         dropdown.appendChild(newElement);
     }
     dropdown.selected = 0;
-    loadCharts("this week", "day");
+    loadCharts();
 }
-async function loadCharts(measurement, unity){
+async function loadCharts(){
     var theme = await BackEndHandler.startingTheme(user.getId());
     piechart.options = {
-        "title":"Unitresults "+measurement,
+        "title":"Unitresults this week",
         "backgroundColor": getComputedStyle(myapp).getPropertyValue("--cardBackgroundcolor"),
         "colors": ["#019F1F", "#DD0101", "#ff8000"],
         "legend": {
@@ -92,57 +92,27 @@ async function loadCharts(measurement, unity){
        "titleTextStyle": {
         "fontSize": "18",
         "color": theme.getParagraphFontColor()
-        },
-        /*"animation": {
-         "duration": 1000,
-         "easing": 'out'},
-        "titleTextStyle": {
-         "fontSize": "18",
-         "color": theme.getParagraphFontColor()
-         }*/
+        }
     }
-    linechart.cols= [{"label":"Day", "type":"string"},{"label":"average\n min/"+unity, "type":"number"}]
     linechart.options = {
-        "title":"Average time needed "+measurement,
+        "title":"Average time needed this week",
         "backgroundColor": getComputedStyle(myapp).getPropertyValue("--cardBackgroundcolor"),
         "colors": ["#019F1F", "#DD0101", "#ff8000"],
         "legend": {
             "textStyle": { "color": theme.getParagraphFontColor(),"fontSize": "15" },
-        },
-        "hAxis": {
-            "textStyle":{"color": theme.getParagraphFontColor()}
-        },
-        "vAxis": {
-            "textStyle":{"color": theme.getParagraphFontColor()}
-        },
+       },
        "titleTextStyle": {
         "fontSize": "18",
         "color": theme.getParagraphFontColor()
-        },
-        /*"animation": {
-         "duration": 1000,
-         "easing": 'out'},
-        "titleTextStyle": {
-         "fontSize": "18",
-         "color": theme.getParagraphFontColor()
-         }*/
+        }
     }
     columnchart.options = {
-        "title":"Sessions "+measurement,
+        "title":"Sessions this week",
         "backgroundColor": getComputedStyle(myapp).getPropertyValue("--cardBackgroundcolor"),
         "colors": ["#019F1F", "#DD0101", "#ff8000"],
         "legend": {
             "textStyle": { "color": theme.getParagraphFontColor(),"fontSize": "15" },
        },
-       "hAxis": {
-           "textStyle":{"color": theme.getParagraphFontColor()}
-       },
-       "vAxis": {
-           "textStyle":{"color": theme.getParagraphFontColor()}
-       },
-       /*"animation": {
-        "duration": 1000,
-        "easing": 'out'},*/
        "titleTextStyle": {
         "fontSize": "18",
         "color": theme.getParagraphFontColor()
@@ -161,7 +131,6 @@ function changeForThisUnit(id){
         now = false;
     }
     if(paperslide.value == 1){
-        loadCharts("this week", "day");
         selector.style.display = "inherit";
         var wrongSum = 0;
         var secondTrySum = 0;
@@ -204,7 +173,6 @@ function changeForThisUnit(id){
         loadLineChart(time, days, weekDays);
     }
     if(paperslide.value == 0){
-        loadCharts("today", "hour");
         selector.style.display = "inherit";
         var wrongSum = 0;
         var secondTrySum = 0;
@@ -235,60 +203,9 @@ function changeForThisUnit(id){
             }
         }
         loadPieChart(wrongSum,secondTrySum,correctSum);
-        var hoursPerDay = ["1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "noon", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm", "midnight"];
+        var hoursPerDay = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"];
         loadColumnChart(hours, hoursPerDay);
         loadLineChart(time, hours, hoursPerDay);
-    }
-    if(paperslide.value == 2){
-        loadCharts("this month", "week");
-        selector.style.display = "inherit";
-        var wrongSum = 0;
-        var secondTrySum = 0;
-        var correctSum = 0;
-        var weeks = [0,0,0,0];
-        var time = [0,0,0,0];
-        var date = new Date();
-        var dateToday = new Date();
-        date.setDate(1);
-        var allDaysInMonth = 0;
-        while(date.getMonth() == dateToday.getMonth()){
-            allDaysInMonth++;
-            date.setDate(date.getDate() + 1);
-        }
-        var rest = 0;
-        while(allDaysInMonth % 4 != 0){
-            rest++;
-            allDaysInMonth--;
-        }
-        var interval = allDaysInMonth / 4;
-        var actMonth = dateToday.getMonth()+1;
-        for(var i = 0; i < results.length; i++){
-            var dateDay = parseInt(results[i].getDateTime().split("/")[0]);
-            var month = parseInt(results[i].getDateTime().split("/")[1]);
-            if(results[i].getMode() == selector.selected && results[i].getUnitId()==id && actMonth==month){
-                wrongSum += results[i].getWrong();
-                secondTrySum += results[i].getSecondTry();
-                correctSum += results[i].getCorrect();
-                var timeResult = results[i].getDateTime().split(";")[0];
-                timeResult = timeResult.split("@")[1];
-                timeResult = timeResult.substr(1);
-                var index = 0;
-                var checkWeek = interval;
-                while(checkWeek < dateDay){
-                    checkWeek += interval;
-                    index++;
-                }
-                if(index > 3){
-                    index = 3;
-                }
-                weeks[index]++;
-                time[index]+=results[i].getTimeNeeded();
-            }
-        }
-        loadPieChart(wrongSum,secondTrySum,correctSum);
-        var weeksForShow = ["1. week", "2. week", "3. week", "4. week"];
-        loadColumnChart(weeks, weeksForShow);
-        loadLineChart(time, weeks, weeksForShow);
     }
 }
 function loadPieChart(wrongSum, secondTrySum, correctSum){

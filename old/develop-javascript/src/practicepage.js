@@ -2,7 +2,6 @@ import BackEndHandler from './classes/backEndHandler.js';
 import Unit from './classes/unit.js';
 import Word from './classes/word.js';
 import Stopwatch from './classes/stopwatch.js';
-import LearnProgress from './classes/learnProgress.js';
 console.log("Javascript: practicePage loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
@@ -45,9 +44,6 @@ var mistakeVocs = [];
 var mistakes = 0;
 var secondTryCounter = 0;
 var stopChecking = false;
-var register = myapp._getRegisterLogin();
-var username = register._getUsername();
-var password = register._getPassword();
 var timer = new Stopwatch(timerCounter);
 languageInfo.onmouseover = function(){
     infoLanguageAlert.open();
@@ -88,11 +84,7 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 load();
-async function load(){
-    var user = await BackEndHandler.login(username.value, password.value);
-    var progress = await LearnProgress.getProgress(user.getId());
-    learnProgressBar.max = progress[1];
-    learnProgressBar.value = progress[0];
+function load(){
     vocTries = 0;
     input.setAttribute("hidden",true);
     nextButton.setAttribute("hidden",true);

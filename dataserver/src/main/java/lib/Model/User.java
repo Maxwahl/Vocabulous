@@ -23,6 +23,11 @@ public class User {
     private String birthdate;
     private int startingTheme;
 
+    public User(int id, String username) {
+        this.id = id;
+        this.username = username;    
+    }
+
     public int getStartingTheme() {
         return startingTheme;
     }
@@ -118,7 +123,7 @@ public class User {
                 .add("Birthdate", this.getBirthdate())
                 .add("Username",this.getUsername())
                 .add("Password",this.getPassword())
-                .add("institution", this.getInstitution())
+                .add("Institution", this.getInstitution())
                 .build();
     }
 }

@@ -3,7 +3,6 @@ import Unit from './classes/unit.js';
 import Word from './classes/word.js';
 import Result from './classes/result.js';
 console.log("Javascript: unitresultpage loaded");
-import LearnProgress from './classes/learnProgress.js';
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
 var unitView = overview._getUnitoverviewForSessionsPage();
@@ -30,7 +29,6 @@ var wrongVocs;
 var timer = unitresultPage._getTimeCounter();
 var unit = unitView._getUnitId();
 var time;
-var overviewProgressbar = overview._getLearnProgressbar();
 
 
 returnButton.onclick = function(){
@@ -99,7 +97,7 @@ async function loadResultTable(){
         piechart.rows = [["Correct",
         parseInt(correct.value)],
         ["Wrong",parseInt(wordCountPractice.value - correct.value)]];
-        var result = new Result(-1,unit.value,parseInt(correct.value),0,parseInt(wordCountPractice.value - correct.value),timerToDouble(),1);
+        var result = new Result(-1,parseInt(correct.value),unit.value,parseInt(wordCountPractice.value - correct.value),timerToDouble(),1);
         saveResultInDb(result);
     }
     else{
@@ -122,9 +120,6 @@ async function loadResultTable(){
         var result = new Result(-1,unit.value,parseInt(wordCountSelfCheck.value - wrongSelfcheck.value),0,parseInt(wrongSelfcheck.value),timerToDouble(),2);
         saveResultInDb(result);
     }
-    var progress = await LearnProgress.getProgress(user.getId());
-    overviewProgressbar.max = progress[1];
-    overviewProgressbar.value = progress[0];
 }
 wrongVocabelsButton.onclick = function(){
     overview._routePageChanged("practiceunit-page");
