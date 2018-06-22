@@ -2,6 +2,7 @@ import BackEndHandler from './classes/backEndHandler.js';
 import Unit from './classes/unit.js';
 import Word from './classes/word.js';
 import Stopwatch from './classes/stopwatch.js';
+import LearnProgress from './classes/learnProgress.js';
 console.log("Javascript: practicePageSelectionmode loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
@@ -30,6 +31,9 @@ var vocTries = 0;
 var mistakeVocs = [];
 var rightWords = 0;
 var timer = new Stopwatch(timerCounter);
+var register = myapp._getRegisterLogin();
+var username = register._getUsername();
+var password = register._getPassword();
 
 var wordTable = practicePageSelectionmode._getWordTable();
 var wordButtonOne = practicePageSelectionmode._getWordButtonOne();
@@ -72,7 +76,11 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 load();
-function load(){
+async function load(){
+    var user = await BackEndHandler.login(username.value, password.value);
+    var progress = await LearnProgress.getProgress(user.getId());
+    learnProgressBar.max = progress[1];
+    learnProgressBar.value = progress[0];
     vocTries = 0;
     wordTable.setAttribute("hidden", true);
     cancelButton.setAttribute("hidden",true);

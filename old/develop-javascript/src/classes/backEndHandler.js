@@ -30,6 +30,10 @@ export default class BackEndHandler{
         user.setInstitution(Institution);
         return user;
     }
+    static async register(user){
+        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/register?user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
+        return retVal;
+    }
 
     static async user(username){
         const {id,Firstname,Lastname,Email,Birthdate,Username,Password,Institution} = await this.answer("http://localhost:8080/dataserver/webresources/users/user?user="+username);
@@ -223,5 +227,9 @@ export default class BackEndHandler{
             results.push(result);
         }
         return results;
+    }
+    static async getThemeOwner(themeID){
+        const {owner} = await this.answer("http://localhost:8080/dataserver/webresources/themes/getThemeOwner?theme="+themeID);
+        return owner;
     }
 }

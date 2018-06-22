@@ -36,7 +36,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .copyright{
         width: 100%;
-        /*bottom: 0px;*/
         margin-top: -10px;
         font-size: 0.55em;
         color: var(--secondaryFontColorCard);
@@ -54,20 +53,158 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           float: right;
           margin-right: 5px;
       }
-      p{
-          margin-left: 40px;
-          width: 80%;
-          padding-bottom: 200px;
+      body{
+        margin: 0;
+        padding: 0;
+        background: #262626;
+      }
+      .team{
+        padding: 50px 0;
+        height: 100vh;
+        box-sizing: border-box;
+      }
+      .container{
+        width: 80%;
+        margin: 50px auto;
+      }
+      .row{
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .row h1{
+        color:var(--headlineCard);
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-weight: 700;
+        font-size: 48px;
+        text-transform: uppercase;
+      }
+      .row p{
+        margin: 20px 0 0;
+        color: var(--secondaryFontColorCard);
+        padding-left: 20px;
+        border-left: 5px solid var(--headlineCard);
+      }
+      .row .column{
+        margin: 0 10px;
+        position: relative;
+        width: calc(25%-20px);
+        min-height: 250px;
+        background: var(--secondaryFontColorCard);
+        float: left;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      .row .column:before{
+        content:'';
+        position:absolute;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--headlineCard);
+        z-index:1;
+        transform: .5s;
+        mix-blend-mode: soft-light;
+      }
+      .row .column:hover:before{
+        bottom: 0;
+      }
+      .mgt50px{
+        padding-left: 14%;
+        margin-top: 50px;
+      }
+      .row .column .imgBox{
+        position: relative;
+      }
+      .row .column .imgBox img{
+        transition: 5s;
+      }
+      .row .column:hover .imgBox img{
+        transform: scale(1.5);
+      }
+      .row .column .details{
+        position: absolute;
+        bottom: -85px;
+        left: 0;
+        padding: 10px;
+        box-sizing: border-box;
+        background: rgba(0,0,0,.9);
+        width: 100%;
+        transition: .5s;
+        z-index:2;
+      }
+      .row .column:hover .details{
+        bottom: 0px;
+      }
+      .row .column .details h3{
+        margin: 0;
+        padding: 0;
+        color: #fff;
+        font-weight: 500;
+        text-align: right;
+        text-transform:uppercase;
+      }
+      .row .column .details h3 span{
+        margin:0;
+        padding: 0;
+        font-size: 14px;
+        color:var(--headlineCard);
+        font-weight: 900;
+        text-transform: uppercase;
+        position: relative;
+        top: -6px;
       }
     </style>
 
     <div class="card">
-      <h1>About</h1>
+        <section class="team">
+          <div class="container">
+            <div class="row">
+              <h1>Our Team</h1>
+              <p>
+                    We created the Website.com Site Builder with the user's perspective in mind. We wanted to offer a platform that would require no coding skills or design experience. We keep it simple, so users can focus on creating an amazing website that reflects their brand. Best of all - it's free. You can get online, showcase your brand, or start selling products right away.
+                    After seeing an increased need for ecommerce solutions, we developed one of the only fully-featured, free and commission-free online store builders, allowing business owners to launch their online business.
+              </p>
+            </div>
+            <div class="row mgt50px">
+              <div class="column">
+                  <div class="imgBox">
+                      <img src="../images/hiebl_bild.jpg"  height="468,5" width="312,5">
+                  </div>
+                  <div class="details">
+                      <h3>David Hiebl<br><span>Javascript</span></h3>
+                  </div>
+              </div>
+              <div class="column">
+                  <div class="imgBox">
+                      <img src="../images/urbanides_bild.jpg"  height="468,5" width="312,5">
+                  </div>
+                  <div class="details">
+                      <h3>Konstanin Urbanides<br><span>Polymer</span></h3>
+                  </div></div>
+              <div class="column">
+                  <div class="imgBox">
+                      <img src="../images/wahl_bild.jpg"  height="468,5" width="312,5">
+                  </div>
+                  <div class="details">
+                      <h3>Maximilian Wahl<br><span>JavaEE</span></h3>
+                  </div></div>
+            </div>
+            <div style="clear: both;"></div>
+          </div>
+        </section>
+      <!--<h1>About</h1>
       <p>
             We created the Website.com Site Builder with the user's perspective in mind. We wanted to offer a platform that would require no coding skills or design experience. We keep it simple, so users can focus on creating an amazing website that reflects their brand. Best of all - it's free. You can get online, showcase your brand, or start selling products right away.
 
             After seeing an increased need for ecommerce solutions, we developed one of the only fully-featured, free and commission-free online store builders, allowing business owners to launch their online business.
       </p>
+      <img id="hiebl" src="../images/hiebl_bild.jpg"  height="468,5" width="312,5">
+      <img id="urbanides" src="../images/hiebl_bild.jpg"  height="468,5" width="312,5">
+      <img id="wahl" src="../images/hiebl_bild.jpg"  height="468,5" width="312,5">-->
       <h1 id="headlineOne">Our mission</h1>
       <h1 id="headlineTwo">Our vision</h1>
       <h1 id="headlineThree">Our mission</h1>

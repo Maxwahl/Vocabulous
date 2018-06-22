@@ -41,6 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="not-found.html">
 <link rel="lazy-import" href="register-login.html">
 <link rel="lazy-import" href="overview-page.html">
+<link rel="lazy-import" href="register-new.html">
 
 <dom-module id="my-app">
   <template>
@@ -86,6 +87,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         font-weight: bold;
       }
+      #toast1{
+        background-color: green;
+        color: white;
+      }
     </style>
         
         <app-location
@@ -102,9 +107,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <iron-pages selected="[[activePage]]" attr-for-selected="name" fallback-selection="not-found" role="main">
           <register-login name="register-login"></register-login>
+          <register-new name="register-new"></register-new>
           <overview-page name="overview-page"></overview-page>
         </iron-pages>
         <shared-style></shared-style>
+        <paper-toast id="toast1" text="Registration was successful!"></paper-toast>
   </template>
 
   <script>
@@ -153,6 +160,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _showPage404() {
         this.activePage = 'not-found';
       }
+      _getRegisterNew(){
+        return Polymer.dom(this.root).querySelector("register-new");
+      }
       _getRegisterLogin(){
         return Polymer.dom(this.root).querySelector("register-login");
       }
@@ -161,6 +171,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getSharedStyle(){
         return Polymer.dom(this.root).querySelector("shared-style");
+      }
+      _getIronPages(){
+        return Polymer.dom(this.root).querySelector("iron-pages");
+      }
+      _getCorrectToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast1]");
       }
       /*ready() {
         super.ready();

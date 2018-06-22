@@ -1,6 +1,7 @@
 import BackEndHandler from './classes/backEndHandler.js';
 import Unit from './classes/unit.js';
 import Word from './classes/word.js';
+import LearnProgress from './classes/learnProgress.js';
 console.log("Javascript: unitsoverview loaded");
 var myapp = document.querySelector("my-app");
 var overview = myapp._getOverviewpage();
@@ -23,6 +24,7 @@ var username = register._getUsername();
 var password = register._getPassword();
 var trashHover = false;
 var unitId;
+var overviewProgressbar = overview._getLearnProgressbar();
 confirmAlertNo.onclick = function(){
     confirmAlert.close();
 }
@@ -44,6 +46,9 @@ async function load(){
     updateInput.value = -1;
     user = await BackEndHandler.login(username.value, password.value);
     units = await BackEndHandler.getUnits(user.getId());
+    var progress = await LearnProgress.getProgress(user.getId());
+    overviewProgressbar.max = progress[1];
+    overviewProgressbar.value = progress[0];
     var rowCount = 0;
     while ( unitTable.rows.length > 0 ){
         unitTable.deleteRow(0);

@@ -29,14 +29,21 @@ var oldPassword = "";
 (async function start(){
     user = await BackEndHandler.user(usernameButton.textContent);
     fullname.innerHTML = user.getFirstname() + " " + user.getLastname();
-    institution.value = user.getInstitution();
+    if(user.getInstitution() != undefined && user.getInstitution() != ""){
+        institution.innerHTML = user.getInstitution();
+    }
+    else{
+        institution.innerHTML = "";
+    }
     firstname.value = user.getFirstname();
     firstname.disabled = true;
     lastname.value = user.getLastname();
     lastname.disabled = true;
     email.value = user.getEmail();
     email.disabled = true;
-    birthDate.value = user.getBirthdate();
+    if(user.getBirthdate != undefined && user.getBirthdate != ""){
+        birthDate.value = user.getBirthdate();
+    }
     birthDate.disabled = true;
     username.value = user.getUsername();
     username.disabled = true;

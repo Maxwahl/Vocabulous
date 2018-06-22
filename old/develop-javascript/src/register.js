@@ -33,11 +33,11 @@ ironPages.addEventListener("iron-select",function(){
 loginButton.onclick = function(){
     myapp._updatePage("register-login");
 }
-async function load(){
-    firstnameClear.style.display="none";
-    lastnameClear.style.display="none";
-    emailClear.style.display="none";
-    institutionClear.style.display="none";
+function load(){
+    firstnameClear.setAttribute("hidden", true);
+    lastnameClear.setAttribute("hidden", true);
+    emailClear.setAttribute("hidden", true);
+    institutionClear.setAttribute("hidden", true);
     firstname.value = "";
     lastname.value = "";
     email.value = "";
@@ -53,59 +53,57 @@ load();
 var checkTimer;
 firstname.onkeyup = function(){
     if(firstname.value == ""){
-        firstnameClear.style.display="none";
+        firstnameClear.setAttribute("hidden", true);
         return;
     }
-    firstnameClear.style.display="block";
+    firstnameClear.removeAttribute("hidden");
 };
 lastname.onkeyup = function(){
     if(lastname.value == ""){
-        lastnameClear.style.display="none";
+        lastnameClear.setAttribute("hidden", true);
         return;
     }
-    lastnameClear.style.display="block";
+    lastnameClear.removeAttribute("hidden");
 };
 email.onkeyup = function(){
     if(email.value == ""){
-        emailClear.style.display="none";
+        emailClear.setAttribute("hidden", true);
         return;
     }
-    emailClear.style.display="block";
+    emailClear.removeAttribute("hidden");
 };
 institution.onkeyup = function(){
     if(institution.value == ""){
-        institutionClear.style.display="none";
+        institutionClear.setAttribute("hidden", true);
         return;
     }
-    institutionClear.style.display="block";
+    institutionClear.removeAttribute("hidden");
 };
 firstnameClear.onclick = function(){
     firstname.value = "";
-    firstnameClear.style.display="none";
+    firstnameClear.setAttribute("hidden", true);
 }
 lastnameClear.onclick = function(){
     lastname.value = "";
-    lastnameClear.style.display="none";
+    lastnameClear.setAttribute("hidden", true);
 }
 email.onclick = function(){
     email.value = "";
-    emailClear.style.display="none";
+    emailClear.setAttribute("hidden", true);
 }
 institution.onclick = function(){
     institution.value = "";
-    institutionClear.style.display="none";
+    institutionClear.setAttribute("hidden", true);
 }
 username.onkeyup = function(){
     clearTimeout(checkTimer);
     iconWrong.style.display = "none";
     iconOk.style.display = "none";
     spinner.setAttribute("active",true);
-    changeLineColor("inherit");
     checkTimer = setTimeout(function(){checkUsername()}, 1000);
 }
 async function checkUsername(){
     if(username.value == ""){
-        changeLineColor("red");
         spinner.removeAttribute("active");
         iconWrong.style.display = "block";
         iconOk.style.display = "none";
@@ -116,10 +114,8 @@ async function checkUsername(){
     if(user == null){
         iconOk.style.display = "block";
         iconWrong.style.display = "none";
-        changeLineColor("inherit");
         return;
     }
-    changeLineColor("red");
     iconOk.style.display = "none";
     iconWrong.style.display = "block";
 }
@@ -138,14 +134,18 @@ async function add(){
     user.setFirstname(firstname.value);
     user.setInstitution(institution.value);
     user.setLastname(lastname.value);
-    var userId= await BackEndHandler.register(user);
-    correctToast.open();
+    await BackEndHandler.register(user);
     myapp._updatePage("register-login");
-    await BackEndHandler.sendMail(userId,"registration");
+    correctToast.open();
 }
-function changeLineColor(color){
-    username.updateStyles({"--paper-input-container-color":color});
-    username.updateStyles({"--paper-input-container-focus-color":color});
-    username.updateStyles({"--paper-input-container-invalid-color":color});
-    username.updateStyles({"--paper-input-container-input-color":color})
+function sendMail() {
+    var dataString = 'name='+ "Vocabulous Project Team" + '&email=' + "vocabulous12@gmail.com" + '&text=' + "Hello World";
+    $.ajax({
+        type: "POST",
+        url: "../../email.php",
+        data: dataString,
+        success: function(){
+        $('.success').fadeIn(1000);
+        }
+    });
 }
