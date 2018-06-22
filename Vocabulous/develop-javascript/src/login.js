@@ -11,7 +11,7 @@ var user;
 var username = register._getUsername();
 var password = register._getPassword();
 var toast = register._getToast();
-registernew.onclick = function(){overview._routePageChanged("register-new")}
+registernew.onclick = function(){myapp._updatePage("register-new")}
 forgotPasswordButton.onclick = async function(){
     confirmAlert.open();
 }

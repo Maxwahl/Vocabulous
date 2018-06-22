@@ -29,8 +29,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-icons/communication-icons.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner-lite.html">
-<link rel="import" href="../bower_components/paper-password-input/min-length-validator.html">
-<link rel="import" href="../bower_components/paper-password-input/match-passwords-validator.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="register-new">
@@ -169,10 +167,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-right: auto;
         margin-left: 120px;
       }
-      #toast0{
-        background-color: red;
-        color: white;
-      }
     </style>
     
     <div class="login">
@@ -190,19 +184,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-button slot="suffix" noink><iron-icon id="clearInput4" icon="icons:clear"></iron-icon></paper-button>
       </paper-input>
       <paper-input label="Username" name="username" id="username">
-            <paper-spinner-lite slot="suffix"></paper-spinner-lite>
+            <paper-spinner-lite slot="suffix" active></paper-spinner-lite>
               <iron-icon class="checkTrue" icon="icons:check" slot="suffix"></iron-icon>
               <iron-icon class="checkFalse" icon="icons:clear" slot="suffix"></iron-icon>
       </paper-input>
-      <min-length-validator id="min-length-validator" min-length="5"></min-length-validator>
-      <match-passwords-validator id="match-passwords-validator" password="[[password]]"></match-passwords-validator>
-      <paper-password-input  value="{{password}}" label="Password" name="password" id="password" auto-validate validator="min-length-validator" error-message="this field must be filled [min. 5 characters]"></paper-password-input>
-      <paper-password-input label="Verify Password" name="passwordVerify" id="passwordVerify" auto-validate validator="match-passwords-validator" error-message="Passwords need to match"></paper-password-input>
+      <paper-password-input label="Password" name="password" id="password"></paper-password-input>
+      <paper-password-input label="Verify Password" name="passwordVerify" id="passwordVerify"></paper-password-input>
       <paper-button id="loginButton">Create account</paper-button>
       <br>
       <paper-button id="registerButton" noink>Login</paper-button>
     </div>
-    <paper-toast id="toast0" text="Wrong Data!"></paper-toast>
+    <paper-toast id="toast0" text="Wrong username or password!"></paper-toast>
   </template>
   <script>
     class RegisterNew extends Polymer.Element {
@@ -231,49 +223,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getClearButton4(){
         return Polymer.dom(this.root).querySelector("iron-icon[id=clearInput4]");
       }
-      _getFirstname(){
-        return Polymer.dom(this.root).querySelector("paper-input[name=firstname]");
-      }
-      _getLastname(){
-        return Polymer.dom(this.root).querySelector("paper-input[name=lastname]");
-      }
-      _getEmail(){
-        return Polymer.dom(this.root).querySelector("paper-input[name=email]");
-      }
-      _getInstitution(){
-        return Polymer.dom(this.root).querySelector("paper-input[name=institution]");
+      _getLoginButton(){
+        return Polymer.dom(this.root).querySelector("paper-button");
       }
       _getUsername(){
-        return Polymer.dom(this.root).querySelector("paper-input[name=username]");
+        return Polymer.dom(this.root).querySelector("paper-input");
       }
       _getPassword(){
-        return Polymer.dom(this.root).querySelector("paper-password-input[name=password]");
+        return Polymer.dom(this.root).querySelector("paper-password-input");
       }
-      _getVerifyPassword(){
-        return Polymer.dom(this.root).querySelector("paper-password-input[name=passwordVerify]");
-      }
-      _getSpinner(){
-        return Polymer.dom(this.root).querySelector("paper-spinner-lite");
-      }
-      _getIconOk(){
-        return Polymer.dom(this.root).querySelector("iron-icon[class=checkTrue]");
-      }
-      _getIconWrong(){
-        return Polymer.dom(this.root).querySelector("iron-icon[class=checkFalse]");
-      }
-      _getLoginButton(){
-        return Polymer.dom(this.root).querySelector("paper-button[id=registerButton]");
-      }
-      _getRegisterButton(){
-        return Polymer.dom(this.root).querySelector("paper-button[id=loginButton]");
-      }
-      _getWrongToast(){
+      _getToast(){
         return Polymer.dom(this.root).querySelector("paper-toast[id=toast0]");
       }
     }
     
    window.customElements.define(RegisterNew.is, RegisterNew);
   </script>
-    <script src="../develop-javascript/src/classes/jquery-3.3.1.js"></script>
   <script src="../develop-javascript/src/register.js" type="module"></script>
 </dom-module>

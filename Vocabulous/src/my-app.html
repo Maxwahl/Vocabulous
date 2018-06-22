@@ -87,6 +87,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         font-weight: bold;
       }
+      #toast1{
+        background-color: green;
+        color: white;
+      }
     </style>
         
         <app-location
@@ -107,6 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <overview-page name="overview-page"></overview-page>
         </iron-pages>
         <shared-style></shared-style>
+        <paper-toast id="toast1" text="Registration was successful!"></paper-toast>
   </template>
 
   <script>
@@ -166,6 +171,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getSharedStyle(){
         return Polymer.dom(this.root).querySelector("shared-style");
+      }
+      _getIronPages(){
+        return Polymer.dom(this.root).querySelector("iron-pages");
+      }
+      _getCorrectToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast1]");
       }
       /*ready() {
         super.ready();

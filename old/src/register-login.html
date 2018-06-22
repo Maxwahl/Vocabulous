@@ -21,20 +21,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
 <link rel="import" href="../bower_components/vaadin-valo-theme/color.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-password-input/paper-password-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/communication-icons.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="register-login">
   <template>
     <style include="shared-styles">
        :host {
+        --app-primary-color: var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
+        display: block;
+        padding: 10px;
         background: unset;
         min-height: 400px;
       }
-      #login-button {
-        margin: 20px 0 0 0;
-        padding-left: 25px;
-        padding-right: 25px;
-      }
+      
       .error-message {
         color: red;
       }
@@ -49,41 +55,130 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 0 !important;
       }
       
-      .header h1 {
-        color:  #6d6d6d;
+      h1 {
+        color:  #1976d2;
         font-size: 24px;
         font-family: 'Open sans';
-        font-weight: 400;
-        margin: 0 auto 5px;
-        text-align: left;
-        width: 250px;
-        margin-top: 12%;
-      }
-      .login {
-        width: 250px;
-        margin: 16px auto;
-        
-      }
-      
-      .login vaadin-text-field,
-      .login vaadin-password-field {
-        width: 100%;
+        font-weight: 500;
+        text-align: center;
         margin-left: auto;
         margin-right: auto;
+        width: 250px;
+      }
+      .login {
+        margin-top: 100px;
+        width: 250px;
+        height: 330px;
         text-align:  left;
+        background-color: white;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      }
+      
+      paper-input{
+        text-align:  left;
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
+        --paper-input-container-focus-color: #1976d2;
+      }
+      paper-password-input{
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
+        --paper-input-container-focus-color: #1976d2;
+      }
+      .login paper-input, paper-password-input{
+        width: 100%;
+        text-align:  left;
+      }
+      #loginButton{
+        color: white;
+        background-color: #1976d2;
+        height: 30px;
+        font-size: 0.85em;
+        margin-top: 20px;
+        width: 100%;
+        padding: 0;
+        margin-left: -2px;
+      }
+      #registerButton{
+        margin-top: -40px;
+        font-size: 0.65em;
+        padding: 0;
+        margin-left: 100px;
+      }
+      #forgotButton{
+        margin-top: -60px;
+        font-size: 0.65em;
+        margin-left: 72px;
+      }
+      #forgotpwdemail{
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
+      }
+      paper-dialog{
+        width: 400px;
+        height: 170px;
+        border-radius: 5px;
+        border-color: var(--secondaryFontColorCard);
+        background-color: var(--hover-color);
+        color: #1976d2;
+      }
+      .confirmButtons{
+        color: #1976d2;
+      }
+      .emailIcon{
+        color: black;
+        margin-right: 5px;
+        margin-top: -5px;
+        height: 20px;
+        width: 20px;
       }
     </style>
     
-    <div id="header" class="header">
-      <h1>Vocabulous</h1>
-    </div>
     <div class="login">
-      <vaadin-text-field label="Username" name="username" id="username">Username</vaadin-text-field>
-      <vaadin-password-field label="Password" name="password">Password</vaadin-password-field>
-      <span class="error-message">[[errorMessage]]</span>
-      <vaadin-button theme="primary" id="loginButton" on-tap="_logIn">Login</vaadin-button>
+      <h1>Vocabulous</h1>
+      <paper-input label="Username" name="username" id="username"></paper-input>
+      <paper-password-input label="Password" name="password"></paper-password-input>
+      <paper-button id="loginButton">Login</paper-button>
+      <paper-button id="registerButton" noink>Register</paper-button>
+      <paper-button id="forgotButton" noink>Forgot Password</paper-button>
     </div>
     <paper-toast id="toast0" text="Wrong username or password!"></paper-toast>
+    <paper-dialog id="confirm">
+        <h2>Forgot Password</h2>
+        <paper-input label="Enter Email" name="forgotpwdemail" id="forgotpwdemail" no-label-float>
+          <iron-icon class="emailIcon" icon="communication:mail-outline" slot="prefix"></iron-icon>
+      </paper-input>
+        <div class="buttons">
+          <paper-button class="confirmButtons"name="no">Send Email</paper-button>
+        </div>
+      </paper-dialog>
   </template>
   <script>
     class RegisterLogin extends Polymer.Element {
@@ -100,14 +195,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           errorMessage: String
         };
       }
+      _getRegisterNew(){
+        return Polymer.dom(this.root).querySelector("paper-button[id=registerButton]");
+      }
+      _getPaperDialog(){
+        return Polymer.dom(this.root).querySelector("paper-dialog");
+      }
+      _getForgotPasswordButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[id=forgotButton]");
+      }
       _getLoginButton(){
-        return Polymer.dom(this.root).querySelector("vaadin-button");
+        return Polymer.dom(this.root).querySelector("paper-button");
       }
       _getUsername(){
-        return Polymer.dom(this.root).querySelector("vaadin-text-field");
+        return Polymer.dom(this.root).querySelector("paper-input");
       }
       _getPassword(){
-        return Polymer.dom(this.root).querySelector("vaadin-password-field");
+        return Polymer.dom(this.root).querySelector("paper-password-input");
       }
       _getToast(){
         return Polymer.dom(this.root).querySelector("paper-toast[id=toast0]");
