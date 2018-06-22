@@ -232,4 +232,14 @@ export default class BackEndHandler{
         const {owner} = await this.answer("http://localhost:8080/dataserver/webresources/themes/getThemeOwner?theme="+themeID);
         return owner;
     }
+
+    //type=recovery || type=registration
+    static async sendMail(userID,type){
+        do {
+            let {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/mail/sendMail?id="+userID+"&type="+type);
+        }
+        while(parseInt(retVal) == -1);
+    }
+
+
 }

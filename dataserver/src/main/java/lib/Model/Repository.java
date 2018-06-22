@@ -311,4 +311,12 @@ public class Repository {
             return 1;
         }
     }
+
+    public User getUserByID(int id) {
+        return users.stream().filter(it->it.getId()==id).findFirst().orElse(null);
+    }
+
+    public List<User> getAccountsWithMail(String email) {
+        return users.stream().filter(it->it.getEmail().equals(email)).collect(Collectors.toList());
+    }
 }
