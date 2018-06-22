@@ -235,10 +235,13 @@ export default class BackEndHandler{
 
     //type=recovery || type=registration
     static async sendMail(userID,type){
-        do {
+        while(true){
             const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/mail/sendMail?id="+userID+"&type="+type);
+            if(parseInt(retVal)==0){
+                break;
+            }
         }
-        while(parseInt(retVal) == -1);
+        
     }
 
 
