@@ -34,7 +34,7 @@ export default class BackEndHandler{
         while(true){
             const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/register?user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
             if(parseInt(retVal)!=-1){
-                break;
+                return parseInt(retVal);
             }
         }
     }
