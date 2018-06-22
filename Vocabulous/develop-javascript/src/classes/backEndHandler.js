@@ -31,8 +31,12 @@ export default class BackEndHandler{
         return user;
     }
     static async register(user){
-        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/register?user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
-        return retVal;
+        while(true){
+            const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/register?user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
+            if(parseInt(retVal)!=-1){
+                break;
+            }
+        }
     }
 
     static async user(username){
