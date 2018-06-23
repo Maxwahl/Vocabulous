@@ -68,6 +68,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </google-chart>
       <paper-button class="wrongVocabels" name="wrongVocabels" noink raised>Try wrong Words again</paper-button>
       <h2 class="timer">Attended Time: </h2> <!-- benötigte Zeit ausgeben -->
+      <h3 class="motto">Ergebnis</h3> <!-- benötigte Zeit ausgeben -->
     </div>
   </template>
 
@@ -88,6 +89,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getTimeCounter(){
         return Polymer.dom(this.root).querySelector("h2");
+      }
+      _getMotto(){
+        return Polymer.dom(this.root).querySelector("h3[class=motto]");
       }
     }
     window.customElements.define(UnitresultPage.is, UnitresultPage);

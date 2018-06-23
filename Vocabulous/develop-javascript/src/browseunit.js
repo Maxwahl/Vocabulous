@@ -79,7 +79,7 @@ searchbar.onkeyup = function(){
         return;
     }
     for(var i = 0; i < table.rows.length; i++){
-        if(!table.rows[i].cells[0].innerHTML.toLowerCase().startsWith(searchbar.query.toLowerCase())){
+        if(!table.rows[i].cells[0].firstChild.innerHTML.toLowerCase().startsWith(searchbar.query.toLowerCase())){
             table.rows[i].style.display = "none";
         }
         else{
@@ -152,7 +152,8 @@ filterSave.onclick = async function(){
                 transUnits.splice(index, 1);
             }
         };
-        cell.innerHTML = units[i].getName()/*+"<paper-checkbox noink value='"+units[i].getId()+"'></paper-checkbox>"*/;
+        var unitOwner = await BackEndHandler.getUnitOwner(units[i].getId());
+        cell.innerHTML = "<p id='unitname'>" + units[i].getName() +" </p>"+" <p id='username'>creator: "+unitOwner.getUsername()+"</p>"/*+"<paper-checkbox noink value='"+units[i].getId()+"'></paper-checkbox>"*/;
         cell.appendChild(checkbox);
     }
     filterDialog.close();

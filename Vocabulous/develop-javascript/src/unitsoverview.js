@@ -118,7 +118,7 @@ searchBar.onkeyup = function(){
         return;
     }
     for(var i = 0; i < unitTable.rows.length; i++){
-        if(!unitTable.rows[i].cells[0].innerHTML.toLowerCase().startsWith(searchBar.query.toLowerCase())){
+        if(!unitTable.rows[i].cells[0].firstChild.innerHTML.toLowerCase().startsWith(searchBar.query.toLowerCase())){
             unitTable.rows[i].style.display = "none";
         }
         else{

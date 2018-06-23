@@ -34,6 +34,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       p{
         margin-left: 40px;
       }
+      a{
+        color: var(--secondaryFontColorCard);
+        text-decoration: none;
+      }
+      a:hover{
+        color:var(--headlineCard);
+      }
       .copyright{
         width: 100%;
         margin-top: -10px;
@@ -92,7 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: relative;
         width: calc(25%-20px);
         min-height: 250px;
-        background: var(--secondaryFontColorCard);
+        /*background: var(--secondaryFontColorCard);*/
         float: left;
         box-sizing: border-box;
         overflow: hidden;
@@ -113,7 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         bottom: 0;
       }
       .mgt50px{
-        padding-left: 14%;
+        margin-left: 18%;
         margin-top: 50px;
       }
       .row .column .imgBox{
@@ -127,7 +134,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .row .column .details{
         position: absolute;
-        bottom: -85px;
+        bottom: -200px;
         left: 0;
         padding: 10px;
         box-sizing: border-box;
@@ -155,42 +162,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: 900;
         text-transform: uppercase;
         position: relative;
-        top: -6px;
+        top: 0px;
+      }
+      @media(max-width: 992px){
+        .container{
+          width: 90%;
+          margin: 20px auto;
+        }
+        .row .column{
+          width: calc(50%-20px);
+          margin-bottom: 20px;
+        }
+      }
+      @media(max-width: 600px){
+        .container{
+          width: 95%;
+          margin: 20px auto;
+        }
+        .row .column{
+          width: calc(100%-20px);
+          margin-bottom: 20px;
+        }
       }
     </style>
-
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    </head>
     <div class="card">
         <section class="team">
           <div class="container">
             <div class="row">
               <h1>Our Team</h1>
               <p>
-                    We created the Website.com Site Builder with the user's perspective in mind. We wanted to offer a platform that would require no coding skills or design experience. We keep it simple, so users can focus on creating an amazing website that reflects their brand. Best of all - it's free. You can get online, showcase your brand, or start selling products right away.
-                    After seeing an increased need for ecommerce solutions, we developed one of the only fully-featured, free and commission-free online store builders, allowing business owners to launch their online business.
+                  We are three budding programmers who have set themselves the goal of making everyday life easier for students.
+                  Finally, after countless annoying English vocabulary learning days, we decided to develop a software that makes learning easier and fun. And that's how Vocabulous came to be!
               </p>
             </div>
             <div class="row mgt50px">
               <div class="column">
                   <div class="imgBox">
-                      <img src="../images/hiebl_bild.jpg"  height="468,5" width="312,5">
+                      <img src="../images/hiebl_bild.jpg"  height="352,3" width="248,3">
                   </div>
                   <div class="details">
-                      <h3>David Hiebl<br><span>Javascript</span></h3>
+                      <h3>David Hiebl<br><span>Frontend<br>Communication between database and GUI<br>Javascript<br>Age: 17</span></h3>
                   </div>
               </div>
               <div class="column">
                   <div class="imgBox">
-                      <img src="../images/urbanides_bild.jpg"  height="468,5" width="312,5">
+                      <img src="../images/urbanides_bild.jpg"  height="352,3" width="248,3">
                   </div>
                   <div class="details">
-                      <h3>Konstanin Urbanides<br><span>Polymer</span></h3>
+                      <h3>Konstanin Urbanides<br><span>Frontend, Project Leader<br>GUI-Design<br>Polymer<br>Age: 16</span></h3>
                   </div></div>
               <div class="column">
                   <div class="imgBox">
-                      <img src="../images/wahl_bild.jpg"  height="468,5" width="312,5">
+                      <img src="../images/wahl_bild.jpg"  height="352,3" width="248,3">
                   </div>
                   <div class="details">
-                      <h3>Maximilian Wahl<br><span>JavaEE</span></h3>
+                      <h3>Maximilian Wahl<br><span>Backend<br>Database<br>JavaEE<br>Age: 17</span></span></h3>
                   </div></div>
             </div>
             <div style="clear: both;"></div>
@@ -205,8 +234,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <img id="hiebl" src="../images/hiebl_bild.jpg"  height="468,5" width="312,5">
       <img id="urbanides" src="../images/hiebl_bild.jpg"  height="468,5" width="312,5">
       <img id="wahl" src="../images/hiebl_bild.jpg"  height="468,5" width="312,5">-->
-      <h1 id="headlineOne">Our mission</h1>
-      <h1 id="headlineTwo">Our vision</h1>
+      <h1 id="headlineOne">What is Vocabulous?</h1>
+      <p>
+          Vocabulous is a software that can be used to practice English vocabulary.
+          The software offers you several options for practicing units so that you can prepare ideally for the next test. 
+          You can also create your own units or add units of friends to learn the vocabulary you really need. 
+          Vocabulous also gives you the ability to evaluate results of your sessions by displaying them in charts. 
+          To further increase the user-friendliness, you will be able to design the software with your own colors, making it easy to create your own themes.
+      </p>
+      <h1 id="headlineTwo">Technologies</h1>
+      <p>
+          This software was created using Polymer, Javascript and a Java EE server as backend.
+      </p>
+      <p>
+          <a target="_blank" href="https://www.polymer-project.org/">Polymer</a> is open-source JavaScript library for building web applications using Web Components. 
+          The library is developed by Google developers and contributors on GitHub. Modern design principles are implemented as 
+          a separate project using Google's Material Design design principles. Polymer is used by Google Services and websites, 
+          including the redesigned YouTube, YouTube Gaming, the redesigned Google Earth, Google I / O websites, Google Play Music, 
+          Redesign of Google Sites and Allo for web.
+        </p>
+        <p>
+          <a target="_blank" href="https://en.wikipedia.org/wiki/JavaScript">JavaScript</a> often abbreviated as JS, is a high-level, interpreted programming language. 
+          It is a language which is characterized as dynamic, weakly typed, prototype-based and multi-paradigm.
+          Alongside HTML and CSS, JavaScript is one of the three core technologies of the World Wide Web. 
+          JavaScript enables interactive web pages and thus is an essential part of web applications. 
+          The vast majority of websites use it, and all major web browsers have a dedicated JavaScript engine 
+          to execute it.</p>
+          <p>
+          <a target="_blank" href="https://en.wikipedia.org/wiki/Java_Platform,_Enterprise_Edition">Java Platform, Enterprise Edition (Java EE), formerly Java 2 Platform, Enterprise Edition (J2EE), 
+          currently Jakarta EE</a>, is a set of specifications, extending Java SE with specifications for enterprise 
+          features as distributed computing and web services. Java EE applications are run on reference, 
+          that can be microservices or application servers, which handles transactions, security, scalability, 
+          concurrency and management of the components it is deploying.
+          Java EE is defined by its specification. 
+          The specification defines APIs and their interactions. Java EE compliant. Java compliant.</p>
       <h1 id="headlineThree">Our mission</h1>
       <h1 id="headlineFour">Our vision</h1>
 

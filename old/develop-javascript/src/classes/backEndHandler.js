@@ -31,8 +31,12 @@ export default class BackEndHandler{
         return user;
     }
     static async register(user){
-        const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/register?user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
-        return retVal;
+        while(true){
+            const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/users/register?user="+user.getUsername()+"&pw="+user.getPassword()+"&fN="+user.getFirstname()+"&lN="+user.getLastname()+"&Email="+user.getEmail()+"&bD="+user.getBirthdate()+"&inst="+user.getInstitution());
+            if(parseInt(retVal)!=-1){
+                return parseInt(retVal);
+            }
+        }
     }
 
     static async user(username){
@@ -232,4 +236,17 @@ export default class BackEndHandler{
         const {owner} = await this.answer("http://localhost:8080/dataserver/webresources/themes/getThemeOwner?theme="+themeID);
         return owner;
     }
+
+    //type=recovery || type=registration
+    static async sendMail(userID,type){
+        while(true){
+            const {retVal} = await this.answer("http://localhost:8080/dataserver/webresources/mail/sendMail?id="+userID+"&type="+type);
+            if(parseInt(retVal)==0){
+                break;
+            }
+        }
+        
+    }
+
+
 }

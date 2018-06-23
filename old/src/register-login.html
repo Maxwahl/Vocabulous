@@ -165,6 +165,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 20px;
         width: 20px;
       }
+      
+      #toast1{
+        background-color: red;
+        color: white;
+      }
+      #toast2{
+        background-color: green;
+        color: white;
+      }
     </style>
     
     <div class="login">
@@ -175,7 +184,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-button id="registerButton" noink>Don't have an account? Sign up</paper-button>
       <paper-button id="forgotButton" noink>Forgot password</paper-button>
     </div>
-    <paper-toast id="toast0" text="Wrong username or password!"></paper-toast>
     <paper-dialog id="confirm">
         <h2>Forgot Password</h2>
         <paper-input label="Enter Email" name="forgotpwdemail" id="forgotpwdemail" no-label-float>
@@ -185,6 +193,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-button class="confirmButtons"name="no">Send Email</paper-button>
         </div>
       </paper-dialog>
+      <paper-toast id="toast0" text="Wrong username or password!"></paper-toast>
+      <paper-toast id="toast1" text="There is no user with this email!"></paper-toast>
+      <paper-toast id="toast2" text="We have sent you an email with your account details!"></paper-toast>
   </template>
   <script>
     class RegisterLogin extends Polymer.Element {
@@ -221,6 +232,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       _getToast(){
         return Polymer.dom(this.root).querySelector("paper-toast[id=toast0]");
+      }
+      _getWrongToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast1]");
+      }
+      _getCorrectToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast2]");
+      }
+      _getEmailInput(){
+        return Polymer.dom(this.root).querySelector("paper-input[id=forgotpwdemail]");
+      }
+      _getSendButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[class=confirmButtons]");
       }
     }
     

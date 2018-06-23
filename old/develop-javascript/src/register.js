@@ -33,11 +33,11 @@ ironPages.addEventListener("iron-select",function(){
 loginButton.onclick = function(){
     myapp._updatePage("register-login");
 }
-function load(){
-    firstnameClear.setAttribute("hidden", true);
-    lastnameClear.setAttribute("hidden", true);
-    emailClear.setAttribute("hidden", true);
-    institutionClear.setAttribute("hidden", true);
+async function load(){
+    firstnameClear.style.display="none";
+    lastnameClear.style.display="none";
+    emailClear.style.display="none";
+    institutionClear.style.display="none";
     firstname.value = "";
     lastname.value = "";
     email.value = "";
@@ -53,57 +53,59 @@ load();
 var checkTimer;
 firstname.onkeyup = function(){
     if(firstname.value == ""){
-        firstnameClear.setAttribute("hidden", true);
+        firstnameClear.style.display="none";
         return;
     }
-    firstnameClear.removeAttribute("hidden");
+    firstnameClear.style.display="block";
 };
 lastname.onkeyup = function(){
     if(lastname.value == ""){
-        lastnameClear.setAttribute("hidden", true);
+        lastnameClear.style.display="none";
         return;
     }
-    lastnameClear.removeAttribute("hidden");
+    lastnameClear.style.display="block";
 };
 email.onkeyup = function(){
     if(email.value == ""){
-        emailClear.setAttribute("hidden", true);
+        emailClear.style.display="none";
         return;
     }
-    emailClear.removeAttribute("hidden");
+    emailClear.style.display="block";
 };
 institution.onkeyup = function(){
     if(institution.value == ""){
-        institutionClear.setAttribute("hidden", true);
+        institutionClear.style.display="none";
         return;
     }
-    institutionClear.removeAttribute("hidden");
+    institutionClear.style.display="block";
 };
 firstnameClear.onclick = function(){
     firstname.value = "";
-    firstnameClear.setAttribute("hidden", true);
+    firstnameClear.style.display="none";
 }
 lastnameClear.onclick = function(){
     lastname.value = "";
-    lastnameClear.setAttribute("hidden", true);
+    lastnameClear.style.display="none";
 }
 email.onclick = function(){
     email.value = "";
-    emailClear.setAttribute("hidden", true);
+    emailClear.style.display="none";
 }
 institution.onclick = function(){
     institution.value = "";
-    institutionClear.setAttribute("hidden", true);
+    institutionClear.style.display="none";
 }
 username.onkeyup = function(){
     clearTimeout(checkTimer);
     iconWrong.style.display = "none";
     iconOk.style.display = "none";
     spinner.setAttribute("active",true);
+    changeLineColor("inherit");
     checkTimer = setTimeout(function(){checkUsername()}, 1000);
 }
 async function checkUsername(){
     if(username.value == ""){
+        changeLineColor("red");
         spinner.removeAttribute("active");
         iconWrong.style.display = "block";
         iconOk.style.display = "none";
@@ -114,8 +116,10 @@ async function checkUsername(){
     if(user == null){
         iconOk.style.display = "block";
         iconWrong.style.display = "none";
+        changeLineColor("inherit");
         return;
     }
+    changeLineColor("red");
     iconOk.style.display = "none";
     iconWrong.style.display = "block";
 }
@@ -134,18 +138,14 @@ async function add(){
     user.setFirstname(firstname.value);
     user.setInstitution(institution.value);
     user.setLastname(lastname.value);
-    await BackEndHandler.register(user);
-    myapp._updatePage("register-login");
+    var userId= await BackEndHandler.register(user);
     correctToast.open();
+    myapp._updatePage("register-login");
+    await BackEndHandler.sendMail(userId,"registration");
 }
-function sendMail() {
-    var dataString = 'name='+ "Vocabulous Project Team" + '&email=' + "vocabulous12@gmail.com" + '&text=' + "Hello World";
-    $.ajax({
-        type: "POST",
-        url: "../../email.php",
-        data: dataString,
-        success: function(){
-        $('.success').fadeIn(1000);
-        }
-    });
+function changeLineColor(color){
+    username.updateStyles({"--paper-input-container-color":color});
+    username.updateStyles({"--paper-input-container-focus-color":color});
+    username.updateStyles({"--paper-input-container-invalid-color":color});
+    username.updateStyles({"--paper-input-container-input-color":color})
 }

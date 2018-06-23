@@ -42,7 +42,7 @@ var mainTitle = overview._getMainTitle();
 //var practiceOverview = overview._getPracticeOverview();
 //console.log(practiceOverview);
 userbutton.onclick = function(){overview._routePageChanged("account-view")}
-homeview.onclick = function(){overview._routePageChanged("home-view")}
+homeview.onclick = function(){overview._routePageChanged("unit-overview")}
 var browseUnitview = overview._getBrowseUnitview();
 //unitoverview.onclick = function(){overview._routePageChanged("unit-overview")}
 statisticview.onclick = function(){overview._routePageChanged("statistics-view")}

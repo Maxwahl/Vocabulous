@@ -31,6 +31,7 @@ var timer = unitresultPage._getTimeCounter();
 var unit = unitView._getUnitId();
 var time;
 var overviewProgressbar = overview._getLearnProgressbar();
+var motto = unitresultPage._getMotto();
 
 
 returnButton.onclick = function(){
@@ -68,6 +69,7 @@ async function loadResultTable(){
         }
     }
     if(unitresultPage.value == "parcticeunit-page"){
+        getMottoForSession(0);
         wrongVocabelsButton.removeAttribute("hidden");
         wordCountPractice = practicePage._getWordCount();
         wrongPractice = practicePage._getWrong();
@@ -89,6 +91,7 @@ async function loadResultTable(){
         }
     }
     else if(unitresultPage.value == "parcticeunit-page-selectionmode"){
+        getMottoForSession(1);
         wrongVocabelsButton.setAttribute("hidden",true);
         var correct = practiceSelectionMode._getCorrectVocs();
         wordCountPractice = practiceSelectionMode._getWordCount();
@@ -109,6 +112,7 @@ async function loadResultTable(){
             wrongVocs.value = "";
             console.dir("wrongVocs gelöscht");
         }*/
+        getMottoForSession(2);
         wrongVocabelsButton.setAttribute("hidden",true);
         wordCountSelfCheck = selfcheckPage._getWordCount();
         wrongSelfcheck = selfcheckPage._getWrong();
@@ -138,4 +142,96 @@ async function saveResultInDb(result){
 function timerToDouble(){
     var string = time.innerHTML;
     return ((parseFloat(string.charAt(0))*10+parseFloat(string.charAt(1)))*60)+(parseFloat(string.charAt(3))*10+parseFloat(string.charAt(4)))+((parseFloat(string.charAt(6))*10+parseFloat(string.charAt(7)))/60);
+}
+async function getMottoForSession(mode){
+    var results = await BackEndHandler.getResults(user.getId());
+    var lastResult = null;
+    //unit.value
+    for(var i = 0; i < results.length; i++){
+        if(results[i].getUnitId() == unit.value && results[i].getMode() == mode){
+            if(lastResult == null || convertStringToDate(results[i].getDateTime()) > convertStringToDate(lastResult.getDateTime())){
+                lastResult = results[i];
+            }
+        }
+    }
+    console.log("Lastresult:");
+    console.log(lastResult);
+    var actResult = null;
+    if(mode == 0){
+        actResult = new Result(-1,unit.value, parseInt(wordCountPractice.value - secondTryPractice.value - wrongPractice.value),parseInt(secondTryPractice.value),parseInt(wrongPractice.value),timerToDouble(),0);
+    }
+    else if(mode == 1){
+        actResult = new Result(-1,unit.value,parseInt(correct.value),0,parseInt(wordCountPractice.value - correct.value),timerToDouble(),1);
+    }
+    else{
+        actResult = new Result(-1,unit.value,parseInt(wordCountSelfCheck.value - wrongSelfcheck.value),0,parseInt(wrongSelfcheck.value),timerToDouble(),2);
+    }
+    if(actResult == null){
+        motto.innerHTML = "";
+    }
+    var wrong = lastResult.getWrong() - actResult.getWrong();
+    var right = actResult.getCorrect() - lastResult.getCorrect();
+    /*if(actResult.getCorrect() == 0 && actResult.getWrong() == 0 && actResult.getSecondTry() != 0 && lastResult.getSecondTry() != 0){
+        motto.innerHTML = "You should practice a little more so you do not always need a second try!";
+    }
+    if(actResult.getSecondTry() != lastResult.getSecondTry()){
+        if((right < 0 && wrong > 0)  ||(right > 0 && wrong < 0)){
+            if(wrong + right > 0){
+                motto.innerHTML = "That session was better than the last one! You are on a good way!";
+            }
+            else if(wrong + right < 0){
+                motto.innerHTML = "You knew a few more words, but you knew fewer words on the first try! Practice a little more!";
+            }
+            else if(wrong + right == 0){
+                motto.innerHTML = "You have not deteriorated but also not improved!";
+            }
+        }
+        return;
+    }*/
+    var correctAct = actResult.getCorrect();
+    var correctLast = lastResult.getCorrect(); 
+    if(actResult.getSecondTry() != 0 || lastResult.getSecondTry() != 0){
+        var correctAct = actResult.getSecondTry()+actResult.getCorrect();
+        var correctLast = lastResult.getSecondTry()+lastResult.getCorrect(); 
+    }
+    else{
+
+    }
+    var res = correctAct - correctLast;
+    if(actResult.getWrong() == 0){
+        motto.innerHTML = "You knew all the words! Keep it up!";
+        return;
+    }
+    if(correctAct == 0){
+        motto.innerHTML = "All beginning is difficult!";
+        return;
+    }
+    if(res < 0){
+        res = correctLast-correctAct;
+        motto.innerHTML = "You knew "+res+" words less than in the last session. You have to practice more!";
+    }
+    else if(res == 0){
+        motto.innerHTML = "You have as many vocabulary correct as in the last session. You have to learn a bit more to improve yourself!";
+    }
+    else if(res > 0){
+        motto.innerHTML = "You knew "+res+" words more! You are on a good way!";
+    }
+}
+function convertStringToDate(string){
+    var dateString = string.split(" @ ")[0];
+    var timeString = string.split(" @ ")[1].split(";")[0];
+    var date = new Date();
+    var day = parseInt(dateString.split("/")[0]);
+    var month = parseInt(dateString.split("/")[1])-1;
+    var year = parseInt(dateString.split("/")[2]);
+    var hours = parseInt(timeString.split(":")[0]);
+    var minutes = parseInt(timeString.split(":")[1]);
+    var seconds = parseInt(timeString.split(":")[2]);
+    date.setDate(day);
+    date.setMonth(month);
+    date.setFullYear(year);
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    date.setSeconds(seconds);
+    return date;
 }
