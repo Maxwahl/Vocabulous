@@ -1,0 +1,45 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/my-app.html",
+  "fragments": [
+    "src/overview-page.html",
+    "src/home-view.html",
+    "src/unit-overview.html",
+    "src/statistics-view.html",
+    "src/messages-view.html",
+    "src/account-view.html",
+    "src/settings-view.html",
+    "src/unit-page.html",
+    "src/not-found.html",
+    "src/practiceunit-page.html",
+    "src/selfcheck-page.html",
+    "src/create-unit.html",
+    "src/browse-unit.html",
+    "src/upload-unit.html",
+    "src/translate-page.html",
+    "src/register-login.html"
+
+  ],
+  "sources": [
+    "src/**/*",
+    "images/**/*"
+  ],
+  "extraDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/*.js"
+  ],
+  "lint": {
+    "rules": ["polymer-2"]
+  },
+  "builds": [
+    {
+      "preset": "es5-bundled"
+    },
+    {
+      "preset": "es6-bundled"
+    },
+    {
+      "preset": "es6-unbundled"
+    }
+  ]
+}

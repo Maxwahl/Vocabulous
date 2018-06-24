@@ -1,0 +1,96 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/google-chart/google-chart.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<dom-module id="unitresult-page">
+  <template>
+    <style include="shared-styles">
+      :host {
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
+        display: block;
+        padding: 17px;
+      }
+      h1{
+        color: var(--app-primary-color);
+        margin-left: 40px;
+        font-weight: 400;
+        font-size: 23px;
+      }
+      h2{
+        color: var(--app-primary-color);
+        margin-top: 0px;
+        margin-left: 0px;
+        font-weight: 300;
+        font-size: 18px;
+      }
+      google-chart {
+        height: 300px;
+        width: 50em;
+        color: var(--secondaryFontColorCard);
+      }
+      paper-icon-button.back{
+        font-size: 0.65em;
+        width: 30px;
+        height: 30px;
+        margin-left: -10px;
+        margin-top: -49px;
+        position:absolute;
+      }
+      paper-button.wrongVocabels{
+        font-size: 0.75em;
+        width: 15%;
+        height: 30px;
+        margin-left: 40px;
+        margin-top: 80px;
+      }
+    </style>
+
+    <div class="card">
+      <h1>Unit 1</h1> <!-- Name der Unit -->
+      <paper-icon-button name="backicon" icon="vaadin:chevron-left" class="back"></paper-icon-button>
+      <google-chart
+        type='pie'
+        cols='[{"label":"Name", "type":"string"}, {"label":"Amount", "type":"number"}]'
+        >
+      </google-chart>
+      <paper-button class="wrongVocabels" name="wrongVocabels" noink raised>Try wrong Words again</paper-button>
+      <h2 class="timer">Attended Time: </h2> <!-- benötigte Zeit ausgeben -->
+    </div>
+  </template>
+
+  <script>
+    class UnitresultPage extends Polymer.Element {
+      static get is() { return 'unitresult-page'; }
+      _getUnitName(){
+        return Polymer.dom(this.root).querySelector("h1");
+      }
+      _getPieChart(){
+        return Polymer.dom(this.root).querySelector("google-chart");
+      }
+      _getReturnButton(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
+      }
+      _getwrongVocabelsButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=wrongVocabels]");
+      }
+      _getTimeCounter(){
+        return Polymer.dom(this.root).querySelector("h2");
+      }
+    }
+    window.customElements.define(UnitresultPage.is, UnitresultPage);
+  </script>
+  <script name="unitresultpage" src="../develop-javascript/src/unitresultpage.js" type="module"></script>
+</dom-module>

@@ -1,0 +1,218 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-input-container.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="create-unit">
+  <template>
+    <style include="shared-styles">
+      :host {
+        --app-primary-color: var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
+        display: block;
+        padding: 10px;
+      }
+      h1{
+        color: var(--headlineCard);
+        margin-left: 40px;
+        font-weight: 400;
+        font-size: 23px;
+      }
+      paper-icon-button.back{
+        font-size: 0.65em;
+        width: 45px;
+        height: 45px;
+        margin-left: -10px;
+        margin-top: -55px;
+        position:absolute;
+      }
+      table{
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      td:hover{
+        background-color: var(--hover-color);
+      }
+      td{
+        border: 1px solid var(--secondaryFontColorCard);
+        height: 30px;
+        padding: 10px;
+        text-align: left;
+        font-weight: 400;
+        margin-left: 40px;
+        border-radius: 5px;
+        margin-bottom: 3px;
+        color: var(--secondaryFontColorCard);
+        display: block;
+      }
+      paper-input.unitName{
+        margin-left: 50px;
+        width: 300px;
+        margin-top: 20px;
+        /*--paper-input-container-color: var(--secondaryFontColorCard); Label-COlor*/
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
+        color: var(--secondaryFontColorCard);
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
+      }
+      paper-input.germanVocab{
+        margin-left: 0px;
+        width: 300px;
+        color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
+        margin-top: -5px;
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
+      }
+      paper-input.englishVocab{
+        margin-left: 50%;
+        width: 300px;
+        color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
+        margin-top: -40px;
+        --paper-input-container-underline: {
+          display: none;
+        };
+        --paper-input-container-underline-focus: {
+          display: none;
+        };
+        --paper-input-container-underline-disabled: {
+          display: none;
+        };
+      }
+      paper-button.plus{
+        width: 25px;
+        height: 25px;
+        margin-top: -20px;
+        text-align: center;
+        border-radius: 100px;
+        min-width: 10px;
+        min-height: 10px;
+        padding: 0px;
+        float: right;
+        margin-left: 8px;
+      }
+      iron-icon.plus{
+        width: 21px;
+        height: 21px;
+        color: grey;
+      }
+      paper-button.minus{
+        margin: 0px;
+        width: 25px;
+        height: 25px;
+        margin-top: -20px;
+        text-align: center;
+        border-radius: 100px;
+        min-width: 10px;
+        min-height: 10px;
+        padding: 0px;
+        float: right;
+      }
+      iron-icon.minus{
+        width: 21px;
+        height: 21px;
+        color: var(--app-secondary-color);
+      }
+      paper-button.browseUnit{
+        font-size: 0.65em;
+        margin-top: -50px;
+        width: 10%;
+        height: 30px;
+        margin-left: 76%;
+      }
+      paper-button.uploadUnit{
+        font-size: 0.65em;
+        width: 10%;
+        height: 30px;
+        margin-bottom: 20px;
+      }
+      paper-button.save{
+        font-size: 0.75em;
+        margin-left: 40px;
+        height: 30px;
+      }
+      paper-icon-button.remove{
+        color:grey;
+        --iron-icon-width: 25px;
+        --iron-icon-height: 25px;
+        float:right;
+        margin-top: -42.5px;
+      }
+      paper-icon-button.remove:hover{
+        color: red;
+      }
+    </style>
+
+    <div class="card">
+      <h1>Create Unit</h1>
+      <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
+      
+      <paper-input class="unitName" label="Unit name" no-label-float></paper-input>
+      <table id="vocabs">
+        <tr><td><paper-input class="germanVocab" label="German word" no-label-float></paper-input><paper-input class="englishVocab" label="English word" no-label-float></paper-input><paper-icon-button class="remove" name="remove" icon="icons:clear" noink></paper-icon-button></td></tr>
+      </table>
+      <paper-button class="plus" name="plus" raised noink><iron-icon icon="icons:add" class="plus" noink></iron-icon></paper-button>
+      
+      <paper-button class="save" name="save" raised noink >Save</paper-button>
+    </div>
+  </template>
+  
+  <script>
+    class CreateUnit extends Polymer.Element {
+      static get is() { return 'create-unit'; }
+      _getReturnButton(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
+      }
+      _getRemoveIcon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=remove]");
+      }
+      _getPlusIcon(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=plus]");
+      }
+      _getSaveButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=save]");
+      }
+      _getWordTable(){
+        return Polymer.dom(this.root).querySelector("table[id=vocabs]");
+      }
+      _getUnitNameInput(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=unitName]");
+      }
+    }
+
+    window.customElements.define(CreateUnit.is, CreateUnit);
+  </script>
+   <script name="createunit" src="../develop-javascript/src/createunit.js" type="module"></script>
+</dom-module>

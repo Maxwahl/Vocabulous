@@ -1,0 +1,333 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../bower_components/time-counter/time-counter.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/hardware-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="my-icons.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="practiceunit-page">
+  <template>
+    <style include="shared-styles">
+      :host {
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
+        display: block;
+        padding: 10px;
+      }
+      h1{
+        color: var(--app-primary-color);
+        margin-left: 40px;
+        font-weight: 400;
+        font-size: 23px;
+      }
+      h2{
+        color: var(--app-primary-color);
+        margin-top: -20px;
+        margin-left: 30%;
+        font-weight: 400;
+        font-size: 18px;
+      }
+      h3.german{
+        font-weight: 400;
+        font-size: 0.9em;
+        margin-top: 40px;
+        width: 8%;
+        height: 30px;
+        margin-left: 40px;
+        
+      }
+      h3.english{
+        font-weight: 400;
+        font-size: 0.9em;
+        width: 8%;
+        height: 30px;
+        margin-left: 10px;
+        margin-top: 40px;
+      }
+      paper-input.vocab{
+          margin-top: -72.5px;
+          margin-left: 40%;
+          width: 25%;
+          color:var(--secondaryFontColorCard);
+          display: block;
+          outline: inherit;
+          outline-color:  var(--secondaryFontColorCard);
+        color:var(--secondaryFontColorCard);
+        /*--paper-input-container-color: var(--secondaryFontColorCard);*/
+         /*--paper-input-container-invalid-color: var(--secondaryFontColorCard);*/
+        --paper-input-container-focus-color: var(--secondaryFontColorCard);
+        --paper-input-container-input-color: var(--secondaryFontColorCard);
+        /*--paper-input-container-underline: var(--secondaryFontColorCard);*/
+        --paper-input-container-underline-focus: var(--secondaryFontColorCard);
+      }
+      paper-toggle-button.language{
+        margin-left: 15px;
+        margin-top: 20px;
+        --paper-toggle-button-checked-bar-color:  #1E88E5;
+        --paper-toggle-button-checked-button-color: #1E88E5;
+        --paper-toggle-button-checked-ink-color: #1E88E5;
+        --paper-toggle-button-unchecked-bar-color:  #1E88E5;
+        --paper-toggle-button-unchecked-button-color: #1E88E5;
+        --paper-toggle-button-unchecked-ink-color: #1E88E5;
+      }
+      paper-button.nextVocab{
+        font-size: 0.75em;
+        width: 8%;
+        height: 30px;
+        margin-top: 200px;
+        margin-left: 70%;
+        
+      }
+      paper-button.cancelbutton{
+        font-size: 0.75em;
+        width: 8%;
+        height: 30px;
+        margin-left: 40px;
+        margin-top: 80px;
+      }
+      paper-button.pausebutton{
+        font-size: 0.75em;
+        width: 40px;
+        height: 30px;
+        margin-left: 0%;
+        margin-top: 80px;
+        /*color: var(--modeCheckColor);*/
+      }
+      paper-button.skipbutton{
+        font-size: 0.75em;
+        width: 8%;
+        height: 30px;
+        margin-left: 0%;
+        margin-top: 80px;
+      }
+      paper-button.startbutton{
+        font-size: 0.75em;
+        width: 8%;
+        height: 30px;
+        margin-left: 0%;
+        margin-top: 80px;
+      }
+      paper-progress.green {
+        --paper-progress-active-color: var(--paper-light-green-500);
+        --paper-progress-secondary-color: var(--paper-light-green-100);
+      }
+
+      paper-progress.blue {
+        --paper-progress-active-color: var(--paper-light-blue-500);
+        --paper-progress-secondary-color: var(--paper-light-blue-100);
+      }
+      h3.learnprogress{
+        font-weight: 300;
+        font-size: 0.9em;
+        width: 200px;
+        height: 30px;
+        /*margin-left: 83%;*/
+        margin-top: 0px;
+      }
+      h3.unitprogress{
+        font-weight: 300;
+        font-size: 0.9em;
+        width: 200px;
+        height: 30px;
+        /*margin-left: 83%;*/
+        margin-top: 0px;
+      }
+      h2.timer{
+        margin-top: 100px;
+        margin-left: 20%;
+      }
+      div.progressbars{
+        float: right;
+      }
+      paper-icon-button.back{
+        font-size: 0.65em;
+        width: 45px;
+        height: 45px;
+        margin-left: -10px;
+        margin-top: -55px;
+        position:absolute;
+      }
+      iron-icon.language{
+        color: var(--app-secondary-color);
+        width: 20px;
+        height: 20px;
+        margin-top: 15px;
+        margin-left: 10px;
+      }
+      iron-icon.next{
+        color: var(--app-secondary-color);
+        width: 20px;
+        height: 20px;
+        margin-top: -80px;
+        margin-left: 80%;
+      }
+      #infoLanguage, #infoNext{
+        width: 400px;
+        border-radius: 5px;
+        border-color: var(--secondaryFontColorCard);
+        background-color: var(--hover-color);
+        color: var(--secondaryFontColorCard);
+      }
+
+    </style>
+
+    <div class="card">
+      <h1>Unit 1</h1> <!--Name der Unit-->
+      <paper-icon-button name="backicon" icon="hardware:keyboard-arrow-left" class="back"></paper-icon-button>
+      <table>
+        <tr>
+          <td><h3 class="german">German</h3></td>
+          <td><paper-toggle-button noink checked class="language"></paper-toggle-button></td>
+          <td> <h3 class="english">English</h3></td>
+          <td><iron-icon icon="icons:info-outline" class="language"></iron-icon></td>
+          <paper-dialog id="infoLanguage">
+            <p>When you select "German" you will have to
+              write German words and when you select "English" you will have to write
+              English words.</p>
+          </paper-dialog>
+          <div id="popuplanguage" name="languagePopup" style="display: none">When you select "German" you will have to
+              write German words and when you select "English" you will have to write
+              English words.</div>
+        </tr>
+      </table>
+      <div class="progressbars">
+          <paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress>
+          <h3 class="learnprogress">Learn Progress</h3>
+          
+          <paper-progress name="unit" value="0" min="0" max="100" class="blue"></paper-progress>
+          <h3 class="unitprogress">Unit Progress</h3>
+      </div>
+      <div>
+          <paper-button hidden="true" class="nextVocab" name="nextVocab" raised noink>Next</paper-button>
+          <h2 hidden="true">house</h2> <!--Vokabel das angezeigt wird-->
+          <paper-input hidden="true" class="vocab"></paper-input> <!--Vokabel das eingegeben wird-->
+          <iron-icon hidden="true" icon="icons:info-outline" class="next"></iron-icon>
+          <paper-dialog id="infoNext">
+            <p>When you press "NEXT" Vocabulous
+              will check your answer. If it is correct the line will turn green,
+              else the line will turn red. You have two tries.
+              When the line turns orange, the correct answer is shown.
+              After a short amount of time you will get the next word.</p>
+          </paper-dialog>
+          <div id="popupnext" name="nextPopup" style="display: none">When you press "NEXT" Vocabulous
+              will check your answer. If it is correct the line will turn green,
+              else the line will turn red. You have two tries.
+              When the line turns orange, the correct answer is shown.
+              After a short amount of time you will get the next word.</div>
+      </div>
+      
+      <table>
+        <tr>
+          <td><paper-button hidden="true" class="cancelbutton" name="cancelbutton" noink raised>Exit</paper-button></td>
+          <td><paper-button hidden="true" class="pausebutton" name="pausebutton" noink raised>Pause</paper-button></td>
+          <td><paper-button hidden="true" class="skipbutton" name="skipbutton" noink raised>Skip</paper-button></td>
+          <td><paper-button class="startbutton" name="startbutton" noink raised>Start</paper-button></td>
+          <td><h2 hidden="true" class="timer">00:00:00</time-counter></td>
+        </tr>
+      </table>
+    </div>
+    <input name="wordCount" style="display:none;">
+    <input name="wrong" style="display:none;">
+    <input name="secondTry" style="display:none;">
+    <input name="wrongVocs" style="display:none;">
+  </template>
+  <script>
+    class PracticeUnitPage extends Polymer.Element {
+      static get is() { return 'practiceunit-page'; }
+      _getUnitName(){
+        return Polymer.dom(this.root).querySelector("h1");
+      }
+      _getCancelButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=cancelbutton]");
+      }
+      _getPauseButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=pausebutton]");
+      }
+      _getSkipButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=skipbutton]");
+      }
+      _getTimeCounter(){
+        return Polymer.dom(this.root).querySelector("h2[class=timer]");
+      }
+      _getToggleButton(){
+        return Polymer.dom(this.root).querySelector("paper-toggle-button");
+      }
+      _getLearnProgressBar(){
+        return Polymer.dom(this.root).querySelector("paper-progress[name=learn]");
+      }
+      _getUnitProgressBar(){
+        return Polymer.dom(this.root).querySelector("paper-progress[name=unit]");
+      }
+      _getInput(){
+        return Polymer.dom(this.root).querySelector("paper-input[class=vocab]");
+      }
+      _getWordPrint(){
+        return Polymer.dom(this.root).querySelector("h2");
+      }
+      _getNextButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[class=nextVocab]");
+      }
+      _getStartButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=startbutton]");
+      }
+      _getReturnButton(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=backicon]");
+      }
+      _getLanguageInfo(){
+        return Polymer.dom(this.root).querySelector("iron-icon[class=language]");
+      }
+      _getNextInfo(){
+        return Polymer.dom(this.root).querySelector("iron-icon[class=next]");
+      }
+      _getLanguagePupup(){
+        return Polymer.dom(this.root).querySelector("div[name=languagePopup]");
+      }
+      _getNextPupup(){
+        return Polymer.dom(this.root).querySelector("div[name=nextPopup]");
+      }
+      _getWordCount(){
+        return Polymer.dom(this.root).querySelector("input[name=wordCount]");
+      }
+      _getWrong(){
+        return Polymer.dom(this.root).querySelector("input[name=wrong]");
+      }
+      _getSecondTry(){
+        return Polymer.dom(this.root).querySelector("input[name=secondTry]");
+      }
+      _getWrongVocs(){
+        return Polymer.dom(this.root).querySelector("input[name=wrongVocs]");
+      }
+      _getPaperDialogLanguage(){
+        return Polymer.dom(this.root).querySelector("paper-dialog[id=infoLanguage]");
+      }
+      _getPaperDialogNext(){
+        return Polymer.dom(this.root).querySelector("paper-dialog[id=infoNext]");
+      }
+    }
+    window.customElements.define(PracticeUnitPage.is, PracticeUnitPage);
+  </script>
+  <script name="practiceunitpage" src="../develop-javascript/src/practicepage.js" type="module"></script>
+</dom-module>
+

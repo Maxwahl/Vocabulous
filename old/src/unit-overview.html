@@ -1,0 +1,177 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-content.html">
+<link rel="import" href="../bower_components/d2l-dropdown/d2l-dropdown-menu.html">
+<link rel="import" href="../bower_components/d2l-menu/d2l-menu-item.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="unit-overview">
+  <template>
+    <style include="shared-styles">
+      :host {
+        --app-primary-color:  var(--headlineCard);
+        --app-secondary-color: var(--secondaryFontColorCard);
+        display: block;
+        padding: 10px;
+      }
+      h1{
+        color: var(--app-primary-color);
+        margin-left: 40px;
+        font-weight: 400;
+        font-size: 23px;
+      }
+      paper-search-bar{
+        margin: 40px;
+        margin-top: 50px;
+        width: 97%;
+        color: var(--secondaryFontColorCard);
+        --background-color:var(--cardBackgroundcolor);
+        --disabled-text-color:var(--secondaryFontColorCard);
+        /*padding-bottom: 30px;*/
+      }
+      paper-search-bar::-ms-clear{
+        margin: 40px;
+        margin-top: 50px;
+        display:none;
+      }
+      table{
+        width: 100%;
+      }
+      td:hover{
+        background-color: var(--hover-color);
+      }
+      td{
+        border: 1px solid var(--secondaryFontColorCard);
+        height: 30px;
+        padding: 10px;
+        text-align: left;
+        font-weight: 400;
+        margin-left: 40px;
+        color:var(--secondaryFontColorCard);
+        border-radius: 5px;
+        margin-bottom: 3px;
+        display: block;
+      }
+      p{
+        margin-top: 2.5px;
+        font-weight: 400;
+      }
+      paper-button.translate{
+        font-size: 0.65em;
+        width: 10%;
+        height: 30px;
+        margin-bottom: 20px;
+      }
+      d2l-dropdown{
+        float:right;
+      }
+      
+      paper-icon-button.trash{
+        color:grey;
+        --iron-icon-width: 25px;
+        --iron-icon-height: 25px;
+        float:right;
+        margin-top: -47.5px;
+      }
+      paper-icon-button.trash:hover{
+        color: red;
+      }
+      paper-button.confirmButtons{
+        color: var(--headlineCard);
+      }
+      
+      paper-button.newUnit{
+        font-size: 0.75em;
+        margin-bottom: -200px;
+        width: 13%;
+        height: 30px;
+        margin-left: 85%;
+        color:var(--secondaryFontColorCard);
+      }
+      #confirm{
+        border-radius: 5px;
+        border-color: var(--secondaryFontColorCard);
+        background-color: var(--hover-color);
+        color: var(--secondaryFontColorCard);
+      }
+      #menu{
+        width: 45px;
+        height: 45px;
+        float:right;
+      }
+      #createnewunit{
+        padding-right: 5px;
+      }
+    </style>
+    	
+    <div class="card">
+      <h1>Units</h1>      
+      <paper-dialog id="confirm">
+        <h2>Confirm</h2>
+        <p>Do you really want to delete this Unit?</p>
+        <div class="buttons">
+          <paper-button class="confirmButtons"name="no">No</paper-button>
+          <paper-button class="confirmButtons"name="yes">Yes</paper-button>
+        </div>
+      </paper-dialog>
+      <paper-button name="newUnit" class="newUnit"raised noink><iron-icon id="createnewunit" icon="icons:note-add"></iron-icon>Create New Unit</paper-button>
+      </d2l-dropdown>
+      <paper-search-bar search="{{search}}" loading="[[loading]]" hide-filter-button></paper-search-bar>
+      <!--<paper-icon-button class="trash" name="trash" icon="vaadin:trash"></paper-icon-button>-->
+
+      
+      <table id="units">
+       
+      </table>
+      <input name="forUnit" style="display:none;">
+      <input name="uId" style="display:none;"><!--Für Update Unit benötigt-->
+    </div>
+  </template>
+
+  <script>
+    class UnitOverview extends Polymer.Element {
+      static get is() { return 'unit-overview'; }
+      _getUnitTable(){
+        return Polymer.dom(this.root).querySelector("table[id=units]");
+      }
+      _getSearchBar(){
+        return Polymer.dom(this.root).querySelector("paper-search-bar");
+      }
+      _getChecked(){
+        return Polymer.dom(this.root).querySelector("input[name=forUnit]");
+      }
+      _getNewUnitButton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=newUnit]");
+      }
+      _getPaperDialog(){
+        return Polymer.dom(this.root).querySelector("paper-dialog[id=confirm]");
+      }
+      _getPaperDialogNo(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=no]");
+      }
+      _getPaperDialogYes(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=yes]");
+      }
+      _getUnitId(){
+        return Polymer.dom(this.root).querySelector("input[name=uId]");
+      }
+    }
+    window.customElements.define(UnitOverview.is, UnitOverview);
+  </script>
+  <script src="../develop-javascript/src/unitsoverview.js" type="module"></script>
+</dom-module>

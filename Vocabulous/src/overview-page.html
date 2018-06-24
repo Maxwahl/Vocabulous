@@ -1,0 +1,449 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/vaadin-icons/vaadin-icons.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../bower_components/iron-icons/editor-icons.html">
+<link rel="import" href="../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="my-icons.html">
+
+<link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
+
+
+<link rel="lazy-import" href="home-view.html">
+<link rel="lazy-import" href="unit-overview.html">
+<link rel="lazy-import" href="unit-page.html">
+<link rel="lazy-import" href="statistics-view.html">
+<link rel="lazy-import" href="messages-view.html">
+<link rel="lazy-import" href="account-view.html">
+<link rel="lazy-import" href="settings-view.html">
+<link rel="lazy-import" href="practiceunit-page.html">
+<link rel="lazy-import" href="selfcheck-page.html">
+<link rel="lazy-import" href="not-found.html">
+<link rel="lazy-import" href="create-unit.html">
+<link rel="lazy-import" href="register-login.html">
+<link rel="lazy-import" href="unitresult-page.html">
+<link rel="lazy-import" href="translate-page.html">
+<link rel="lazy-import" href="browse-unit.html">
+<link rel="lazy-import" href="upload-unit.html">
+<link rel="lazy-import" href="practiceunit-page-selectionmode.html">
+<link rel="lazy-import" href="unit-overview-for-sessions.html">
+<link rel="lazy-import" href="my-app.html">
+
+<dom-module id="overview-page">
+  <template>
+    <style>
+      :host {
+        --app-primary-color: #fff;
+        --app-secondary-color: #fff;
+        --containercolor: #ffffff;
+        --navigationcolorbackground:#fff;
+        --itemcolor: #fff;
+        color:#fff;
+        display: block;
+      }
+
+      app-drawer-layout:not([narrow]) [drawer-toggle] {
+        display: none;
+      }
+
+      app-drawer{
+        --app-drawer-content-container: {
+          background-color: var(--containercolor);
+        }
+      }
+      app-header {
+        color: #fff;
+        background-color: var(--app-primary-color);
+      }
+
+      app-header paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+
+      paper-icon-button.user{
+        width: 45px;
+        height: 45px;
+        margin-right: 30px;
+      }
+
+      paper-button {
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      .drawer-list {
+        margin: 0 0px;
+        background-color: #757c89;
+        
+      }
+
+      .drawer-list a {
+        display: block;
+        padding: 0 16px;
+        text-decoration: none;
+        color: var(--app-secondary-color);
+        line-height: 40px;
+        font-weight: 300;
+      }
+
+      .drawer-list a.iron-selected {
+        color: var(--navigationcolorfont);
+        font-weight: bold;
+        background-color: var(--navigationcolorbackground);
+      }
+      div.maintitle{
+        font-weight: 300;
+        margin-left: 20px;
+      }
+      iron-icon{
+        float:left;
+        margin-top: 3%;
+        height: 20px;
+        width: 20px;
+        padding-right: 5%;
+        color: var(--itemcolor);
+        opacity: 0.6;
+
+      }
+      paper-progress.green {
+        --paper-progress-active-color: var(--paper-light-green-500);
+        --paper-progress-secondary-color: var(--paper-light-green-100);
+        margin-top: -30px;
+        
+      }
+      .learnprogress{
+        margin-top: -65px;
+        font-size: 11px;
+      }
+
+      #toast1{
+        background-color: green;
+        color: white;
+      }
+      #toast2{
+        background-color: orange;
+        color: white;
+      }
+      #toast3{
+        background-color: red;
+        color: white;
+      }
+      #homeview,#unitoverview,#statisticsview,#settingsview, #browseunits, #practiceAnswer, #selfcheck, #aboutview{
+        margin-top: 10px;
+      }
+      #toast5{
+        background-color: green;
+        color: white;
+      }
+      #toast7{
+        background-color: green;
+        color: white;
+      }
+      a{
+        cursor: pointer;
+      }
+      #home{
+        color: var(--headlineCard);
+      }
+    </style>
+
+    <app-location
+        route="{{route}}"
+        url-space-regex="^[[rootPath]]">
+    </app-location>
+
+    <app-route
+        route="{{route}}"
+        pattern="[[rootPath]]:page"
+        data="{{routeData}}"
+        tail="{{subroute}}">
+    </app-route>
+    <app-drawer-layout fullbleed force-narrow>
+      <!-- Drawer content -->
+      <app-drawer id="drawer" slot="drawer" force-narrow="true" swipe-open="[[narrow]]">
+            <app-toolbar id="home" style="font-weight:300"><a name="startpage"><span>Vocabulous</span></a></app-toolbar>
+            <app-toolbar><paper-progress name="learn" value="250" min="0" max="800" class="green"></paper-progress></app-toolbar>
+            <app-toolbar class="learnprogress">Learn Progress</app-toolbar>
+            <iron-selector name="menu" selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+              <a name="overviewWords"><iron-icon id="unitoverview" icon="av:library-books"></iron-icon><span>Units</span></a>
+              <a name="browseUnits"><iron-icon id="browseunits" icon="icons:file-download"></iron-icon><span>Browse Units</span></a>
+              <a name="practiceOverview"><iron-icon id="practiceAnswer" icon="icons:book"></iron-icon><span>Practice</span></a>
+              <a name="selfcheck"><iron-icon id="selfcheck" icon="icons:assignment-turned-in"></iron-icon><span>Selfcheck</span></a>
+              <a name="statistics-view"><iron-icon id="statisticsview" icon="editor:show-chart"></iron-icon><span>Statistics</span></a>
+              <a name="settings-view"><iron-icon id="settingsview" icon="icons:settings"></iron-icon><span>Settings</span></a>
+              <a name="about-view"><iron-icon id="aboutview" icon="icons:info-outline"></iron-icon><span>About</span></a>
+            </iron-selector>
+        </app-drawer>
+
+      <!-- Main content -->
+      <app-header-layout has-scrolling-region>
+        <app-header slot="header" fixed condenses effects="waterfall">
+            
+          <app-toolbar>
+            <paper-icon-button name="menuicon" icon="my-icons:menu" noink></paper-icon-button>
+            <div class="maintitle" main-title>Vocabulous</div>
+            <paper-button name="user">Max Mustermann </paper-button> <!--User Account Button -->
+            <paper-icon-button name="accounticon" icon="social:person" class="user"></paper-icon-button> <!--User Account Button -->
+            <paper-button name="logout">Log out</paper-button> <!--Log out Button -->
+          </app-toolbar>
+        </app-header>
+
+        <iron-pages
+            selected="[[page]]"
+            attr-for-selected="name"
+            fallback-selection="not-found">
+          <home-view name="home-view"></home-view>
+          <unit-overview name="unit-overview"></unit-overview>
+          <unit-page name="unit-page"></unit-page>
+          <statistics-view name="statistics-view"></statistics-view>
+          <account-view name="account-view"></account-view>
+          <settings-view name="settings-view"></settings-view>
+          <not-found name="not-found"></not-found>
+          <practiceunit-page name="practiceunit-page"></practiceunit-page>
+          <selfcheck-page name="selfcheck-page"></selfcheck-page>
+          <create-unit name="create-unit"></create-unit>
+          <unitresult-page name="unitresult-page"></unitresult-page>
+          <translate-page name="translate-page"></translate-page>
+          <browse-unit name="browse-unit"></browse-unit>
+          <upload-unit name="upload-unit"></upload-unit>
+          <practice-overview name="practice-overview"></practice-overview>
+          <practiceunit-page-selectionmode name="practiceunit-page-selectionmode"></practiceunit-page-selectionmode>
+          <unit-overview-for-sessions name="unit-overview-for-sessions"></unit-overview-for-sessions>
+          <about-view name="about-view"></about-view>
+        </iron-pages>
+      </app-header-layout>
+    </app-drawer-layout>
+    <input style="display:none;" name="mode">
+    <paper-toast id="toast0" text="Insert all required fields to save!"></paper-toast>
+    <paper-toast id="toast1" duration=1000 text="This vocab is correct!"></paper-toast>
+    <paper-toast id="toast2" duration=2000 text="This vocab is wrong! Second Try"></paper-toast>
+    <paper-toast id="toast3" duration=2500 text="This vocab is wrong again!"></paper-toast>
+    <paper-toast id="toast4" duration=2500 text="No vocabulary inserted!"></paper-toast>
+    <paper-toast id="toast5" duration=2500 text="All settings have been saved!"></paper-toast>
+    <paper-toast id="toast6" text="Insert all required fields to save correctly!"></paper-toast>
+    <paper-toast id="toast7" duration=2500 text="Transmission completed successfully!"></paper-toast>
+    <input name="updateUnit" style="display:none;"><!--Für Update Unit benötigt-->
+  </template>
+
+  <script>
+    class OverviewPage extends Polymer.Element {
+      static get is() { return 'overview-page'; }
+
+      static get properties() {
+        return {
+          page: {
+            type: String,
+            reflectToAttribute: true,
+            observer: '_pageChanged',
+          },
+          routeData: Object,
+          subroute: String,
+          // This shouldn't be neccessary, but the Analyzer isn't picking up
+          // Polymer.Element#rootPath
+          rootPath: String,
+        };
+      }
+
+      static get observers() {
+        return [
+          '_routePageChanged(routeData.page)',
+        ];
+      }
+      _routePageChanged(page) {
+        // If no page was found in the route data, page will be an empty string.
+        // Default to 'view1' in that case.
+        this.page = page || 'home-view';
+        // Close a non-persistent drawer when the page & route are changed.
+        if (!this.$.drawer.persistent) {
+          this.$.drawer.close();
+        }
+      }
+      _getHomeview(){
+        return Polymer.dom(this.root).querySelector("a[name=startpage]");
+      }
+      _getWordview(){
+        return Polymer.dom(this.root).querySelector("a[name=overviewWords]");
+      }
+      _getPracticeOverviewView(){
+        return Polymer.dom(this.root).querySelector("a[name=practiceOverview]");
+      }
+      _getSelfcheckview(){
+        return Polymer.dom(this.root).querySelector("a[name=selfcheck]");
+      }
+      _getBrowseUnitview(){
+        return Polymer.dom(this.root).querySelector("a[name=browseUnits]");
+      }
+      _getAboutView(){
+        return Polymer.dom(this.root).querySelector("a[name=about-view]");
+      }
+      /*_getPracticeMemoryview(){
+        return Polymer.dom(this.root).querySelector("a[name=practiceMemory]");
+      }*/
+      _getHomeviewPage(){
+        return Polymer.dom(this.root).querySelector("home-view[name=home-view]");
+      }
+      _getPracticeOverview(){
+        return Polymer.dom(this.root).querySelector("practice-overview[name=practice-overview]");
+      }
+      _getUnitoverview(){
+        return Polymer.dom(this.root).querySelector("a[name=unit-overview]");
+      }
+      _getUnitoverviewPage(){
+        return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
+      }
+      _getUnitoverviewForSessionsPage(){
+        return Polymer.dom(this.root).querySelector("unit-overview-for-sessions[name=unit-overview-for-sessions]");
+      }
+      _getStatisticview(){
+        return Polymer.dom(this.root).querySelector("a[name=statistics-view]");
+      }
+      _getStatisticviewPage(){
+        return Polymer.dom(this.root).querySelector("statistics-view[name=statistics-view]");
+      }
+      _getMessageviewPage(){
+        return Polymer.dom(this.root).querySelector("messages-view[name=messages-view]");
+      }
+      _getAccountview(){
+        return Polymer.dom(this.root).querySelector("account-view[name=account-view]");
+      }
+      _getSettingsview(){
+        return Polymer.dom(this.root).querySelector("a[name=settings-view]");
+      }
+      _getLogoutbutton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=logout]");
+      }
+      _getUserbutton(){
+        return Polymer.dom(this.root).querySelector("paper-button[name=user]");
+      }
+      _getAccounticon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=accounticon]");
+      }
+      _getMenuicon(){
+        return Polymer.dom(this.root).querySelector("paper-icon-button[name=menuicon]");
+      }
+      _getAppdrawer(){
+        return Polymer.dom(this.root).querySelector("app-drawer-layout");
+      }
+      _getMenubar(){
+        return Polymer.dom(this.root).querySelector("iron-selector[name=menu]");
+      }
+      _getSettingsviewTag(){
+        return Polymer.dom(this.root).querySelector("settings-view[name=settings-view]");
+      }
+      /*_getUnitView(){
+        return Polymer.dom(this.root).querySelector("unit-overview[name=unit-overview]");
+      }*/
+      _getCreateUnit(){
+        return Polymer.dom(this.root).querySelector("create-unit[name=create-unit]");
+      }
+      _getTranslatePage(){
+        return Polymer.dom(this.root).querySelector("translate-page[name=translate-page]");
+      }
+      _getBrowseUnit(){
+        return Polymer.dom(this.root).querySelector("browse-unit[name=browse-unit]");
+      }
+      _getUploadUnit(){
+        return Polymer.dom(this.root).querySelector("upload-unit[name=upload-unit]");
+      }
+      _getAppHeader(){
+        return Polymer.dom(this.root).querySelector("app-header");
+      }
+      _getIronSelector(){
+        return Polymer.dom(this.root).querySelector("iron-selector");
+      }
+      _getAppdrawerForTheme(){
+        return Polymer.dom(this.root).querySelector("app-drawer");
+      }
+      _getUnitPage(){
+        return Polymer.dom(this.root).querySelector("unit-page[name=unit-page]");
+      }
+      _getIronPages(){
+        return Polymer.dom(this.root).querySelector("iron-pages");
+      }
+      _getPracticeUnitPage(){
+        return Polymer.dom(this.root).querySelector("practiceunit-page[name=practiceunit-page]");
+      }
+      _getPracticeUnitPageSelectionmode(){
+        return Polymer.dom(this.root).querySelector("practiceunit-page-selectionmode[name=practiceunit-page-selectionmode]");
+      }
+      _getSelfCheckPage(){
+        return Polymer.dom(this.root).querySelector("selfcheck-page[name=selfcheck-page]");
+      }
+      _getUnitResultPage(){
+        return Polymer.dom(this.root).querySelector("unitresult-page[name=unitresult-page]");
+      }
+      _getMainTitle(){
+        return Polymer.dom(this.root).querySelector("div[class=maintitle]");
+      }
+      _pageChanged(page) {
+        // Load page import on demand. Show 404 page if fails
+        var resolvedPageUrl = this.resolveUrl(page + '.html');
+        Polymer.importHref(
+            resolvedPageUrl,
+            null,
+            this._showPage404.bind(this),
+            true);
+      }
+
+      _showPage404() {
+        this.page = 'not-found';
+      }
+      _getSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast0]");
+      }
+      _getCorrectWordToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast1]");
+      }
+      _getSecondTryToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast2]");
+      }
+      _getWrongWordToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast3]");
+      }
+      _getNoWordToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast4]");
+      }
+      _getAccountSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast5]");
+      }
+      _getAccountWrongSettingsToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast6]");
+      }
+      _getTransmissionToast(){
+        return Polymer.dom(this.root).querySelector("paper-toast[id=toast7]");
+      }
+      _getUpdateInput(){
+        return Polymer.dom(this.root).querySelector("input[name=updateUnit]");
+      }
+      _getModeInput(){
+        return Polymer.dom(this.root).querySelector("input[name=mode]");
+      }
+    }
+
+    window.customElements.define(OverviewPage.is, OverviewPage);
+  </script>
+  <script src="../develop-javascript/src/overviewpage.js" type="module"></script>
+
+</dom-module>
