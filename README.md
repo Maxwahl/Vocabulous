@@ -6,5 +6,3 @@ Dieses Vokabelüberprüfungsprogramm soll Studenten, Schülern und Kunden des Sp
 
 ### Funktionale Anforderungen
 Der Benutzer kann mit dieser Software vorgegebene Lernabschnitte, sogenannte Units lernen. Um den Lernfortschritt zu überprüfen, können Selbstkontrollen in Form von kleinen Wiederholungen durchgeführt werden. Zur besseren Übersicht werden die Fortschritte in Diagrammen und Statistiken angezeigt.
-
-
