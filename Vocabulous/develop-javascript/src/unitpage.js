@@ -24,7 +24,7 @@ ironPages.addEventListener("iron-select",function(){
     }
 });
 async function changedUnit(){
-    var stockUnits = await BackEndHandler.getUnits(0);
+    var stockUnits = await BackEndHandler.getUnits(-1);
     unitName.innerHTML = await BackEndHandler.getUnitName(checked.value);
     if(updateInput.value !=-1){
         unitName.innerHTML = await BackEndHandler.getUnitName(updateInput.value);

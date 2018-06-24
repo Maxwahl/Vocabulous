@@ -154,6 +154,10 @@ async function getMottoForSession(mode){
             }
         }
     }
+    if(lastResult == null){
+        motto.innerHTML = "";
+        return;
+    }
     console.log("Lastresult:");
     console.log(lastResult);
     var actResult = null;
@@ -168,6 +172,7 @@ async function getMottoForSession(mode){
     }
     if(actResult == null){
         motto.innerHTML = "";
+        return;
     }
     var wrong = lastResult.getWrong() - actResult.getWrong();
     var right = actResult.getCorrect() - lastResult.getCorrect();

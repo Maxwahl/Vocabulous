@@ -43,6 +43,7 @@ confirmAlertYes.onclick = async function(){
 }
 
 async function load(){
+    mode.value = "0";
     updateInput.value = -1;
     user = await BackEndHandler.login(username.value, password.value);
     units = await BackEndHandler.getUnits(user.getId());

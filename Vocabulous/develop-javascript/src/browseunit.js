@@ -127,7 +127,7 @@ filterSave.onclick = async function(){
     loop1:
     for(var i = 0; i < otherUnits.length; i++){
         loop2:
-        for(var a = 0; i < filterUnits.length; a++){
+        for(var a = 0; a < filterUnits.length; a++){
             if(filterUnits[a].getId() == otherUnits[i].getId()){
                 units.push(filterUnits[i]);
                 break loop2;
